@@ -19,12 +19,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 lg:px-8" role="navigation" aria-label="Main navigation">
-        <div className="flex items-center justify-center gap-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 lg:px-8 relative" role="navigation" aria-label="Main navigation">
+        <div className="flex items-center justify-center gap-10 lg:gap-12">
           <Link href="/" className="text-xl font-medium tracking-wide text-white">
             M-World Company
           </Link>
-          <div className="hidden gap-6 md:flex">
+          <div className="hidden gap-8 lg:gap-10 md:flex">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
               return (

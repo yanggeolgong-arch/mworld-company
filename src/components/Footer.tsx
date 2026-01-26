@@ -4,8 +4,8 @@ export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-slate-950">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 justify-items-center text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 justify-items-center text-center">
+          <div className="flex flex-col items-center">
             <h3 className="text-base font-semibold text-white">M-World Company</h3>
             <p className="mt-4 text-base font-medium text-slate-300">
               <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화.
@@ -17,7 +17,7 @@ export function Footer() {
               F&B(맛집) 마케팅의 절대 강자
             </p>
           </div>
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center">
             <h3 className="text-base font-semibold text-white">서비스 안내</h3>
             <ul className="mt-4 space-y-2 text-base">
               <li>
@@ -37,7 +37,7 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center">
             <h3 className="text-base font-semibold text-white">자료실</h3>
             <ul className="mt-4 space-y-2 text-base">
               <li>
@@ -52,13 +52,13 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col items-center md:items-start">
+          <div className="flex flex-col items-center">
             <h3 className="text-base font-semibold text-white">고객센터</h3>
             <ul className="mt-4 space-y-3 text-base">
               <li>
                 <a
                   href="tel:010-4074-9343"
-                  className="flex items-center justify-center md:justify-start gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37]"
+                  className="flex items-center justify-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37]"
                 >
                   <span className="text-[#d4af37]">📞</span>
                   010-4074-9343
@@ -82,6 +82,24 @@ export function Footer() {
             <p className="text-sm font-medium text-slate-400">
             &copy; {new Date().getFullYear()} M-World Company (엠월드컴퍼니). All rights reserved.
           </p>
+        </div>
+        
+        {/* 사업자 정보 */}
+        <div className="mt-6 pt-6 border-t border-white/5 text-center">
+          <div className="space-y-2 text-sm text-slate-400">
+            <p className="font-medium text-slate-300">
+              상호명: 엠월드컴퍼니 | 대표자: 공양걸
+            </p>
+            <p>
+              주소: 제주특별자치도 제주시 삼동2길 10, 201호(연동)
+            </p>
+            <p>
+              대표번호: 010-4074-9343 | 사업자번호: 603-20-65775
+            </p>
+            <p>
+              통신판매번호: 2022-제주연동-0226호
+            </p>
+          </div>
         </div>
       </div>
     </footer>
