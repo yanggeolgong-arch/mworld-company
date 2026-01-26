@@ -6,11 +6,11 @@ import { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
 const navigation = [
-  { name: 'The Strategy', href: '/strategy' },
-  { name: 'Growth Engine', href: '/growth-engine' },
-  { name: 'Success Cases', href: '/success-cases' },
-  { name: 'Insights', href: '/insights' },
-  { name: 'Partnership', href: '/partnership' },
+  { name: '마케팅 전략', href: '/strategy' },
+  { name: '성장 엔진', href: '/growth-engine' },
+  { name: '성공 사례', href: '/success-cases' },
+  { name: '성공 노하우', href: '/insights' },
+  { name: '협력 문의', href: '/partnership' },
 ];
 
 export function Header() {
@@ -19,9 +19,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8" role="navigation" aria-label="Main navigation">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="text-xl font-light tracking-wide text-white">
+      <nav className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 lg:px-8" role="navigation" aria-label="Main navigation">
+        <div className="flex items-center justify-center gap-8">
+          <Link href="/" className="text-xl font-medium tracking-wide text-white">
             M-World Company
           </Link>
           <div className="hidden gap-6 md:flex">
@@ -31,7 +31,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-light transition-colors ${
+                  className={`text-base font-medium transition-colors ${
                     isActive
                       ? 'text-emerald-400'
                       : 'text-slate-300 hover:text-emerald-400'
@@ -43,7 +43,7 @@ export function Header() {
             })}
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="absolute right-6 lg:right-8 flex items-center gap-4">
           <ThemeToggle />
           <button
             type="button"
@@ -77,7 +77,7 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-base font-light transition-colors ${
+                  className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
                     isActive
                       ? 'bg-slate-900 text-emerald-400'
                       : 'text-slate-300 hover:bg-slate-900 hover:text-emerald-400'
