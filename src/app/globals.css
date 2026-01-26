@@ -1,0 +1,177 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --navy-deep: #001f3f;
+  --navy-deep-light: #0a2d5a;
+  --charcoal-gray: #36454f;
+  --charcoal-gray-light: #4a5a6a;
+  --silver-premium: #c0c0c0;
+  --silver-premium-light: #e8e8e8;
+  --gold-luxury: #d4af37;
+  --gold-luxury-light: #e8d68a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-deep-light: var(--navy-deep-light);
+  --color-silver-premium: var(--silver-premium);
+  --color-silver-premium-light: var(--silver-premium-light);
+  --color-gold-luxury: var(--gold-luxury);
+  --color-gold-luxury-light: var(--gold-luxury-light);
+  --color-charcoal-gray: var(--charcoal-gray);
+  --color-charcoal-gray-light: var(--charcoal-gray-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --navy-deep: #0a2d5a;
+    --navy-deep-light: #1a3d6a;
+    --silver-premium: #a0a0a0;
+    --silver-premium-light: #c8c8c8;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+/* Semantic DNA Animation - 시맨틱 DNA 결합 효과 */
+@keyframes semanticDNAFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(15px) scale(0.98);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-stagger {
+  animation: semanticDNAFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-stagger-delay-1 { 
+  animation-delay: 0.1s; 
+}
+
+.animate-stagger-delay-2 { 
+  animation-delay: 0.2s; 
+}
+
+.animate-stagger-delay-3 { 
+  animation-delay: 0.3s; 
+}
+
+.animate-stagger-delay-4 { 
+  animation-delay: 0.4s; 
+}
+
+.animate-stagger-delay-5 { 
+  animation-delay: 0.5s; 
+}
+
+.animate-stagger-delay-6 { 
+  animation-delay: 0.6s; 
+}
+
+/* Prose styles for blog content */
+.prose {
+  color: rgb(55 65 81);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: rgb(17 24 39);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  line-height: 1.75;
+}
+
+.prose a {
+  color: rgb(17 24 39);
+  text-decoration: underline;
+}
+
+.prose img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 0.5rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  padding-left: 1.625em;
+}
+
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.prose blockquote {
+  border-left: 4px solid rgb(229 231 235);
+  padding-left: 1em;
+  font-style: italic;
+  color: rgb(107 114 128);
+}
+
+.dark .prose {
+  color: rgb(209 213 219);
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4 {
+  color: rgb(255 255 255);
+}
+
+.dark .prose a {
+  color: rgb(255 255 255);
+}
+
+.dark .prose blockquote {
+  border-left-color: rgb(55 65 81);
+  color: rgb(156 163 175);
+}
