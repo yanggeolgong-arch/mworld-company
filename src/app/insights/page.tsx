@@ -54,9 +54,9 @@ export default async function InsightsPage() {
 
   return (
     <article className="min-h-screen bg-[#fafafa] dark:bg-black">
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8" aria-labelledby="insights-heading">
-        <header className="mx-auto max-w-3xl">
-          <h1 id="insights-heading" className="text-4xl font-light tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
+      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="insights-heading">
+        <header className="mx-auto max-w-3xl text-center">
+          <h1 id="insights-heading" className="text-4xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
             Insights
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-[#36454f] dark:text-gray-400">
@@ -98,7 +98,7 @@ export default async function InsightsPage() {
             posts.map((post) => (
               <article
                 key={post.id}
-                className="rounded-2xl bg-white p-8 transition-all hover:shadow-lg dark:bg-[#0a0a0a] dark:hover:bg-[#1a1a1a] border border-[#e5e7eb] dark:border-[#1a1a1a]"
+                className="rounded-2xl bg-white p-8 transition-all hover:scale-105 hover:shadow-2xl dark:bg-[#0a0a0a] dark:hover:bg-[#1a1a1a] border border-white/10 dark:border-white/10"
                 role="listitem"
               >
                 <Link href={`/insights/${post.slug}`}>

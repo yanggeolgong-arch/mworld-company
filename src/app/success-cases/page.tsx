@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { CTASection } from '@/components/CTASection';
 
 export const metadata: Metadata = {
@@ -42,9 +43,9 @@ const cases = [
 export default function SuccessCasesPage() {
   return (
     <article className="min-h-screen bg-[#fafafa] dark:bg-black">
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8" aria-labelledby="cases-heading">
-        <header className="mx-auto max-w-3xl">
-          <h1 id="cases-heading" className="text-4xl font-light tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
+      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="cases-heading">
+        <header className="mx-auto max-w-3xl text-center">
+          <h1 id="cases-heading" className="text-4xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
             Success Cases
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-[#36454f] dark:text-gray-400">
@@ -59,27 +60,24 @@ export default function SuccessCasesPage() {
           </div>
         </header>
 
-        <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-20 grid max-w-7xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {cases.map((caseItem, index) => (
             <section
               key={index}
-              className={`group flex flex-col overflow-hidden rounded-2xl transition-all hover:shadow-lg border ${
+              className={`group flex flex-col overflow-hidden rounded-2xl transition-all hover:scale-105 hover:shadow-2xl border ${
                 caseItem.category === 'F&B'
-                  ? 'bg-gradient-to-br from-white to-[#d4af37]/5 border-[#d4af37]/20 dark:from-[#0a0a0a] dark:to-[#d4af37]/10 dark:border-[#d4af37]/30'
-                  : 'bg-white dark:bg-[#0a0a0a] border-[#e5e7eb] dark:border-[#1a1a1a]'
+                  ? 'bg-gradient-to-br from-white to-[#d4af37]/5 border-white/10 dark:from-[#0a0a0a] dark:to-[#d4af37]/10 dark:border-white/10'
+                  : 'bg-white dark:bg-[#0a0a0a] border-white/10 dark:border-white/10'
               }`}
             >
-              <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-[#f3f4f6] to-[#e5e7eb] dark:from-[#1a1a1a] dark:to-[#0a0a0a]">
-                <div className="flex h-full w-full items-center justify-center">
-                  <div className="text-center">
-                    <div className={`mx-auto mb-2 h-12 w-12 rounded-full ${
-                      caseItem.category === 'F&B' ? 'bg-[#d4af37]/20' : 'bg-[#001f3f]/10 dark:bg-[#e8e8e8]/10'
-                    }`} />
-                    <p className="text-xs font-light text-[#36454f] dark:text-gray-400">
-                      {caseItem.category}
-                    </p>
-                  </div>
-                </div>
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80"
+                  alt={caseItem.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 {caseItem.category === 'F&B' && (
                   <div className="absolute top-3 right-3">
                     <span className="rounded-full bg-[#d4af37] px-2 py-1 text-xs font-semibold text-white">

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function PartnershipPage() {
   return (
     <article className="min-h-screen bg-[#fafafa] dark:bg-black">
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8" aria-labelledby="partnership-heading">
-        <header className="mx-auto max-w-3xl">
-          <h1 id="partnership-heading" className="text-4xl font-light tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
+      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="partnership-heading">
+        <header className="mx-auto max-w-3xl text-center">
+          <h1 id="partnership-heading" className="text-4xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
             Partnership
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-[#36454f] dark:text-gray-400">
@@ -26,12 +26,12 @@ export default function PartnershipPage() {
           </div>
         </header>
 
-        <div className="mx-auto mt-16 max-w-3xl space-y-12">
+        <div className="mx-auto mt-20 max-w-3xl space-y-16 text-center">
           <section>
-            <h2 className="text-2xl font-semibold text-[#001f3f] dark:text-[#e8e8e8]">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8]">
               맞춤형 솔루션 제공
             </h2>
-            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light">
+            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light leading-relaxed">
               각 브랜드의 고유한 요구사항과 목표를 이해하고,
               최적화된 마케팅 솔루션을 제공합니다. 단순한 광고 대행을 넘어
               전략적 파트너로서 브랜드 성장에 기여합니다.
@@ -39,10 +39,10 @@ export default function PartnershipPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-[#001f3f] dark:text-[#e8e8e8]">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8]">
               전문가 팀
             </h2>
-            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light">
+            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light leading-relaxed">
               디지털 마케팅, 데이터 분석, 콘텐츠 크리에이션 등
               각 분야의 전문가로 구성된 팀이 브랜드의 성공을 위해
               최선을 다합니다.
@@ -50,17 +50,17 @@ export default function PartnershipPage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-[#001f3f] dark:text-[#e8e8e8]">
+            <h2 className="text-2xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8]">
               지속적인 협업
             </h2>
-            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light">
+            <p className="mt-4 text-[#36454f] dark:text-gray-400 font-light leading-relaxed">
               일회성 프로젝트가 아닌 장기적인 파트너십을 통해
               브랜드의 지속적인 성장을 지원합니다. 정기적인 리포트와
               전략 회의를 통해 항상 최적의 방향으로 나아갑니다.
             </p>
           </section>
 
-          <section className="rounded-2xl bg-white p-8 dark:bg-[#0a0a0a] border border-[#e5e7eb] dark:border-[#1a1a1a]">
+          <section className="rounded-2xl bg-white p-8 dark:bg-[#0a0a0a] border border-white/10 dark:border-white/10">
             <h2 className="text-2xl font-semibold text-[#001f3f] dark:text-[#e8e8e8]">
               문의하기
             </h2>

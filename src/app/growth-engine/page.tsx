@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function GrowthEnginePage() {
   return (
     <article className="min-h-screen bg-[#fafafa] dark:bg-black">
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8" aria-labelledby="growth-heading">
-        <header className="mx-auto max-w-3xl">
-          <h1 id="growth-heading" className="text-4xl font-light tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
+      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="growth-heading">
+        <header className="mx-auto max-w-3xl text-center">
+          <h1 id="growth-heading" className="text-4xl font-semibold tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
             Growth Engine
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-[#36454f] dark:text-gray-400">
@@ -26,7 +26,7 @@ export default function GrowthEnginePage() {
           </div>
         </header>
 
-        <div className="mx-auto mt-16 max-w-3xl space-y-12">
+        <div className="mx-auto mt-20 max-w-3xl space-y-16 text-center">
           <section>
             <h2 className="text-2xl font-semibold text-[#001f3f] dark:text-[#e8e8e8]">
               AI 기반 자동화
