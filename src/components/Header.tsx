@@ -18,10 +18,10 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#e5e7eb] bg-[#fafafa]/90 backdrop-blur-md dark:border-[#1a1a1a] dark:bg-black/90">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8" role="navigation" aria-label="Main navigation">
         <div className="flex items-center gap-8">
-          <Link href="/" className="text-xl font-light tracking-wide text-[#001f3f] dark:text-[#e8e8e8]">
+          <Link href="/" className="text-xl font-light tracking-wide text-white">
             M-World Company
           </Link>
           <div className="hidden gap-6 md:flex">
@@ -33,8 +33,8 @@ export function Header() {
                   href={item.href}
                   className={`text-sm font-light transition-colors ${
                     isActive
-                      ? 'text-[#001f3f] dark:text-[#e8e8e8]'
-                      : 'text-[#36454f] hover:text-[#001f3f] dark:text-gray-400 dark:hover:text-[#e8e8e8]'
+                      ? 'text-emerald-400'
+                      : 'text-slate-300 hover:text-emerald-400'
                   }`}
                 >
                   {item.name}
@@ -53,7 +53,7 @@ export function Header() {
             aria-expanded={mobileMenuOpen}
           >
             <svg
-              className="h-6 w-6 text-[#001f3f] dark:text-[#e8e8e8]"
+              className="h-6 w-6 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -68,7 +68,7 @@ export function Header() {
         </div>
       </nav>
       {mobileMenuOpen && (
-        <div className="border-t border-[#e5e7eb] dark:border-[#1a1a1a] md:hidden">
+        <div className="border-t border-white/5 md:hidden">
           <div className="space-y-1 px-6 py-4">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
@@ -79,8 +79,8 @@ export function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block rounded-md px-3 py-2 text-base font-light transition-colors ${
                     isActive
-                      ? 'bg-white text-[#001f3f] dark:bg-[#0a0a0a] dark:text-[#e8e8e8]'
-                      : 'text-[#36454f] hover:bg-white hover:text-[#001f3f] dark:text-gray-400 dark:hover:bg-[#0a0a0a] dark:hover:text-[#e8e8e8]'
+                      ? 'bg-slate-900 text-emerald-400'
+                      : 'text-slate-300 hover:bg-slate-900 hover:text-emerald-400'
                   }`}
                 >
                   {item.name}
