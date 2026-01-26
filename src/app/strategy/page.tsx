@@ -76,13 +76,13 @@ export default function StrategyPage() {
   }, []);
 
   return (
-    <article className="min-h-screen bg-slate-950">
-      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="strategy-heading">
-        <header className="mx-auto max-w-3xl text-center">
+    <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+      <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="strategy-heading">
+        <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
           <h1 id="strategy-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             The Strategy
           </h1>
-          <p className="mt-6 text-lg font-light leading-8 text-slate-300">
+          <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
             복제 불가능한 기술력으로 구축된
             <br />
             6대 핵심 솔루션으로 브랜드의 디지털 DNA를 재구성합니다.
@@ -94,11 +94,11 @@ export default function StrategyPage() {
           </div>
         </header>
 
-        <div ref={sectionRef} className="mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div ref={sectionRef} className="w-full mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
           {strategies.map((strategy, index) => (
             <section
               key={index}
-              className="strategy-card group mx-auto flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
+              className="strategy-card group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
             >
               <div className="relative aspect-video w-full overflow-hidden">
                 <Image
@@ -109,18 +109,18 @@ export default function StrategyPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               </div>
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-6 items-center">
                 <h2 className="text-xl font-semibold tracking-tight text-white">
                   {strategy.title}
                 </h2>
-                <p className="mt-4 flex-1 text-slate-300 leading-relaxed font-light" dangerouslySetInnerHTML={{ __html: strategy.description }} />
+                <p className="mt-4 flex-1 text-slate-300 leading-relaxed font-light max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: strategy.description }} />
               </div>
             </section>
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="mx-auto mt-32 max-w-2xl text-center">
+        <div className="w-full mx-auto mt-32 max-w-2xl flex flex-col items-center justify-center text-center">
           <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-black p-8 border border-white/5">
             <h3 className="text-2xl font-light text-white mb-4">
               <span className="text-emerald-400">10년</span> 차 마스터의 실시간 트렌드 컨설팅 받기

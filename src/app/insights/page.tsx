@@ -53,13 +53,13 @@ export default async function InsightsPage() {
   const posts = await getPosts();
 
   return (
-    <article className="min-h-screen bg-slate-950">
-      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="insights-heading">
-        <header className="mx-auto max-w-3xl text-center">
+    <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+      <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="insights-heading">
+        <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
           <h1 id="insights-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Insights
           </h1>
-          <p className="mt-6 text-lg font-light leading-8 text-slate-300">
+          <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
             <span className="text-emerald-400">10년</span> 이상의 SNS 광고 대행 경력에서 나온
             <br />
             마케팅 인사이트와 최신 트렌드를 확인하세요.
@@ -72,13 +72,13 @@ export default async function InsightsPage() {
         </header>
 
         {/* Master Class Sample - Featured */}
-        <div className="mx-auto mt-16 max-w-3xl">
+        <div className="w-full mx-auto mt-16 max-w-3xl flex flex-col items-center justify-center">
           <MasterClassSample />
         </div>
 
         {/* Additional Insights */}
         {posts.length > 0 && (
-          <div className="mx-auto mt-20 max-w-3xl">
+          <div className="w-full mx-auto mt-20 max-w-3xl flex flex-col items-center justify-center">
             <div className="mb-8 text-center">
               <h3 className="text-xl font-light text-slate-300">
                 추가 인사이트
@@ -87,9 +87,9 @@ export default async function InsightsPage() {
           </div>
         )}
 
-        <div className="mx-auto max-w-3xl space-y-8" role="list">
+        <div className="w-full mx-auto max-w-3xl space-y-8 flex flex-col items-center justify-center" role="list">
           {posts.length === 0 ? (
-            <section className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm text-center">
+            <section className="w-full rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm text-center">
               <p className="text-slate-300 font-light">
                 아직 게시된 글이 없습니다.
               </p>
@@ -98,10 +98,10 @@ export default async function InsightsPage() {
             posts.map((post) => (
               <article
                 key={post.id}
-                className="rounded-2xl bg-slate-900/50 p-8 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
+                className="w-full rounded-2xl bg-slate-900/50 p-8 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
                 role="listitem"
               >
-                <Link href={`/insights/${post.slug}`}>
+                <Link href={`/insights/${post.slug}`} className="flex flex-col items-center">
                   {post.featuredImage?.node && (
                     <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg mx-auto">
                       <img
@@ -130,7 +130,7 @@ export default async function InsightsPage() {
                     {post.title}
                   </h2>
                   {post.excerpt && (
-                    <p className="mt-4 text-slate-300 line-clamp-3 font-light">
+                    <p className="mt-4 text-slate-300 line-clamp-3 font-light max-w-2xl mx-auto">
                       {post.excerpt.replace(/<[^>]*>/g, '')}
                     </p>
                   )}

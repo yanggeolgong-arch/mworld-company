@@ -47,13 +47,13 @@ const cases = [
 
 export default function SuccessCasesPage() {
   return (
-    <article className="min-h-screen bg-slate-950">
-      <section className="mx-auto max-w-7xl px-6 py-48 lg:px-8" aria-labelledby="cases-heading">
-        <header className="mx-auto max-w-3xl text-center">
+    <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+      <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="cases-heading">
+        <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
           <h1 id="cases-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Success Cases
           </h1>
-          <p className="mt-6 text-lg font-light leading-8 text-slate-300">
+          <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
             <span className="text-emerald-400">10년</span>의 업력으로 증명된 압도적 성과
             <br />
             검증된 성공 사례를 통해 우리의 전문성과 결과를 확인하세요.
@@ -65,11 +65,11 @@ export default function SuccessCasesPage() {
           </div>
         </header>
 
-        <div className="mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
           {cases.map((caseItem, index) => (
             <section
               key={index}
-              className={`group mx-auto flex w-full max-w-sm flex-col overflow-hidden rounded-2xl text-center transition-all hover:scale-105 hover:shadow-2xl border ${
+              className={`group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl text-center transition-all hover:scale-105 hover:shadow-2xl border ${
                 caseItem.category === 'F&B'
                   ? 'bg-gradient-to-br from-slate-900/50 to-slate-800/30 border-emerald-400/20'
                   : 'bg-slate-900/50 border-white/5'
@@ -91,7 +91,7 @@ export default function SuccessCasesPage() {
                   </div>
                 )}
               </div>
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-6 items-center">
                 <h2 className="text-xl font-semibold tracking-tight text-white">
                   {caseItem.title}
                 </h2>
@@ -100,7 +100,7 @@ export default function SuccessCasesPage() {
                 }`}>
                   {caseItem.result}
                 </p>
-                <p className="mt-4 flex-1 text-slate-300 font-light leading-relaxed" dangerouslySetInnerHTML={{ __html: caseItem.description }} />
+                <p className="mt-4 flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: caseItem.description }} />
               </div>
             </section>
           ))}
