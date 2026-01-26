@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-slate-950">
-      <div className="w-full mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="flex justify-center items-center">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4 justify-items-center items-center text-center w-full max-w-5xl mx-auto">
+    <footer className="w-full border-t border-white/5 bg-slate-950 flex justify-center">
+      <div className="w-full max-w-7xl mx-auto px-6 py-12 lg:px-8 flex flex-col items-center justify-center">
+        <div className="w-full flex justify-center items-center">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-4 justify-items-center items-center text-center justify-center w-full max-w-5xl mx-auto">
             <div className="flex flex-col items-center justify-center w-full">
               <h3 className="text-base font-semibold text-white text-center">M-World Company</h3>
               <p className="mt-4 text-base font-medium text-slate-300 text-center">
@@ -59,7 +59,7 @@ export function Footer() {
                 <li className="text-center">
                   <a
                     href="tel:010-4074-9343"
-                    className="flex items-center justify-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37]"
+                    className="flex items-center justify-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37] text-center"
                   >
                     <span className="text-[#d4af37]">📞</span>
                     010-4074-9343
@@ -80,25 +80,25 @@ export function Footer() {
             </div>
           </div>
         </div>
-          <div className="mt-8 border-t border-white/5 pt-8 text-center">
+          <div className="w-full mt-8 border-t border-white/5 pt-8 text-center flex flex-col items-center justify-center">
             <p className="text-sm font-medium text-slate-400 text-center">
             &copy; {new Date().getFullYear()} M-World Company (엠월드컴퍼니). All rights reserved.
           </p>
         </div>
         
         {/* 사업자 정보 */}
-        <div className="mt-6 pt-6 border-t border-white/5 text-center">
+        <div className="w-full mt-6 pt-6 border-t border-white/5 text-center flex flex-col items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-2 text-sm text-slate-400">
-            <p className="font-medium text-slate-300 text-center w-full">
+            <p className="font-medium text-slate-300 text-center">
               상호명: 엠월드컴퍼니 | 대표자: 공양걸
             </p>
-            <p className="text-center w-full">
+            <p className="text-center">
               주소: 제주특별자치도 제주시 삼동2길 10, 201호(연동)
             </p>
-            <p className="text-center w-full">
+            <p className="text-center">
               대표번호: 010-4074-9343 | 사업자번호: 603-20-65775
             </p>
-            <p className="text-center w-full">
+            <p className="text-center">
               통신판매번호: 2022-제주연동-0226호
             </p>
           </div>
