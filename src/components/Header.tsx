@@ -19,19 +19,19 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-7xl items-center justify-center px-6 py-4 lg:px-8 relative" role="navigation" aria-label="Main navigation">
-        <div className="flex items-center justify-center gap-10 lg:gap-12">
-          <Link href="/" className="text-xl font-medium tracking-wide text-white">
+      <nav className="w-full mx-auto flex items-center justify-center px-6 py-4 lg:px-8 relative" role="navigation" aria-label="Main navigation">
+        <div className="flex items-center justify-center gap-10 lg:gap-12 w-full max-w-7xl">
+          <Link href="/" className="text-xl font-medium tracking-wide text-white text-center">
             M-World Company
           </Link>
-          <div className="hidden gap-8 lg:gap-10 md:flex">
+          <div className="hidden gap-8 lg:gap-10 md:flex items-center justify-center">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium transition-colors ${
+                  className={`text-base font-medium transition-colors text-center ${
                     isActive
                       ? 'text-emerald-400'
                       : 'text-slate-300 hover:text-emerald-400'
@@ -43,7 +43,7 @@ export function Header() {
             })}
           </div>
         </div>
-        <div className="absolute right-6 lg:right-8 flex items-center gap-4">
+        <div className="absolute right-6 lg:right-8 flex items-center justify-center gap-4">
           <ThemeToggle />
           <button
             type="button"
@@ -69,7 +69,7 @@ export function Header() {
       </nav>
       {mobileMenuOpen && (
         <div className="border-t border-white/5 md:hidden">
-          <div className="space-y-1 px-6 py-4">
+          <div className="space-y-1 px-6 py-4 flex flex-col items-center">
             {navigation.map((item) => {
               const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
               return (
@@ -77,7 +77,7 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block rounded-md px-3 py-2 text-base font-medium transition-colors ${
+                  className={`block rounded-md px-3 py-2 text-base font-medium transition-colors text-center w-full ${
                     isActive
                       ? 'bg-slate-900 text-emerald-400'
                       : 'text-slate-300 hover:bg-slate-900 hover:text-emerald-400'
