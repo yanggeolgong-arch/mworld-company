@@ -9,39 +9,46 @@ export const metadata: Metadata = {
 
 const cases = [
   {
+    title: '동영상 20개 제작 + 대형 맛집 페이지 업로드 33건',
+    result: '누적 조회수 5,000만+ 돌파 / 알고리즘 확산을 통한 예약 폭주',
+    description: '단순한 노출을 넘어 숏폼 알고리즘의 핵심 로직을 공략합니다. 대형 채널 배포와 알고리즘 확산 기술로 브랜드의 파급력을 극대화합니다.',
+    category: 'Shortform',
+    image: '/image_29.png',
+  },
+  {
     title: 'F&B 맛집 브랜드 A',
     result: '네이버 플레이스 방문객 400% 증가',
     description: '네이버 플레이스 알고리즘 최적화와 공간 브랜딩 전략으로 단순 노출을 넘어 실질적인 방문으로 전환시켰습니다. 3개월 만에 일일 방문객 수가 4배 증가했습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop&q=80',
+    image: '/image_29.png',
   },
   {
     title: 'F&B 맛집 브랜드 B',
     result: '매출 350% 성장',
     description: '<span className="text-emerald-400">10년</span> 경력의 전문가가 직접 수립한 맞춤형 SNS 마케팅 전략으로 브랜드 인지도와 매출을 동시에 급성장시켰습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&q=80',
+    image: '/image_29.png',
   },
   {
     title: '프리미엄 뷰티 브랜드',
     result: '팔로워 300% 증가',
     description: '타겟 오디언스 분석과 맞춤형 콘텐츠 전략으로 6개월 만에 팔로워를 3배 증가시켰습니다.',
     category: 'Beauty',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=600&fit=crop&q=80',
+    image: '/image_29.png',
   },
   {
     title: '테크 스타트업',
     result: '리드 생성 250% 향상',
     description: 'AI 기반 자동화 시스템을 통해 리드 생성 비용을 절감하면서 품질을 크게 향상시켰습니다.',
     category: 'Tech',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
+    image: '/image_29.png',
   },
   {
     title: '럭셔리 패션 브랜드',
     result: '매출 180% 성장',
     description: '데이터 기반 인플루언서 마케팅 전략으로 브랜드 인지도와 매출을 동시에 성장시켰습니다.',
     category: 'Fashion',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&q=80',
+    image: '/image_29.png',
   },
 ];
 
@@ -72,10 +79,12 @@ export default function SuccessCasesPage() {
               className={`group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl text-center transition-all hover:scale-105 hover:shadow-2xl border ${
                 caseItem.category === 'F&B'
                   ? 'bg-gradient-to-br from-slate-900/50 to-slate-800/30 border-emerald-400/20'
+                  : caseItem.category === 'Shortform'
+                  ? 'bg-gradient-to-br from-slate-900/50 to-slate-800/30 border-emerald-400/20'
                   : 'bg-slate-900/50 border-white/5'
               } backdrop-blur-sm`}
             >
-              <div className="relative aspect-video w-full overflow-hidden">
+              <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                 <Image
                   src={caseItem.image}
                   alt={caseItem.title}
@@ -83,10 +92,10 @@ export default function SuccessCasesPage() {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                {caseItem.category === 'F&B' && (
+                {(caseItem.category === 'F&B' || caseItem.category === 'Shortform') && (
                   <div className="absolute top-3 right-3">
                     <span className="rounded-full bg-[#d4af37] px-2 py-1 text-xs font-semibold text-white">
-                      F&B
+                      {caseItem.category === 'Shortform' ? '숏폼' : 'F&B'}
                     </span>
                   </div>
                 )}
@@ -96,7 +105,7 @@ export default function SuccessCasesPage() {
                   {caseItem.title}
                 </h2>
                 <p className={`mt-2 text-lg font-semibold ${
-                  caseItem.category === 'F&B' ? 'text-[#d4af37]' : 'text-emerald-400'
+                  caseItem.category === 'F&B' || caseItem.category === 'Shortform' ? 'text-[#d4af37]' : 'text-emerald-400'
                 }`}>
                   {caseItem.result}
                 </p>
