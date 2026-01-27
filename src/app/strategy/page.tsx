@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { StructuredData } from '@/components/StructuredData';
-import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 const strategies = [

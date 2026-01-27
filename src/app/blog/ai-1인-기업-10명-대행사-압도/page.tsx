@@ -1,25 +1,38 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
+import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
+import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법 - 엠월드컴퍼니',
   description: '일손은 부족하고 매출은 정체된 1인 대표의 고충을 해결하는 AI 자동화 파이프라인 구축 전략. 10년 이상 실행 업무 노하우와 AI 기술을 결합한 1:1 비공개 마스터 클래스.',
   keywords: 'AI 자동화, 1인 대행사, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, AI 마케팅, 디지털 마케팅 자동화',
+  alternates: {
+    canonical: 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
+  },
   openGraph: {
     title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법',
     description: '10년 이상 실행 업무 전문가의 AI 자동화 전략',
     type: 'article',
     publishedTime: '2026-01-27',
+    url: 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
   },
 };
+
+const slug = 'ai-1인-기업-10명-대행사-압도';
+const title = 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법';
+const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
+
+const breadcrumbs = generateBlogBreadcrumbs(slug, title, '광고대행사 창업');
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  headline: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법',
+  headline: title,
   description: '일손은 부족하고 매출은 정체된 1인 대표의 고충을 해결하는 AI 자동화 파이프라인 구축 전략',
-  url: 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
+  url: canonicalUrl,
   datePublished: '2026-01-27',
   dateModified: '2026-01-27',
   author: {
@@ -37,7 +50,7 @@ const blogPostingSchema = {
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
+    '@id': canonicalUrl,
   },
   keywords: 'AI 자동화, 1인 대행사, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘',
   articleSection: '알고리즘 확산 최적화',
@@ -46,10 +59,30 @@ const blogPostingSchema = {
 export default function AIPoweredSoloBusinessPage() {
   return (
     <>
+      <StructuredData data={breadcrumbSchema} />
       <StructuredData data={blogPostingSchema} />
       <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
         <section className="w-full mx-auto max-w-4xl px-6 py-24 lg:px-8">
           <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
+            {/* Breadcrumb 네비게이션 */}
+            <nav className="mb-6" aria-label="Breadcrumb">
+              <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+                {breadcrumbs.map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    {index > 0 && <span className="mx-2">/</span>}
+                    <a
+                      href={item.url}
+                      className={`hover:text-emerald-400 transition-colors ${
+                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400'
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
             <header className="mb-8">
               <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
                 <span className="font-light">알고리즘 확산 최적화</span>
@@ -59,7 +92,7 @@ export default function AIPoweredSoloBusinessPage() {
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
-                AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법
+                {title}
               </h1>
             </header>
 
