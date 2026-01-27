@@ -100,17 +100,6 @@ export default function SuccessCasesPage() {
               <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                 {caseItem.video ? (
                   <>
-                    <video
-                      src={caseItem.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="none"
-                      poster={caseItem.poster || caseItem.image}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
                     {index === 0 && (
                       <Image
                         src={caseItem.poster || caseItem.image}
@@ -123,6 +112,17 @@ export default function SuccessCasesPage() {
                         quality={90}
                       />
                     )}
+                    <video
+                      src={caseItem.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="none"
+                      poster={caseItem.poster || caseItem.image}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/40" />
                   </>
                 ) : (
                   <Image
