@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { CTASection } from '@/components/CTASection';
+import { StructuredData } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Success Cases - M-World Company',
@@ -54,8 +55,20 @@ const cases = [
 ];
 
 export default function SuccessCasesPage() {
+  const videoObjectSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: '엠월드컴퍼니 실시간 알고리즘 확산 관제 시스템',
+    description: '수백 개 거래처의 숏폼 영상을 실시간 송출하며 네이버 플레이스 순위 상승을 견인하는 퍼포먼스 영상',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
+    uploadDate: '2026-01-27',
+    contentUrl: 'https://aijeju.co.kr/Ai__flow_1080p_202601142217.mp4',
+  };
+
   return (
-    <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+    <>
+      <StructuredData data={videoObjectSchema} />
+      <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
       <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="cases-heading">
         <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
           <h1 id="cases-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -137,5 +150,6 @@ export default function SuccessCasesPage() {
         <CTASection />
       </div>
     </article>
+    </>
   );
 }
