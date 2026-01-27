@@ -6,7 +6,7 @@ import { MasterClassSample } from '@/components/MasterClassSample';
 
 export const metadata: Metadata = {
   title: 'Insights - M-World Company',
-  description: '10년 이상의 경력에서 나온 SNS 마케팅 인사이트와 최신 트렌드를 확인하세요.',
+  description: '10년 이상의 실행 업무 노하우에서 나온 SNS 마케팅 인사이트와 최신 트렌드를 확인하세요.',
 };
 
 interface Post {
@@ -60,13 +60,13 @@ export default async function InsightsPage() {
             Insights
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            <span className="text-emerald-400">10년</span> 이상의 SNS 광고 대행 경력에서 나온
+            <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우에서 나온
             <br />
             마케팅 인사이트와 최신 트렌드를 확인하세요.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년</span> 차 마케터의 칼럼
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 칼럼
             </span>
           </div>
         </header>

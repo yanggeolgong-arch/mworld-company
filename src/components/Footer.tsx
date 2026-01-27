@@ -9,7 +9,7 @@ export function Footer() {
             <div className="flex flex-col items-center justify-center w-full">
               <h3 className="text-base font-semibold text-white text-center">M-World Company</h3>
               <p className="mt-4 text-base font-medium text-slate-300 text-center">
-                <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화.
+                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화.
               </p>
               <p className="mt-2 text-sm font-medium text-slate-300 text-center">
                 엠월드컴퍼니는 결과로만 말합니다.
@@ -72,7 +72,7 @@ export function Footer() {
                 </li>
               </ul>
               <p className="mt-4 text-sm font-medium text-slate-400 text-center">
-                대표: <span className="text-emerald-400">10년</span> 경력 전문가
+                대표: <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
               </p>
             </div>
           </div>

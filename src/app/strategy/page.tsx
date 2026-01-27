@@ -30,7 +30,7 @@ const strategies = [
   },
   {
     title: 'Elite Executive Mentorship',
-    description: '대행사 대표들을 가르치는 1:1 프라이빗 클래스. <span className="text-emerald-400">10년</span> 노하우를 전수하여 즉시 창업 및 실행이 가능한 마스터 커리큘럼.',
+    description: '대행사 대표들을 가르치는 1:1 프라이빗 클래스. <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우를 전수하여 즉시 창업 및 실행이 가능한 마스터 커리큘럼.',
     category: 'Education',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80',
   },
@@ -89,7 +89,7 @@ export default function StrategyPage() {
           </p>
           <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
             </span>
           </div>
         </header>
@@ -123,7 +123,7 @@ export default function StrategyPage() {
         <div className="w-full mx-auto mt-32 max-w-2xl flex flex-col items-center justify-center text-center">
           <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-black p-8 border border-white/5">
             <h3 className="text-2xl font-light text-white mb-4">
-              <span className="text-emerald-400">10년</span> 차 마스터의 실시간 트렌드 컨설팅 받기
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 실시간 트렌드 컨설팅 받기
             </h3>
             <a
               href="tel:010-4074-9343"

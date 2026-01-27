@@ -4,7 +4,7 @@ import { CTASection } from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Success Cases - M-World Company',
-  description: '10년의 업력으로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만듭니다.',
+  description: '10년 이상의 실행 업무 노하우로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만듭니다.',
 };
 
 const cases = [
@@ -13,7 +13,7 @@ const cases = [
     result: '누적 조회수 5,000만+ 돌파 / 알고리즘 확산을 통한 예약 폭주',
     description: '단순 노출을 넘어 숏폼 알고리즘의 핵심 로직을 공략합니다. 대형 채널 배포와 알고리즘 확산 기술로 브랜드 파급력을 극대화합니다.',
     category: 'Shortform',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop&q=80',
   },
   {
     title: 'F&B 맛집 브랜드 A',
@@ -25,7 +25,7 @@ const cases = [
   {
     title: 'F&B 맛집 브랜드 B',
     result: '매출 350% 성장 / 맞춤형 SNS 마케팅',
-    description: '<span className="text-emerald-400">10년</span> 경력의 전문가가 직접 수립한 전략으로 브랜드 인지도와 매출을 동시에 급성장시켰습니다.',
+    description: '<span className="text-emerald-400">10년 이상</span> 실행 업무 전문가가 직접 수립한 전략으로 브랜드 인지도와 매출을 동시에 급성장시켰습니다.',
     category: 'F&B',
     image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop&q=80',
   },
@@ -46,9 +46,9 @@ const cases = [
   {
     title: '비공개 1:1 마스터 클래스 (대행사 창업 실무)',
     result: '광고대행사 대표 및 창업 준비생 전용 / 현직 대표 수강생 80% 이상',
-    description: '온라인의 흔한 강의가 아닙니다. <span className="text-emerald-400">10년</span> 차 실행사의 영업 비밀과 운영 로직을 오직 1:1 비공개로만 전수합니다. 대행사 대표님들이 직접 찾아 듣는, 즉시 창업과 매출 최적화가 가능한 하이엔드 실무 교육입니다.',
+    description: '온라인의 흔한 강의가 아닙니다. <span className="text-emerald-400">10년 이상</span> 실행사의 영업 비밀과 운영 로직을 오직 1:1 비공개로만 전수합니다. 대행사 대표님들이 직접 찾아 듣는, 즉시 창업과 매출 최적화가 가능한 하이엔드 실무 교육입니다.',
     category: 'MasterClass',
-    image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&q=80',
   },
 ];
 
@@ -61,13 +61,13 @@ export default function SuccessCasesPage() {
             Success Cases
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            <span className="text-emerald-400">10년</span>의 업력으로 증명된 압도적 성과
+            <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우로 증명된 압도적 성과
             <br />
             검증된 성공 사례를 통해 우리의 전문성과 결과를 확인하세요.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
             </span>
           </div>
         </header>

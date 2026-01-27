@@ -3,7 +3,7 @@ import { CTASection } from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Growth Engine - M-World Company',
-  description: '10년 이상의 경력과 AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만듭니다.',
+  description: '10년 이상의 실행 업무 노하우와 AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만듭니다.',
 };
 
 export default function GrowthEnginePage() {
@@ -15,13 +15,13 @@ export default function GrowthEnginePage() {
             Growth Engine
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            <span className="text-emerald-400">10년</span> 이상의 경력과 AI 기술, 자동화 시스템을 통해
+            <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우와 AI 기술, 자동화 시스템을 통해
             <br />
             브랜드의 성장을 가속화하는 강력한 엔진을 구축합니다.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
             </span>
           </div>
         </header>

@@ -4,7 +4,7 @@ export function CTASection() {
       <div className="mx-auto max-w-2xl text-center">
         <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-black p-8 border border-white/5">
           <h3 className="text-2xl font-light text-white mb-4">
-            <span className="text-emerald-400">10년</span> 차 마스터의 실시간 트렌드 컨설팅 받기
+            <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 실시간 트렌드 컨설팅 받기
           </h3>
           <a
             href="tel:010-4074-9343"

@@ -52,7 +52,7 @@ export default function Home() {
             </span>
           </div>
           <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl">
-            <span className="text-emerald-400">10년</span>의 데이터
+            <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
             <br />
             <span className="font-semibold text-[#d4af37]">1,000개</span>의 신화
           </h1>
@@ -80,12 +80,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 10년 역사 시각화 */}
+        {/* 10년 이상 실행 업무 전문가 시각화 */}
         <div className="relative w-full mx-auto mt-32 max-w-5xl flex flex-col items-center justify-center text-center">
           <div className="grid grid-cols-3 gap-8 justify-items-center">
             <div className="space-y-2 flex flex-col items-center">
-              <div className="text-4xl font-light text-emerald-400">10</div>
-              <div className="text-sm font-light text-slate-300">년의 경력</div>
+              <div className="text-4xl font-light text-emerald-400">10년+</div>
+              <div className="text-sm font-light text-slate-300">실행 업무 전문가</div>
             </div>
             <div className="space-y-2 flex flex-col items-center">
               <div className="text-4xl font-light text-[#d4af37]">1,000+</div>
@@ -172,7 +172,7 @@ export default function Home() {
               Success Cases
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년</span>의 업력으로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만들어갑니다.
+              <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만들어갑니다.
             </p>
             <Link
               href="/success-cases"

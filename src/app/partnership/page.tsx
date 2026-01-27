@@ -3,7 +3,7 @@ import { CTASection } from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Partnership - M-World Company',
-  description: '10년 이상의 경력을 가진 전문가 팀과 함께 브랜드의 다음 단계로 나아가세요.',
+  description: '10년 이상의 실행 업무 노하우를 가진 전문가 팀과 함께 브랜드의 다음 단계로 나아가세요.',
 };
 
 export default function PartnershipPage() {
@@ -15,13 +15,13 @@ export default function PartnershipPage() {
             Partnership
           </h1>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            <span className="text-emerald-400">10년</span> 이상의 SNS 광고 대행 경력을 가진 전문가 팀과 함께
+            <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우를 가진 전문가 팀과 함께
             <br />
             브랜드의 다음 단계로 나아가세요.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년</span>의 데이터, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
             </span>
           </div>
         </header>
@@ -79,7 +79,7 @@ export default function PartnershipPage() {
                 대표번호: 010-4074-9343 →
               </a>
               <p className="text-xs text-slate-400">
-                대표: <span className="text-emerald-400">10년</span> 경력 전문가
+                대표: <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
               </p>
             </div>
           </section>

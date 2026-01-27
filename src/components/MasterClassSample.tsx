@@ -20,7 +20,7 @@ export function MasterClassSample() {
           <p className="text-lg font-light leading-relaxed">
             대부분의 마케팅 대행사는 여전히 '상위노출'이라는 단순한 목표에 머물러 있습니다. 
             키워드 몇 개를 올리고, 광고비를 투입해 일시적인 트래픽을 만드는 것. 
-            하지만 <span className="font-semibold text-emerald-400">10년</span> 차 마케터의 관점에서 보면, 이것은 <span className="font-semibold text-white">과거의 방식</span>입니다.
+            하지만 <span className="font-semibold text-emerald-400">10년 이상</span> 실행 업무 전문가의 관점에서 보면, 이것은 <span className="font-semibold text-white">과거의 방식</span>입니다.
           </p>
           
           <p className="font-light leading-relaxed">
@@ -48,7 +48,7 @@ export function MasterClassSample() {
             일반적인 상위노출 대행사는 <span className="font-semibold text-white">매월 광고비를 지속적으로 투입</span>해야 합니다. 
             광고비가 끊기는 순간, 노출도 사라집니다. 
             하지만 엠월드컴퍼니의 AI-Identity Protocol은 <span className="font-semibold text-emerald-400">한 번의 설계로 영구적인 디지털 자산</span>을 만듭니다. 
-            이것이 <span className="text-emerald-400">10년</span>의 데이터가 증명하는 근본적인 차이입니다.
+            이것이 <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우가 증명하는 근본적인 차이입니다.
           </p>
           
           <p className="font-light leading-relaxed">
@@ -62,7 +62,7 @@ export function MasterClassSample() {
             왜 맛집과 브랜드가 이 자산이 필요한가? 
             <span className="font-semibold text-white">영구적인 디지털 자산은 매출의 기반</span>이 되기 때문입니다. 
             매월 광고비를 투입하는 것이 아니라, 한 번 구축된 Semantic DNA가 지속적으로 고객을 유입시킵니다. 
-            이것이 <span className="font-semibold text-emerald-400">엠월드컴퍼니가 <span className="text-[#d4af37]">10년</span> 동안 <span className="text-[#d4af37]">1,000개</span> 이상의 브랜드를 성공시킨 이유</span>입니다.
+            이것이 <span className="font-semibold text-emerald-400">엠월드컴퍼니가 <span className="text-[#d4af37]">10년 이상</span> 동안 <span className="text-[#d4af37]">1,000개</span> 이상의 브랜드를 성공시킨 이유</span>입니다.
           </p>
           
           <div className="mt-8 rounded-lg bg-gradient-to-r from-slate-900 to-black p-6 border border-white/5">
@@ -79,7 +79,7 @@ export function MasterClassSample() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4af37] px-6 py-3 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-lg"
               >
                 <span>📞</span>
-                <span className="text-emerald-400">10년</span> 차 마스터와 상담하기
+                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가와 상담하기
               </a>
               <Link
                 href="/strategy"
