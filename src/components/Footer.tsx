@@ -57,20 +57,17 @@ export function Footer() {
               <h3 className="text-base font-semibold text-white text-center">고객센터</h3>
               <ul className="mt-4 space-y-3 text-base flex flex-col items-center justify-center">
                 <li className="text-center">
+                  <p className="text-slate-300 font-bold text-center">
+                    문의: 카카오톡 SG7979
+                  </p>
+                </li>
+                <li className="text-center">
                   <a
                     href="tel:010-4074-9343"
                     className="flex items-center justify-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37] text-center"
                   >
                     <span className="text-[#d4af37]">📞</span>
-                    010-4074-9343
-                  </a>
-                </li>
-                <li className="text-center">
-                  <a
-                    href="mailto:contact@aijeju.co.kr"
-                    className="text-slate-300 font-medium transition-colors hover:text-emerald-400 text-center"
-                  >
-                    contact@aijeju.co.kr
+                    대표번호: 010-4074-9343
                   </a>
                 </li>
               </ul>

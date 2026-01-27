@@ -68,22 +68,19 @@ export default function PartnershipPage() {
               파트너십에 관심이 있으시다면 언제든지 연락주세요.
             </p>
             <div className="mt-6 space-y-3 flex flex-col items-center">
+              <p className="text-lg font-bold text-emerald-400 text-center">
+                문의: 카카오톡 SG7979
+              </p>
               <a
                 href="tel:010-4074-9343"
                 className="flex items-center justify-center gap-2 text-lg font-semibold text-emerald-400 transition-colors hover:text-[#d4af37]"
               >
                 <span className="text-[#d4af37]">📞</span>
-                010-4074-9343 →
+                대표번호: 010-4074-9343 →
               </a>
               <p className="text-xs text-slate-400">
                 대표: <span className="text-emerald-400">10년</span> 경력 전문가
               </p>
-              <a
-                href="mailto:contact@aijeju.co.kr"
-                className="block text-sm font-medium text-slate-400 transition-colors hover:text-emerald-400"
-              >
-                contact@aijeju.co.kr →
-              </a>
             </div>
           </section>
         </div>

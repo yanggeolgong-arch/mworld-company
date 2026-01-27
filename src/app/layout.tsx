@@ -31,7 +31,6 @@ export default function RootLayout({
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '010-4074-9343',
-      email: 'contact@aijeju.co.kr',
       contactType: 'Customer Service',
       areaServed: 'KR',
     },
