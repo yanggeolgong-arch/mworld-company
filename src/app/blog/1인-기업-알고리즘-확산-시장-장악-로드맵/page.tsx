@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
   keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래, 플레이스 컨디션, 알고리즘 데이터 분석',
   alternates: {
-    canonical: 'https://aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
+    canonical: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
   },
   openGraph: {
     title: '1인 기업의 알고리즘 확산 점유 로드맵',
     description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
     type: 'article',
     publishedTime: '2026-01-27',
-    url: 'https://aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
+    url: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
   },
 };
 
@@ -33,7 +33,7 @@ const blogPostingSchema = {
   headline: '1인 기업의 알고리즘 확산 점유 로드맵',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://aijeju.co.kr/blog/1person-agency-algorithm-spread',
+    '@id': 'https://www.aijeju.co.kr/blog/1person-agency-algorithm-spread',
   },
   author: {
     '@type': 'Person',
@@ -45,7 +45,7 @@ const blogPostingSchema = {
     name: '엠월드컴퍼니',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://aijeju.co.kr/logo.png',
+      url: 'https://www.aijeju.co.kr/logo.png',
     },
   },
   description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',

@@ -4,16 +4,16 @@ import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'Partnership - M-World Company',
-  description: '10년 이상의 실행 업무 노하우를 가진 전문가 팀과 함께 브랜드의 다음 단계로 나아가세요.',
+  title: '엠월드컴퍼니 협업 문의 | 카카오톡 SG7979',
+  description: '엠월드컴퍼니는 10년 이상 실행 업무 노하우를 가진 전문가 팀과 함께 브랜드 다음 단계로 나아갑니다. 협업 문의 카카오톡: SG7979',
   alternates: {
-    canonical: 'https://aijeju.co.kr/partnership',
+    canonical: 'https://www.aijeju.co.kr/partnership',
   },
 };
 
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: '홈', url: '/' },
-  { name: '협력 문의', url: '/partnership' },
+  { name: '협업 문의', url: '/partnership' },
 ]);
 
 export default function PartnershipPage() {
@@ -24,12 +24,12 @@ export default function PartnershipPage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="partnership-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="partnership-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Partnership
+              협업 문의
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우를 가진 전문가 팀과 함께
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 노하우를 가진 전문가 팀과 함께
               <br />
-              브랜드의 다음 단계로 나아가세요.
+              브랜드 다음 단계로 나아가세요.
             </p>
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
               <span className="text-sm font-light text-slate-200">
@@ -74,14 +74,14 @@ export default function PartnershipPage() {
 
             <section className="w-full rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
               <h2 className="text-2xl font-semibold tracking-tight text-white">
-                문의하기
+                협업 문의
               </h2>
               <p className="mt-4 text-slate-300 font-light max-w-2xl mx-auto">
-                파트너십에 관심이 있으시다면 언제든지 연락주세요.
+                협업에 관심이 있으시다면 언제든지 연락주세요.
               </p>
               <div className="mt-6 space-y-3 flex flex-col items-center">
                 <p className="text-lg font-bold text-emerald-400 text-center">
-                  문의: 카카오톡 SG7979
+                  협업 문의: 카카오톡 SG7979
                 </p>
                 <a
                   href="tel:010-4074-9343"

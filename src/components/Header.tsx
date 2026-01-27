@@ -10,7 +10,7 @@ const navigation = [
   { name: '성장 엔진', href: '/growth-engine' },
   { name: '성공 사례', href: '/success-cases' },
   { name: '성공 노하우', href: '/insights' },
-  { name: '협력 문의', href: '/partnership' },
+  { name: '협업 문의', href: '/partnership' },
 ];
 
 export function Header() {
@@ -22,7 +22,7 @@ export function Header() {
       <nav className="w-full mx-auto flex items-center justify-center px-6 py-4 lg:px-8 relative" role="navigation" aria-label="Main navigation">
         <div className="flex items-center justify-center gap-10 lg:gap-12 w-full max-w-7xl">
           <Link href="/" className="text-xl font-medium tracking-wide text-white text-center">
-            M-World Company
+            엠월드컴퍼니
           </Link>
           <div className="hidden gap-8 lg:gap-10 md:flex items-center justify-center">
             {navigation.map((item) => {

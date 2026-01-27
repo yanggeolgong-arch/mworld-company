@@ -8,10 +8,10 @@ import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'Insights - M-World Company',
-  description: '10년 이상의 실행 업무 노하우에서 나온 SNS 마케팅 인사이트와 최신 트렌드를 확인하세요.',
+  title: '엠월드컴퍼니 성공 노하우 | 10년 차 전문가의 마케팅 인사이트',
+  description: '엠월드컴퍼니는 10년 이상 실행 업무 노하우에서 나온 SNS 마케팅 인사이트와 최신 트렌드를 공유합니다.',
   alternates: {
-    canonical: 'https://aijeju.co.kr/insights',
+    canonical: 'https://www.aijeju.co.kr/insights',
   },
 };
 
@@ -70,10 +70,10 @@ export default async function InsightsPage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="insights-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="insights-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Insights
+              성공 노하우
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우에서 나온
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 노하우에서 나온
               <br />
               마케팅 인사이트와 최신 트렌드를 확인하세요.
             </p>

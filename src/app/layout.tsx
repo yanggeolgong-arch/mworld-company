@@ -6,17 +6,17 @@ import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "M-World Company (엠월드컴퍼니) - 10년 이상 실행 업무 전문가, 1,000개의 신화",
-  description: "10년 이상 실행 업무 전문가, 1,000개의 신화. 엠월드컴퍼니는 결과로만 말합니다. F&B(맛집) 마케팅의 절대 강자, 1000+ 클라이언트의 선택. M-World High-Performance Engine, AI-Native Semantic DNA, Omni-Search Authority Indexing",
-  keywords: "SNS 광고, 소셜미디어 마케팅, 디지털 마케팅, 광고대행사, 엠월드컴퍼니, M-World Company, F&B 마케팅, 맛집 마케팅, 네이버 플레이스, 1:1 교육, Creative Visual & Curator, Local Search & Spatial Branding, AI-Native Semantic DNA, M-World Digital Authority Engine, Elite Executive Mentorship, Hyper-Data Insight, M-World High-Performance Engine, AI-Identity Protocol, Omni-Search Authority Indexing, Dynamic Intellectual Property Hub",
+  title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
+  description: "엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 협업 문의 카카오톡: SG7979",
+  keywords: ["엠월드컴퍼니", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
   alternates: {
-    canonical: 'https://aijeju.co.kr',
+    canonical: 'https://www.aijeju.co.kr',
   },
   openGraph: {
-    title: "M-World Company (엠월드컴퍼니) - 10년 이상 실행 업무 전문가, 1,000개의 신화",
-    description: "엠월드컴퍼니는 결과로만 말합니다. F&B(맛집) 마케팅의 절대 강자. 복제 불가능한 기술력",
+    title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
+    description: "엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 협업 문의 카카오톡: SG7979",
     type: "website",
-    url: 'https://aijeju.co.kr',
+    url: 'https://www.aijeju.co.kr',
   },
 };
 
@@ -28,16 +28,25 @@ export default function RootLayout({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'M-World Company (엠월드컴퍼니)',
-    description: '10년 이상 실행 업무 전문가, 1,000개의 신화. 엠월드컴퍼니는 결과로만 말합니다. F&B(맛집) 마케팅의 절대 강자, 1000+ 클라이언트의 선택. M-World High-Performance Engine 기반의 AI-Native Semantic DNA 기술로 구축된 Dynamic Intellectual Property Hub',
-    url: 'https://aijeju.co.kr',
-    logo: 'https://aijeju.co.kr/logo.png',
+    name: '엠월드컴퍼니',
+    description: '엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 10년 차 전문가의 압도적 실행 전략',
+    url: 'https://www.aijeju.co.kr',
+    logo: 'https://www.aijeju.co.kr/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '010-4074-9343',
       contactType: 'Customer Service',
       areaServed: 'KR',
+      availableLanguage: 'ko',
+      additionalProperty: {
+        '@type': 'PropertyValue',
+        name: '카카오톡',
+        value: 'SG7979',
+      },
     },
+    sameAs: [
+      'https://www.aijeju.co.kr',
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5',

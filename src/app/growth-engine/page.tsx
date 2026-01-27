@@ -4,10 +4,10 @@ import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: 'Growth Engine - M-World Company',
-  description: '10년 이상의 실행 업무 노하우와 AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만듭니다.',
+  title: '엠월드컴퍼니 성장 엔진 | 효율성 극대화 AI 자동화 시스템',
+  description: '엠월드컴퍼니는 10년 이상 실행 업무 노하우와 AI 기반 자동화 시스템으로 효율성을 극대화하는 성장 동력을 만듭니다.',
   alternates: {
-    canonical: 'https://aijeju.co.kr/growth-engine',
+    canonical: 'https://www.aijeju.co.kr/growth-engine',
   },
 };
 
@@ -24,12 +24,12 @@ export default function GrowthEnginePage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="growth-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="growth-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Growth Engine
+              성장 엔진
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우와 AI 기술, 자동화 시스템을 통해
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 노하우와 AI 기술, 자동화 시스템을 통해
               <br />
-              브랜드의 성장을 가속화하는 강력한 엔진을 구축합니다.
+              효율성을 극대화하는 성장 엔진을 구축합니다.
             </p>
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
               <span className="text-sm font-light text-slate-200">

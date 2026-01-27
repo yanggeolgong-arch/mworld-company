@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description: '광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전문가의 실전 노하우를 공유합니다. 10년 이상 실행 업무 전문가의 알고리즘 확산 전략.',
   keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화, 숏폼 알고리즘, SNS 마케팅, 디지털 마케팅',
   alternates: {
-    canonical: 'https://aijeju.co.kr/blog',
+    canonical: 'https://www.aijeju.co.kr/blog',
   },
   openGraph: {
     title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
     description: '10년 이상 실행 업무 전문가의 알고리즘 확산 실전 노하우',
     type: 'website',
-    url: 'https://aijeju.co.kr/blog',
+    url: 'https://www.aijeju.co.kr/blog',
   },
 };
 
@@ -133,13 +133,13 @@ export default async function BlogPage() {
     '@type': 'Blog',
     name: '엠월드컴퍼니 알고리즘 확산 최적화 블로그',
     description: '광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전문가의 실전 노하우',
-    url: 'https://aijeju.co.kr/blog',
+    url: 'https://www.aijeju.co.kr/blog',
     publisher: {
       '@type': 'Organization',
-      name: 'M-World Company (엠월드컴퍼니)',
+      name: '엠월드컴퍼니',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://aijeju.co.kr/logo.png',
+        url: 'https://www.aijeju.co.kr/logo.png',
       },
     },
     blogPost: allPosts.slice(0, 10).map((post) => {
@@ -148,7 +148,7 @@ export default async function BlogPage() {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.excerpt.substring(0, 160),
-        url: `https://aijeju.co.kr${postUrl}`,
+        url: `https://www.aijeju.co.kr${postUrl}`,
         datePublished: post.date,
         dateModified: post.date,
         author: {
@@ -156,7 +156,7 @@ export default async function BlogPage() {
           name: '엠월드컴퍼니',
           jobTitle: '10년 이상 실행 업무 전문가',
         },
-        image: post.featuredImage || 'https://aijeju.co.kr/logo.png',
+        image: post.featuredImage || 'https://www.aijeju.co.kr/logo.png',
       };
     }),
   };

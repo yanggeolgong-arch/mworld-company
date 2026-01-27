@@ -48,7 +48,7 @@ export default function Home() {
         <div ref={heroRef} className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
-              M-World Company
+              엠월드컴퍼니
             </span>
           </div>
           <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl">
@@ -114,17 +114,17 @@ export default function Home() {
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80"
-                alt="Strategy"
+                alt="마케팅 전략"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             </div>
             <h3 className="text-xl font-semibold tracking-tight text-white">
-              The Strategy
+              마케팅 전략
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              데이터 분석과 시장 인사이트를 바탕으로 한 맞춤형 마케팅 전략을 수립합니다.
+              알고리즘 확산을 위한 데이터 분석과 시장 인사이트 기반 맞춤형 마케팅 전략을 수립합니다.
             </p>
             <Link
               href="/strategy"
@@ -138,17 +138,17 @@ export default function Home() {
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=80"
-                alt="Growth"
+                alt="성장 엔진"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             </div>
             <h3 className="text-xl font-semibold tracking-tight text-white">
-              Growth Engine
+              성장 엔진
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만들어냅니다.
+              효율성 극대화를 위한 AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만들어냅니다.
             </p>
             <Link
               href="/growth-engine"
@@ -162,17 +162,17 @@ export default function Home() {
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80"
-                alt="Success"
+                alt="성공 사례"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             </div>
             <h3 className="text-xl font-semibold tracking-tight text-white">
-              Success Cases
+              성공 사례
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만들어갑니다.
+              <span className="text-emerald-400">10년 이상</span> 실행력으로 증명된 압도적 성과를 통해 브랜드 성장 스토리를 만들어갑니다.
             </p>
             <Link
               href="/success-cases"

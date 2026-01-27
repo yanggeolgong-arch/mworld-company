@@ -73,7 +73,7 @@ export async function generateMetadata({
   const post = await getWordPressPost(slug);
   if (!post) {
     return {
-      title: 'Post Not Found - M-World Company',
+      title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다',
     };
   }
 
@@ -145,7 +145,7 @@ export default async function BlogPostPage({
         name: '엠월드컴퍼니',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://aijeju.co.kr/logo.png',
+          url: 'https://www.aijeju.co.kr/logo.png',
         },
       },
       mainEntityOfPage: {
@@ -196,13 +196,13 @@ export default async function BlogPostPage({
     },
     publisher: {
       '@type': 'Organization',
-      name: 'M-World Company (엠월드컴퍼니)',
+      name: '엠월드컴퍼니',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://aijeju.co.kr/logo.png',
+        url: 'https://www.aijeju.co.kr/logo.png',
       },
     },
-    image: post.featuredImage?.node?.sourceUrl || 'https://aijeju.co.kr/logo.png',
+    image: post.featuredImage?.node?.sourceUrl || 'https://www.aijeju.co.kr/logo.png',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonicalUrl,

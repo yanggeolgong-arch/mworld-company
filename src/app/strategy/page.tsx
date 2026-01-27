@@ -7,38 +7,38 @@ import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 const strategies = [
   {
-    title: 'Creative Visual & Curator',
-    description: '알고리즘을 지배하는 시네마틱 숏폼(릴스/쇼츠) 제작 및 고감도 인플루언서 매칭.',
+    title: '크리에이티브 비주얼 큐레이션',
+    description: '알고리즘을 지배하는 시네마틱 숏폼 제작 및 고감도 인플루언서 매칭.',
     category: 'Content',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80',
   },
   {
-    title: 'Local Search & Spatial Branding',
+    title: '로컬 검색 공간 브랜딩',
     description: '단순 노출을 넘어 방문 시그널을 설계하는 네이버 플레이스 및 스마트블록 점유 전략.',
     category: 'Local',
     image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
   },
   {
-    title: 'AI-Native Semantic DNA',
+    title: 'AI 네이티브 시맨틱 DNA',
     description: '시맨틱 DNA 기술을 통해 구글과 AI 검색 엔진의 뇌에 브랜드 권위자를 각인시키는 독점 기술.',
     category: 'Global',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&q=80',
   },
   {
-    title: 'M-World Digital Authority Engine',
+    title: '엠월드 디지털 권위 엔진',
     description: '실시간 트렌드를 즉각 자산화하여 트래픽과 구매 전환을 폭발시키는 차세대 웹 시스템 구축.',
     category: 'Engine',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=80',
   },
   {
-    title: 'Elite Executive Mentorship',
-    description: '대행사 대표들을 가르치는 1:1 프라이빗 클래스. <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우를 전수하여 즉시 창업 및 실행이 가능한 마스터 커리큘럼.',
+    title: '엘리트 임원 멘토십',
+    description: '대행사 대표들을 가르치는 1:1 프라이빗 클래스. <span className="text-emerald-400">10년 이상</span> 실행 업무 노하우를 전수하여 즉시 창업 및 실행이 가능한 마스터 커리큘럼.',
     category: 'Education',
     image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80',
   },
   {
-    title: 'Hyper-Data Insight',
-    description: '<span className="text-[#d4af37]">1,000여</span> 곳의 F&B/뷰티 성공 데이터를 기반으로 설계된 초개인화 마케팅 로드맵.',
+    title: '하이퍼 데이터 인사이트',
+    description: '<span className="text-[#d4af37]">1,000여</span> 곳의 F&B 뷰티 성공 데이터를 기반으로 설계된 초개인화 마케팅 로드맵.',
     category: 'Analytics',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
   },
@@ -89,12 +89,12 @@ export default function StrategyPage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="strategy-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="strategy-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              The Strategy
+              마케팅 전략
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              복제 불가능한 기술력으로 구축된
+              알고리즘 확산을 위한 복제 불가능한 기술력으로 구축된
               <br />
-              6대 핵심 솔루션으로 브랜드의 디지털 DNA를 재구성합니다.
+              6대 핵심 솔루션으로 브랜드 디지털 DNA를 재구성합니다.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
               <span className="text-sm font-light text-slate-200">

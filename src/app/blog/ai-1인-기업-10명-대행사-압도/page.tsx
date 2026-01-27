@@ -9,14 +9,14 @@ export const metadata: Metadata = {
   description: '일손은 부족하고 매출은 정체된 1인 대표의 고충을 해결하는 AI 자동화 파이프라인 구축 전략. 10년 이상 실행 업무 노하우와 AI 기술을 결합한 1:1 비공개 마스터 클래스.',
   keywords: 'AI 자동화, 1인 대행사, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, AI 마케팅, 디지털 마케팅 자동화',
   alternates: {
-    canonical: 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
+    canonical: 'https://www.aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
   },
   openGraph: {
     title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법',
     description: '10년 이상 실행 업무 전문가의 AI 자동화 전략',
     type: 'article',
     publishedTime: '2026-01-27',
-    url: 'https://aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
+    url: 'https://www.aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
   },
 };
 
@@ -42,10 +42,10 @@ const blogPostingSchema = {
   },
   publisher: {
     '@type': 'Organization',
-    name: 'M-World Company (엠월드컴퍼니)',
+    name: '엠월드컴퍼니',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://aijeju.co.kr/logo.png',
+      url: 'https://www.aijeju.co.kr/logo.png',
     },
   },
   mainEntityOfPage: {

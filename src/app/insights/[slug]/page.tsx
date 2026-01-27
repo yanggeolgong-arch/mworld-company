@@ -50,7 +50,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Post Not Found - M-World Company',
+      title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다',
     };
   }
 
