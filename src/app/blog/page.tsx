@@ -5,6 +5,7 @@ import { graphqlClient, GET_POSTS } from '@/lib/graphql';
 import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
+import { getAllStaticPosts, type StaticPost } from '@/lib/static-posts';
 
 export const metadata: Metadata = {
   title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
@@ -49,7 +50,7 @@ interface PostsData {
   };
 }
 
-async function getPosts(): Promise<Post[]> {
+async function getWordPressPosts(): Promise<Post[]> {
   try {
     const data = await graphqlClient.request<PostsData>(GET_POSTS, {
       first: 20,
@@ -61,8 +62,60 @@ async function getPosts(): Promise<Post[]> {
   }
 }
 
+// 통합된 포스트 타입
+interface UnifiedPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  slug: string;
+  date: string;
+  category: string;
+  categorySlug: string;
+  featuredImage?: string;
+  isStatic: boolean;
+}
+
+function convertToUnifiedPost(post: Post | StaticPost, isStatic: boolean): UnifiedPost {
+  if (isStatic) {
+    const staticPost = post as StaticPost;
+    return {
+      id: `static-${staticPost.slug}`,
+      title: staticPost.title,
+      excerpt: staticPost.excerpt || staticPost.description,
+      slug: staticPost.slug,
+      date: staticPost.date,
+      category: staticPost.category,
+      categorySlug: staticPost.categorySlug,
+      featuredImage: staticPost.featuredImage,
+      isStatic: true,
+    };
+  } else {
+    const wpPost = post as Post;
+    return {
+      id: wpPost.id,
+      title: wpPost.title,
+      excerpt: wpPost.excerpt.replace(/<[^>]*>/g, ''),
+      slug: wpPost.slug,
+      date: wpPost.date,
+      category: wpPost.categories.nodes[0]?.name || '알고리즘 확산',
+      categorySlug: wpPost.categories.nodes[0]?.slug || 'algorithm-diffusion',
+      featuredImage: wpPost.featuredImage?.node?.sourceUrl,
+      isStatic: false,
+    };
+  }
+}
+
 export default async function BlogPage() {
-  const posts = await getPosts();
+  const [wordPressPosts, staticPosts] = await Promise.all([
+    getWordPressPosts(),
+    Promise.resolve(getAllStaticPosts()),
+  ]);
+
+  // WordPress 포스트와 정적 포스트를 통합
+  const allPosts: UnifiedPost[] = [
+    ...wordPressPosts.map((post) => convertToUnifiedPost(post, false)),
+    ...staticPosts.map((post) => convertToUnifiedPost(post, true)),
+  ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Blog 스키마 생성
   const blogSchema = {
@@ -79,12 +132,12 @@ export default async function BlogPage() {
         url: 'https://aijeju.co.kr/logo.png',
       },
     },
-    blogPost: posts.slice(0, 10).map((post) => {
-      const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+    blogPost: allPosts.slice(0, 10).map((post) => {
+      const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.category);
       return {
         '@type': 'BlogPosting',
         headline: post.title,
-        description: post.excerpt.replace(/<[^>]*>/g, '').substring(0, 160),
+        description: post.excerpt.substring(0, 160),
         url: `https://aijeju.co.kr${optimizedUrl}`,
         datePublished: post.date,
         dateModified: post.date,
@@ -93,7 +146,7 @@ export default async function BlogPage() {
           name: '엠월드컴퍼니',
           jobTitle: '10년 이상 실행 업무 전문가',
         },
-        image: post.featuredImage?.node?.sourceUrl || 'https://aijeju.co.kr/logo.png',
+        image: post.featuredImage || 'https://aijeju.co.kr/logo.png',
       };
     }),
   };
@@ -143,26 +196,26 @@ export default async function BlogPage() {
 
           {/* 블로그 포스트 리스트 */}
           <div className="w-full mx-auto mt-20 max-w-6xl grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-            {posts.length === 0 ? (
+            {allPosts.length === 0 ? (
               <section className="w-full col-span-full rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm text-center">
                 <p className="text-slate-300 font-light">
                   아직 게시된 글이 없습니다.
                 </p>
               </section>
             ) : (
-              posts.map((post, index) => {
-                const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+              allPosts.map((post, index) => {
+                const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.category);
                 return (
                   <article
                     key={post.id}
                     className="group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
                   >
                     <Link href={optimizedUrl} className="flex flex-col h-full">
-                      {post.featuredImage?.node && (
+                      {post.featuredImage && (
                         <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                           <Image
-                            src={post.featuredImage.node.sourceUrl}
-                            alt={post.featuredImage.node.altText || post.title}
+                            src={post.featuredImage}
+                            alt={post.title}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -174,11 +227,7 @@ export default async function BlogPage() {
                       )}
                       <div className="flex flex-1 flex-col p-6 items-center">
                         <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mb-3">
-                          {post.categories.nodes.map((category) => (
-                            <span key={category.slug} className="font-light">
-                              {category.name}
-                            </span>
-                          ))}
+                          <span className="font-light">{post.category}</span>
                           <span>•</span>
                           <time dateTime={post.date} className="font-light">
                             {new Date(post.date).toLocaleDateString('ko-KR', {
@@ -193,7 +242,7 @@ export default async function BlogPage() {
                         </h2>
                         {post.excerpt && (
                           <p className="mt-2 flex-1 text-slate-300 line-clamp-3 font-light text-sm max-w-2xl mx-auto">
-                            {post.excerpt.replace(/<[^>]*>/g, '')}
+                            {post.excerpt}
                           </p>
                         )}
                         <div className="mt-4 text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]">
