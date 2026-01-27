@@ -66,14 +66,14 @@ export default function AIPoweredSoloBusinessPage() {
           <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
             {/* Breadcrumb 네비게이션 */}
             <nav className="mb-6" aria-label="Breadcrumb">
-              <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+              <ol className="flex items-center justify-center gap-2 text-sm text-white">
                 {breadcrumbs.map((item, index) => (
                   <li key={index} className="flex items-center">
                     {index > 0 && <span className="mx-2">/</span>}
                     <a
                       href={item.url}
                       className={`hover:text-emerald-400 transition-colors ${
-                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400'
+                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-white'
                       }`}
                     >
                       {item.name}
@@ -84,7 +84,7 @@ export default function AIPoweredSoloBusinessPage() {
             </nav>
 
             <header className="mb-8">
-              <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
+              <div className="flex items-center justify-center gap-2 text-sm text-white mb-4">
                 <span className="font-light">알고리즘 확산 최적화</span>
                 <span>•</span>
                 <time dateTime="2026-01-27" className="font-light">
@@ -236,7 +236,7 @@ export default function AIPoweredSoloBusinessPage() {
                     <li>광고대행사 대표 수강생 <strong className="text-emerald-400">80% 이상</strong></li>
                   </ul>
                 </div>
-                <p className="text-slate-300 font-light leading-relaxed">
+                <p className="text-white font-light leading-relaxed">
                   이것은 우연이 아니다. <strong className="text-white">검증된 시스템</strong>이다.
                 </p>
               </section>
@@ -272,7 +272,7 @@ export default function AIPoweredSoloBusinessPage() {
                   하지만 <strong className="text-emerald-400">10년의 실행 노하우</strong>는 책에서 배울 수 없다. 
                   직접 경험해야 한다.
                 </p>
-                <p className="text-slate-300 font-light leading-relaxed">
+                <p className="text-white font-light leading-relaxed">
                   엠월드컴퍼니의 1:1 비공개 마스터 클래스는 <strong className="text-white">즉시 창업과 매출 최적화</strong>가 가능하도록 설계되었다.
                 </p>
               </section>
@@ -282,15 +282,15 @@ export default function AIPoweredSoloBusinessPage() {
             {/* AI 투명성 및 브랜딩 */}
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="mb-6 p-4 rounded-lg bg-slate-800/50 border border-white/10">
-                <p className="text-sm text-slate-400 font-light text-center mb-2">
+                <p className="text-sm text-white font-light text-center mb-2">
                   본 콘텐츠는 AI와 10년 이상 실행 업무 전문가의 협업으로 제작되었습니다.
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-base font-medium text-slate-300 mb-2">
+                <p className="text-base font-medium text-white mb-2">
                   문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
                 </p>
-                <p className="text-sm text-slate-400 font-light">
+                <p className="text-sm text-white font-light">
                   엠월드컴퍼니는 결과로만 말합니다.
                 </p>
               </div>

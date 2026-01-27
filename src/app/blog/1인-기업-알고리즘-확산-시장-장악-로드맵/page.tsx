@@ -66,14 +66,14 @@ export default function AlgorithmDiffusionRoadmapPage() {
           <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
             {/* Breadcrumb 네비게이션 */}
             <nav className="mb-6" aria-label="Breadcrumb">
-              <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+              <ol className="flex items-center justify-center gap-2 text-sm text-white">
                 {breadcrumbs.map((item, index) => (
                   <li key={index} className="flex items-center">
                     {index > 0 && <span className="mx-2">/</span>}
                     <a
                       href={item.url}
                       className={`hover:text-emerald-400 transition-colors ${
-                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400'
+                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-white'
                       }`}
                     >
                       {item.name}
@@ -84,7 +84,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
             </nav>
 
             <header className="mb-8">
-              <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
+              <div className="flex items-center justify-center gap-2 text-sm text-white mb-4">
                 <span className="font-light">플레이스 알고리즘</span>
                 <span>•</span>
                 <time dateTime="2026-01-27" className="font-light">
@@ -94,7 +94,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
                 1인 기업의 알고리즘 확산 점유 로드맵
               </h1>
-              <p className="mt-4 text-center text-slate-300 font-light">
+              <p className="mt-4 text-center text-white font-light">
                 <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가가 공개하는 기술적 SEO 전략
               </p>
             </header>
@@ -406,7 +406,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   <p className="text-white font-light leading-relaxed text-lg">
                     <strong className="text-white">총 소요 시간:</strong> 10분 + 20분 + 20분 + 10분 = <strong className="text-emerald-400">60분 (1시간)</strong>
                   </p>
-                  <p className="text-slate-200 font-light leading-relaxed text-lg mt-2">
+                  <p className="text-white font-light leading-relaxed text-lg mt-2">
                     이 프로세스를 매일 반복하면, 한 달 치 알고리즘 데이터를 분석하고 포스팅하는 작업을 
                     <strong className="text-white"> 하루 1시간 만에 끝낼 수 있다.</strong>
                   </p>
@@ -497,7 +497,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                         <li>실행 직거래: 50만 원 → 35만 원 (30% 절감)</li>
                         <li>총 비용: 70만 원 (30만 원 절감 = 30% 절감)</li>
                       </ul>
-                      <p className="text-slate-200 font-light leading-relaxed mt-4">
+                      <p className="text-white font-light leading-relaxed mt-4">
                         <strong className="text-white">주의:</strong> 트래픽과 실행을 동시에 절감하면, 
                         절감률이 단순 합산(60%)이 아니라 복리 효과로 51%가 된다. 
                         하지만 여전히 대형 대행사 대비 30만 원을 아낄 수 있다.
@@ -570,7 +570,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <section className="mb-12">
                 <h2 className="text-3xl font-semibold text-white mb-6">검증된 결과</h2>
                 <div className="rounded-lg border-l-4 border-[#d4af37] bg-[#d4af37]/10 p-6 my-6">
-                  <p className="text-slate-200 font-light leading-relaxed text-lg mb-4">
+                  <p className="text-white font-light leading-relaxed text-lg mb-4">
                     <strong className="text-white"><span className="text-[#d4af37]">1,000개 이상의 성공 사례</span></strong>가 증명한다.
                   </p>
                   <ul className="list-disc list-inside space-y-2 text-white font-light leading-relaxed ml-4">
@@ -627,15 +627,15 @@ export default function AlgorithmDiffusionRoadmapPage() {
             {/* AI 투명성 및 브랜딩 */}
             <div className="mt-12 pt-8 border-t border-white/10">
               <div className="mb-6 p-4 rounded-lg bg-slate-800/50 border border-white/10">
-                <p className="text-sm text-slate-400 font-light text-center mb-2">
+                <p className="text-sm text-white font-light text-center mb-2">
                   본 콘텐츠는 AI와 10년 이상 실행 업무 전문가의 협업으로 제작되었습니다.
                 </p>
               </div>
               <div className="text-center">
-                <p className="text-base font-medium text-slate-300 mb-2">
+                <p className="text-base font-medium text-white mb-2">
                   문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
                 </p>
-                <p className="text-sm text-slate-400 font-light">
+                <p className="text-sm text-white font-light">
                   엠월드컴퍼니는 결과로만 말합니다.
                 </p>
               </div>
