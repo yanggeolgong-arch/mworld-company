@@ -96,11 +96,36 @@ export default function AIPoweredSoloBusinessPage() {
               </h1>
             </header>
 
-            <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8">
+            {/* Featured Image */}
+            <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative mb-8">
+              <Image
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop&q=80"
+                alt="AI 자동화 파이프라인"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                className="object-cover"
+                priority
+                quality={90}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+
+            <div className="prose prose-lg prose-invert max-w-none prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-emerald-400 prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8">
               
               {/* StoryBrand: 고객의 결핍 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">당신의 현실</h2>
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop&q=80"
+                    alt="1인 기업의 현실"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
+                <h2 className="text-3xl font-semibold text-white mb-4">당신의 현실</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-4">
                   하루 종일 클라이언트와 미팅하고, 콘텐츠 기획하고, 리포트 작성하고, 인플루언서 매칭하고. 
                   하지만 매출은 정체되어 있고, 일손은 부족하고, 밤늦게까지 일해도 성장의 한계가 보인다.
@@ -120,7 +145,18 @@ export default function AIPoweredSoloBusinessPage() {
 
               {/* StoryBrand: 가이드 등장 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">가이드의 등장</h2>
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=600&fit=crop&q=80"
+                    alt="AI 자동화 솔루션"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
+                <h2 className="text-3xl font-semibold text-white mb-4">가이드의 등장</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-4">
                   엠월드컴퍼니는 <strong className="text-white">10년 이상 실행 업무 전문가</strong>의 노하우와 
                   <strong className="text-emerald-400"> AI 자동화 기술</strong>을 결합했다.
@@ -137,7 +173,18 @@ export default function AIPoweredSoloBusinessPage() {
 
               {/* StoryBrand: 계획 제시 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">3단계 계획</h2>
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop&q=80"
+                    alt="3단계 실행 계획"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
+                <h2 className="text-3xl font-semibold text-white mb-4">3단계 계획</h2>
                 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-slate-800/50 p-6 border border-white/10">
@@ -177,7 +224,7 @@ export default function AIPoweredSoloBusinessPage() {
 
               {/* Cialdini: 사회적 증거 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">검증된 결과</h2>
+                <h2 className="text-3xl font-semibold text-white mb-4">검증된 결과</h2>
                 <div className="rounded-lg border-l-4 border-[#d4af37] bg-[#d4af37]/10 p-6 my-6">
                   <p className="text-slate-200 font-light leading-relaxed mb-3">
                     <strong className="text-white"><span className="text-[#d4af37]">1,000개 이상의 성공 사례</span></strong>가 증명한다.
@@ -196,7 +243,7 @@ export default function AIPoweredSoloBusinessPage() {
 
               {/* Cialdini: 희귀성 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">오직 한 분을 위한 독점 시스템</h2>
+                <h2 className="text-3xl font-semibold text-white mb-4">오직 한 분을 위한 독점 시스템</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-4">
                   온라인의 흔한 강의가 아니다. <strong className="text-white">1:1 비공개로만 전수</strong>한다.
                 </p>
@@ -217,7 +264,7 @@ export default function AIPoweredSoloBusinessPage() {
 
               {/* Berger: 실질적 가치 */}
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-white mb-4">즉시 실행 가능한 전략</h2>
+                <h2 className="text-3xl font-semibold text-white mb-4">즉시 실행 가능한 전략</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-4">
                   이 글을 읽는 순간, 당신은 이미 <strong className="text-white">AI로 무장한 1인 기업</strong>이 되는 길을 알고 있다.
                 </p>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
@@ -98,7 +99,21 @@ export default function AlgorithmDiffusionRoadmapPage() {
               </p>
             </header>
 
-            <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8">
+            {/* Featured Image */}
+            <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative mb-8">
+              <Image
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&q=80"
+                alt="알고리즘 확산 로드맵"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                className="object-cover"
+                priority
+                quality={90}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+
+            <div className="prose prose-lg prose-invert max-w-none prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-emerald-400 prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8">
               
               {/* StoryBrand: 고객의 결핍 */}
               <section className="mb-12">
@@ -124,6 +139,17 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
               {/* 핵심 정보 1: 네이버 플레이스 컨디션 5가지 지표 */}
               <section className="mb-12">
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop&q=80"
+                    alt="네이버 플레이스 컨디션 분석"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
                 <h2 className="text-3xl font-semibold text-white mb-6">네이버 플레이스 컨디션 판단: 5가지 핵심 지표</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-6 text-lg">
                   네이버 플레이스 알고리즘이 당신의 매장을 얼마나 좋아하는지 판단하는 지표는 5가지다. 
@@ -266,6 +292,17 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
               {/* 핵심 정보 2: AI 기반 하루 1시간 분석 프로세스 */}
               <section className="mb-12">
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=600&fit=crop&q=80"
+                    alt="AI 자동화 프로세스"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
                 <h2 className="text-3xl font-semibold text-white mb-6">AI 기반 하루 1시간 알고리즘 데이터 분석 프로세스</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-6 text-lg">
                   대형 대행사는 팀을 나눠서 한 달 동안 알고리즘 데이터를 분석한다. 
@@ -378,6 +415,17 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
               {/* 핵심 정보 3: 매체사 트래픽 단가 할인 및 실행사 직거래 */}
               <section className="mb-12">
+                <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
+                  <Image
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop&q=80"
+                    alt="원가 절감 메커니즘"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                    className="object-cover"
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                </div>
                 <h2 className="text-3xl font-semibold text-white mb-6">매체사 트래픽 단가 할인 및 실행사 직거래 원가 절감 메커니즘</h2>
                 <p className="text-slate-300 font-light leading-relaxed mb-6 text-lg">
                   대형 대행사는 매체사와 계약해서 트래픽 단가를 할인받는다. 
