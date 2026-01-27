@@ -4,15 +4,15 @@ import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: '1인 기업이 알고리즘 확산으로 시장을 장악하는 기술적 로드맵 - 엠월드컴퍼니',
-  description: '네이버 플레이스 컨디션 판단 5가지 핵심 지표, AI 기반 하루 1시간 알고리즘 데이터 분석 프로세스, 매체사 트래픽 단가 할인 및 실행사 직거래 원가 절감 메커니즘. 10년 이상 실행 업무 전문가의 압도적 정보 밀도.',
+  title: '1인 기업의 알고리즘 확산 점유 로드맵 - 엠월드컴퍼니',
+  description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
   keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래, 플레이스 컨디션, 알고리즘 데이터 분석',
   alternates: {
     canonical: 'https://aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
   },
   openGraph: {
-    title: '1인 기업이 알고리즘 확산으로 시장을 장악하는 기술적 로드맵',
-    description: '10년 이상 실행 업무 전문가의 압도적 정보 밀도. 네이버 플레이스 컨디션 판단부터 AI 자동화 프로세스까지.',
+    title: '1인 기업의 알고리즘 확산 점유 로드맵',
+    description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
     type: 'article',
     publishedTime: '2026-01-27',
     url: 'https://aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const slug = '1인-기업-알고리즘-확산-시장-장악-로드맵';
-const title = '1인 기업이 알고리즘 확산으로 시장을 장악하는 기술적 로드맵';
+const title = '1인 기업의 알고리즘 확산 점유 로드맵';
 const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
 
 const breadcrumbs = generateBlogBreadcrumbs(slug, title, '플레이스 알고리즘');
@@ -29,28 +29,28 @@ const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
-  headline: title,
-  description: '네이버 플레이스 컨디션 판단 5가지 핵심 지표, AI 기반 하루 1시간 알고리즘 데이터 분석 프로세스, 매체사 트래픽 단가 할인 및 실행사 직거래 원가 절감 메커니즘',
-  url: canonicalUrl,
-  datePublished: '2026-01-27',
-  dateModified: '2026-01-27',
+  headline: '1인 기업의 알고리즘 확산 점유 로드맵',
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': 'https://aijeju.co.kr/blog/1person-agency-algorithm-spread',
+  },
   author: {
     '@type': 'Person',
-    name: '엠월드컴퍼니',
-    jobTitle: '10년 이상 실행 업무 전문가',
+    name: '엠월드컴퍼니 최고실행자',
+    jobTitle: '10년 이상 실행사 대표 전문가',
   },
   publisher: {
     '@type': 'Organization',
-    name: 'M-World Company (엠월드컴퍼니)',
+    name: '엠월드컴퍼니',
     logo: {
       '@type': 'ImageObject',
       url: 'https://aijeju.co.kr/logo.png',
     },
   },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': canonicalUrl,
-  },
+  description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
+  url: canonicalUrl,
+  datePublished: '2026-01-27',
+  dateModified: '2026-01-27',
   keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래',
   articleSection: '플레이스 알고리즘',
 };
@@ -91,10 +91,10 @@ export default function AlgorithmDiffusionRoadmapPage() {
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
-                {title}
+                1인 기업의 알고리즘 확산 점유 로드맵
               </h1>
               <p className="mt-4 text-center text-slate-300 font-light">
-                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가가 공개하는 기술적 로드맵
+                <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가가 공개하는 기술적 SEO 전략
               </p>
             </header>
 
