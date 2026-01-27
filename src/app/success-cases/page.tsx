@@ -34,7 +34,7 @@ const cases = [
     result: '팔로워 300% 증가 / 6개월 만에 타겟 오디언스 장악',
     description: '정교한 콘텐츠 전략으로 브랜드의 감성을 전달하며 충성도 높은 고객층을 확보했습니다.',
     category: 'Beauty',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop&q=80',
   },
   {
     title: '테크 스타트업',
@@ -48,7 +48,7 @@ const cases = [
     result: '광고대행사 대표 및 창업 준비생 전용 / 현직 대표 수강생 80% 이상',
     description: '온라인의 흔한 강의가 아닙니다. <span className="text-emerald-400">10년</span> 차 실행사의 영업 비밀과 운영 로직을 오직 1:1 비공개로만 전수합니다. 대행사 대표님들이 직접 찾아 듣는, 즉시 창업과 매출 최적화가 가능한 하이엔드 실무 교육입니다.',
     category: 'MasterClass',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
   },
 ];
 
@@ -87,7 +87,9 @@ export default function SuccessCasesPage() {
                   src={caseItem.image}
                   alt={caseItem.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  priority={index < 3}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 {(caseItem.category === 'F&B' || caseItem.category === 'Shortform' || caseItem.category === 'MasterClass') && (
