@@ -105,6 +105,16 @@ function convertToUnifiedPost(post: Post | StaticPost, isStatic: boolean): Unifi
   }
 }
 
+// 정적 포스트 URL 생성 함수
+function getPostUrl(post: UnifiedPost): string {
+  // 정적 포스트는 정확한 slug로 직접 링크
+  if (post.isStatic) {
+    return `/blog/${post.slug}`;
+  }
+  // WordPress 포스트는 최적화된 URL 사용
+  return generateOptimizedUrl(post.slug, post.title, post.category);
+}
+
 export default async function BlogPage() {
   const [wordPressPosts, staticPosts] = await Promise.all([
     getWordPressPosts(),
@@ -133,12 +143,12 @@ export default async function BlogPage() {
       },
     },
     blogPost: allPosts.slice(0, 10).map((post) => {
-      const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.category);
+      const postUrl = getPostUrl(post);
       return {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.excerpt.substring(0, 160),
-        url: `https://aijeju.co.kr${optimizedUrl}`,
+        url: `https://aijeju.co.kr${postUrl}`,
         datePublished: post.date,
         dateModified: post.date,
         author: {
@@ -204,13 +214,13 @@ export default async function BlogPage() {
               </section>
             ) : (
               allPosts.map((post, index) => {
-                const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.category);
+                const postUrl = getPostUrl(post);
                 return (
                   <article
                     key={post.id}
                     className="group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
                   >
-                    <Link href={optimizedUrl} className="flex flex-col h-full">
+                    <Link href={postUrl} className="flex flex-col h-full">
                       {post.featuredImage && (
                         <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                           <Image

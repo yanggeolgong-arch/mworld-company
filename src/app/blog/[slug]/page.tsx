@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { graphqlClient, GET_POST_BY_SLUG } from '@/lib/graphql';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
+import { getStaticPostBySlug } from '@/lib/static-posts';
 
 interface PostData {
   post: {
@@ -28,7 +29,7 @@ interface PostData {
   };
 }
 
-async function getPost(slug: string) {
+async function getWordPressPost(slug: string) {
   try {
     const data = await graphqlClient.request<PostData>(GET_POST_BY_SLUG, {
       slug,
@@ -46,8 +47,30 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  
+  // 정적 포스트 확인
+  const staticPost = getStaticPostBySlug(slug);
+  if (staticPost) {
+    const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
+    return {
+      title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+      description: staticPost.description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
+      keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: {
+        title: staticPost.title,
+        description: staticPost.description,
+        type: 'article',
+        publishedTime: staticPost.date,
+        url: canonicalUrl,
+      },
+    };
+  }
 
+  // WordPress 포스트 확인
+  const post = await getWordPressPost(slug);
   if (!post) {
     return {
       title: 'Post Not Found - M-World Company',
@@ -82,9 +105,66 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  
+  // 정적 포스트 확인
+  const staticPost = getStaticPostBySlug(slug);
+  if (staticPost) {
+    // 정적 포스트는 별도 페이지로 리다이렉트
+    // 또는 여기서 직접 렌더링할 수도 있지만, 기존 정적 페이지를 활용하는 것이 좋음
+    // 정적 페이지가 이미 존재하므로 해당 페이지로 리다이렉트하지 않고
+    // 동일한 내용을 여기서 렌더링하거나, 정적 페이지 컴포넌트를 import해서 사용
+    
+    // 정적 포스트의 경우, 이미 별도 페이지가 있으므로 해당 페이지로 리다이렉트
+    // 하지만 URL이 동일하므로 리다이렉트 없이 여기서 처리하는 것이 더 나음
+    // 대신 정적 포스트 페이지 컴포넌트를 동적으로 로드하거나
+    // 여기서 정적 포스트를 렌더링
+    
+    // 간단한 해결책: 정적 포스트가 있으면 해당 정적 페이지로 리다이렉트
+    // 하지만 이건 무한 리다이렉트를 일으킬 수 있으므로
+    // 대신 정적 포스트를 여기서 렌더링하도록 수정
+    
+    const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
+    const breadcrumbs = generateBlogBreadcrumbs(slug, staticPost.title, staticPost.category);
+    const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
+    const blogPostingSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: staticPost.title,
+      description: staticPost.description,
+      url: canonicalUrl,
+      datePublished: staticPost.date,
+      dateModified: staticPost.date,
+      author: {
+        '@type': 'Person',
+        name: '엠월드컴퍼니 최고실행자',
+        jobTitle: '10년 이상 실행사 대표 전문가',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: '엠월드컴퍼니',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://aijeju.co.kr/logo.png',
+        },
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl,
+      },
+      keywords: staticPost.category,
+    };
+
+    // 정적 포스트는 이미 별도 페이지가 있으므로 해당 페이지로 리다이렉트
+    // 하지만 URL이 동일하므로 여기서는 notFound() 대신 정적 페이지를 렌더링하도록
+    // 실제로는 정적 페이지가 우선순위가 높으므로 여기서는 WordPress 포스트만 처리
+    // 정적 포스트는 정적 페이지에서 처리되므로 여기서는 WordPress만 처리
+  }
+
+  // WordPress 포스트 처리
+  const post = await getWordPressPost(slug);
   if (!post) {
+    // 정적 포스트도 없고 WordPress 포스트도 없으면 404
     notFound();
   }
 
