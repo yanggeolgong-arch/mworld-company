@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const cases = [
   {
-    title: '동영상 20개 제작 + 대형 맛집 페이지 업로드 33건',
-    result: '누적 조회수 5,000만+ 돌파 / 알고리즘 확산을 통한 예약 폭주',
-    description: '단순 노출을 넘어 숏폼 알고리즘의 핵심 로직을 공략합니다. 대형 채널 배포와 알고리즘 확산 기술로 브랜드 파급력을 극대화합니다.',
+    title: '수백 개 거래처 실시간 숏폼 송출 + 알고리즘 대량 확산',
+    result: '전 채널 합산 5,000만 뷰 송출 중 / 데이터 기반 예약 폭주',
+    description: '이게 다 엠월드컴퍼니의 관리 현황입니다. 단순 제작을 넘어, 수많은 성공 거래처의 숏폼 알고리즘을 실시간으로 분석하고 대량 확산하여 압도적인 매출 퍼포먼스를 만들어냅니다.',
     category: 'Shortform',
     image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
   },
