@@ -14,6 +14,7 @@ const cases = [
     description: '이게 다 엠월드컴퍼니의 관리 현황입니다. 단순 제작을 넘어, 수많은 성공 거래처의 숏폼 알고리즘을 실시간으로 분석하고 대량 확산하여 압도적인 매출 퍼포먼스를 만들어냅니다.',
     category: 'Shortform',
     image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
+    video: '/Ai__flow_1080p_202601142217.mp4',
   },
   {
     title: 'F&B 맛집 브랜드 A',
@@ -83,14 +84,25 @@ export default function SuccessCasesPage() {
               } backdrop-blur-sm`}
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
-                <Image
-                  src={caseItem.image}
-                  alt={caseItem.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  priority={index < 3}
-                />
+                {caseItem.video ? (
+                  <video
+                    src={caseItem.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <Image
+                    src={caseItem.image}
+                    alt={caseItem.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    priority={index < 3}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 {(caseItem.category === 'F&B' || caseItem.category === 'Shortform' || caseItem.category === 'MasterClass') && (
                   <div className="absolute top-3 right-3">
