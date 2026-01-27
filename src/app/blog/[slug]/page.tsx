@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { graphqlClient, GET_POST_BY_SLUG } from '@/lib/graphql';
 import { notFound } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
+import { generateOptimizedUrl, generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
+import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 interface PostData {
   post: {
@@ -53,16 +55,22 @@ export async function generateMetadata({
   }
 
   const description = post.content.replace(/<[^>]*>/g, '').substring(0, 160);
+  const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+  const canonicalUrl = generateCanonicalUrl(optimizedUrl);
 
   return {
     title: `${post.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
     description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
     keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: post.title,
       description,
       type: 'article',
       publishedTime: post.date,
+      url: canonicalUrl,
       images: post.featuredImage?.node?.sourceUrl ? [post.featuredImage.node.sourceUrl] : [],
     },
   };
@@ -80,13 +88,25 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  // URL 최적화
+  const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+  const canonicalUrl = generateCanonicalUrl(optimizedUrl);
+
+  // BreadcrumbList 스키마 생성
+  const breadcrumbs = generateBlogBreadcrumbs(
+    optimizeSlug(post.slug || post.title),
+    post.title,
+    post.categories.nodes[0]?.name
+  );
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+
   // BlogPosting 스키마 생성
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.content.replace(/<[^>]*>/g, '').substring(0, 160),
-    url: `https://aijeju.co.kr/blog/${slug}`,
+    url: canonicalUrl,
     datePublished: post.date,
     dateModified: post.date,
     author: {
@@ -105,17 +125,37 @@ export default async function BlogPostPage({
     image: post.featuredImage?.node?.sourceUrl || 'https://aijeju.co.kr/logo.png',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://aijeju.co.kr/blog/${slug}`,
+      '@id': canonicalUrl,
     },
     keywords: post.categories.nodes.map((cat) => cat.name).join(', '),
   };
 
   return (
     <>
+      <StructuredData data={breadcrumbSchema} />
       <StructuredData data={blogPostingSchema} />
       <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
         <section className="w-full mx-auto max-w-4xl px-6 py-24 lg:px-8">
           <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
+            {/* Breadcrumb 네비게이션 */}
+            <nav className="mb-6" aria-label="Breadcrumb">
+              <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+                {breadcrumbs.map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    {index > 0 && <span className="mx-2">/</span>}
+                    <a
+                      href={item.url}
+                      className={`hover:text-emerald-400 transition-colors ${
+                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400'
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
             <header className="mb-8">
               <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
                 {post.categories.nodes.map((category) => (

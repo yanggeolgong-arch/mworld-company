@@ -2,6 +2,9 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { StructuredData } from '@/components/StructuredData';
+import { generateCanonicalUrl } from '@/lib/url-optimizer';
+import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 const strategies = [
   {
@@ -42,6 +45,11 @@ const strategies = [
   },
 ];
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: '홈', url: '/' },
+  { name: '마케팅 전략', url: '/strategy' },
+]);
+
 export default function StrategyPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -76,68 +84,73 @@ export default function StrategyPage() {
   }, []);
 
   return (
-    <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
-      <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="strategy-heading">
-        <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
-          <h1 id="strategy-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            The Strategy
-          </h1>
-          <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            복제 불가능한 기술력으로 구축된
-            <br />
-            6대 핵심 솔루션으로 브랜드의 디지털 DNA를 재구성합니다.
-          </p>
-          <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
-            <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
-            </span>
-          </div>
-        </header>
-
-        <div ref={sectionRef} className="w-full mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-          {strategies.map((strategy, index) => (
-            <section
-              key={index}
-              className="strategy-card group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
-            >
-              <div className="relative aspect-video w-full overflow-hidden">
-                <Image
-                  src={strategy.image}
-                  alt={strategy.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-              </div>
-              <div className="flex flex-1 flex-col p-6 items-center">
-                <h2 className="text-xl font-semibold tracking-tight text-white">
-                  {strategy.title}
-                </h2>
-                <p className="mt-4 flex-1 text-slate-300 leading-relaxed font-light max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: strategy.description }} />
-              </div>
-            </section>
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="w-full mx-auto mt-32 max-w-2xl flex flex-col items-center justify-center text-center">
-          <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-black p-8 border border-white/5">
-            <h3 className="text-2xl font-light text-white mb-4">
-              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 실시간 트렌드 컨설팅 받기
-            </h3>
-            <a
-              href="tel:010-4074-9343"
-              className="inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-lg"
-            >
-              <span>📞</span>
-              010-4074-9343
-            </a>
-            <p className="mt-4 text-sm font-light text-slate-400">
-              대표 직통 컨설팅
+    <>
+      <StructuredData data={breadcrumbSchema} />
+      <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+        <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="strategy-heading">
+          <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
+            <h1 id="strategy-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              The Strategy
+            </h1>
+            <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
+              복제 불가능한 기술력으로 구축된
+              <br />
+              6대 핵심 솔루션으로 브랜드의 디지털 DNA를 재구성합니다.
             </p>
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
+              <span className="text-sm font-light text-slate-200">
+                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              </span>
+            </div>
+          </header>
+
+          <div ref={sectionRef} className="w-full mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+            {strategies.map((strategy, index) => (
+              <section
+                key={index}
+                className="strategy-card group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
+              >
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image
+                    src={strategy.image}
+                    alt={strategy.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading={index < 3 ? 'eager' : 'lazy'}
+                    quality={85}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                </div>
+                <div className="flex flex-1 flex-col p-6 items-center">
+                  <h2 className="text-xl font-semibold tracking-tight text-white">
+                    {strategy.title}
+                  </h2>
+                  <p className="mt-4 flex-1 text-slate-300 leading-relaxed font-light max-w-2xl mx-auto" dangerouslySetInnerHTML={{ __html: strategy.description }} />
+                </div>
+              </section>
+            ))}
           </div>
-        </div>
-      </section>
-    </article>
+
+          {/* CTA Section */}
+          <div className="w-full mx-auto mt-32 max-w-2xl flex flex-col items-center justify-center text-center">
+            <div className="rounded-2xl bg-gradient-to-br from-slate-900 to-black p-8 border border-white/5">
+              <h3 className="text-2xl font-light text-white mb-4">
+                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 실시간 트렌드 컨설팅 받기
+              </h3>
+              <a
+                href="tel:010-4074-9343"
+                className="inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-lg"
+              >
+                <span>📞</span>
+                010-4074-9343
+              </a>
+              <p className="mt-4 text-sm font-light text-slate-400">
+                대표 직통 컨설팅
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </>
   );
 }

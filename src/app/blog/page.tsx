@@ -4,15 +4,20 @@ import Image from 'next/image';
 import { graphqlClient, GET_POSTS } from '@/lib/graphql';
 import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
+import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
 
 export const metadata: Metadata = {
   title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
   description: '광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전문가의 실전 노하우를 공유합니다. 10년 이상 실행 업무 전문가의 알고리즘 확산 전략.',
   keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화, 숏폼 알고리즘, SNS 마케팅, 디지털 마케팅',
+  alternates: {
+    canonical: 'https://aijeju.co.kr/blog',
+  },
   openGraph: {
     title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
     description: '10년 이상 실행 업무 전문가의 알고리즘 확산 실전 노하우',
     type: 'website',
+    url: 'https://aijeju.co.kr/blog',
   },
 };
 
@@ -56,26 +61,6 @@ async function getPosts(): Promise<Post[]> {
   }
 }
 
-// 키워드 기반 URL 생성 함수
-function generateBlogUrl(slug: string, title: string): string {
-  const keywords = ['광고대행사-창업', '숏폼-마케팅-실무', '플레이스-알고리즘'];
-  const titleLower = title.toLowerCase();
-  
-  // 키워드 매칭
-  if (titleLower.includes('창업') || titleLower.includes('대행사')) {
-    return `/blog/광고대행사-창업/${slug}`;
-  }
-  if (titleLower.includes('숏폼') || titleLower.includes('마케팅')) {
-    return `/blog/숏폼-마케팅-실무/${slug}`;
-  }
-  if (titleLower.includes('플레이스') || titleLower.includes('알고리즘')) {
-    return `/blog/플레이스-알고리즘/${slug}`;
-  }
-  
-  // 기본 URL
-  return `/blog/${slug}`;
-}
-
 export default async function BlogPage() {
   const posts = await getPosts();
 
@@ -94,20 +79,23 @@ export default async function BlogPage() {
         url: 'https://aijeju.co.kr/logo.png',
       },
     },
-    blogPost: posts.slice(0, 10).map((post) => ({
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.excerpt.replace(/<[^>]*>/g, '').substring(0, 160),
-      url: `https://aijeju.co.kr${generateBlogUrl(post.slug, post.title)}`,
-      datePublished: post.date,
-      dateModified: post.date,
-      author: {
-        '@type': 'Person',
-        name: '엠월드컴퍼니',
-        jobTitle: '10년 이상 실행 업무 전문가',
-      },
-      image: post.featuredImage?.node?.sourceUrl || 'https://aijeju.co.kr/logo.png',
-    })),
+    blogPost: posts.slice(0, 10).map((post) => {
+      const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+      return {
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt.replace(/<[^>]*>/g, '').substring(0, 160),
+        url: `https://aijeju.co.kr${optimizedUrl}`,
+        datePublished: post.date,
+        dateModified: post.date,
+        author: {
+          '@type': 'Person',
+          name: '엠월드컴퍼니',
+          jobTitle: '10년 이상 실행 업무 전문가',
+        },
+        image: post.featuredImage?.node?.sourceUrl || 'https://aijeju.co.kr/logo.png',
+      };
+    }),
   };
 
   return (
@@ -134,19 +122,19 @@ export default async function BlogPage() {
           {/* 키워드 카테고리 네비게이션 */}
           <nav className="w-full mx-auto mt-12 max-w-4xl flex flex-wrap items-center justify-center gap-4" aria-label="Blog categories">
             <Link
-              href="/blog/광고대행사-창업"
+              href="/blog/ad-agency-startup"
               className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
             >
               광고대행사 창업
             </Link>
             <Link
-              href="/blog/숏폼-마케팅-실무"
+              href="/blog/shortform-marketing-practice"
               className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
             >
               숏폼 마케팅 실무
             </Link>
             <Link
-              href="/blog/플레이스-알고리즘"
+              href="/blog/place-algorithm"
               className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
             >
               플레이스 알고리즘
@@ -162,57 +150,60 @@ export default async function BlogPage() {
                 </p>
               </section>
             ) : (
-              posts.map((post, index) => (
-                <article
-                  key={post.id}
-                  className="group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
-                >
-                  <Link href={generateBlogUrl(post.slug, post.title)} className="flex flex-col h-full">
-                    {post.featuredImage?.node && (
-                      <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
-                        <Image
-                          src={post.featuredImage.node.sourceUrl}
-                          alt={post.featuredImage.node.altText || post.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          loading={index < 3 ? 'eager' : 'lazy'}
-                          quality={85}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      </div>
-                    )}
-                    <div className="flex flex-1 flex-col p-6 items-center">
-                      <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mb-3">
-                        {post.categories.nodes.map((category) => (
-                          <span key={category.slug} className="font-light">
-                            {category.name}
-                          </span>
-                        ))}
-                        <span>•</span>
-                        <time dateTime={post.date} className="font-light">
-                          {new Date(post.date).toLocaleDateString('ko-KR', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </time>
-                      </div>
-                      <h2 className="text-xl font-semibold tracking-tight text-white text-center mb-3">
-                        {post.title}
-                      </h2>
-                      {post.excerpt && (
-                        <p className="mt-2 flex-1 text-slate-300 line-clamp-3 font-light text-sm max-w-2xl mx-auto">
-                          {post.excerpt.replace(/<[^>]*>/g, '')}
-                        </p>
+              posts.map((post, index) => {
+                const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
+                return (
+                  <article
+                    key={post.id}
+                    className="group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
+                  >
+                    <Link href={optimizedUrl} className="flex flex-col h-full">
+                      {post.featuredImage?.node && (
+                        <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
+                          <Image
+                            src={post.featuredImage.node.sourceUrl}
+                            alt={post.featuredImage.node.altText || post.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading={index < 3 ? 'eager' : 'lazy'}
+                            quality={85}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        </div>
                       )}
-                      <div className="mt-4 text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]">
-                        자세히 보기 →
+                      <div className="flex flex-1 flex-col p-6 items-center">
+                        <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mb-3">
+                          {post.categories.nodes.map((category) => (
+                            <span key={category.slug} className="font-light">
+                              {category.name}
+                            </span>
+                          ))}
+                          <span>•</span>
+                          <time dateTime={post.date} className="font-light">
+                            {new Date(post.date).toLocaleDateString('ko-KR', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </time>
+                        </div>
+                        <h2 className="text-xl font-semibold tracking-tight text-white text-center mb-3">
+                          {post.title}
+                        </h2>
+                        {post.excerpt && (
+                          <p className="mt-2 flex-1 text-slate-300 line-clamp-3 font-light text-sm max-w-2xl mx-auto">
+                            {post.excerpt.replace(/<[^>]*>/g, '')}
+                          </p>
+                        )}
+                        <div className="mt-4 text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]">
+                          자세히 보기 →
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </article>
-              ))
+                    </Link>
+                  </article>
+                );
+              })
             )}
           </div>
         </section>

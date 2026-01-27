@@ -2,10 +2,15 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
+import { generateCanonicalUrl } from '@/lib/url-optimizer';
+import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: 'Success Cases - M-World Company',
   description: '10년 이상의 실행 업무 노하우로 증명된 압도적 성과를 통해 브랜드의 성장 스토리를 만듭니다.',
+  alternates: {
+    canonical: 'https://aijeju.co.kr/success-cases',
+  },
 };
 
 const cases = [
@@ -55,6 +60,11 @@ const cases = [
   },
 ];
 
+const breadcrumbSchema = generateBreadcrumbSchema([
+  { name: '홈', url: '/' },
+  { name: '성공 사례', url: '/success-cases' },
+]);
+
 export default function SuccessCasesPage() {
   const videoObjectSchema = {
     '@context': 'https://schema.org',
@@ -68,6 +78,7 @@ export default function SuccessCasesPage() {
 
   return (
     <>
+      <StructuredData data={breadcrumbSchema} />
       <StructuredData data={videoObjectSchema} />
       <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
       <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="cases-heading">

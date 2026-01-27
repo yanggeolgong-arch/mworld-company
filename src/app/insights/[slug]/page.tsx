@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { graphqlClient, GET_POST_BY_SLUG } from '@/lib/graphql';
 import { notFound } from 'next/navigation';
+import { StructuredData } from '@/components/StructuredData';
+import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
+import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 interface PostData {
   post: {
@@ -51,9 +54,24 @@ export async function generateMetadata({
     };
   }
 
+  const description = post.content.replace(/<[^>]*>/g, '').substring(0, 160);
+  const canonicalUrl = generateCanonicalUrl(`/insights/${optimizeSlug(post.slug || post.title)}`);
+
   return {
-    title: `${post.title} - M-World Company`,
-    description: post.content.replace(/<[^>]*>/g, '').substring(0, 160),
+    title: `${post.title} - 엠월드컴퍼니 성공 노하우`,
+    description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
+    keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+      publishedTime: post.date,
+      url: canonicalUrl,
+      images: post.featuredImage?.node?.sourceUrl ? [post.featuredImage.node.sourceUrl] : [],
+    },
   };
 }
 
@@ -69,51 +87,93 @@ export default async function PostPage({
     notFound();
   }
 
+  const canonicalUrl = generateCanonicalUrl(`/insights/${optimizeSlug(post.slug || post.title)}`);
+
+  // BreadcrumbList 스키마 생성
+  const breadcrumbs = [
+    { name: '홈', url: '/' },
+    { name: '성공 노하우', url: '/insights' },
+    { name: post.title, url: `/insights/${optimizeSlug(post.slug || post.title)}` },
+  ];
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+
   return (
-    <article className="min-h-screen bg-[#fafafa] dark:bg-black">
-      <section className="mx-auto max-w-3xl px-6 py-24 lg:px-8">
-        <div className="rounded-2xl bg-white p-8 dark:bg-[#0a0a0a] border border-[#e5e7eb] dark:border-[#1a1a1a]">
-          <header>
-            <div className="flex items-center gap-2 text-sm text-[#36454f] dark:text-gray-400">
-              {post.categories.nodes.map((category) => (
-                <span key={category.slug} className="font-light">
-                  {category.name}
-                </span>
-              ))}
-              <span>•</span>
-              <time dateTime={post.date} className="font-light">
-                {new Date(post.date).toLocaleDateString('ko-KR', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-            </div>
-            <h1 className="mt-4 text-4xl font-light tracking-tight text-[#001f3f] dark:text-[#e8e8e8] sm:text-5xl">
-              {post.title}
-            </h1>
-          </header>
+    <>
+      <StructuredData data={breadcrumbSchema} />
+      <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+        <section className="w-full mx-auto max-w-4xl px-6 py-24 lg:px-8">
+          <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
+            {/* Breadcrumb 네비게이션 */}
+            <nav className="mb-6" aria-label="Breadcrumb">
+              <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+                {breadcrumbs.map((item, index) => (
+                  <li key={index} className="flex items-center">
+                    {index > 0 && <span className="mx-2">/</span>}
+                    <a
+                      href={item.url}
+                      className={`hover:text-emerald-400 transition-colors ${
+                        index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400'
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
 
-          {post.featuredImage?.node && (
-            <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative">
-              <Image
-                src={post.featuredImage.node.sourceUrl}
-                alt={post.featuredImage.node.altText || post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
-                className="object-cover"
-                priority
-                quality={90}
-              />
-            </div>
-          )}
+            <header className="mb-8">
+              <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
+                {post.categories.nodes.map((category) => (
+                  <span key={category.slug} className="font-light">
+                    {category.name}
+                  </span>
+                ))}
+                <span>•</span>
+                <time dateTime={post.date} className="font-light">
+                  {new Date(post.date).toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </div>
+              <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
+                {post.title}
+              </h1>
+            </header>
 
-          <div
-            className="prose prose-lg mt-8 max-w-none prose-headings:font-semibold prose-headings:text-[#001f3f] dark:prose-headings:text-[#e8e8e8] prose-p:text-[#36454f] dark:prose-p:text-gray-400 prose-p:font-light prose-a:text-[#001f3f] dark:prose-a:text-[#e8e8e8] dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </div>
-      </section>
-    </article>
+            {post.featuredImage?.node && (
+              <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative mb-8">
+                <Image
+                  src={post.featuredImage.node.sourceUrl}
+                  alt={post.featuredImage.node.altText || post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                  className="object-cover"
+                  priority
+                  quality={90}
+                />
+              </div>
+            )}
+
+            <div
+              className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            {/* 고정 문구 */}
+            <div className="mt-12 pt-8 border-t border-white/10 text-center">
+              <p className="text-base font-medium text-slate-300">
+                문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
+              </p>
+              <p className="mt-2 text-sm text-slate-400">
+                엠월드컴퍼니는 결과로만 말합니다.
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </>
   );
 }

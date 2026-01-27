@@ -9,10 +9,14 @@ export const metadata: Metadata = {
   title: "M-World Company (엠월드컴퍼니) - 10년 이상 실행 업무 전문가, 1,000개의 신화",
   description: "10년 이상 실행 업무 전문가, 1,000개의 신화. 엠월드컴퍼니는 결과로만 말합니다. F&B(맛집) 마케팅의 절대 강자, 1000+ 클라이언트의 선택. M-World High-Performance Engine, AI-Native Semantic DNA, Omni-Search Authority Indexing",
   keywords: "SNS 광고, 소셜미디어 마케팅, 디지털 마케팅, 광고대행사, 엠월드컴퍼니, M-World Company, F&B 마케팅, 맛집 마케팅, 네이버 플레이스, 1:1 교육, Creative Visual & Curator, Local Search & Spatial Branding, AI-Native Semantic DNA, M-World Digital Authority Engine, Elite Executive Mentorship, Hyper-Data Insight, M-World High-Performance Engine, AI-Identity Protocol, Omni-Search Authority Indexing, Dynamic Intellectual Property Hub",
+  alternates: {
+    canonical: 'https://aijeju.co.kr',
+  },
   openGraph: {
     title: "M-World Company (엠월드컴퍼니) - 10년 이상 실행 업무 전문가, 1,000개의 신화",
     description: "엠월드컴퍼니는 결과로만 말합니다. F&B(맛집) 마케팅의 절대 강자. 복제 불가능한 기술력",
     type: "website",
+    url: 'https://aijeju.co.kr',
   },
 };
 
