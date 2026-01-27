@@ -12,10 +12,11 @@ const cases = [
   {
     title: '동영상 숏폼 20개 제작 + 대형 채널 페이지 33곳 업로드',
     result: '전 채널 누적 5,000만 뷰 돌파 / 네이버 플레이스 순위 상승 최적화',
-    description: '단순 제작을 넘어, 수많은 성공 거래처의 숏폼 알고리즘을 실시간으로 분석합니다. 특히 네이버 플레이스 상위노출 가점을 위한 전략적 이벤트를 기획하여, 브랜드 확산과 순위 상승이라는 두 마리 토끼를 동시에 잡아 압도적인 매출 퍼포먼스를 만들어냅니다.',
+    description: '단순 제작을 넘어, 수많은 성공 거래처의 숏폼 알고리즘을 실시간으로 분석합니다. 특히 네이버 플레이스 알고리즘 확산 가점을 위한 전략적 이벤트를 기획하여, 브랜드 확산과 순위 상승이라는 두 마리 토끼를 동시에 잡아 압도적인 매출 퍼포먼스를 만들어냅니다.',
     category: 'Shortform',
     image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
     video: '/Ai__flow_1080p_202601142217.mp4',
+    poster: '/A_mosaic_wall_4k_202601141637.jpg',
   },
   {
     title: 'F&B 맛집 브랜드 A',
@@ -60,7 +61,7 @@ export default function SuccessCasesPage() {
     '@type': 'VideoObject',
     name: '엠월드컴퍼니 실시간 알고리즘 확산 관제 시스템',
     description: '수백 개 거래처의 숏폼 영상을 실시간 송출하며 네이버 플레이스 순위 상승을 견인하는 퍼포먼스 영상',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
+    thumbnailUrl: 'https://aijeju.co.kr/A_mosaic_wall_4k_202601141637.jpg',
     uploadDate: '2026-01-27',
     contentUrl: 'https://aijeju.co.kr/Ai__flow_1080p_202601142217.mp4',
   };
@@ -106,10 +107,22 @@ export default function SuccessCasesPage() {
                       muted
                       playsInline
                       preload="none"
-                      poster={caseItem.image}
+                      poster={caseItem.poster || caseItem.image}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-black/40" />
+                    {index === 0 && (
+                      <Image
+                        src={caseItem.poster || caseItem.image}
+                        alt={caseItem.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        priority
+                        fetchPriority="high"
+                        quality={90}
+                      />
+                    )}
                   </>
                 ) : (
                   <Image
@@ -119,6 +132,8 @@ export default function SuccessCasesPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     priority={index < 3}
+                    loading={index >= 3 ? 'lazy' : 'eager'}
+                    quality={85}
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />

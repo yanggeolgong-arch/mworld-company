@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { graphqlClient, GET_POSTS } from '@/lib/graphql';
 import { CTASection } from '@/components/CTASection';
 import { MasterClassSample } from '@/components/MasterClassSample';
@@ -95,7 +96,7 @@ export default async function InsightsPage() {
               </p>
             </section>
           ) : (
-            posts.map((post) => (
+            posts.map((post, index) => (
               <article
                 key={post.id}
                 className="w-full rounded-2xl bg-slate-900/50 p-8 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
@@ -103,11 +104,15 @@ export default async function InsightsPage() {
               >
                 <Link href={`/insights/${post.slug}`} className="flex flex-col items-center">
                   {post.featuredImage?.node && (
-                    <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg mx-auto">
-                      <img
+                    <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg mx-auto relative">
+                      <Image
                         src={post.featuredImage.node.sourceUrl}
                         alt={post.featuredImage.node.altText || post.title}
-                        className="h-full w-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                        className="object-cover"
+                        loading={index < 2 ? 'eager' : 'lazy'}
+                        quality={85}
                       />
                     </div>
                   )}

@@ -18,7 +18,7 @@ export function MasterClassSample() {
         
         <div className="mt-6 space-y-6 text-slate-300">
           <p className="text-lg font-light leading-relaxed">
-            대부분의 마케팅 대행사는 여전히 '상위노출'이라는 단순한 목표에 머물러 있습니다. 
+            대부분의 마케팅 대행사는 여전히 '알고리즘 확산'이라는 단순한 목표에 머물러 있습니다. 
             키워드 몇 개를 올리고, 광고비를 투입해 일시적인 트래픽을 만드는 것. 
             하지만 <span className="font-semibold text-emerald-400">10년 이상</span> 실행 업무 전문가의 관점에서 보면, 이것은 <span className="font-semibold text-white">과거의 방식</span>입니다.
           </p>
@@ -45,7 +45,7 @@ export function MasterClassSample() {
           </p>
           
           <p className="font-light leading-relaxed">
-            일반적인 상위노출 대행사는 <span className="font-semibold text-white">매월 광고비를 지속적으로 투입</span>해야 합니다. 
+            일반적인 알고리즘 확산 대행사는 <span className="font-semibold text-white">매월 광고비를 지속적으로 투입</span>해야 합니다. 
             광고비가 끊기는 순간, 노출도 사라집니다. 
             하지만 엠월드컴퍼니의 AI-Identity Protocol은 <span className="font-semibold text-emerald-400">한 번의 설계로 영구적인 디지털 자산</span>을 만듭니다. 
             이것이 <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우가 증명하는 근본적인 차이입니다.

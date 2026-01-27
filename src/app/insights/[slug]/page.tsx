@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { graphqlClient, GET_POST_BY_SLUG } from '@/lib/graphql';
 import { notFound } from 'next/navigation';
 
@@ -94,11 +95,15 @@ export default async function PostPage({
           </header>
 
           {post.featuredImage?.node && (
-            <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg">
-              <img
+            <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative">
+              <Image
                 src={post.featuredImage.node.sourceUrl}
                 alt={post.featuredImage.node.altText || post.title}
-                className="h-full w-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                className="object-cover"
+                priority
+                quality={90}
               />
             </div>
           )}
