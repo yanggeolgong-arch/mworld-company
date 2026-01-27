@@ -113,7 +113,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
 
-            <div className="prose prose-lg prose-invert max-w-none prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-emerald-400 prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8">
+            <div className="prose prose-lg prose-invert max-w-none prose-h1:text-white prose-h1:font-semibold prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-white prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-h4:text-white prose-h4:font-semibold prose-h5:text-white prose-h5:font-semibold prose-h6:text-white prose-h6:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8">
               
               {/* StoryBrand: 고객의 결핍 */}
               <section className="mb-12">
@@ -160,7 +160,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                 <div className="space-y-8">
                   {/* 지표 1 */}
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">지표 1: 트래픽 질 (Traffic Quality Score)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">지표 1: 트래픽 질 (Traffic Quality Score)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">정의:</strong> 네이버 플레이스에 유입된 방문자가 실제로 매장에 도착하는 비율.
                     </p>
@@ -183,7 +183,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                   {/* 지표 2 */}
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">지표 2: 저장 비율 (Save Rate)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">지표 2: 저장 비율 (Save Rate)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">정의:</strong> 네이버 플레이스 페이지를 본 사용자가 
                       "저장" 버튼을 누른 비율. 이 지표는 <strong className="text-white">알고리즘이 당신의 매장을 
@@ -208,7 +208,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                   {/* 지표 3 */}
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">지표 3: 리뷰 반응 속도 (Review Response Velocity)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">지표 3: 리뷰 반응 속도 (Review Response Velocity)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">정의:</strong> 새 리뷰가 올라온 후 매장이 답변하는 평균 시간. 
                       이 지표는 <strong className="text-white">알고리즘이 당신의 매장을 얼마나 "활발한 매장"으로 인식하는지</strong>를 결정한다.
@@ -232,7 +232,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                   {/* 지표 4 */}
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">지표 4: 검색 노출 순위 변동성 (Rank Volatility)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">지표 4: 검색 노출 순위 변동성 (Rank Volatility)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">정의:</strong> 핵심 키워드로 검색했을 때 당신의 매장이 
                       노출되는 순위가 얼마나 안정적인지. 순위가 자주 변동하면 <strong className="text-white">알고리즘이 
@@ -257,7 +257,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                   {/* 지표 5 */}
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">지표 5: 경쟁사 대비 상대적 성장률 (Relative Growth Rate)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">지표 5: 경쟁사 대비 상대적 성장률 (Relative Growth Rate)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">정의:</strong> 같은 지역, 같은 카테고리의 경쟁사 대비 
                       당신의 매장 조회 수 증가율. 이 지표는 <strong className="text-white">알고리즘이 당신의 매장을 
@@ -311,7 +311,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">Step 1: 데이터 수집 자동화 (10분)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">Step 1: 데이터 수집 자동화 (10분)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">도구:</strong> Python 스크립트 + Selenium (또는 Playwright)
                     </p>
@@ -334,7 +334,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">Step 2: AI 기반 데이터 분석 (20분)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">Step 2: AI 기반 데이터 분석 (20분)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">도구:</strong> ChatGPT API (GPT-4) 또는 Claude API
                     </p>
@@ -358,7 +358,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">Step 3: 자동 포스팅 생성 (20분)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">Step 3: 자동 포스팅 생성 (20분)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">도구:</strong> ChatGPT API + WordPress API (또는 Notion API)
                     </p>
@@ -382,7 +382,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">Step 4: 검토 및 최종 승인 (10분)</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">Step 4: 검토 및 최종 승인 (10분)</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">프로세스:</strong>
                     </p>
@@ -434,7 +434,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">메커니즘 1: 매체사 트래픽 단가 할인 구조</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">메커니즘 1: 매체사 트래픽 단가 할인 구조</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">현실:</strong> 네이버, 구글, 인스타그램 같은 매체사는 
                       대량 구매자에게 단가를 할인한다. 예를 들어, 일반 광고주는 클릭당 1,000원을 내지만, 
@@ -457,7 +457,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">메커니즘 2: 실행사 직거래 구조</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">메커니즘 2: 실행사 직거래 구조</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">현실:</strong> 대형 대행사는 실행사(콘텐츠 제작, 디자인, 영상 편집 등)와 
                       계약해서 작업을 아웃소싱한다. 대행사는 클라이언트에게 100만 원을 받고, 실행사에게 60만 원을 준다. 
@@ -482,7 +482,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">메커니즘 3: 복합 절감 전략</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">메커니즘 3: 복합 절감 전략</h3>
                     <p className="text-white font-light leading-relaxed mb-4">
                       <strong className="text-white">전략:</strong> 매체사 트래픽 단가 할인(30% 절감)과 
                       실행사 직거래(30% 절감)를 동시에 적용하면, <strong className="text-white">총 원가를 51% 절감</strong>할 수 있다.
@@ -525,7 +525,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">1주차: 데이터 수집 시스템 구축</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">1주차: 데이터 수집 시스템 구축</h3>
                     <ul className="list-disc list-inside space-y-2 text-white font-light leading-relaxed ml-4">
                       <li>Python 스크립트 작성 (또는 업워크에서 개발자 고용)</li>
                       <li>네이버 플레이스 관리자 자동 로그인 시스템 구축</li>
@@ -535,7 +535,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">2주차: AI 분석 시스템 구축</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">2주차: AI 분석 시스템 구축</h3>
                     <ul className="list-disc list-inside space-y-2 text-white font-light leading-relaxed ml-4">
                       <li>ChatGPT API (또는 Claude API) 계정 생성</li>
                       <li>AI 분석 프롬프트 템플릿 작성</li>
@@ -545,7 +545,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">3주차: 자동 포스팅 시스템 구축</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">3주차: 자동 포스팅 시스템 구축</h3>
                     <ul className="list-disc list-inside space-y-2 text-white font-light leading-relaxed ml-4">
                       <li>WordPress API 연동 (또는 Notion API)</li>
                       <li>AI 포스트 생성 프롬프트 최적화</li>
@@ -555,7 +555,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   </div>
 
                   <div className="rounded-lg bg-gradient-to-br from-slate-800/80 to-slate-900/50 p-8 border border-emerald-400/20">
-                    <h3 className="text-2xl font-semibold text-emerald-400 mb-4">4주차: 원가 절감 시스템 구축</h3>
+                    <h3 className="text-2xl font-semibold text-white mb-4">4주차: 원가 절감 시스템 구축</h3>
                     <ul className="list-disc list-inside space-y-2 text-white font-light leading-relaxed ml-4">
                       <li>매체사 파트너십 대행사 선정 및 계약</li>
                       <li>실행사 직거래 파트너 선정 및 계약</li>

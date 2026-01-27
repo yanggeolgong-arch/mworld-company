@@ -110,7 +110,7 @@ export default function AIPoweredSoloBusinessPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
 
-            <div className="prose prose-lg prose-invert max-w-none prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-emerald-400 prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8">
+            <div className="prose prose-lg prose-invert max-w-none prose-h1:text-white prose-h1:font-semibold prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-white prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-h4:text-white prose-h4:font-semibold prose-h5:text-white prose-h5:font-semibold prose-h6:text-white prose-h6:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8">
               
               {/* StoryBrand: 고객의 결핍 */}
               <section className="mb-8">
@@ -188,7 +188,7 @@ export default function AIPoweredSoloBusinessPage() {
                 
                 <div className="space-y-6">
                   <div className="rounded-lg bg-slate-800/50 p-6 border border-white/10">
-                    <h3 className="text-xl font-semibold text-emerald-400 mb-3">1단계: AI 자동화 파이프라인 구축</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3">1단계: AI 자동화 파이프라인 구축</h3>
                     <p className="text-white font-light leading-relaxed mb-3">
                       콘텐츠 기획부터 인플루언서 매칭, 리포트 작성까지. 
                       <strong className="text-white"> 반복적인 업무를 AI가 처리</strong>하도록 시스템을 구축한다.
@@ -199,7 +199,7 @@ export default function AIPoweredSoloBusinessPage() {
                   </div>
 
                   <div className="rounded-lg bg-slate-800/50 p-6 border border-white/10">
-                    <h3 className="text-xl font-semibold text-emerald-400 mb-3">2단계: 알고리즘 확산 최적화</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3">2단계: 알고리즘 확산 최적화</h3>
                     <p className="text-white font-light leading-relaxed mb-3">
                       숏폼 알고리즘을 실시간으로 분석하고, 네이버 플레이스 순위를 상승시키고, 
                       <strong className="text-white"> 브랜드 확산과 매출 성장을 동시에 잡는다.</strong>
@@ -210,7 +210,7 @@ export default function AIPoweredSoloBusinessPage() {
                   </div>
 
                   <div className="rounded-lg bg-slate-800/50 p-6 border border-white/10">
-                    <h3 className="text-xl font-semibold text-emerald-400 mb-3">3단계: 1:1 비공개 마스터 클래스</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3">3단계: 1:1 비공개 마스터 클래스</h3>
                     <p className="text-white font-light leading-relaxed mb-3">
                       <strong className="text-white">10년의 실행 노하우를 오직 당신에게만 전수</strong>한다. 
                       대행사 대표 전용 1:1 프라이빗 클래스.
