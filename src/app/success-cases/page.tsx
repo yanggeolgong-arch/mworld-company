@@ -13,7 +13,7 @@ const cases = [
     result: '누적 조회수 5,000만+ 돌파 / 알고리즘 확산을 통한 예약 폭주',
     description: '단순 노출을 넘어 숏폼 알고리즘의 핵심 로직을 공략합니다. 대형 채널 배포와 알고리즘 확산 기술로 브랜드 파급력을 극대화합니다.',
     category: 'Shortform',
-    image: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
   },
   {
     title: 'F&B 맛집 브랜드 A',
@@ -48,7 +48,7 @@ const cases = [
     result: '광고대행사 대표 및 창업 준비생 전용 / 현직 대표 수강생 80% 이상',
     description: '온라인의 흔한 강의가 아닙니다. <span className="text-emerald-400">10년 이상</span> 실행사의 영업 비밀과 운영 로직을 오직 1:1 비공개로만 전수합니다. 대행사 대표님들이 직접 찾아 듣는, 즉시 창업과 매출 최적화가 가능한 하이엔드 실무 교육입니다.',
     category: 'MasterClass',
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
   },
 ];
 
