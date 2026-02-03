@@ -8,15 +8,15 @@ import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { getAllStaticPosts, type StaticPost } from '@/lib/static-posts';
 
 export const metadata: Metadata = {
-  title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
-  description: '광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전문가의 실전 노하우를 공유합니다. 10년 이상 실행 업무 전문가의 알고리즘 확산 전략.',
-  keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화, 숏폼 알고리즘, SNS 마케팅, 디지털 마케팅',
+  title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
+  description: '엠월드컴퍼니는 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 실전 노하우를 공유합니다.',
+  keywords: '엠월드컴퍼니, 알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/blog',
   },
   openGraph: {
-    title: '알고리즘 확산 최적화 블로그 - 엠월드컴퍼니',
-    description: '10년 이상 실행 업무 전문가의 알고리즘 확산 실전 노하우',
+    title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
+    description: '엠월드컴퍼니는 알고리즘 확산 실전 노하우를 공유합니다.',
     type: 'website',
     url: 'https://www.aijeju.co.kr/blog',
   },
@@ -168,16 +168,16 @@ export default async function BlogPage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="blog-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="blog-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              알고리즘 확산 최적화 블로그
+              엠월드컴퍼니 알고리즘 확산 최적화 블로그
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 실전 노하우
+              엠월드컴퍼니 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 실전 노하우
               <br />
               광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전략을 공유합니다.
             </p>
             <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
               <span className="text-sm font-light text-slate-200">
-                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 칼럼
+                <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 칼럼
               </span>
             </div>
           </header>

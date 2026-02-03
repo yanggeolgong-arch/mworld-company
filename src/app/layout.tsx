@@ -57,6 +57,8 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        {/* 네이버 서치어드바이저 소유확인 - 최상단 배치 */}
+        <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         <StructuredData data={organizationSchema} />
       </head>
       <body className="antialiased">

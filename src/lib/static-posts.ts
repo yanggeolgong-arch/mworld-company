@@ -17,6 +17,7 @@ export interface StaticPost {
 /**
  * 정적 블로그 포스트 목록
  */
+/** 정적 포스트: 블로그 리스트 노출용. 1person-agency-algorithm-spread.mdx 스키마와 대응 */
 export const staticPosts: StaticPost[] = [
   {
     slug: '1인-기업-알고리즘-확산-시장-장악-로드맵',

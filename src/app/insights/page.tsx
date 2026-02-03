@@ -89,7 +89,7 @@ export default async function InsightsPage() {
             <MasterClassSample />
           </div>
 
-          {/* Additional Insights */}
+          {/* 추가 인사이트 */}
           {posts.length > 0 && (
             <div className="w-full mx-auto mt-20 max-w-3xl flex flex-col items-center justify-center">
               <div className="mb-8 text-center">

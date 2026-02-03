@@ -103,10 +103,10 @@ export default function Home() {
       <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="features-heading">
         <div className="w-full mx-auto max-w-2xl text-center">
           <h2 id="features-heading" className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            우리의 핵심 역량
+            엠월드컴퍼니 핵심 역량
           </h2>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            복제 불가능한 기술력으로 구축된 프리미엄 솔루션
+            복제 불가 기술력으로 구축한 프리미엄 솔루션
           </p>
         </div>
         <div ref={featuresRef} className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
@@ -124,7 +124,7 @@ export default function Home() {
               마케팅 전략
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              알고리즘 확산을 위한 데이터 분석과 시장 인사이트 기반 맞춤형 마케팅 전략을 수립합니다.
+              알고리즘 확산을 위한 데이터 분석과 시장 인사이트로 맞춤 마케팅 전략을 수립합니다.
             </p>
             <Link
               href="/strategy"
@@ -148,7 +148,7 @@ export default function Home() {
               성장 엔진
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              효율성 극대화를 위한 AI 기반 자동화 시스템으로 지속 가능한 성장 동력을 만들어냅니다.
+              효율성 극대화 AI 자동화로 지속 가능한 성장 동력을 만듭니다.
             </p>
             <Link
               href="/growth-engine"
@@ -172,7 +172,7 @@ export default function Home() {
               성공 사례
             </h3>
             <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
-              <span className="text-emerald-400">10년 이상</span> 실행력으로 증명된 압도적 성과를 통해 브랜드 성장 스토리를 만들어갑니다.
+              <span className="text-emerald-400">10년 이상</span> 실행력으로 증명한 압도적 성과로 브랜드 성장 스토리를 만듭니다.
             </p>
             <Link
               href="/success-cases"
@@ -191,14 +191,14 @@ export default function Home() {
             함께 성장할 파트너를 찾고 계신가요?
           </h2>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            전문가 팀과 함께 브랜드의 다음 단계로 나아가세요.
+            전문가 팀과 함께 브랜드 다음 단계로 나아가세요. 협업 문의 카카오톡: SG7979
           </p>
           <div className="mt-10">
             <Link
               href="/partnership"
               className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-xl"
             >
-              파트너십 문의하기
+              협업 문의 (카카오톡: SG7979)
             </Link>
           </div>
         </div>
