@@ -1,0 +1,5 @@
+# 엠월드컴퍼니 알고리즘 확산 관제 - Robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.aijeju.co.kr/sitemap.xml
