@@ -45,9 +45,13 @@ export function DeferredThemeWrapper({
 
   useEffect(() => {
     let cancelled = false;
-    runWhenIdle(() => {
-      if (!cancelled) setReady(true);
-    });
+    const step2 = () => {
+      if (cancelled) return;
+      runWhenIdle(() => {
+        if (!cancelled) setReady(true);
+      });
+    };
+    setTimeout(step2, 0);
     return () => { cancelled = true; };
   }, []);
 
