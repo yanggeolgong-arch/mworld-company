@@ -3,25 +3,29 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
+function runWhenIdle(cb: () => void) {
+  const g = typeof globalThis !== 'undefined' ? (globalThis as unknown as { scheduler?: { postTask: (cb: () => void, o?: { priority?: string }) => Promise<unknown> } }) : null;
+  if (g?.scheduler && typeof g.scheduler.postTask === 'function') {
+    g.scheduler.postTask(cb, { priority: 'background' }).catch(() => {});
+    return;
+  }
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(cb, { timeout: 250 });
+    return;
+  }
+  setTimeout(cb, 0);
+}
+
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     let cancelled = false;
-    const yieldThenMount = () => {
-      if (cancelled) return;
-      if (typeof requestIdleCallback !== 'undefined') {
-        requestIdleCallback(() => { if (!cancelled) setMounted(true); }, { timeout: 250 });
-      } else {
-        setTimeout(() => { if (!cancelled) setMounted(true); }, 0);
-      }
-    };
-    const id = setTimeout(yieldThenMount, 0);
-    return () => {
-      cancelled = true;
-      clearTimeout(id);
-    };
+    runWhenIdle(() => {
+      if (!cancelled) setMounted(true);
+    });
+    return () => { cancelled = true; };
   }, []);
 
   if (!mounted) {

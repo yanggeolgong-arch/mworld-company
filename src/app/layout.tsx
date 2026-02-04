@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
+
 const Header = dynamic(() => import("@/components/Header").then((m) => ({ default: m.Header })), {
   ssr: true,
   loading: () => (
@@ -12,8 +13,8 @@ const Header = dynamic(() => import("@/components/Header").then((m) => ({ defaul
   ),
 });
 
-const ThemeProvider = dynamic(
-  () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
+const DeferredThemeWrapper = dynamic(
+  () => import("@/components/DeferredThemeWrapper").then((m) => ({ default: m.DeferredThemeWrapper })),
   { ssr: true }
 );
 
@@ -93,7 +94,7 @@ export default function RootLayout({
       <head>
         <style
           dangerouslySetInnerHTML={{
-            __html: `*,::before,::after{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100vh;background:#020617;color:#f8fafc;font-family:var(--font-pretendard),-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased}`,
+            __html: `*,::before,::after{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100vh;background:#020617;color:#f8fafc;font-family:var(--font-pretendard),-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@keyframes semanticDNAFadeIn{0%{opacity:0;transform:translate3d(0,30px,0) scale(0.95)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}.animate-stagger{animation:semanticDNAFadeIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;opacity:0;will-change:transform;contain:layout style paint}.animate-stagger-delay-1{animation-delay:0.1s}.animate-stagger-delay-2{animation-delay:0.2s}.animate-stagger-delay-3{animation-delay:0.3s}.animate-stagger-delay-4{animation-delay:0.4s}.animate-stagger-delay-5{animation-delay:0.5s}.animate-stagger-delay-6{animation-delay:0.6s}.flex{display:flex}.min-h-screen{min-height:100vh}.w-full{width:100%}.max-w-7xl{max-width:80rem}.mx-auto{margin-left:auto;margin-right:auto}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-48{padding-top:12rem;padding-bottom:12rem}.items-center{align-items:center}.justify-center{justify-content:center}.flex-col{flex-direction:column}.text-center{text-align:center}.relative{position:relative}.absolute{position:absolute}.inset-0{inset:0}.text-white{color:#fff}.text-6xl{font-size:3.75rem}.font-light{font-weight:300}.tracking-tight{letter-spacing:-0.025em}`,
           }}
         />
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
@@ -103,13 +104,7 @@ export default function RootLayout({
         <Script id="org-schema" strategy="afterInteractive" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>
-        <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <DeferredThemeWrapper header={<Header />} footer={<Footer />} main={children} />
       </body>
     </html>
   );
