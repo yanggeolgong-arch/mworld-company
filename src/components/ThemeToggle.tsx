@@ -8,10 +8,20 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const cb = () => setMounted(true);
-    const useRIC = typeof requestIdleCallback !== 'undefined';
-    const id = useRIC ? requestIdleCallback(cb, { timeout: 200 }) : setTimeout(cb, 0);
-    return () => (useRIC ? cancelIdleCallback(id as number) : clearTimeout(id as number));
+    let cancelled = false;
+    const yieldThenMount = () => {
+      if (cancelled) return;
+      if (typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(() => { if (!cancelled) setMounted(true); }, { timeout: 250 });
+      } else {
+        setTimeout(() => { if (!cancelled) setMounted(true); }, 0);
+      }
+    };
+    const id = setTimeout(yieldThenMount, 0);
+    return () => {
+      cancelled = true;
+      clearTimeout(id);
+    };
   }, []);
 
   if (!mounted) {
