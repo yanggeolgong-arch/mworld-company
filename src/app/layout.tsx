@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
+import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StructuredData } from "@/components/StructuredData";
+
+const ThemeProvider = dynamic(
+  () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
+  { ssr: true }
+);
 
 const pretendard = localFont({
   src: [
@@ -77,9 +82,11 @@ export default function RootLayout({
       <head>
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
-        <StructuredData data={organizationSchema} />
       </head>
       <body className={`${pretendard.className} antialiased`}>
+        <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </Script>
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">
             <Header />

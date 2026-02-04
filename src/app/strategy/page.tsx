@@ -1,7 +1,4 @@
-'use client';
-
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
 import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
@@ -49,39 +46,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
   { name: '마케팅 전략', url: '/strategy' },
 ]);
 
+const staggerDelays = ['animate-stagger-delay-1', 'animate-stagger-delay-2', 'animate-stagger-delay-3', 'animate-stagger-delay-4', 'animate-stagger-delay-5', 'animate-stagger-delay-6'] as const;
+
 export default function StrategyPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.strategy-card');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add('animate-stagger');
-                card.classList.add(`animate-stagger-delay-${Math.min(index + 1, 6)}`);
-              }, index * 120);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
@@ -103,11 +70,11 @@ export default function StrategyPage() {
             </div>
           </header>
 
-          <div ref={sectionRef} className="w-full mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+          <div className="w-full mx-auto mt-24 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
             {strategies.map((strategy, index) => (
               <section
                 key={index}
-                className="strategy-card group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
+                className={`strategy-card animate-stagger ${staggerDelays[Math.min(index, 5)]} group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm`}
               >
                 <div className="relative aspect-video w-full overflow-hidden">
                   <Image
