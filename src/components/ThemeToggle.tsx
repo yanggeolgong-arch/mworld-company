@@ -8,8 +8,10 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    const id = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(id);
+    const cb = () => setMounted(true);
+    const useRIC = typeof requestIdleCallback !== 'undefined';
+    const id = useRIC ? requestIdleCallback(cb, { timeout: 200 }) : setTimeout(cb, 0);
+    return () => (useRIC ? cancelIdleCallback(id as number) : clearTimeout(id as number));
   }, []);
 
   if (!mounted) {

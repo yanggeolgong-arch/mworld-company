@@ -3,8 +3,16 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+
+const Header = dynamic(() => import("@/components/Header").then((m) => ({ default: m.Header })), {
+  ssr: true,
+  loading: () => (
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md h-16 flex items-center justify-center">
+      <span className="text-xl font-medium text-white">엠월드컴퍼니</span>
+    </header>
+  ),
+});
 
 const ThemeProvider = dynamic(
   () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
@@ -84,7 +92,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
       </head>
       <body className={`${pretendard.className} antialiased`}>
-        <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
+        <Script id="org-schema" strategy="afterInteractive" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>
         <ThemeProvider>
