@@ -95,8 +95,9 @@ export default async function JejuRestaurantConceptPage() {
     processedMarkdown = processedMarkdown.replace(regex, `<!--IMAGE_PLACEHOLDER:${i}-->`);
   }
   
-  // 마크다운을 HTML로 변환
-  const htmlContent = marked(processedMarkdown);
+  // 마크다운을 HTML로 변환 (marked v17은 Promise 반환 가능)
+  const raw = marked(processedMarkdown);
+  const htmlContent = typeof raw === 'string' ? raw : await raw;
 
   const canonicalUrl = generateCanonicalUrl(`/blog/jeju-restaurant-concept`);
   const breadcrumbs = generateBlogBreadcrumbs('jeju-restaurant-concept', staticPost.title, staticPost.category);

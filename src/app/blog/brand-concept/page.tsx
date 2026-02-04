@@ -64,27 +64,27 @@ export default async function BrandConceptPage() {
   // 이미지 정보 정의 (1.jpeg ~ 15.jpeg) - 경로: /images/blog/concept/[번호].jpeg
   const imageMap: Record<string, { src: string; alt: string }> = {};
   const altTexts: Record<number, string> = {
-    1: '제주맛집 사장님의 고민',
-    2: '제주맛집 사장님의 고민',
-    3: '컨셉 없는 제주맛집',
-    4: '명확한 정체성',
-    5: '구글이 좋아하는 명확한 브랜드',
-    6: '타겟 고객',
-    7: '타겟 고객별 맞춤 서비스',
-    8: '차별점',
-    9: '차별화된 제주맛집',
-    10: '메시지 일관성',
-    11: '일관된 메시지 전달',
-    12: '검색 엔진 최적화',
-    13: '구글 상위 노출',
-    14: '성공하는 제주맛집',
-    15: '구글 AI가 좋아하는 착한 브랜드',
+    1: '광고 전 컨셉 점검의 중요성',
+    2: '구글이 선호하는 명확한 메시지',
+    3: '시맨틱 DNA와 브랜드 인식',
+    4: '컨셉에 따른 광고 효율 차이',
+    5: '광고 전 필수 컨셉 점검 체크리스트',
+    6: '브랜드 정체성 정의',
+    7: '핵심 메시지 명확화',
+    8: '타겟 고객 정의',
+    9: '경쟁 차별점',
+    10: '검색 엔진이 이해하는 브랜드',
+    11: '컨셉 없이 광고할 때의 결과',
+    12: '엠월드컴퍼니 컨셉 점검 프로세스',
+    13: '브랜드 컨셉 진단',
+    14: '채널별 메시지 일관성',
+    15: '구글 상위 노출과 컨셉 점검',
   };
   
   for (let i = 1; i <= 15; i++) {
     imageMap[String(i)] = {
       src: `/images/blog/concept/${i}.jpeg`,
-      alt: altTexts[i] || `제주맛집 컨셉 이미지 ${i}`,
+      alt: altTexts[i] || `브랜드 컨셉 이미지 ${i}`,
     };
   }
 
@@ -95,8 +95,9 @@ export default async function BrandConceptPage() {
     processedMarkdown = processedMarkdown.replace(regex, `<!--IMAGE_PLACEHOLDER:${i}-->`);
   }
   
-  // 마크다운을 HTML로 변환
-  const htmlContent = marked(processedMarkdown);
+  // 마크다운을 HTML로 변환 (marked v17은 Promise 반환 가능)
+  const raw = marked(processedMarkdown);
+  const htmlContent = typeof raw === 'string' ? raw : await raw;
 
   const canonicalUrl = generateCanonicalUrl(`/blog/brand-concept`);
   const breadcrumbs = generateBlogBreadcrumbs('brand-concept', staticPost.title, staticPost.category);

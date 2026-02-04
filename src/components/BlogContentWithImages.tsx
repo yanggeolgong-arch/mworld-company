@@ -10,17 +10,19 @@ interface BlogContentWithImagesProps {
 
 export function BlogContentWithImages({ htmlContent, imageMap }: BlogContentWithImagesProps) {
   const processedContent = useMemo(() => {
-    // HTML을 파싱하여 이미지 placeholder를 찾고 next/image로 교체
     const parts: Array<{ type: 'html' | 'image'; content?: string; imageKey?: string }> = [];
-    let remainingHtml = htmlContent;
-    let lastIndex = 0;
+    const safeHtml = typeof htmlContent === 'string' ? htmlContent : '';
+    if (!safeHtml) {
+      return [{ type: 'html' as const, content: '' }];
+    }
 
     // 모든 이미지 placeholder 찾기
     const imagePlaceholders = Array.from(
-      htmlContent.matchAll(/<!--IMAGE_PLACEHOLDER:(\w+)-->/g)
+      safeHtml.matchAll(/<!--IMAGE_PLACEHOLDER:(\w+)-->/g)
     );
 
-    imagePlaceholders.forEach((match, index) => {
+    let lastIndex = 0;
+    imagePlaceholders.forEach((match) => {
       const matchIndex = match.index!;
       const imageKey = match[1];
 
@@ -28,7 +30,7 @@ export function BlogContentWithImages({ htmlContent, imageMap }: BlogContentWith
       if (matchIndex > lastIndex) {
         parts.push({
           type: 'html',
-          content: htmlContent.substring(lastIndex, matchIndex),
+          content: safeHtml.substring(lastIndex, matchIndex),
         });
       }
 
@@ -42,10 +44,10 @@ export function BlogContentWithImages({ htmlContent, imageMap }: BlogContentWith
     });
 
     // 마지막 HTML 추가
-    if (lastIndex < htmlContent.length) {
+    if (lastIndex < safeHtml.length) {
       parts.push({
         type: 'html',
-        content: htmlContent.substring(lastIndex),
+        content: safeHtml.substring(lastIndex),
       });
     }
 
@@ -53,7 +55,7 @@ export function BlogContentWithImages({ htmlContent, imageMap }: BlogContentWith
     if (imagePlaceholders.length === 0) {
       parts.push({
         type: 'html',
-        content: htmlContent,
+        content: safeHtml,
       });
     }
 
