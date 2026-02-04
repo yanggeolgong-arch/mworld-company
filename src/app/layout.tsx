@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
@@ -22,11 +22,6 @@ const pretendard = localFont({
   display: "swap",
   variable: "--font-pretendard",
 });
-
-const ThemeProvider = dynamic(
-  () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
-  { ssr: true }
-);
 
 export const metadata: Metadata = {
   title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
@@ -80,11 +75,6 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className={pretendard.variable}>
       <head>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: "*,::before,::after{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100vh;background:#020617;color:#f8fafc}",
-          }}
-        />
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
         <StructuredData data={organizationSchema} />
