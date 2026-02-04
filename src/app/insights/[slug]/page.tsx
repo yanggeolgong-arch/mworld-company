@@ -160,7 +160,7 @@ export default async function PostPage({
             )}
 
             <div
-              className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8"
+              className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-[#22d3ee] prose-a:no-underline hover:prose-a:text-[#fde047] prose-strong:text-[#fde047] prose-strong:font-semibold prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8 prose-blockquote:text-[#f3f4f6] prose-blockquote:border-l-[#22d3ee]"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 

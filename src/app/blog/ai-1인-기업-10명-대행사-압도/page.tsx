@@ -110,7 +110,7 @@ export default function AIPoweredSoloBusinessPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
 
-            <div className="prose prose-lg prose-invert max-w-none prose-h1:text-white prose-h1:font-semibold prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-white prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-h4:text-white prose-h4:font-semibold prose-h5:text-white prose-h5:font-semibold prose-h6:text-white prose-h6:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8">
+            <div className="prose prose-lg prose-invert max-w-none prose-h1:text-white prose-h1:font-semibold prose-h2:text-white prose-h2:font-semibold prose-h2:text-3xl prose-h2:mb-6 prose-h3:text-white prose-h3:font-semibold prose-h3:text-2xl prose-h3:mb-4 prose-h4:text-white prose-h4:font-semibold prose-h5:text-white prose-h5:font-semibold prose-h6:text-white prose-h6:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-[#22d3ee] prose-a:no-underline hover:prose-a:text-[#fde047] prose-strong:text-[#fde047] prose-strong:font-semibold prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8 prose-blockquote:text-[#f3f4f6] prose-blockquote:border-l-[#22d3ee]">
               
               {/* StoryBrand: 고객의 결핍 */}
               <section className="mb-8">

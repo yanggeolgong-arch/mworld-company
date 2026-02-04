@@ -156,22 +156,33 @@ h1, h2, h3, h4, h5, h6 {
   color: rgb(107 114 128);
 }
 
+/* 다크 모드: Pure White 텍스트 (Contrast Ratio 21:1) */
 .dark .prose {
-  color: rgb(209 213 219);
+  color: #ffffff;
 }
 
 .dark .prose h1,
 .dark .prose h2,
 .dark .prose h3,
 .dark .prose h4 {
-  color: rgb(255 255 255);
+  color: #ffffff;
 }
 
 .dark .prose a {
-  color: rgb(255 255 255);
+  color: #22d3ee;
+}
+
+.dark .prose a:hover {
+  color: #fde047;
+}
+
+/* 강조 텍스트: Soft Yellow (Contrast Ratio 8.5:1) */
+.dark .prose strong {
+  color: #fde047;
+  font-weight: 600;
 }
 
 .dark .prose blockquote {
-  border-left-color: rgb(55 65 81);
-  color: rgb(156 163 175);
+  border-left-color: #22d3ee;
+  color: #f3f4f6;
 }
