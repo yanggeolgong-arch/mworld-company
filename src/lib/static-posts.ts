@@ -20,6 +20,15 @@ export interface StaticPost {
 /** 정적 포스트: 블로그 리스트 노출용. 1person-agency-algorithm-spread.mdx 스키마와 대응 */
 export const staticPosts: StaticPost[] = [
   {
+    slug: 'brand-concept',
+    title: '구글 상위 노출의 시작, 광고 전 \'컨셉 점검\'이 필수인 진짜 이유',
+    description: '광고 집행 전 브랜드 컨셉 점검의 중요성과 구글 상위 노출을 위한 필수 체크리스트. 10년 이상 실행 업무 전문가가 공개하는 컨셉 개발의 본질.',
+    date: '2026-01-27',
+    category: '광고 전 컨셉 점검',
+    categorySlug: 'brand-concept',
+    excerpt: '컨셉이 명확하지 않은 상태에서 광고를 집행하는 것은 지도 없이 길을 나서는 것과 같습니다. 구글 상위 노출을 위한 컨셉 점검 체크리스트와 시맨틱 DNA 설계의 기초를 공개합니다.',
+  },
+  {
     slug: '1인-기업-알고리즘-확산-시장-장악-로드맵',
     title: '1인 기업의 알고리즘 확산 점유 로드맵',
     description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
