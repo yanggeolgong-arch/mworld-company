@@ -1,9 +1,27 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
+
+const pretendard = localFont({
+  src: [
+    {
+      path: "../../node_modules/pretendard-std/dist/web/static/woff2/PretendardStd-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/pretendard-std/dist/web/static/woff2/PretendardStd-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
+  variable: "--font-pretendard",
+});
 
 const ThemeProvider = dynamic(
   () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
@@ -60,30 +78,13 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning className={pretendard.variable}>
       <head>
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-          media="print"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var l=document.querySelector('link[href*="pretendard"]');if(l)l.media='all';})();`,
-          }}
-        />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-          />
-        </noscript>
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
         <StructuredData data={organizationSchema} />
       </head>
-      <body className="antialiased">
+      <body className={`${pretendard.className} antialiased`}>
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">
             <Header />
