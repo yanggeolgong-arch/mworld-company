@@ -61,26 +61,27 @@ export default async function JejuRestaurantConceptPage() {
   // JSON-LD 스키마 제거하고 마크다운만 추출
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
   
-  // 이미지 정보 정의 (1.jpeg ~ 15.jpeg)
+  // 이미지 정보 정의 (1.jpeg ~ 15.jpeg) - 경로: /images/blog/concept/[번호].jpeg
   const imageMap: Record<string, { src: string; alt: string }> = {};
+  const altTexts: Record<number, string> = {
+    1: '제주맛집 사장님의 고민',
+    2: '제주맛집 사장님의 고민',
+    3: '컨셉 없는 제주맛집',
+    4: '컨셉 있는 제주맛집',
+    5: '손님들이 추천하는 제주맛집',
+    6: '명확한 정체성',
+    7: '타겟 고객',
+    8: '차별점',
+    9: '광고만 하는 제주맛집',
+    10: '광고비 낭비',
+    11: '컨셉 있는 제주맛집 성공',
+    12: '손님들이 추천하는 제주맛집',
+    13: '제주맛집 정체성',
+    14: '제주맛집 타겟 고객',
+    15: '구글이 좋아하는 제주맛집',
+  };
+  
   for (let i = 1; i <= 15; i++) {
-    const altTexts: Record<number, string> = {
-      1: '제주맛집 사장님의 고민',
-      2: '제주맛집 사장님의 고민',
-      3: '컨셉 없는 제주맛집',
-      4: '컨셉 있는 제주맛집',
-      5: '손님들이 추천하는 제주맛집',
-      6: '명확한 정체성',
-      7: '타겟 고객',
-      8: '차별점',
-      9: '광고만 하는 제주맛집',
-      10: '광고비 낭비',
-      11: '컨셉 있는 제주맛집 성공',
-      12: '손님들이 추천하는 제주맛집',
-      13: '제주맛집 정체성',
-      14: '제주맛집 타겟 고객',
-      15: '구글이 좋아하는 제주맛집',
-    };
     imageMap[String(i)] = {
       src: `/images/blog/concept/${i}.jpeg`,
       alt: altTexts[i] || `제주맛집 컨셉 이미지 ${i}`,
