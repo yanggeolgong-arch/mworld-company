@@ -6,6 +6,7 @@ import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { getAllStaticPosts, type StaticPost } from '@/lib/static-posts';
+import { blogCategories } from '@/lib/blog-categories';
 
 export const metadata: Metadata = {
   title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
@@ -181,25 +182,16 @@ export default async function BlogPage() {
           </header>
 
           {/* 키워드 카테고리 네비게이션 */}
-          <nav className="w-full mx-auto mt-12 max-w-4xl flex flex-wrap items-center justify-center gap-4" aria-label="Blog categories">
-            <Link
-              href="/blog/ad-agency-startup"
-              className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
-            >
-              광고대행사 창업
-            </Link>
-            <Link
-              href="/blog/shortform-marketing-practice"
-              className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
-            >
-              숏폼 마케팅 실무
-            </Link>
-            <Link
-              href="/blog/place-algorithm"
-              className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
-            >
-              플레이스 알고리즘
-            </Link>
+          <nav className="w-full mx-auto mt-12 max-w-5xl flex flex-wrap items-center justify-center gap-3" aria-label="Blog categories">
+            {blogCategories.map((category) => (
+              <Link
+                key={category.slug}
+                href={`/blog/category/${category.slug}`}
+                className="px-4 py-2 rounded-full bg-slate-900/50 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/30 transition-colors text-sm font-medium"
+              >
+                {category.name}
+              </Link>
+            ))}
           </nav>
 
           {/* 블로그 포스트 리스트 */}

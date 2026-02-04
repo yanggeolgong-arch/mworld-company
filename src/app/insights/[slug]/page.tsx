@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
+import { generateKeywords } from '@/lib/keyword-generator';
 
 interface PostData {
   post: {
@@ -54,11 +55,14 @@ export async function generateMetadata({
 
   const description = post.content.replace(/<[^>]*>/g, '').substring(0, 160);
   const canonicalUrl = generateCanonicalUrl(`/insights/${optimizeSlug(post.slug || post.title)}`);
+  
+  // 키워드 스터핑 방지: 포스트 내용에 맞게 동적으로 생성
+  const keywords = generateKeywords(post.title, post.categories.nodes, post.content);
 
   return {
     title: `${post.title} - 엠월드컴퍼니 성공 노하우`,
     description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
-    keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+    keywords,
     alternates: {
       canonical: canonicalUrl,
     },

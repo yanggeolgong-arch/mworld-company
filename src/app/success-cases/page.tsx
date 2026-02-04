@@ -25,14 +25,14 @@ const cases = [
     result: '네이버 플레이스 방문객 400% 증가 / 알고리즘 확산 최적화',
     description: '알고리즘 최적화와 공간 브랜딩 전략으로 단순 노출을 넘어 실질 방문으로 전환했습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&h=480&fit=crop&q=75',
+    image: '/restaurant-brand-a.png',
   },
   {
     title: '맛집 브랜드 B',
-    result: '매출 350% 성장 / 맞춤형 SNS 마케팅',
-    description: '<span className="text-emerald-400">10년 이상</span> 실행 업무 전문가가 직접 수립한 전략으로 브랜드 인지도와 매출을 동시에 급성장시켰습니다.',
+    result: '매출 성장 / 맞춤형 SNS 마케팅',
+    description: '매장 컨셉에 맞는 브랜드 컨텐츠 제작과 최적화를 실행하여 맞춤 제작하여 브랜드 이미지와 매출 향상을 목표로 진행되었습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=640&h=480&fit=crop&q=75',
+    image: '/restaurant-brand-b.png',
   },
   {
     title: '프리미엄 뷰티 브랜드',

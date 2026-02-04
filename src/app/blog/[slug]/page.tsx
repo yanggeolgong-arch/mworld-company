@@ -1,11 +1,14 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { requestPosts, GET_POST_BY_SLUG } from '@/lib/graphql';
+import { requestPosts, GET_POST_BY_SLUG, GET_POSTS } from '@/lib/graphql';
 import { notFound, redirect } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
-import { getStaticPostBySlug } from '@/lib/static-posts';
+import { getStaticPostBySlug, getAllStaticPosts } from '@/lib/static-posts';
+import { PostNavigation } from '@/components/PostNavigation';
+import { generateGeoMasterSchema } from '@/lib/geo-master-schema';
+import { generateKeywords, generateStaticPostKeywords } from '@/lib/keyword-generator';
 
 interface PostData {
   post: {
@@ -26,6 +29,14 @@ interface PostData {
         slug: string;
       }>;
     };
+  };
+}
+
+interface PostsData {
+  posts: {
+    edges: Array<{
+      node: PostData['post'];
+    }>;
   };
 }
 
@@ -50,10 +61,12 @@ export async function generateMetadata({
   const staticPost = getStaticPostBySlug(slug);
   if (staticPost) {
     const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
+    // 키워드 스터핑 방지: 포스트 내용에 맞게 동적으로 생성
+    const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
     return {
       title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
       description: staticPost.description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
-      keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+      keywords,
       alternates: {
         canonical: canonicalUrl,
       },
@@ -78,11 +91,14 @@ export async function generateMetadata({
   const description = post.content.replace(/<[^>]*>/g, '').substring(0, 160);
   const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
   const canonicalUrl = generateCanonicalUrl(optimizedUrl);
+  
+  // 키워드 스터핑 방지: 포스트 내용에 맞게 동적으로 생성
+  const keywords = generateKeywords(post.title, post.categories.nodes, post.content);
 
   return {
     title: `${post.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
     description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
-    keywords: '알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+    keywords,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -166,6 +182,42 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  // 같은 카테고리의 포스트 목록 가져오기 (이전/다음 글용)
+  const categorySlug = post.categories.nodes[0]?.slug || '';
+  const [allWpPosts, allStaticPosts] = await Promise.all([
+    requestPosts<PostsData>(GET_POSTS, { first: 100 }).catch(() => ({ posts: { edges: [] } })),
+    Promise.resolve(getAllStaticPosts()),
+  ]);
+
+  const categoryPosts = [
+    ...allWpPosts.posts.edges
+      .map((edge) => edge.node)
+      .filter((p) => {
+        const pCategorySlug = p.categories.nodes[0]?.slug || '';
+        return pCategorySlug === categorySlug || pCategorySlug.includes(categorySlug);
+      })
+      .map((p) => ({
+        id: p.id,
+        slug: p.slug,
+        title: p.title,
+        date: p.date,
+        isStatic: false,
+      })),
+    ...allStaticPosts
+      .filter((p) => p.categorySlug === categorySlug)
+      .map((p) => ({
+        id: `static-${p.slug}`,
+        slug: p.slug,
+        title: p.title,
+        date: p.date,
+        isStatic: true,
+      })),
+  ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  const currentIndex = categoryPosts.findIndex((p) => p.slug === post.slug);
+  const prevPost = currentIndex > 0 ? categoryPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < categoryPosts.length - 1 ? categoryPosts[currentIndex + 1] : null;
+
   // URL 최적화
   const optimizedUrl = generateOptimizedUrl(post.slug, post.title, post.categories.nodes[0]?.name);
   const canonicalUrl = generateCanonicalUrl(optimizedUrl);
@@ -208,10 +260,26 @@ export default async function BlogPostPage({
     keywords: post.categories.nodes.map((cat) => cat.name).join(', '),
   };
 
+  // GEO Master 스키마 생성
+  const geoMasterSchema = generateGeoMasterSchema({
+    name: post.title,
+    description: post.content.replace(/<[^>]*>/g, '').substring(0, 160),
+    url: canonicalUrl,
+    image: post.featuredImage?.node?.sourceUrl,
+    category: post.categories.nodes[0]?.name,
+    keywords: post.categories.nodes.map((cat) => cat.name),
+    address: {
+      addressLocality: '제주시',
+      addressRegion: '제주특별자치도',
+      addressCountry: 'KR',
+    },
+  });
+
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
       <StructuredData data={blogPostingSchema} />
+      <StructuredData data={geoMasterSchema} />
       <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
         <section className="w-full mx-auto max-w-4xl px-6 py-24 lg:px-8">
           <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
@@ -272,6 +340,28 @@ export default async function BlogPostPage({
             <div
               className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-slate-300 prose-p:font-light prose-p:leading-relaxed prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-[#d4af37] prose-strong:text-white prose-ul:text-slate-300 prose-ol:text-slate-300 prose-li:text-slate-300 prose-img:rounded-lg prose-img:my-8"
               dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            {/* 이전/다음 글 네비게이션 */}
+            <PostNavigation
+              prevPost={
+                prevPost
+                  ? {
+                      title: prevPost.title,
+                      slug: prevPost.slug,
+                      url: generateOptimizedUrl(prevPost.slug, prevPost.title, post.categories.nodes[0]?.name),
+                    }
+                  : null
+              }
+              nextPost={
+                nextPost
+                  ? {
+                      title: nextPost.title,
+                      slug: nextPost.slug,
+                      url: generateOptimizedUrl(nextPost.slug, nextPost.title, post.categories.nodes[0]?.name),
+                    }
+                  : null
+              }
             />
 
             {/* 고정 문구 */}
