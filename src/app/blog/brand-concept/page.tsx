@@ -61,27 +61,39 @@ export default async function BrandConceptPage() {
   // JSON-LD 스키마 제거하고 마크다운만 추출
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
   
-  // 이미지 정보 정의
-  const imageMap: Record<string, { src: string; alt: string }> = {
-    'confused-owner': {
-      src: '/images/blog/concept/confused-owner.webp',
-      alt: '컨셉 없이 고민하는 사장님',
-    },
-    'empty-store': {
-      src: '/images/blog/concept/empty-store.webp',
-      alt: '광고는 하지만 텅 빈 가게',
-    },
-    'algorithm-spread': {
-      src: '/images/blog/concept/algorithm-spread.webp',
-      alt: '구글 AI가 좋아하는 착한 가게',
-    },
+  // 이미지 정보 정의 (1.jpeg ~ 15.jpeg) - 경로: /images/blog/concept/[번호].jpeg
+  const imageMap: Record<string, { src: string; alt: string }> = {};
+  const altTexts: Record<number, string> = {
+    1: '컨셉 없이 고민하는 사장님',
+    2: '브랜드 사장님의 고민',
+    3: '컨셉 없는 브랜드',
+    4: '구글이 좋아하는 명확한 브랜드',
+    5: '시맨틱 DNA 설계',
+    6: '광고 효율성',
+    7: '광고는 하지만 텅 빈 가게',
+    8: '브랜드 정체성',
+    9: '타겟 고객',
+    10: '차별점',
+    11: '구글이 좋아하는 브랜드',
+    12: '컨셉 없이 광고하는 브랜드',
+    13: '컨셉 있는 브랜드 성공',
+    14: '고객들이 추천하는 브랜드',
+    15: '구글 AI가 좋아하는 착한 브랜드',
   };
+  
+  for (let i = 1; i <= 15; i++) {
+    imageMap[String(i)] = {
+      src: `/images/blog/concept/${i}.jpeg`,
+      alt: altTexts[i] || `브랜드 컨셉 이미지 ${i}`,
+    };
+  }
 
-  // 이미지 마커를 특별한 placeholder로 변환 (나중에 파싱하기 쉽게)
-  const processedMarkdown = markdownContent
-    .replace(/!\[IMAGE:confused-owner:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:confused-owner-->')
-    .replace(/!\[IMAGE:empty-store:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:empty-store-->')
-    .replace(/!\[IMAGE:algorithm-spread:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:algorithm-spread-->');
+  // 이미지 마커를 특별한 placeholder로 변환
+  let processedMarkdown = markdownContent;
+  for (let i = 1; i <= 15; i++) {
+    const regex = new RegExp(`!\\[IMAGE:${i}:(.+?)\\]`, 'g');
+    processedMarkdown = processedMarkdown.replace(regex, `<!--IMAGE_PLACEHOLDER:${i}-->`);
+  }
   
   // 마크다운을 HTML로 변환
   const htmlContent = marked(processedMarkdown);
