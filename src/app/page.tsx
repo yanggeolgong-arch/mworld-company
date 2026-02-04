@@ -126,6 +126,7 @@ export default function Home() {
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 priority
+                quality={75}
                 placeholder="blur"
                 blurDataURL={BLUR_DATA}
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -153,6 +154,8 @@ export default function Home() {
                 alt="성장 엔진"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+                quality={75}
                 placeholder="blur"
                 blurDataURL={BLUR_DATA}
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -180,6 +183,8 @@ export default function Home() {
                 alt="성공 사례"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+                quality={75}
                 placeholder="blur"
                 blurDataURL={BLUR_DATA}
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
