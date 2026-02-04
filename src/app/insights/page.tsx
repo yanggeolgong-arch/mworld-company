@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { graphqlClient, GET_POSTS } from '@/lib/graphql';
+import { requestPosts, GET_POSTS } from '@/lib/graphql';
 import { CTASection } from '@/components/CTASection';
 import { MasterClassSample } from '@/components/MasterClassSample';
 import { StructuredData } from '@/components/StructuredData';
@@ -45,9 +45,7 @@ interface PostsData {
 
 async function getPosts(): Promise<Post[]> {
   try {
-    const data = await graphqlClient.request<PostsData>(GET_POSTS, {
-      first: 10,
-    });
+    const data = await requestPosts<PostsData>(GET_POSTS, { first: 10 });
     return data.posts.edges.map((edge) => edge.node);
   } catch (error) {
     console.error('Failed to fetch posts:', error);
@@ -124,7 +122,7 @@ export default async function InsightsPage() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                           className="object-cover"
                           loading={index < 2 ? 'eager' : 'lazy'}
-                          quality={85}
+                          quality={75}
                         />
                       </div>
                     )}

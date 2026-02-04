@@ -10,37 +10,37 @@ const strategies = [
     title: '크리에이티브 비주얼 큐레이션',
     description: '알고리즘을 지배하는 시네마틱 숏폼 제작 및 고감도 인플루언서 매칭.',
     category: 'Content',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '로컬 검색 공간 브랜딩',
     description: '단순 노출을 넘어 방문 시그널을 설계하는 네이버 플레이스 및 스마트블록 점유 전략.',
     category: 'Local',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=640&h=480&fit=crop&q=75',
   },
   {
     title: 'AI 네이티브 시맨틱 DNA',
     description: '시맨틱 DNA 기술을 통해 구글과 AI 검색 엔진의 뇌에 브랜드 권위자를 각인시키는 독점 기술.',
     category: 'Global',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '엠월드 디지털 권위 엔진',
     description: '실시간 트렌드를 즉각 자산화하여 트래픽과 구매 전환을 폭발시키는 차세대 웹 시스템 구축.',
     category: 'Engine',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '엘리트 임원 멘토십',
     description: '대행사 대표들을 가르치는 1:1 프라이빗 클래스. <span className="text-emerald-400">10년 이상</span> 실행 업무 노하우를 전수하여 즉시 창업 및 실행이 가능한 마스터 커리큘럼.',
     category: 'Education',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '하이퍼 데이터 인사이트',
     description: '<span className="text-[#d4af37]">1,000여</span> 곳의 F&B 뷰티 성공 데이터를 기반으로 설계된 초개인화 마케팅 로드맵.',
     category: 'Analytics',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=480&fit=crop&q=75',
   },
 ];
 
@@ -117,7 +117,7 @@ export default function StrategyPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     loading={index < 3 ? 'eager' : 'lazy'}
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>

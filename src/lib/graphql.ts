@@ -1,8 +1,4 @@
-import { GraphQLClient } from 'graphql-request';
-
 const GRAPHQL_ENDPOINT = 'https://aijeju.co.kr/graphql';
-
-export const graphqlClient = new GraphQLClient(GRAPHQL_ENDPOINT);
 
 export const GET_POSTS = `
   query GetPosts($first: Int, $after: String) {
@@ -60,3 +56,9 @@ export const GET_POST_BY_SLUG = `
     }
   }
 `;
+
+export async function requestPosts<T>(query: string, variables: Record<string, unknown>): Promise<T> {
+  const { GraphQLClient } = await import('graphql-request');
+  const client = new GraphQLClient(GRAPHQL_ENDPOINT);
+  return client.request<T>(query, variables);
+}

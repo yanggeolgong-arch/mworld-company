@@ -99,13 +99,13 @@ export default function AIPoweredSoloBusinessPage() {
             {/* Featured Image */}
             <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative mb-8">
               <Image
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop&q=80"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=960&h=540&fit=crop&q=75"
                 alt="AI 자동화 파이프라인"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                 className="object-cover"
                 priority
-                quality={90}
+                quality={75}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
@@ -116,12 +116,12 @@ export default function AIPoweredSoloBusinessPage() {
               <section className="mb-8">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=960&h=540&fit=crop&q=75"
                     alt="1인 기업의 현실"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
@@ -147,12 +147,12 @@ export default function AIPoweredSoloBusinessPage() {
               <section className="mb-8">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=960&h=540&fit=crop&q=75"
                     alt="AI 자동화 솔루션"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
@@ -175,12 +175,12 @@ export default function AIPoweredSoloBusinessPage() {
               <section className="mb-8">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=960&h=540&fit=crop&q=75"
                     alt="3단계 실행 계획"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>

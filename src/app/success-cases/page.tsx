@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
-import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
@@ -19,44 +18,42 @@ const cases = [
     result: '전 채널 누적 5,000만 뷰 돌파 / 네이버 플레이스 순위 상승 최적화',
     description: '단순 제작을 넘어, 수많은 성공 거래처 숏폼 알고리즘을 실시간으로 분석합니다. 특히 네이버 플레이스 알고리즘 확산 가점을 위한 전략 이벤트를 기획하여, 브랜드 확산과 순위 상승이라는 두 마리 토끼를 동시에 잡아 압도적 매출 퍼포먼스를 만들어냅니다.',
     category: 'Shortform',
-    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
-    video: '/Ai__flow_1080p_202601142217.mp4',
-    poster: '/A_mosaic_wall_4k_202601141637.jpg',
+    image: '/shortform-mosaic.webp',
   },
   {
     title: '맛집 브랜드 A',
     result: '네이버 플레이스 방문객 400% 증가 / 알고리즘 확산 최적화',
     description: '알고리즘 최적화와 공간 브랜딩 전략으로 단순 노출을 넘어 실질 방문으로 전환했습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '맛집 브랜드 B',
     result: '매출 350% 성장 / 맞춤형 SNS 마케팅',
     description: '<span className="text-emerald-400">10년 이상</span> 실행 업무 전문가가 직접 수립한 전략으로 브랜드 인지도와 매출을 동시에 급성장시켰습니다.',
     category: 'F&B',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '프리미엄 뷰티 브랜드',
     result: '팔로워 300% 증가 / 6개월 만에 타겟 오디언스 장악',
     description: '정교한 콘텐츠 전략으로 브랜드 감성을 전달하며 충성도 높은 고객층을 확보했습니다.',
     category: 'Beauty',
-    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '테크 스타트업',
     result: '리드 생성 250% 향상 / 마케팅 자동화 성공',
     description: 'AI 기반 자동화 시스템을 통해 리드 생성 비용을 절감하면서 품질을 크게 향상시켰습니다.',
     category: 'Tech',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=640&h=480&fit=crop&q=75',
   },
   {
     title: '비공개 1:1 마스터 클래스 (대행사 창업 실무)',
     result: '광고대행사 대표 및 창업 준비생 전용 / 현직 대표 수강생 80% 이상',
     description: '온라인의 흔한 강의가 아닙니다. <span className="text-emerald-400">10년 이상</span> 실행사의 영업 비밀과 운영 로직을 오직 1:1 비공개로만 전수합니다. 대행사 대표님들이 직접 찾아 듣는, 즉시 창업과 매출 최적화가 가능한 하이엔드 실무 교육입니다.',
     category: 'MasterClass',
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=640&h=480&fit=crop&q=75',
   },
 ];
 
@@ -66,20 +63,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ]);
 
 export default function SuccessCasesPage() {
-  const videoObjectSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: '엠월드컴퍼니 실시간 알고리즘 확산 관제 시스템',
-    description: '수백 개 거래처의 숏폼 영상을 실시간 송출하며 네이버 플레이스 순위 상승을 견인하는 퍼포먼스 영상',
-    thumbnailUrl: 'https://www.aijeju.co.kr/A_mosaic_wall_4k_202601141637.jpg',
-    uploadDate: '2026-01-27',
-    contentUrl: 'https://www.aijeju.co.kr/Ai__flow_1080p_202601142217.mp4',
-  };
-
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
-      <StructuredData data={videoObjectSchema} />
       <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
       <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="cases-heading">
         <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
@@ -109,44 +95,16 @@ export default function SuccessCasesPage() {
               } backdrop-blur-sm`}
             >
               <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
-                {caseItem.video ? (
-                  <>
-                    {index === 0 && (
-                      <Image
-                        src={caseItem.poster || caseItem.image}
-                        alt={caseItem.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        priority
-                        fetchPriority="high"
-                        quality={90}
-                      />
-                    )}
-                    <video
-                      src={caseItem.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="none"
-                      poster={caseItem.poster || caseItem.image}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
-                  </>
-                ) : (
-                  <Image
-                    src={caseItem.image}
-                    alt={caseItem.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    priority={index < 3}
-                    loading={index >= 3 ? 'lazy' : 'eager'}
-                    quality={85}
-                  />
-                )}
+                <Image
+                  src={caseItem.image}
+                  alt={caseItem.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  priority={index < 3}
+                  loading={index >= 3 ? 'lazy' : 'eager'}
+                  quality={75}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 {(caseItem.category === 'F&B' || caseItem.category === 'Shortform' || caseItem.category === 'MasterClass') && (
                   <div className="absolute top-3 right-3">

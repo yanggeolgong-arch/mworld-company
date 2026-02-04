@@ -102,13 +102,13 @@ export default function AlgorithmDiffusionRoadmapPage() {
             {/* Featured Image */}
             <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg relative mb-8">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop&q=80"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=960&h=540&fit=crop&q=75"
                 alt="알고리즘 확산 로드맵"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                 className="object-cover"
                 priority
-                quality={90}
+                quality={75}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
@@ -141,12 +141,12 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <section className="mb-12">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=960&h=540&fit=crop&q=75"
                     alt="네이버 플레이스 컨디션 분석"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
@@ -294,12 +294,12 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <section className="mb-12">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=960&h=540&fit=crop&q=75"
                     alt="AI 자동화 프로세스"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>
@@ -417,12 +417,12 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <section className="mb-12">
                 <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=600&fit=crop&q=80"
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=960&h=540&fit=crop&q=75"
                     alt="원가 절감 메커니즘"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                     className="object-cover"
-                    quality={85}
+                    quality={75}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                 </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { graphqlClient, GET_POSTS } from '@/lib/graphql';
+import { requestPosts, GET_POSTS } from '@/lib/graphql';
 import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
@@ -52,9 +52,7 @@ interface PostsData {
 
 async function getWordPressPosts(): Promise<Post[]> {
   try {
-    const data = await graphqlClient.request<PostsData>(GET_POSTS, {
-      first: 20,
-    });
+    const data = await requestPosts<PostsData>(GET_POSTS, { first: 20 });
     return data.posts.edges.map((edge) => edge.node);
   } catch (error) {
     console.error('Failed to fetch posts:', error);
@@ -230,7 +228,7 @@ export default async function BlogPage() {
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                             loading={index < 3 ? 'eager' : 'lazy'}
-                            quality={85}
+                            quality={75}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { graphqlClient, GET_POST_BY_SLUG } from '@/lib/graphql';
+import { requestPosts, GET_POST_BY_SLUG } from '@/lib/graphql';
 import { notFound } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
@@ -30,9 +30,7 @@ interface PostData {
 
 async function getPost(slug: string) {
   try {
-    const data = await graphqlClient.request<PostData>(GET_POST_BY_SLUG, {
-      slug,
-    });
+    const data = await requestPosts<PostData>(GET_POST_BY_SLUG, { slug });
     return data.post;
   } catch (error) {
     console.error('Failed to fetch post:', error);
@@ -152,7 +150,7 @@ export default async function PostPage({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
                   className="object-cover"
                   priority
-                  quality={90}
+                  quality={75}
                 />
               </div>
             )}

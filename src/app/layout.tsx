@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StructuredData } from "@/components/StructuredData";
+
+const ThemeProvider = dynamic(
+  () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
@@ -57,10 +62,24 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        {/* 외부 스크립트(애널리틱스 등)는 next/script + strategy="lazyOnload" 사용 권장 */}
-        {/* 네이버 서치어드바이저 소유확인 */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+          media="print"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var l=document.querySelector('link[href*="pretendard"]');if(l)l.media='all';})();`,
+          }}
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+          />
+        </noscript>
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
-        {/* 구글 서치 콘솔 소유확인 */}
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
         <StructuredData data={organizationSchema} />
       </head>
