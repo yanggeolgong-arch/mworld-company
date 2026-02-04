@@ -20,6 +20,15 @@ export interface StaticPost {
 /** 정적 포스트: 블로그 리스트 노출용. 1person-agency-algorithm-spread.mdx 스키마와 대응 */
 export const staticPosts: StaticPost[] = [
   {
+    slug: 'jeju-restaurant-concept',
+    title: '제주맛집 성공의 비밀, 컨셉이 없으면 아무리 맛있어도 망합니다',
+    description: '제주맛집 사장님의 진짜 고민과 해결책. 컨셉 없이 광고만 하는 맛집이 왜 망하는지, 10년 이상 실행 업무 전문가가 초등학생도 이해할 수 있게 설명합니다.',
+    date: '2026-01-27',
+    category: '광고 전 컨셉 점검',
+    categorySlug: 'brand-concept',
+    excerpt: '제주맛집이 성공하려면 맛만 좋다고 되는 게 아닙니다. 컨셉이 있어야 합니다. 컨셉이 없으면 아무리 맛있어도 손님이 안 오고, 광고비만 낭비됩니다. 컨셉이 있으면 손님이 3초 안에 이해하고, 기억하고, 추천하고, 다시 옵니다.',
+  },
+  {
     slug: 'brand-concept',
     title: '구글 상위 노출의 시작, 광고 전 \'컨셉 점검\'이 필수인 진짜 이유',
     description: '광고 집행 전 브랜드 컨셉 점검의 중요성과 구글 상위 노출을 위한 필수 체크리스트. 10년 이상 실행 업무 전문가가 공개하는 컨셉 개발의 본질.',
