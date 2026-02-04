@@ -1,56 +1,13 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
-import { useEffect, useRef } from 'react';
-
-const CTASection = dynamic(() => import('@/components/CTASection').then((m) => m.CTASection), {
-  ssr: true,
-  loading: () => <section className="min-h-[180px] mx-auto max-w-7xl px-6 py-16 lg:px-8" aria-hidden="true" />,
-});
+import { CTASection } from '@/components/CTASection';
 
 export default function Home() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-stagger');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
-    if (featuresRef.current) {
-      const cards = featuresRef.current.querySelectorAll('.feature-card');
-      cards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('animate-stagger');
-          card.classList.add(`animate-stagger-delay-${Math.min(index + 1, 3)}`);
-        }, index * 100);
-      });
-    }
-
-    return () => {
-      if (heroRef.current) observer.unobserve(heroRef.current);
-    };
-  }, []);
-
   return (
     <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
-      {/* Hero Section - Premium Dark Gradient */}
       <section className="relative w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="hero-heading">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900" />
-        <div ref={heroRef} className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center">
+        <div className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center animate-stagger">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
               엠월드컴퍼니
@@ -114,8 +71,8 @@ export default function Home() {
             복제 불가 기술력으로 구축한 프리미엄 솔루션
           </p>
         </div>
-        <div ref={featuresRef} className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-          <article className="feature-card group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
+        <div className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+          <article className="feature-card animate-stagger animate-stagger-delay-1 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=480&fit=crop&q=75"
@@ -141,7 +98,7 @@ export default function Home() {
             </Link>
           </article>
 
-          <article className="feature-card group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
+          <article className="feature-card animate-stagger animate-stagger-delay-2 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=480&fit=crop&q=75"
@@ -166,7 +123,7 @@ export default function Home() {
             </Link>
           </article>
 
-          <article className="feature-card group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
+          <article className="feature-card animate-stagger animate-stagger-delay-3 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=480&fit=crop&q=75"
