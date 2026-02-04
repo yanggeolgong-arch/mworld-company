@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { StructuredData } from '@/components/StructuredData';
+import { BlogContentWithImages } from '@/components/BlogContentWithImages';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
@@ -60,8 +61,30 @@ export default async function BrandConceptPage() {
   // JSON-LD 스키마 제거하고 마크다운만 추출
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
   
+  // 이미지 정보 정의
+  const imageMap: Record<string, { src: string; alt: string }> = {
+    'confused-owner': {
+      src: '/images/blog/concept/confused-owner.webp',
+      alt: '컨셉 없이 고민하는 사장님',
+    },
+    'empty-store': {
+      src: '/images/blog/concept/empty-store.webp',
+      alt: '광고는 하지만 텅 빈 가게',
+    },
+    'algorithm-spread': {
+      src: '/images/blog/concept/algorithm-spread.webp',
+      alt: '구글 AI가 좋아하는 착한 가게',
+    },
+  };
+
+  // 이미지 마커를 특별한 placeholder로 변환 (나중에 파싱하기 쉽게)
+  const processedMarkdown = markdownContent
+    .replace(/!\[IMAGE:confused-owner:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:confused-owner-->')
+    .replace(/!\[IMAGE:empty-store:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:empty-store-->')
+    .replace(/!\[IMAGE:algorithm-spread:(.+?)\]/g, '<!--IMAGE_PLACEHOLDER:algorithm-spread-->');
+  
   // 마크다운을 HTML로 변환
-  const htmlContent = marked(markdownContent);
+  const htmlContent = marked(processedMarkdown);
 
   const canonicalUrl = generateCanonicalUrl(`/blog/brand-concept`);
   const breadcrumbs = generateBlogBreadcrumbs('brand-concept', staticPost.title, staticPost.category);
@@ -138,10 +161,8 @@ export default async function BrandConceptPage() {
               </h1>
             </header>
 
-            <div
-              className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-headings:font-semibold prose-p:text-white prose-p:font-light prose-p:leading-relaxed prose-a:text-[#22d3ee] prose-a:no-underline hover:prose-a:text-[#fde047] prose-strong:text-[#fde047] prose-strong:font-semibold prose-ul:text-white prose-ol:text-white prose-li:text-white prose-img:rounded-lg prose-img:my-8 prose-blockquote:text-[#f3f4f6] prose-blockquote:border-l-[#22d3ee]"
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-            />
+            {/* 콘텐츠를 섹션별로 분리하여 이미지 삽입 */}
+            <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} />
 
             {/* 고정 문구 */}
             <div className="mt-12 pt-8 border-t border-white/10 text-center">
