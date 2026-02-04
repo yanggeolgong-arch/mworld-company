@@ -3,8 +3,6 @@ import dynamic from "next/dynamic";
 import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
-
 const Header = dynamic(() => import("@/components/Header").then((m) => ({ default: m.Header })), {
   ssr: true,
   loading: () => (
@@ -18,6 +16,11 @@ const ThemeProvider = dynamic(
   () => import("@/components/ThemeProvider").then((m) => ({ default: m.ThemeProvider })),
   { ssr: true }
 );
+
+const Footer = dynamic(() => import("@/components/Footer").then((m) => ({ default: m.Footer })), {
+  ssr: true,
+  loading: () => <footer className="w-full border-t border-white/5 bg-slate-950 min-h-[280px]" aria-hidden="true" />,
+});
 
 const pretendard = localFont({
   src: [

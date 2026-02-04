@@ -77,7 +77,8 @@ h1, h2, h3, h4, h5, h6 {
 .animate-stagger {
   animation: semanticDNAFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
-  will-change: transform, opacity;
+  will-change: transform;
+  contain: layout style paint;
 }
 
 .animate-stagger-delay-1 { 
