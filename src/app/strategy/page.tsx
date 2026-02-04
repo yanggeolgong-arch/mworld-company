@@ -114,6 +114,7 @@ export default function StrategyPage() {
                     src={strategy.image}
                     alt={strategy.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     loading={index < 3 ? 'eager' : 'lazy'}
                     quality={85}

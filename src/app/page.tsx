@@ -2,8 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
-import { CTASection } from '@/components/CTASection';
+
+const CTASection = dynamic(() => import('@/components/CTASection').then((m) => m.CTASection), {
+  ssr: true,
+  loading: () => <section className="min-h-[180px] mx-auto max-w-7xl px-6 py-16 lg:px-8" aria-hidden="true" />,
+});
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -116,6 +121,8 @@ export default function Home() {
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80"
                 alt="마케팅 전략"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -140,6 +147,7 @@ export default function Home() {
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&q=80"
                 alt="성장 엔진"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -164,6 +172,7 @@ export default function Home() {
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80"
                 alt="성공 사례"
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />

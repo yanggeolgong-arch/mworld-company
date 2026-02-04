@@ -57,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        {/* 외부 스크립트(애널리틱스 등)는 next/script + strategy="lazyOnload" 사용 권장 */}
         {/* 네이버 서치어드바이저 소유확인 */}
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         {/* 구글 서치 콘솔 소유확인 */}
