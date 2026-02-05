@@ -6,6 +6,7 @@ import { CTASection } from '@/components/CTASection';
 import { StructuredData } from '@/components/StructuredData';
 import { generateOptimizedUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { getAllStaticPosts, type StaticPost } from '@/lib/static-posts';
+import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
 import { blogCategories } from '@/lib/blog-categories';
 
 export const metadata: Metadata = {
@@ -143,13 +144,14 @@ export default async function BlogPage() {
     },
     blogPost: allPosts.slice(0, 10).map((post) => {
       const postUrl = getPostUrl(post);
+      const schemaDates = getSchemaDatesSyncToToday();
       return {
         '@type': 'BlogPosting',
         headline: post.title,
         description: post.excerpt.substring(0, 160),
         url: `https://www.aijeju.co.kr${postUrl}`,
-        datePublished: post.date,
-        dateModified: post.date,
+        datePublished: schemaDates.datePublished,
+        dateModified: schemaDates.dateModified,
         author: {
           '@type': 'Person',
           name: '엠월드컴퍼니',
@@ -229,12 +231,8 @@ export default async function BlogPage() {
                         <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mb-3">
                           <span className="font-light">{post.category}</span>
                           <span>•</span>
-                          <time dateTime={post.date} className="font-light">
-                            {new Date(post.date).toLocaleDateString('ko-KR', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
+                          <time dateTime={getTodayISO()} className="font-light">
+                            {formatBlogDate(getTodayISO())}
                           </time>
                         </div>
                         <h2 className="text-xl font-semibold tracking-tight text-white text-center mb-3">

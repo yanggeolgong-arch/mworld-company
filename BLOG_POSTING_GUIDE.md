@@ -35,7 +35,7 @@ src/app/blog/새-포스트-제목/page.tsx
        title: '포스트 제목',
        description: '포스트 설명',
        type: 'article',
-       publishedTime: '2026-01-27', // 발행일
+       publishedTime: '2026-02-05', // YYYY-MM-DD, 발행일
        url: 'https://aijeju.co.kr/blog/슬러그',
      },
    };
@@ -53,16 +53,20 @@ src/app/blog/새-포스트-제목/page.tsx
    const breadcrumbs = generateBlogBreadcrumbs(slug, title, '카테고리명');
    ```
 
-4. **JSON-LD 스키마**
+4. **JSON-LD 스키마 (날짜는 getSchemaDates로 자동 반영 권장)**
    ```typescript
+   import { getSchemaDates, formatBlogDate } from '@/lib/blog-dates';
+
+   const POST_DATE = '2026-02-05'; // YYYY-MM-DD
+   const schemaDates = getSchemaDates(POST_DATE); // dateModified는 오늘 자동 반영
    const blogPostingSchema = {
      '@context': 'https://schema.org',
      '@type': 'BlogPosting',
      headline: '포스트 제목',
      description: '포스트 설명',
      url: canonicalUrl,
-     datePublished: '2026-01-27',
-     dateModified: '2026-01-27',
+     datePublished: schemaDates.datePublished,
+     dateModified: schemaDates.dateModified,
      author: {
        '@type': 'Person',
        name: '엠월드컴퍼니 최고실행자',
@@ -101,7 +105,7 @@ src/app/blog/새-포스트-제목/page.tsx
   slug: '슬러그-이름',
   title: '포스트 제목',
   description: '포스트 설명 (SEO용)',
-  date: '2026-01-27', // YYYY-MM-DD 형식
+  date: '2026-02-05', // YYYY-MM-DD 형식 (최신 순서에 따라 02-04/02-05 등)
   category: '카테고리명',
   categorySlug: 'category-slug', // 영문 슬러그
   excerpt: '포스트 요약 (선택사항)',

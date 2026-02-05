@@ -8,6 +8,7 @@ import { blogCategories, getCategoryBySlug } from '@/lib/blog-categories';
 import { generateCategoryPageSchema } from '@/lib/geo-master-schema';
 import { generateOptimizedUrl } from '@/lib/url-optimizer';
 import { getAllStaticPosts } from '@/lib/static-posts';
+import { getTodayISO, formatBlogDate } from '@/lib/blog-dates';
 
 interface Post {
   id: string;
@@ -212,12 +213,8 @@ export default async function CategoryPage({
                       )}
                       <div className="flex flex-1 flex-col p-6 items-center">
                         <div className="flex items-center justify-center gap-2 text-xs text-slate-400 mb-3">
-                          <time dateTime={post.date} className="font-light">
-                            {new Date(post.date).toLocaleDateString('ko-KR', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
+                          <time dateTime={getTodayISO()} className="font-light">
+                            {formatBlogDate(getTodayISO())}
                           </time>
                         </div>
                         <h2 className="text-xl font-semibold tracking-tight text-white text-center mb-3">

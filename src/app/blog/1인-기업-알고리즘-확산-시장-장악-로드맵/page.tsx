@@ -3,22 +3,25 @@ import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
+import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
 
-export const metadata: Metadata = {
-  title: '1인 기업의 알고리즘 확산 점유 로드맵 - 엠월드컴퍼니',
-  description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
-  keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래, 플레이스 컨디션, 알고리즘 데이터 분석',
-  alternates: {
-    canonical: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
-  },
-  openGraph: {
-    title: '1인 기업의 알고리즘 확산 점유 로드맵',
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: '1인 기업의 알고리즘 확산 점유 로드맵 - 엠월드컴퍼니',
     description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
-    type: 'article',
-    publishedTime: '2026-01-27',
-    url: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
-  },
-};
+    keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래, 플레이스 컨디션, 알고리즘 데이터 분석',
+    alternates: {
+      canonical: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
+    },
+    openGraph: {
+      title: '1인 기업의 알고리즘 확산 점유 로드맵',
+      description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
+      type: 'article',
+      publishedTime: getTodayISO(),
+      url: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
+    },
+  };
+}
 
 const slug = '1인-기업-알고리즘-확산-시장-장악-로드맵';
 const title = '1인 기업의 알고리즘 확산 점유 로드맵';
@@ -27,9 +30,9 @@ const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
 const breadcrumbs = generateBlogBreadcrumbs(slug, title, '플레이스 알고리즘');
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
-const blogPostingSchema = {
+const baseBlogPostingSchema = {
   '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
+  '@type': 'BlogPosting' as const,
   headline: '1인 기업의 알고리즘 확산 점유 로드맵',
   mainEntityOfPage: {
     '@type': 'WebPage',
@@ -50,13 +53,13 @@ const blogPostingSchema = {
   },
   description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
   url: canonicalUrl,
-  datePublished: '2026-01-27',
-  dateModified: '2026-01-27',
   keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래',
   articleSection: '플레이스 알고리즘',
 };
 
 export default function AlgorithmDiffusionRoadmapPage() {
+  const schemaDates = getSchemaDatesSyncToToday();
+  const blogPostingSchema = { ...baseBlogPostingSchema, datePublished: schemaDates.datePublished, dateModified: schemaDates.dateModified };
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
@@ -87,8 +90,8 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <div className="flex items-center justify-center gap-2 text-sm text-white mb-4">
                 <span className="font-light">플레이스 알고리즘</span>
                 <span>•</span>
-                <time dateTime="2026-01-27" className="font-light">
-                  2026년 1월 27일
+                <time dateTime={getTodayISO()} className="font-light">
+                  {formatBlogDate(getTodayISO())}
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">

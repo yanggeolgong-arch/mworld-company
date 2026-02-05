@@ -9,6 +9,7 @@ import { getStaticPostBySlug, getAllStaticPosts } from '@/lib/static-posts';
 import { PostNavigation } from '@/components/PostNavigation';
 import { generateGeoMasterSchema } from '@/lib/geo-master-schema';
 import { generateKeywords, generateStaticPostKeywords } from '@/lib/keyword-generator';
+import { getSchemaDatesSyncToToday } from '@/lib/blog-dates';
 
 interface PostData {
   post: {
@@ -141,14 +142,15 @@ export default async function BlogPostPage({
     const breadcrumbs = generateBlogBreadcrumbs(slug, staticPost.title, staticPost.category);
     const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
+    const staticSchemaDates = getSchemaDatesSyncToToday();
     const blogPostingSchema = {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
       headline: staticPost.title,
       description: staticPost.description,
       url: canonicalUrl,
-      datePublished: staticPost.date,
-      dateModified: staticPost.date,
+      datePublished: staticSchemaDates.datePublished,
+      dateModified: staticSchemaDates.dateModified,
       author: {
         '@type': 'Person',
         name: '엠월드컴퍼니 최고실행자',
@@ -230,15 +232,16 @@ export default async function BlogPostPage({
   );
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
-  // BlogPosting 스키마 생성
+  // BlogPosting 스키마: datePublished·dateModified 오늘 시각으로 동기화 (알고리즘 확산)
+  const schemaDates = getSchemaDatesSyncToToday();
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.content.replace(/<[^>]*>/g, '').substring(0, 160),
     url: canonicalUrl,
-    datePublished: post.date,
-    dateModified: post.date,
+    datePublished: schemaDates.datePublished,
+    dateModified: schemaDates.dateModified,
     author: {
       '@type': 'Person',
       name: '엠월드컴퍼니',
