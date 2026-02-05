@@ -39,8 +39,9 @@ html {
 
 /* 프로토콜: 순검정 배경·연회색 텍스트 강제, color-scheme로 다크/라이트 무관 유지, 가독성 사수 */
 body {
-  background: #000000 !important;
   color: #F2F2F2 !important;
+  background: #000000 !important;
+  background-color: #000000 !important;
   color-scheme: dark;
   font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
