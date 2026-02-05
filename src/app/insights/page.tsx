@@ -150,7 +150,7 @@ export default async function InsightsPage() {
                       </p>
                     )}
                     <div className="mt-6 text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]">
-                      자세히 보기 →
+                      인사이트 읽기 →
                     </div>
                   </Link>
                 </article>

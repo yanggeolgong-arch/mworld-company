@@ -226,7 +226,7 @@ export default async function CategoryPage({
                           </p>
                         )}
                         <div className="mt-4 text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]">
-                          자세히 보기 →
+                          카테고리 포스트 읽기 →
                         </div>
                       </div>
                     </Link>

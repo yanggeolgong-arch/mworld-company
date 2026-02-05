@@ -119,7 +119,7 @@ export default function Home() {
               href="/growth-engine"
               className="mt-auto text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]"
             >
-              자세히 보기 →
+              성장 엔진 알아보기 →
             </Link>
           </article>
 

@@ -114,7 +114,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
       </head>
       <body className={`${pretendard.className} antialiased`}>
-        <Script id="org-schema" strategy="afterInteractive" type="application/ld+json">
+        <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>
         <DeferredThemeWrapper header={<Header />} footer={<Footer />} main={children} />
