@@ -15,23 +15,42 @@ marked.setOptions({ breaks: true, gfm: true });
 
 const SLUG = 'xiaohongshu-alipay-strategy';
 
-/** 15장 전체 중국어 키워드 alt (제주맛집·알리페이·샤오홍슈 상위노출) */
-const XIAOHONGSHU_ALIPAY_ALT_ZH: Record<number, string> = {
-  1: '제주맛집 샤오홍슈 상위노출 小红书济州岛美食支付宝支付攻略',
-  2: '济州岛餐厅支付宝扫码支付 제주맛집 알리페이',
-  3: '济州岛美食小红书笔记搜索 샤오홍슈 상위노출',
-  4: '支付宝微信支付门店标识 제주맛집 알리페이',
-  5: '济州岛咖啡厅支付宝结账 제주맛집',
-  6: '济州岛咖啡厅支付宝充电宝租借 제주맛집 알리페이',
-  7: '济州岛餐厅满座场景 제주맛집 샤오홍슈',
-  8: '支付宝D+2结算到账 제주맛집 알리페이',
-  9: '支付宝官方贴纸 제주맛집 알리페이',
-  10: '小红书实时点评拍照 샤오홍슈 상위노출 제주맛집',
-  11: '济州岛美食支付宝微信支付标识摆放 제주맛집 알리페이',
-  12: '济州岛餐厅外景 제주맛집',
-  13: '现场咨询支付宝开通 제주맛집 알리페이',
-  14: '小红书支付宝注册咨询 샤오홍슈 상위노출',
-  15: '济州岛第一执行品牌 제주맛집 엠월드컴퍼니',
+/** 15장 영문 SEO 파일명 (제주맛집·알리페이·샤오홍슈·보조배터리 등 키워드 조합) */
+const SEO_IMAGE_FILENAMES: Record<number, string> = {
+  1: 'jeju-restaurant-xiaohongshu-alipay-expert-guide.webp',
+  2: 'jeju-restaurant-alipay-scan-payment.webp',
+  3: 'jeju-food-xiaohongshu-note-search.webp',
+  4: 'jeju-restaurant-alipay-wechat-logo-sign.webp',
+  5: 'jeju-cafe-alipay-checkout.webp',
+  6: 'jeju-cafe-alipay-power-bank-rental.webp',
+  7: 'jeju-restaurant-full-house-scene.webp',
+  8: 'jeju-alipay-d2-settlement.webp',
+  9: 'jeju-alipay-official-sticker.webp',
+  10: 'jeju-xiaohongshu-realtime-review-photo.webp',
+  11: 'jeju-food-alipay-wechat-logo-placement.webp',
+  12: 'jeju-restaurant-exterior.webp',
+  13: 'jeju-alipay-consultation-on-site.webp',
+  14: 'jeju-xiaohongshu-alipay-registration.webp',
+  15: 'jeju-mworld-executive-brand.webp',
+};
+
+/** 15장 문장형 alt (변경된 파일명에 맞춘 상세 설명) */
+const SENTENCE_ALT: Record<number, string> = {
+  1: '엠월드컴퍼니 전문가가 제안하는 제주맛집 알리페이 결제와 샤오홍슈 상위노출 가이드',
+  2: '제주맛집에서 알리페이 스캔 결제로 중화권 손님 신뢰를 높이는 현장 인증샷',
+  3: '제주맛집 샤오홍슈 노트 검색 상위노출을 위한 키워드 전략',
+  4: '제주맛집 입구·결제대에 알리페이·위챗 로고를 배치해 결제 전환을 높이는 방법',
+  5: '제주 카페에서 알리페이 결제로 원화 D+2 정산받는 실무 사례',
+  6: '제주맛집 보조배터리 대여로 체류 시간과 샤오홍슈 인증샷을 늘리는 10년 노하우',
+  7: '제주맛집 만석 장면: 알리페이·보조배터리로 중화권 재방문을 만든 사례',
+  8: '제주맛집 알리페이 원화 D+2 정산 입금으로 운영 부담을 줄이는 방법',
+  9: '제주맛집 알리페이 공식 스티커 부착으로 검색 신뢰도를 높이는 팁',
+  10: '제주맛집 샤오홍슈 실시간 리뷰·인증샷으로 상위노출을 끌어올리는 포토존',
+  11: '제주맛집 알리페이·위챗 로고 2~3곳 배치로 결제 신뢰와 상위노출을 동시에 확보',
+  12: '제주맛집 외관과 입구 로고 노출로 첫 인상에서 결제 가능을 전달하는 방법',
+  13: '엠월드컴퍼니 현장 컨설팅으로 제주맛집 알리페이·샤오홍슈 도입부터 상위노출까지',
+  14: '제주맛집 샤오홍슈·알리페이 등록 문의와 10년 실행 노하우',
+  15: '엠월드컴퍼니 제주맛집 알리페이·샤오홍슈 상위노출 10년 실행 브랜드',
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -71,12 +90,12 @@ export default async function XiaohongshuAlipayStrategyPage() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
-  // 15장 전량 WebP·priority(1,2) 로딩으로 성능 98점 유지
+  // 15장 전량 영문 SEO 파일명·WebP·문장형 alt·priority(1,2) 로딩으로 성능 98점 유지
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
     imageMap[String(i)] = {
-      src: `/images/blog/xiaohongshu-alipay-strategy/${i}.webp`,
-      alt: XIAOHONGSHU_ALIPAY_ALT_ZH[i] || `济州岛美食支付宝小红书 상위노출 ${i}`,
+      src: `/images/blog/xiaohongshu-alipay-strategy/${SEO_IMAGE_FILENAMES[i]}`,
+      alt: SENTENCE_ALT[i] || `엠월드컴퍼니 제주맛집 알리페이·샤오홍슈 전문가 인사이트 ${i}`,
     };
   }
   const priorityImageKeys = ['1', '2'];
