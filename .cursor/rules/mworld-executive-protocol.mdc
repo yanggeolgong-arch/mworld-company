@@ -25,3 +25,7 @@ alwaysApply: true
 - **Score Guard**: 웹 성능 98점 사수.
 - **Image**: WebP 변환, Lazy Loading 강제 적용.
 - **Structure**: Schema markup·기술적 SEO 강화, AI 읽기 성능 극대화.
+
+## 5. 배포 (Deploy)
+- **자동 배포**: 코드·이미지·설정 등 배포 가능한 변경을 완료한 뒤, 반드시 커밋 후 `origin main`으로 푸시하여 배포를 트리거한다. 사용자에게 별도 확인 없이 진행한다.
+- **범위**: 해당 작업에서 수정·추가된 파일만 스테이징하고, 의미 있는 커밋 메시지로 한 번에 커밋한 뒤 푸시한다.
