@@ -71,13 +71,16 @@ export default async function GlobalPaymentDazhongDianpingPage() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
+  // 프로토콜: 1·2번 교체 이미지 WebP 적용 (ICB 인증서·통합 결제 UI), LCP·성능 98점 유지
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
+    const ext = (i === 1 || i === 2) ? 'webp' : 'jpeg';
     imageMap[String(i)] = {
-      src: `/images/blog/global/${i}.jpeg`,
+      src: `/images/blog/global/${i}.${ext}`,
       alt: GLOBAL_ALT_TEXTS[i] || `글로벌 결제 따종디엔핑 이미지 ${i}`,
     };
   }
+  const priorityImageKeys = ['1']; // LCP: 최상단 ICB 인증서 이미지 우선 로드
 
   let processedMarkdown = markdownContent;
   for (let i = 1; i <= 15; i++) {
@@ -144,7 +147,7 @@ export default async function GlobalPaymentDazhongDianpingPage() {
 
             {/* 블랙 배경(#000) + 연한 회색(#F2F2F2) 가독성 극대화 */}
             <div className="[&_.prose]:text-[#F2F2F2] [&_.prose_p]:text-[#F2F2F2] [&_.prose_ul]:text-[#F2F2F2] [&_.prose_ol]:text-[#F2F2F2] [&_.prose_li]:text-[#F2F2F2] [&_.prose_blockquote]:text-[#F2F2F2]/90 [&_.prose_h2]:text-cyan-400 [&_.prose_h3]:text-amber-400 [&_.prose_strong]:text-[#fde047]">
-              <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} />
+              <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} priorityImageKeys={priorityImageKeys} />
             </div>
 
             <div className="mt-12 pt-8 border-t border-white/10 text-center">
@@ -176,10 +179,15 @@ export default async function GlobalPaymentDazhongDianpingPage() {
               </ul>
             </nav>
 
-            {/* 다음 포스팅 예고 */}
+            {/* 다음 포스팅 예고 - 블랙(#000)·포인트(#FFD700) 유지 */}
             <div className="mt-6 pt-6 border-t border-white/5 text-center">
               <h2 className="text-sm font-medium text-[#FFD700] mb-2">다음 포스팅 예고</h2>
-              <p className="text-[#F2F2F2]/90 font-medium">제주맛집 기술 SEO의 비밀 - WebP 변환으로 로딩 속도 2배 높이기</p>
+              <p className="text-[#F2F2F2]/90 font-medium">
+                제주맛집 매출의 완성: 인스타는 기본, 샤오홍슈로 중화권 MZ의 심장을 쏘는 법
+              </p>
+              <p className="mt-3 text-sm text-[#F2F2F2]/75 max-w-2xl mx-auto leading-relaxed">
+                인스타 마케팅은 이제 기본이다. 다만 대만·싱가포르·필리핀을 포함한 화교권 MZ는 <span className="text-[#FFD700]">샤오홍슈(小红书)</span>에서 맛집을 찾는다. 인스타만으로는 그들의 심장을 건드리기 어렵다. 10년 차 현장에서 본 결론: 샤오홍슈는 중화권 관광객 공략의 <span className="text-[#FFD700]">필수 부스터</span>다.
+              </p>
             </div>
           </div>
         </section>
