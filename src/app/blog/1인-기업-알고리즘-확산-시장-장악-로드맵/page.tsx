@@ -4,7 +4,10 @@ import { StructuredData } from '@/components/StructuredData';
 import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
-import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { formatBlogDate } from '@/lib/blog-dates';
+
+const SCHEMA_DATE_PUBLISHED = '2026-02-04';
+const SCHEMA_DATE_MODIFIED = '2026-02-06';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -18,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: '1인 기업의 알고리즘 확산 점유 로드맵',
       description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
       type: 'article',
-      publishedTime: getTodayISO(),
+      publishedTime: SCHEMA_DATE_PUBLISHED,
       url: 'https://www.aijeju.co.kr/blog/1인-기업-알고리즘-확산-시장-장악-로드맵',
     },
   };
@@ -59,8 +62,7 @@ const baseBlogPostingSchema = {
 };
 
 export default function AlgorithmDiffusionRoadmapPage() {
-  const schemaDates = getSchemaDatesSyncToToday();
-  const blogPostingSchema = { ...baseBlogPostingSchema, datePublished: schemaDates.datePublished, dateModified: schemaDates.dateModified };
+  const blogPostingSchema = { ...baseBlogPostingSchema, datePublished: SCHEMA_DATE_PUBLISHED, dateModified: SCHEMA_DATE_MODIFIED };
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
@@ -91,8 +93,8 @@ export default function AlgorithmDiffusionRoadmapPage() {
               <div className="flex items-center justify-center gap-2 text-sm text-white mb-4">
                 <span className="font-light">플레이스 알고리즘</span>
                 <span>•</span>
-                <time dateTime={getTodayISO()} className="font-light">
-                  {formatBlogDate(getTodayISO())}
+                <time dateTime={SCHEMA_DATE_PUBLISHED} className="font-light">
+                  {formatBlogDate(SCHEMA_DATE_PUBLISHED)}
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">

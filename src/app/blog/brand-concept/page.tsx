@@ -112,7 +112,7 @@ export default async function BrandConceptPage() {
     description: staticPost.description,
     url: canonicalUrl,
     datePublished: staticPost.date,
-    dateModified: staticPost.date,
+    dateModified: '2026-02-06',
     author: {
       '@type': 'Person',
       name: '엠월드컴퍼니 최고실행자',

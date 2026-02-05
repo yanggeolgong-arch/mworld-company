@@ -101,7 +101,7 @@ export default async function GlobalPaymentDazhongDianpingPage() {
     description: staticPost.description,
     url: canonicalUrl,
     datePublished: staticPost.date,
-    dateModified: staticPost.date,
+    dateModified: '2026-02-06',
     author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
     publisher: { '@type': 'Organization', name: '엠월드컴퍼니', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },

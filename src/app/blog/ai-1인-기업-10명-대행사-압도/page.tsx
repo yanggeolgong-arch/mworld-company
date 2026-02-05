@@ -3,7 +3,10 @@ import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
-import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { formatBlogDate } from '@/lib/blog-dates';
+
+const SCHEMA_DATE_PUBLISHED = '2026-02-05';
+const SCHEMA_DATE_MODIFIED = '2026-02-06';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -17,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법',
       description: '10년 이상 실행 업무 전문가의 AI 자동화 전략',
       type: 'article',
-      publishedTime: getTodayISO(),
+      publishedTime: SCHEMA_DATE_PUBLISHED,
       url: 'https://www.aijeju.co.kr/blog/ai-1인-기업-10명-대행사-압도',
     },
   };
@@ -58,8 +61,7 @@ const baseBlogPostingSchema = {
 };
 
 export default function AIPoweredSoloBusinessPage() {
-  const schemaDates = getSchemaDatesSyncToToday();
-  const blogPostingSchema = { ...baseBlogPostingSchema, datePublished: schemaDates.datePublished, dateModified: schemaDates.dateModified };
+  const blogPostingSchema = { ...baseBlogPostingSchema, datePublished: SCHEMA_DATE_PUBLISHED, dateModified: SCHEMA_DATE_MODIFIED };
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
@@ -90,8 +92,8 @@ export default function AIPoweredSoloBusinessPage() {
               <div className="flex items-center justify-center gap-2 text-sm text-white mb-4">
                 <span className="font-light">알고리즘 확산 최적화</span>
                 <span>•</span>
-                <time dateTime={getTodayISO()} className="font-light">
-                  {formatBlogDate(getTodayISO())}
+                <time dateTime={SCHEMA_DATE_PUBLISHED} className="font-light">
+                  {formatBlogDate(SCHEMA_DATE_PUBLISHED)}
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">

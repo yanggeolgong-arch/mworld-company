@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
-/** 시리즈 백링크: 1~3편 + 4편 글로벌결제·따종디엔핑. 제주맛집 성공의 비밀(삭제) 제외. */
+/** 시리즈 백링크: 1~6편. 제주맛집 성공의 비밀(삭제) 제외. */
 const SERIES = [
   { slug: 'brand-concept', label: '1편', title: '구글 상위 노출의 시작, 광고 전 컨셉 점검이 필수인 진짜 이유', href: '/blog/brand-concept' },
   { slug: 'insta-shortform', label: '2편', title: '제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유', href: '/blog/insta-shortform' },
   { slug: '1인-기업-알고리즘-확산-시장-장악-로드맵', label: '3편', title: '1인 기업의 알고리즘 확산 점유 로드맵', href: '/blog/1인-기업-알고리즘-확산-시장-장악-로드맵' },
   { slug: 'global-payment-dazhong-dianping', label: '4편', title: '글로벌 결제 & 따종디엔핑 전략 - 중국 관광객 현금을 거부하면 안 되는 진짜 이유', href: '/blog/global-payment-dazhong-dianping' },
+  { slug: 'ai-1인-기업-10명-대행사-압도', label: '5편', title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법', href: '/blog/ai-1인-기업-10명-대행사-압도' },
+  { slug: 'xiaohongshu-zhonghua-mz', label: '6편', title: '제주맛집 매출의 완성: 인스타는 기본, 샤오홍슈로 중화권 MZ의 심장을 쏘는 법', href: '/blog/xiaohongshu-zhonghua-mz' },
 ] as const;
 
 type CurrentSlug = (typeof SERIES)[number]['slug'];
