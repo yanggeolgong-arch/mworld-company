@@ -71,8 +71,8 @@ export default function Home() {
           <article className="feature-card animate-stagger animate-stagger-delay-1 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=480&fit=crop&q=75"
-                alt="마케팅 전략"
+                src="/images/ai-marketing-insights-automation.webp"
+                alt="AI 마케팅 실무 인사이트 자동화"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 priority
