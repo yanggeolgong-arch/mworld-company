@@ -101,6 +101,7 @@ export default function Home() {
                 alt="대행사 창업 AI 자동화 성장 엔진"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -122,10 +123,11 @@ export default function Home() {
           <article className="feature-card animate-stagger animate-stagger-delay-3 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=480&fit=crop&q=75"
-                alt="성공 사례"
+                src="/images/unmanned-automation-workflow-system.webp"
+                alt="무인 자동화 워크플로우 시스템"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
