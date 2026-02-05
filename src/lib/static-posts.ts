@@ -73,6 +73,15 @@ export const staticPosts: StaticPost[] = [
     categorySlug: 'xiaohongshu-zhonghua-mz',
     excerpt: '인스타는 기본, 샤오홍슈가 중화권 MZ의 심장을 쏜다. 노트 작성·해시태그·검색 최적화로 제주맛집을 중화권 트렌드에 올리는 방법을 공개합니다.',
   },
+  {
+    slug: 'xiaohongshu-alipay-strategy',
+    title: '제주맛집 샤오홍슈·알리페이 전략 - 10년 차 현장이 말하는 보조배터리와 로고 배치',
+    description: '샤오홍슈 노트와 알리페이 수용으로 중화권 손님을 끌어오는 제주맛집 실전 전략. 보조배터리·로고 배치 팁을 10년 현장 인사이트로 전달합니다.',
+    date: '2026-02-07',
+    category: '샤오홍슈 & 알리페이',
+    categorySlug: 'xiaohongshu-alipay',
+    excerpt: '小红书·支付宝 수용과 보조배터리(充电宝)·로고 배치로 체류 시간과 UGC를 늘리는 10년 차 현장 노하우.',
+  },
 ];
 
 /**
