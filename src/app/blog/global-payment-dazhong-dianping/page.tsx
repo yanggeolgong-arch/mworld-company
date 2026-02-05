@@ -9,7 +9,7 @@ import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getStaticPostBySlug } from '@/lib/static-posts';
-import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { formatBlogDate } from '@/lib/blog-dates';
 import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
@@ -94,15 +94,14 @@ export default async function GlobalPaymentDazhongDianpingPage() {
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   const breadcrumbs = generateBlogBreadcrumbs(SLUG, staticPost.title, staticPost.category);
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-  const schemaDates = getSchemaDatesSyncToToday();
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: staticPost.title,
     description: staticPost.description,
     url: canonicalUrl,
-    datePublished: schemaDates.datePublished,
-    dateModified: schemaDates.dateModified,
+    datePublished: staticPost.date,
+    dateModified: staticPost.date,
     author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
     publisher: { '@type': 'Organization', name: '엠월드컴퍼니', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
@@ -136,8 +135,8 @@ export default async function GlobalPaymentDazhongDianpingPage() {
               <div className="flex items-center justify-center gap-2 text-sm text-[#F2F2F2]/80 mb-4">
                 <span className="font-light">{staticPost.category}</span>
                 <span>•</span>
-                <time dateTime={getTodayISO()} className="font-light">
-                  {formatBlogDate(getTodayISO())}
+                <time dateTime={staticPost.date} className="font-light">
+                  {formatBlogDate(staticPost.date)}
                 </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-[#F2F2F2] sm:text-5xl text-center">

@@ -8,7 +8,7 @@ import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getStaticPostBySlug } from '@/lib/static-posts';
-import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { getTodayISO, formatBlogDate } from '@/lib/blog-dates';
 import { marked } from 'marked';
 
 // marked 설정: HTML 이스케이프 비활성화 (이미 안전한 콘텐츠)
@@ -105,15 +105,14 @@ export default async function BrandConceptPage() {
   const breadcrumbs = generateBlogBreadcrumbs('brand-concept', staticPost.title, staticPost.category);
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
-  const schemaDates = getSchemaDatesSyncToToday();
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: staticPost.title,
     description: staticPost.description,
     url: canonicalUrl,
-    datePublished: schemaDates.datePublished,
-    dateModified: schemaDates.dateModified,
+    datePublished: staticPost.date,
+    dateModified: staticPost.date,
     author: {
       '@type': 'Person',
       name: '엠월드컴퍼니 최고실행자',
@@ -164,9 +163,9 @@ export default async function BrandConceptPage() {
               <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
                 <span className="font-light">{staticPost.category}</span>
                 <span>•</span>
-                <time dateTime={getTodayISO()} className="font-light">
-                  {formatBlogDate(getTodayISO())}
-                </time>
+<time dateTime={staticPost.date} className="font-light">
+                {formatBlogDate(staticPost.date)}
+              </time>
               </div>
               <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
                 {staticPost.title}
