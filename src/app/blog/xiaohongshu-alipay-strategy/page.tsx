@@ -101,7 +101,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
     description: staticPost.description,
     url: canonicalUrl,
     datePublished: staticPost.date,
-    dateModified: '2026-02-07',
+    dateModified: '2026-02-06',
     author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
     publisher: {
       '@type': 'Organization',
@@ -152,6 +152,32 @@ export default async function XiaohongshuAlipayStrategyPage() {
               </h1>
             </header>
 
+            {/* 시리즈 정주행 가이드: 지식의 사슬(Backlinks) 연결 */}
+            <nav
+              className="mb-10 p-5 rounded-xl border border-cyan-500/30 bg-cyan-950/20 text-[#F2F2F2]"
+              aria-label="시리즈 정주행 가이드"
+            >
+              <h2 className="text-base font-semibold text-cyan-400 mb-3">시리즈 정주행 가이드</h2>
+              <ol className="space-y-2 list-decimal list-inside text-sm">
+                <li>
+                  <Link
+                    href="/blog/brand-concept"
+                    className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
+                  >
+                    구글 상위 노출의 시작, 광고 전 &apos;컨셉 점검&apos;이 필수인 진짜 이유
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/blog/global-payment-dazhong-dianping"
+                    className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
+                  >
+                    제주맛집 성공의 비밀, 알리페이와 따종디엔핑 도입 전략
+                  </Link>
+                </li>
+              </ol>
+            </nav>
+
             <div className="[&_.prose]:text-[#F2F2F2] [&_.prose_p]:text-[#F2F2F2] [&_.prose_ul]:text-[#F2F2F2] [&_.prose_ol]:text-[#F2F2F2] [&_.prose_li]:text-[#F2F2F2] [&_.prose_blockquote]:text-[#F2F2F2]/90 [&_.prose_h2]:text-cyan-400 [&_.prose_h3]:text-amber-400 [&_.prose_strong]:text-[#fde047]">
               <BlogContentWithImages
                 htmlContent={htmlContent}
@@ -160,23 +186,46 @@ export default async function XiaohongshuAlipayStrategyPage() {
               />
             </div>
 
-            {/* Expert Insight 박스: 보조배터리·로고 배치 팁 강조 (별도 구성) */}
+            {/* Coming Next: 결론부 직후 내일의 예고편(Teaser) 카드 UI */}
+            <section className="mt-10" aria-label="Coming Next">
+              <h2 className="text-lg font-semibold text-[#FFD700] mb-4">Coming Next</h2>
+              <div className="rounded-xl border border-white/15 bg-slate-900/50 p-5 overflow-hidden">
+                <h3 className="text-base font-semibold text-[#F2F2F2] mb-3">
+                  [제주맛집 성공의 마침표] 구글 지도와 샤오홍슈의 시너지 전략
+                </h3>
+                <ul className="space-y-2 text-sm text-[#F2F2F2]/85">
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    <span>구글 지도 리뷰와 샤오홍슈 打卡를 묶는 자동화 로직</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    <span>지오펜싱 기초: 위치 기반 노출·리뷰 연동 전략</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* 실무 통찰 박스: 10년 차 현장 데이터가 증명하는 매출 치트키 (Expert Insight) */}
             <aside
-              className="mt-10 p-6 rounded-xl border-2 border-[#FFD700]/40 bg-[#0a0a0a] text-[#F2F2F2]"
-              aria-label="Expert Insight"
+              className="mt-10 p-6 rounded-xl border-2 border-[#FFD700]/50 bg-gradient-to-br from-amber-950/30 to-black text-[#F2F2F2] shadow-lg shadow-amber-900/10"
+              aria-label="10년 차 현장 데이터가 증명하는 매출 치트키"
             >
-              <h2 className="text-lg font-semibold text-[#FFD700] mb-4">Expert Insight</h2>
+              <h2 className="text-xl font-bold text-[#FFD700] mb-3">
+                10년 차 현장 데이터가 증명하는 매출 치트키
+              </h2>
               <p className="text-sm text-[#F2F2F2]/90 mb-4">
-                엠월드컴퍼니 최고실행자 10년 차 현장 인사이트를 시스템에 강제 주입한 핵심 두 가지입니다.
+                보조배터리 대여(充电宝)와 알리페이 로고 노출만으로도 체류 시간·결제 신뢰·UGC가 동시에 올라갑니다.
               </p>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <strong className="text-amber-400">보조배터리(充电宝)</strong>: 중화권 손님은 결제·촬영·소셜 공유로
-                  배터리 소모가 크다. 대여·충전 서비스를 제공하면 체류 시간과 UGC(小红书 노트·리뷰)가 동시에 늘어난다.
+                  <strong className="text-amber-400">보조배터리 대여(充电宝)</strong>: 중화권 손님은 결제·촬영·소셜
+                  공유로 배터리 소모가 크다. 대여·충전 서비스를 제공하면 체류 시간과 UGC(小红书 노트·리뷰)가 동시에
+                  늘어난다.
                 </li>
                 <li>
-                  <strong className="text-amber-400">로고 배치</strong>: 支付宝·微信 로고를 입구·결제대·테이블 tent
-                  카드 등 2~3곳에 반복 노출하면, &quot;정식 가맹·결제 가능&quot; 신뢰와 검색 일치도가 올라간다.
+                  <strong className="text-amber-400">알리페이 로고 노출</strong>: 支付宝·微信 로고를 입구·결제대·테이블
+                  tent 카드 등 2~3곳에 반복 노출하면, &quot;정식 가맹·결제 가능&quot; 신뢰와 검색 일치도가 올라간다.
                 </li>
               </ul>
             </aside>
@@ -189,9 +238,9 @@ export default async function XiaohongshuAlipayStrategyPage() {
               <p className="mt-2 text-sm text-[#F2F2F2]/70">엠월드컴퍼니는 결과로만 말합니다.</p>
             </div>
 
-            {/* AI-Human 하이브리드 표기: 신뢰도 강화 */}
+            {/* 1인칭 실무 톤 & 하이브리드 선언 */}
             <p className="mt-6 pt-4 border-t border-white/5 text-center text-xs text-[#F2F2F2]/60">
-              엠월드컴퍼니 10년 현장 데이터 기반 AI 최적화 원고
+              본 콘텐츠는 10년 현장 실무 데이터를 기반으로 1인 AI 기업 시스템이 최적화한 전문 원고입니다.
             </p>
 
             <nav className="mt-8 pt-6 border-t border-white/10 text-center" aria-label="시리즈 다시 보기">

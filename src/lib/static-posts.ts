@@ -77,7 +77,7 @@ export const staticPosts: StaticPost[] = [
     slug: 'xiaohongshu-alipay-strategy',
     title: '제주맛집 샤오홍슈·알리페이 전략 - 10년 차 현장이 말하는 보조배터리와 로고 배치',
     description: '샤오홍슈 노트와 알리페이 수용으로 중화권 손님을 끌어오는 제주맛집 실전 전략. 보조배터리·로고 배치 팁을 10년 현장 인사이트로 전달합니다.',
-    date: '2026-02-07',
+    date: '2026-02-06',
     category: '샤오홍슈 & 알리페이',
     categorySlug: 'xiaohongshu-alipay',
     excerpt: '小红书·支付宝 수용과 보조배터리(充电宝)·로고 배치로 체류 시간과 UGC를 늘리는 10년 차 현장 노하우.',
