@@ -9,7 +9,7 @@ import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getStaticPostBySlug } from '@/lib/static-posts';
-import { getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { formatBlogDate } from '@/lib/blog-dates';
 import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
@@ -36,22 +36,39 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const INSTA_ALT_TEXTS: Record<number, string> = {
-  1: '제주맛집 인스타그램 숏폼이 조회수 0인 이유',
-  2: '조회수 0인 인스타 숏폼의 특징',
-  3: '인스타그램 숏폼 알고리즘 핵심',
-  4: '제주맛집 인스타 마케팅 실수',
-  5: '릴스 20개 촬영 제작 배포 성공 사례',
-  6: '숏폼 훅 설계',
-  7: '숏폼 자막과 리듬',
-  8: '채널 확장과 지속 업로드',
-  9: '제주맛집 스토리텔링',
-  10: '20편 단위 제작의 이점',
-  11: '제주맛집 숏폼 체크리스트',
-  12: '엠월드컴퍼니 10년 이상 실행 업무 전문가',
-  13: '제주맛집 인스타 마케팅 정리',
-  14: '성공 사례 1번 릴스 20개 연동',
-  15: '시리즈 예고 따종디엔핑 정복',
+const INSTA_SEO_FILES: Record<number, string> = {
+  1: 'jeju-instagram-shortform-zero-views-reason.webp',
+  2: 'jeju-instagram-shortform-zero-views-feature.webp',
+  3: 'jeju-instagram-shortform-algorithm.webp',
+  4: 'jeju-instagram-marketing-mistake.webp',
+  5: 'jeju-reels-20-production-success-case.webp',
+  6: 'jeju-shortform-hook-design.webp',
+  7: 'jeju-shortform-subtitle-rhythm.webp',
+  8: 'jeju-channel-expansion-upload.webp',
+  9: 'jeju-restaurant-storytelling.webp',
+  10: 'jeju-20-episode-production-benefit.webp',
+  11: 'jeju-shortform-checklist.webp',
+  12: 'jeju-mworld-10year-execution-expert.webp',
+  13: 'jeju-instagram-marketing-summary.webp',
+  14: 'jeju-reels-20-success-case.webp',
+  15: 'jeju-series-next-dazhong-dianping.webp',
+};
+const INSTA_ALT_SENTENCE: Record<number, string> = {
+  1: '엠월드컴퍼니 전문가가 말하는 제주맛집 인스타그램 숏폼이 조회수 0인 이유',
+  2: '조회수 0인 인스타 숏폼의 특징과 제주맛집 해결 전략',
+  3: '인스타그램 숏폼 알고리즘 핵심과 제주맛집 릴스 전략',
+  4: '제주맛집 인스타 마케팅에서 피해야 할 실수',
+  5: '제주맛집 릴스 20개 촬영·제작·배포 성공 사례',
+  6: '숏폼 훅 설계로 제주맛집 조회수를 높이는 방법',
+  7: '숏폼 자막과 리듬이 제주맛집 인스타 노출에 미치는 영향',
+  8: '채널 확장과 지속 업로드로 제주맛집 숏폼 지속 노출',
+  9: '제주맛집 스토리텔링으로 인스타 알고리즘 활용하기',
+  10: '20편 단위 제작의 이점과 제주맛집 숏폼 전략',
+  11: '엠월드컴퍼니가 제안하는 제주맛집 숏폼 체크리스트',
+  12: '엠월드컴퍼니 10년 이상 실행 업무 전문가와 제주맛집 인스타',
+  13: '제주맛집 인스타 마케팅 정리와 다음 단계',
+  14: '성공 사례 1번 릴스 20개 연동으로 제주맛집 매출 증대',
+  15: '시리즈 예고 따종디엔핑 정복과 제주맛집 마케팅',
 };
 
 export default async function InstaShortformPage() {
@@ -72,10 +89,11 @@ export default async function InstaShortformPage() {
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
     imageMap[String(i)] = {
-      src: `/images/blog/insta/${i}.jpeg`,
-      alt: INSTA_ALT_TEXTS[i] || `제주맛집 인스타 숏폼 이미지 ${i}`,
+      src: `/images/blog/insta/${INSTA_SEO_FILES[i]}`,
+      alt: INSTA_ALT_SENTENCE[i] || `제주맛집 인스타그램 숏폼 전문가 인사이트 ${i}`,
     };
   }
+  const priorityImageKeys = ['1'];
 
   let processedMarkdown = markdownContent;
   for (let i = 1; i <= 15; i++) {
@@ -141,7 +159,7 @@ export default async function InstaShortformPage() {
 
             {/* 본문: 다크모드 가독성 - 본문 slate-200, 제목 h2/h3 포인트 컬러 */}
             <div className="[&_.prose]:text-slate-200 [&_.prose_p]:text-slate-200 [&_.prose_ul]:text-slate-200 [&_.prose_ol]:text-slate-200 [&_.prose_li]:text-slate-200 [&_.prose_blockquote]:text-slate-300 [&_.prose_h2]:text-orange-400 [&_.prose_h3]:text-cyan-400 [&_.prose_strong]:text-[#fde047]">
-              <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} />
+              <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} priorityImageKeys={priorityImageKeys} />
             </div>
 
             {/* 성공 사례 1번 연동 CTA */}

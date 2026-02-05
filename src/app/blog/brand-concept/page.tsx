@@ -8,7 +8,7 @@ import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getStaticPostBySlug } from '@/lib/static-posts';
-import { getTodayISO, formatBlogDate } from '@/lib/blog-dates';
+import { formatBlogDate } from '@/lib/blog-dates';
 import { marked } from 'marked';
 
 // marked 설정: HTML 이스케이프 비활성화 (이미 안전한 콘텐츠)
@@ -63,32 +63,49 @@ export default async function BrandConceptPage() {
   // JSON-LD 스키마 제거하고 마크다운만 추출
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
   
-  // 이미지 정보 정의 (1.jpeg ~ 15.jpeg) - 경로: /images/blog/concept/[번호].jpeg
-  const imageMap: Record<string, { src: string; alt: string }> = {};
-  const altTexts: Record<number, string> = {
-    1: '광고 전 컨셉 점검의 중요성',
-    2: '구글이 선호하는 명확한 메시지',
-    3: '시맨틱 DNA와 브랜드 인식',
-    4: '컨셉에 따른 광고 효율 차이',
-    5: '광고 전 필수 컨셉 점검 체크리스트',
-    6: '브랜드 정체성 정의',
-    7: '핵심 메시지 명확화',
-    8: '타겟 고객 정의',
-    9: '경쟁 차별점',
-    10: '검색 엔진이 이해하는 브랜드',
-    11: '컨셉 없이 광고할 때의 결과',
-    12: '엠월드컴퍼니 컨셉 점검 프로세스',
-    13: '브랜드 컨셉 진단',
-    14: '채널별 메시지 일관성',
-    15: '구글 상위 노출과 컨셉 점검',
+  // 이미지 SEO 소급: 영문 키워드 파일명·WebP·문장형 alt (성능 98점)
+  const CONCEPT_SEO_FILES: Record<number, string> = {
+    1: 'jeju-google-ranking-concept-check-expert.webp',
+    2: 'google-clear-message-brand-concept.webp',
+    3: 'semantic-dna-brand-recognition.webp',
+    4: 'concept-ad-efficiency-difference.webp',
+    5: 'concept-check-checklist-before-ad.webp',
+    6: 'brand-identity-definition.webp',
+    7: 'core-message-clarification.webp',
+    8: 'target-customer-definition.webp',
+    9: 'competitive-differentiation.webp',
+    10: 'search-engine-brand-understanding.webp',
+    11: 'advertising-without-concept-result.webp',
+    12: 'mworld-concept-check-process.webp',
+    13: 'brand-concept-diagnosis.webp',
+    14: 'channel-message-consistency.webp',
+    15: 'google-ranking-concept-check.webp',
   };
-  
+  const CONCEPT_ALT: Record<number, string> = {
+    1: '엠월드컴퍼니 전문가가 말하는 광고 전 컨셉 점검의 중요성과 구글 상위 노출',
+    2: '구글이 선호하는 명확한 메시지와 브랜드 컨셉',
+    3: '시맨틱 DNA와 브랜드 인식으로 검색 노출을 높이는 방법',
+    4: '컨셉에 따른 광고 효율 차이를 보여주는 실무 데이터',
+    5: '광고 전 필수 컨셉 점검 체크리스트',
+    6: '브랜드 정체성 정의가 구글 상위 노출의 시작',
+    7: '핵심 메시지 명확화로 광고 전환을 높이는 법',
+    8: '타겟 고객 정의와 컨셉 점검',
+    9: '경쟁 차별점을 담은 컨셉 개발',
+    10: '검색 엔진이 이해하는 브랜드 메시지 설계',
+    11: '컨셉 없이 광고할 때의 결과와 리스크',
+    12: '엠월드컴퍼니 컨셉 점검 프로세스',
+    13: '브랜드 컨셉 진단으로 광고 전 기초 다지기',
+    14: '채널별 메시지 일관성과 구글 상위 노출',
+    15: '구글 상위 노출과 컨셉 점검의 연관성',
+  };
+  const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
     imageMap[String(i)] = {
-      src: `/images/blog/concept/${i}.jpeg`,
-      alt: altTexts[i] || `브랜드 컨셉 이미지 ${i}`,
+      src: `/images/blog/concept/${CONCEPT_SEO_FILES[i]}`,
+      alt: CONCEPT_ALT[i] || `브랜드 컨셉·구글 상위 노출 전문가 인사이트 ${i}`,
     };
   }
+  const priorityImageKeys = ['1'];
 
   // 이미지 마커를 특별한 placeholder로 변환
   let processedMarkdown = markdownContent;
@@ -173,7 +190,7 @@ export default async function BrandConceptPage() {
             </header>
 
             {/* 콘텐츠를 섹션별로 분리하여 이미지 삽입 */}
-            <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} />
+            <BlogContentWithImages htmlContent={htmlContent} imageMap={imageMap} priorityImageKeys={priorityImageKeys} />
 
             {/* 고정 문구 */}
             <div className="mt-12 pt-8 border-t border-white/10 text-center">

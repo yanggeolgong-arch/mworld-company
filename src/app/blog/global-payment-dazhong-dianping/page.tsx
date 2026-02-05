@@ -16,20 +16,37 @@ marked.setOptions({ breaks: true, gfm: true });
 
 const SLUG = 'global-payment-dazhong-dianping';
 
-const GLOBAL_ALT_TEXTS: Record<number, string> = {
-  1: 'ICB 공식 대행사 인증서',
-  2: 'QRick 통합 결제 UI 알리 위챗 카카오 통합',
-  3: '20대 선남선녀 손님들이 가득한 활기찬 매장 진입',
-  4: '따종디엔핑 앱으로 맛집 순위와 리뷰를 확인하는 손님들',
-  5: '스마트폰 QR 스캔 결제 장면 클로즈업',
-  6: '결제 성공 후 미소 짓는 글로벌 커플',
-  7: '빈자리 없이 만석인 제주 맛집 내부 전경',
-  8: '원화 KRW D+2 정산 입금 문자 내역 화면',
-  9: '세련된 인테리어에 부착된 공식 알리페이 스티커',
-  10: '음식을 촬영해 실시간으로 따종디엔핑 리뷰를 쓰는 장면',
-  11: '제주 현지 실무 데이터 주차 정보 및 매장 외부 전경',
-  12: '매장 밖에서 대기 중인 트렌디한 글로벌 관광객들',
-  13: '엠월드컴퍼니 전문가의 상담 및 컨설팅 현장 컷',
+const GLOBAL_SEO_FILES: Record<number, string> = {
+  1: 'jeju-icb-official-agent-certificate.webp',
+  2: 'jeju-qrick-alipay-wechat-kakao-payment.webp',
+  3: 'jeju-restaurant-young-global-guests.webp',
+  4: 'jeju-dazhong-dianping-app-review-rank.webp',
+  5: 'jeju-smartphone-qr-scan-payment.webp',
+  6: 'jeju-payment-success-global-couple.webp',
+  7: 'jeju-restaurant-full-house-interior.webp',
+  8: 'jeju-krw-d2-settlement-sms.webp',
+  9: 'jeju-alipay-official-sticker-interior.webp',
+  10: 'jeju-dazhong-dianping-realtime-review-photo.webp',
+  11: 'jeju-local-parking-storefront.webp',
+  12: 'jeju-restaurant-waiting-global-guests.webp',
+  13: 'jeju-mworld-consulting-on-site.webp',
+  14: 'jeju-dazhong-dianping-inquiry-sg7979.webp',
+  15: 'jeju-mworld-brand-execution-no1.webp',
+};
+const GLOBAL_ALT_SENTENCE: Record<number, string> = {
+  1: '엠월드컴퍼니 ICB 공식 대행사 인증서로 제주맛집 글로벌 결제 신뢰를 높이는 방법',
+  2: '제주맛집 QRick 통합 결제 UI로 알리페이·위챗·카카오 한 번에 받는 현장',
+  3: '제주맛집에 가득한 20대 글로벌 손님과 알리페이·따종디엔핑 연계',
+  4: '따종디엔핑 앱으로 맛집 순위와 리뷰를 확인하는 제주 관광객',
+  5: '제주맛집 스마트폰 QR 스캔 결제로 원화 D+2 정산받는 방법',
+  6: '결제 성공 후 미소 짓는 글로벌 커플과 제주맛집 재방문',
+  7: '빈자리 없이 만석인 제주맛집 내부와 알리페이·따종디엔핑 효과',
+  8: '제주맛집 알리페이 원화 KRW D+2 정산 입금 문자 확인',
+  9: '제주맛집 인테리어에 부착된 공식 알리페이 스티커로 신뢰도 상승',
+  10: '제주맛집 음식 촬영 후 실시간 따종디엔핑 리뷰로 상위 노출',
+  11: '제주 현지 실무 데이터 주차 정보와 매장 외부 전경',
+  12: '제주맛집 밖에서 대기 중인 트렌디한 글로벌 관광객',
+  13: '엠월드컴퍼니 전문가의 제주맛집 알리페이·따종디엔핑 상담 현장',
   14: '따종디엔핑 등록문의 한글 그래픽 ID SG7979',
   15: '엠월드컴퍼니 브랜드 로고와 제주 No.1 실행 문구',
 };
@@ -71,16 +88,15 @@ export default async function GlobalPaymentDazhongDianpingPage() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
-  // 프로토콜: 1·2번 교체 이미지 WebP 적용 (ICB 인증서·통합 결제 UI), LCP·성능 98점 유지
+  // 이미지 SEO 소급: 영문 키워드·전량 WebP·문장형 alt·LCP priority (성능 98점)
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
-    const ext = (i === 1 || i === 2) ? 'webp' : 'jpeg';
     imageMap[String(i)] = {
-      src: `/images/blog/global/${i}.${ext}`,
-      alt: GLOBAL_ALT_TEXTS[i] || `글로벌 결제 따종디엔핑 이미지 ${i}`,
+      src: `/images/blog/global/${GLOBAL_SEO_FILES[i]}`,
+      alt: GLOBAL_ALT_SENTENCE[i] || `제주맛집 글로벌 결제·따종디엔핑 전문가 인사이트 ${i}`,
     };
   }
-  const priorityImageKeys = ['1']; // LCP: 최상단 ICB 인증서 이미지 우선 로드
+  const priorityImageKeys = ['1'];
 
   let processedMarkdown = markdownContent;
   for (let i = 1; i <= 15; i++) {
