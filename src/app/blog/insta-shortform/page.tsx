@@ -152,7 +152,7 @@ export default async function InstaShortformPage() {
               </p>
               <Link
                 href="/success-cases"
-                className="inline-flex items-center justify-center rounded-xl bg-[#d4af37] px-6 py-3 text-base font-semibold !text-black shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl"
+                className="inline-flex items-center justify-center rounded-xl bg-[#d4af37] px-6 py-3 text-base font-bold !text-black shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl"
               >
                 성공 사례 보기 (릴스 20개 촬영·제작·배포)
               </Link>

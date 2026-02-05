@@ -76,7 +76,7 @@ export function MasterClassSample() {
             <div className="flex flex-col gap-3 sm:flex-row justify-center">
               <a
                 href="tel:010-4074-9343"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4af37] px-6 py-3 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d4af37] px-6 py-3 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-lg"
               >
                 <span>📞</span>
                 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가와 상담하기

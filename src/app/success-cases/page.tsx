@@ -108,7 +108,7 @@ export default function SuccessCasesPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                 {(caseItem.category === 'F&B' || caseItem.category === 'Shortform' || caseItem.category === 'MasterClass') && (
                   <div className="absolute top-3 right-3">
-                    <span className="rounded-full bg-[#d4af37] px-2 py-1 text-xs font-semibold !text-black">
+                    <span className="rounded-full bg-[#d4af37] px-2 py-1 text-xs font-bold !text-black">
                       {caseItem.category === 'Shortform' ? '숏폼' : caseItem.category === 'MasterClass' ? '마스터클래스' : '맛집'}
                     </span>
                   </div>

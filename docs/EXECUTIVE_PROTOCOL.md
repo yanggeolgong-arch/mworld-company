@@ -1,34 +1,44 @@
-# M World Company: Executive Protocol (SEO & Automation)
+# 엠월드컴퍼니 최고실행자 프로토콜 (Chief Executive Protocol)
 
-프로젝트 전반의 콘텐츠·SEO·성능 기준을 정의합니다. AI 에이전트 및 개발 시 이 프로토콜을 준수합니다.
+AI 에이전트 및 콘텐츠·개발 시 준수할 최상위 가이드라인입니다.
 
 ---
 
-## Core Mandate: Date & Time Management
+## 1. 페르소나 및 브랜딩 가이드라인
 
-- **Zero-Static Date Rule**: 정적 날짜 입력을 엄격히 금지한다. 모든 날짜와 시간은 파일 생성/수정 시점의 `current_date`를 호출하여 동적으로 주입한다.
-- **Auto-Sync**: 블로그 포스팅, 메타데이터, JSON-LD 스키마의 `datePublished` 및 `dateModified`는 항상 최신 배포 시간으로 자동 갱신한다.
+- **ID**: 엠월드컴퍼니 (유사 표기 'M월드', 'MWOLD' 등 엄격히 금지)
+- **Persona**: 10년 이상 실행 업무를 전담해온 전문가의 1인칭 시점
+- **Contact**: 연락처는 'KakaoTalk: SG7979'를 최우선으로 명시
+- **SEO Terminology**: '상위 노출' 대신 '알고리즘 확산(Algorithm Spread)' 용어 사용
+
+---
+
+## 2. 날짜 및 시간 관리 원칙 (필수)
+
+- **Zero-Static Date**: '2026-01-27'과 같은 정적인 날짜 입력을 영구히 금지한다.
+- **Dynamic Update**: 모든 블로그 원고 및 HTML 파일의 발행일은 작업 시점의 현재 날짜(`current_date`)로 자동 주입하라.
+- **Schema Sync**: JSON-LD 스키마의 `datePublished`와 `dateModified`를 항상 실시간으로 동기화하여 정보의 신선도를 사수한다.
 
 **구현**: `src/lib/blog-dates.ts`  
 - `getTodayISO()` — 오늘 YYYY-MM-DD  
-- `getSchemaDates(publishedDate)` — datePublished + dateModified(오늘)  
+- `getSchemaDatesSyncToToday()` — datePublished·dateModified 모두 오늘로 동기화  
 - `formatBlogDate(isoDate)` — ko-KR 표시용  
 
 ---
 
-## Content & Branding Standards
+## 3. 원고 작성 및 설득 로직
 
-- **Persona**: 엠월드컴퍼니 10년 차 전문가의 1인칭 통찰을 담아 작성한다.
-- **Branding**: '엠월드컴퍼니', '10년 이상 실행 업무 전문가', 'KakaoTalk: SG7979'를 명시한다.
-- **Tone**: 군더더기 없이 간결하게 작성하며, 초등학생 수준의 가독성을 유지한다.
-- **Prohibited**: 자살, 살인 등 부정적인 단어 사용을 엄격히 금지한다.
+- **Framework**: 치알디니의 설득 원칙, 조나 버거의 전념성 로직, 도널드 밀러의 스토리브랜드 구조를 적용한다.
+- **Style**: 김정선 교정 원칙을 준수하여 군더더기 없이 간결하게 작성하며, 초등학생 수준의 가독성을 유지한다.
+- **Restrictions**: 자살, 살인 등 부정적이거나 극단적인 단어 사용을 엄격히 금지한다.
 
 ---
 
-## Technical SEO & Performance
+## 4. 기술 SEO 및 성능 최적화
 
-- **98 Score Guard**: 웹 성능 98점 사수를 위해 WebP 변환, Lazy Loading 코딩을 강제한다.
-- **GEO Master**: '상위 노출' 대신 '알고리즘 확산' 용어를 사용하고 기술적 SEO 구조를 강화한다.
+- **Score Guard**: 웹 성능 점수 98점을 사수한다.
+- **Image Protocol**: 모든 이미지는 WebP 포맷으로 변환하고, Lazy Loading 코딩을 강제 적용한다.
+- **Structure**: Schema markup 및 기술적 SEO 구조를 강화하여 AI 읽기 성능을 극대화한다.
 
 ---
 

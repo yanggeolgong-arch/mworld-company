@@ -3,6 +3,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { StructuredData } from '@/components/StructuredData';
 import { BlogContentWithImages } from '@/components/BlogContentWithImages';
+import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
@@ -184,6 +185,8 @@ export default async function BrandConceptPage() {
                 엠월드컴퍼니는 결과로만 말합니다.
               </p>
             </div>
+
+            <BlogSeriesBacklinks currentSlug="brand-concept" />
           </div>
         </section>
       </article>

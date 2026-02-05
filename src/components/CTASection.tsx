@@ -8,7 +8,7 @@ export function CTASection() {
           </h3>
           <a
             href="tel:010-4074-9343"
-            className="inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-lg"
           >
             <span>📞</span>
             010-4074-9343

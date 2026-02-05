@@ -29,7 +29,7 @@ export default function Home() {
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/strategy"
-              className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-xl"
+              className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-xl"
             >
               전략 알아보기
             </Link>
@@ -94,7 +94,7 @@ export default function Home() {
               href="/strategy"
               className="mt-auto text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]"
             >
-              자세히 보기 →
+              마케팅 전략 자세히 보기 →
             </Link>
           </article>
 
@@ -144,7 +144,7 @@ export default function Home() {
               href="/success-cases"
               className="mt-auto text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]"
             >
-              자세히 보기 →
+              성공 사례 자세히 보기 →
             </Link>
           </article>
         </div>
@@ -162,7 +162,7 @@ export default function Home() {
           <div className="mt-10">
             <Link
               href="/partnership"
-              className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-medium text-slate-900 transition-all hover:bg-emerald-400 hover:shadow-xl"
+              className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-xl"
             >
               협업 문의 (카카오톡: SG7979)
             </Link>

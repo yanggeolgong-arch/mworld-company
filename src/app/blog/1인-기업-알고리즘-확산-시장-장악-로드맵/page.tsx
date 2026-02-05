@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
+import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
@@ -643,6 +644,8 @@ export default function AlgorithmDiffusionRoadmapPage() {
                 </p>
               </div>
             </div>
+
+            <BlogSeriesBacklinks currentSlug="1인-기업-알고리즘-확산-시장-장악-로드맵" />
           </div>
         </section>
       </article>
