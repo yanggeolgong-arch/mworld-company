@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+/* 엠월드컴퍼니 최고실행자 프로토콜: 전역 색상 강제·가독성·호환성 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #F2F2F2;
   --navy-deep: #001f3f;
   --navy-deep-light: #0a2d5a;
   --charcoal-gray: #36454f;
@@ -26,17 +27,6 @@
   --color-charcoal-gray-light: var(--charcoal-gray-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-    --navy-deep: #0a2d5a;
-    --navy-deep-light: #1a3d6a;
-    --silver-premium: #a0a0a0;
-    --silver-premium-light: #c8c8c8;
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -47,14 +37,31 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 프로토콜: 순검정 배경·연회색 텍스트 강제, color-scheme로 다크/라이트 무관 유지, 가독성 사수 */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #000000 !important;
+  color: #F2F2F2 !important;
+  color-scheme: dark;
   font-family: var(--font-pretendard), -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   letter-spacing: -0.01em;
+}
+
+/* 모든 텍스트 요소 연회색(#F2F2F2) 강제 - 브라우저/모바일/테마 무관 */
+body p,
+body span,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body li,
+body a,
+body div {
+  color: #F2F2F2 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -105,16 +112,16 @@ h1, h2, h3, h4, h5, h6 {
   animation-delay: 0.6s; 
 }
 
-/* Prose styles for blog content */
+/* Prose: 프로토콜 연회색(#F2F2F2) 통일 */
 .prose {
-  color: rgb(55 65 81);
+  color: #F2F2F2 !important;
 }
 
 .prose h1,
 .prose h2,
 .prose h3,
 .prose h4 {
-  color: rgb(17 24 39);
+  color: #F2F2F2 !important;
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 1em;
@@ -124,11 +131,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
   line-height: 1.75;
+  color: #F2F2F2 !important;
 }
 
 .prose a {
-  color: rgb(17 24 39);
+  color: #F2F2F2 !important;
   text-decoration: underline;
+}
+
+.prose a:hover {
+  color: #fde047 !important;
 }
 
 .prose img {
@@ -147,42 +159,44 @@ h1, h2, h3, h4, h5, h6 {
 .prose li {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  color: #F2F2F2 !important;
 }
 
 .prose blockquote {
-  border-left: 4px solid rgb(229 231 235);
+  border-left: 4px solid rgba(242, 242, 242, 0.4);
   padding-left: 1em;
   font-style: italic;
-  color: rgb(107 114 128);
+  color: #F2F2F2 !important;
 }
 
-/* 다크 모드: Pure White 텍스트 (Contrast Ratio 21:1) */
-.dark .prose {
-  color: #ffffff;
-}
-
-.dark .prose h1,
-.dark .prose h2,
-.dark .prose h3,
-.dark .prose h4 {
-  color: #ffffff;
-}
-
-.dark .prose a {
-  color: #22d3ee;
-}
-
-.dark .prose a:hover {
-  color: #fde047;
-}
-
-/* 강조 텍스트: Soft Yellow (Contrast Ratio 8.5:1) */
-.dark .prose strong {
-  color: #fde047;
+.prose strong {
+  color: #fde047 !important;
   font-weight: 600;
 }
 
+.dark .prose,
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose p,
+.dark .prose li,
 .dark .prose blockquote {
-  border-left-color: #22d3ee;
-  color: #f3f4f6;
+  color: #F2F2F2 !important;
+}
+
+.dark .prose a {
+  color: #F2F2F2 !important;
+}
+
+.dark .prose a:hover {
+  color: #fde047 !important;
+}
+
+.dark .prose strong {
+  color: #fde047 !important;
+}
+
+.dark .prose blockquote {
+  border-left-color: rgba(242, 242, 242, 0.5);
 }
