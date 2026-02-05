@@ -4,6 +4,7 @@ import { join } from 'path';
 import Link from 'next/link';
 import { StructuredData } from '@/components/StructuredData';
 import { BlogContentWithImages } from '@/components/BlogContentWithImages';
+import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
@@ -151,7 +152,7 @@ export default async function InstaShortformPage() {
               </p>
               <Link
                 href="/success-cases"
-                className="inline-flex items-center justify-center rounded-xl bg-[#d4af37] px-6 py-3 text-base font-semibold text-white shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl"
+                className="inline-flex items-center justify-center rounded-xl bg-[#d4af37] px-6 py-3 text-base font-semibold !text-black shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl"
               >
                 성공 사례 보기 (릴스 20개 촬영·제작·배포)
               </Link>
@@ -165,16 +166,7 @@ export default async function InstaShortformPage() {
               <p className="mt-2 text-sm text-slate-400">엠월드컴퍼니는 결과로만 말합니다.</p>
             </div>
 
-            {/* 시리즈 #3 예고 */}
-            <div className="mt-8 pt-6 border-t border-white/10 text-center">
-              <p className="text-sm text-slate-400 mb-2">다음 시리즈</p>
-              <Link
-                href="/blog/category/dazhong-dianping"
-                className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors underline underline-offset-2"
-              >
-                [시리즈 #3] 따종디엔핑 정복
-              </Link>
-            </div>
+            <BlogSeriesBacklinks currentSlug="insta-shortform" />
           </div>
         </section>
       </article>

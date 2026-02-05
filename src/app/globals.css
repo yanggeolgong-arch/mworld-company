@@ -56,8 +56,15 @@ body p,
 body span,
 body h1,
 body h2,
-body h3,
-body h4,
+body h3 {
+  color: #F2F2F2 !important;
+}
+
+/* h4: 블랙 배경에서 선명하게 보이도록 황금색(#FFD700) 고정 */
+body h4 {
+  color: #FFD700 !important;
+}
+
 body h5,
 body h6,
 body li,
@@ -121,9 +128,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .prose h1,
 .prose h2,
-.prose h3,
-.prose h4 {
+.prose h3 {
   color: #F2F2F2 !important;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose h4 {
+  color: #FFD700 !important;
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 1em;
@@ -180,11 +193,14 @@ h1, h2, h3, h4, h5, h6 {
 .dark .prose h1,
 .dark .prose h2,
 .dark .prose h3,
-.dark .prose h4,
 .dark .prose p,
 .dark .prose li,
 .dark .prose blockquote {
   color: #F2F2F2 !important;
+}
+
+.dark .prose h4 {
+  color: #FFD700 !important;
 }
 
 .dark .prose a {
@@ -201,4 +217,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark .prose blockquote {
   border-left-color: rgba(242, 242, 242, 0.5);
+}
+
+/* 접근성 대비율 4.5:1 이상 보장 - 프로토콜 강제 */
+/* 금색 배경(#d4af37) 버튼/배지: 어두운 텍스트 필수 */
+[class*="bg-[#d4af37]"],
+[class*="bg-\\[#d4af37\\]"] {
+  color: #000000 !important;
+}
+
+[class*="bg-[#d4af37]"] *,
+[class*="bg-\\[#d4af37\\]"] * {
+  color: #000000 !important;
+}
+
+/* 블랙 배경(#000000) 텍스트: 밝은 색 필수 (최소 4.5:1) */
+body,
+[class*="bg-black"],
+[class*="bg-\\[#000000\\]"] {
+  color: #F2F2F2 !important;
+}
+
+body *,
+[class*="bg-black"] *,
+[class*="bg-\\[#000000\\]"] * {
+  color: #F2F2F2 !important;
+}
+
+/* h4 예외: 황금색 유지 */
+body h4,
+.prose h4 {
+  color: #FFD700 !important;
 }
