@@ -97,8 +97,8 @@ export default function Home() {
           <article className="feature-card animate-stagger animate-stagger-delay-2 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=480&fit=crop&q=75"
-                alt="성장 엔진"
+                src="/images/agency-startup-ai-automation.webp"
+                alt="대행사 창업 AI 자동화 성장 엔진"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
