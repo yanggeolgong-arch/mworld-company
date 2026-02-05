@@ -42,15 +42,15 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
-  description: "엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 협업 문의 카카오톡: SG7979",
+  title: "대행사 창업의 모든 것 : 엠월드컴퍼니",
+  description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
   keywords: ["엠월드컴퍼니", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
   alternates: {
     canonical: 'https://www.aijeju.co.kr',
   },
   openGraph: {
-    title: "엠월드컴퍼니 | 10년 차 전문가의 압도적 실행 전략",
-    description: "엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 협업 문의 카카오톡: SG7979",
+    title: "대행사 창업의 모든 것 : 엠월드컴퍼니",
+    description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
     type: "website",
     url: 'https://www.aijeju.co.kr',
   },

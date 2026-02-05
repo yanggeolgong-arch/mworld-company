@@ -14,24 +14,20 @@ export default function Home() {
             </span>
           </div>
           <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl">
-            <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
-            <br />
-            <span className="font-semibold text-[#d4af37]">1,000개</span>의 신화
+            사무실 없는 1인 기업, AI 자동화로{' '}
+            <span className="font-semibold text-[#d4af37]">[대행사 창업]</span>의 수익 한계를 깨다.
           </h1>
           <p className="mt-8 text-xl font-light leading-relaxed text-slate-200 max-w-2xl mx-auto">
-            엠월드컴퍼니는 결과로만 말합니다.
-          </p>
-          <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-            F&B(맛집) 마케팅의 절대 강자
-            <br />
-            <span className="text-emerald-400">1,000개</span> 이상의 성공 레퍼런스로 증명된 압도적 성과
+            10년 차 전문가가 직접 설계한 지능형 엔진. 직원 없이, 임대료 없이 오직 성과로 증명하는 무인 대행사 운영 시스템.
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/strategy"
+              href="https://open.kakao.com/o/sLMWQ5ei"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-xl"
             >
-              전략 알아보기
+              [대행사 창업] 시스템 상담하기
             </Link>
             <Link
               href="/insights"
