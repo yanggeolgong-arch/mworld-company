@@ -20,15 +20,6 @@ export interface StaticPost {
 /** 정적 포스트: 블로그 리스트 노출용. 1person-agency-algorithm-spread.mdx 스키마와 대응 */
 export const staticPosts: StaticPost[] = [
   {
-    slug: 'jeju-restaurant-concept',
-    title: '제주맛집 성공의 비밀, 컨셉이 없으면 아무리 맛있어도 망합니다',
-    description: '제주맛집 사장님의 진짜 고민과 해결책. 컨셉 없이 광고만 하는 맛집이 왜 망하는지, 10년 이상 실행 업무 전문가가 초등학생도 이해할 수 있게 설명합니다.',
-    date: '2026-02-04',
-    category: '광고 전 컨셉 점검',
-    categorySlug: 'brand-concept',
-    excerpt: '제주맛집이 성공하려면 맛만 좋다고 되는 게 아닙니다. 컨셉이 있어야 합니다. 컨셉이 없으면 아무리 맛있어도 손님이 안 오고, 광고비만 낭비됩니다. 컨셉이 있으면 손님이 3초 안에 이해하고, 기억하고, 추천하고, 다시 옵니다.',
-  },
-  {
     slug: 'insta-shortform',
     title: '제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유',
     description: '제주맛집 인스타그램·숏폼이 조회수 0인 이유와 해결책. 릴스 20개 촬영·제작·배포 등 실제 매출로 검증된 성공 사례 노하우를 적용한 인스타 마케팅 전략.',
