@@ -7,10 +7,10 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 const PUBLIC_DIR = path.join(process.cwd(), 'public', 'images', 'blog', 'xiaohongshu-alipay-strategy');
-const STRATEGIC_INDEXES = ['1', '2', '6', '11'];
+const ALL_INDEXES = Array.from({ length: 15 }, (_, i) => String(i + 1));
 
 async function run() {
-  for (const name of STRATEGIC_INDEXES) {
+  for (const name of ALL_INDEXES) {
     const src = path.join(PUBLIC_DIR, `${name}.jpeg`);
     const dest = path.join(PUBLIC_DIR, `${name}.webp`);
     if (!fs.existsSync(src)) {

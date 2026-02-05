@@ -15,23 +15,23 @@ marked.setOptions({ breaks: true, gfm: true });
 
 const SLUG = 'xiaohongshu-alipay-strategy';
 
-/** 15장 전체 중국어 키워드 alt (기술 SEO·접근성) */
+/** 15장 전체 중국어 키워드 alt (제주맛집·알리페이·샤오홍슈 상위노출) */
 const XIAOHONGSHU_ALIPAY_ALT_ZH: Record<number, string> = {
-  1: '小红书济州岛美食支付宝支付攻略',
-  2: '济州岛餐厅支付宝扫码支付',
-  3: '济州岛美食小红书笔记搜索',
-  4: '支付宝微信支付门店标识',
-  5: '济州岛咖啡厅支付宝结账',
-  6: '济州岛咖啡厅支付宝充电宝租借',
-  7: '济州岛餐厅满座场景',
-  8: '支付宝D+2结算到账',
-  9: '支付宝官方贴纸',
-  10: '小红书实时点评拍照',
-  11: '济州岛美食支付宝微信支付标识摆放',
-  12: '济州岛餐厅外景',
-  13: '现场咨询支付宝开通',
-  14: '小红书支付宝注册咨询',
-  15: '济州岛第一执行品牌',
+  1: '제주맛집 샤오홍슈 상위노출 小红书济州岛美食支付宝支付攻略',
+  2: '济州岛餐厅支付宝扫码支付 제주맛집 알리페이',
+  3: '济州岛美食小红书笔记搜索 샤오홍슈 상위노출',
+  4: '支付宝微信支付门店标识 제주맛집 알리페이',
+  5: '济州岛咖啡厅支付宝结账 제주맛집',
+  6: '济州岛咖啡厅支付宝充电宝租借 제주맛집 알리페이',
+  7: '济州岛餐厅满座场景 제주맛집 샤오홍슈',
+  8: '支付宝D+2结算到账 제주맛집 알리페이',
+  9: '支付宝官方贴纸 제주맛집 알리페이',
+  10: '小红书实时点评拍照 샤오홍슈 상위노출 제주맛집',
+  11: '济州岛美食支付宝微信支付标识摆放 제주맛집 알리페이',
+  12: '济州岛餐厅外景 제주맛집',
+  13: '现场咨询支付宝开通 제주맛집 알리페이',
+  14: '小红书支付宝注册咨询 샤오홍슈 상위노출',
+  15: '济州岛第一执行品牌 제주맛집 엠월드컴퍼니',
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -71,13 +71,12 @@ export default async function XiaohongshuAlipayStrategyPage() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
-  // 1,2,6,11번 WebP 80% 적용·priority 로딩으로 성능 98점 유지
+  // 15장 전량 WebP·priority(1,2) 로딩으로 성능 98점 유지
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
-    const useWebp = [1, 2, 6, 11].includes(i);
     imageMap[String(i)] = {
-      src: `/images/blog/xiaohongshu-alipay-strategy/${i}.${useWebp ? 'webp' : 'jpeg'}`,
-      alt: XIAOHONGSHU_ALIPAY_ALT_ZH[i] || `济州岛美食支付宝小红书 ${i}`,
+      src: `/images/blog/xiaohongshu-alipay-strategy/${i}.webp`,
+      alt: XIAOHONGSHU_ALIPAY_ALT_ZH[i] || `济州岛美食支付宝小红书 상위노출 ${i}`,
     };
   }
   const priorityImageKeys = ['1', '2'];
@@ -152,30 +151,42 @@ export default async function XiaohongshuAlipayStrategyPage() {
               </h1>
             </header>
 
-            {/* 시리즈 정주행 가이드: 지식의 사슬(Backlinks) 연결 */}
+            {/* 시리즈 정주행: 지식의 사슬(Backlinks) 정밀화 — Part 1·2 핵심 3문장 요약 */}
             <nav
-              className="mb-10 p-5 rounded-xl border border-cyan-500/30 bg-cyan-950/20 text-[#F2F2F2]"
-              aria-label="시리즈 정주행 가이드"
+              className="mb-10 p-6 rounded-xl border border-cyan-500/30 bg-cyan-950/20 text-[#F2F2F2]"
+              aria-label="시리즈 정주행"
             >
-              <h2 className="text-base font-semibold text-cyan-400 mb-3">시리즈 정주행 가이드</h2>
-              <ol className="space-y-2 list-decimal list-inside text-sm">
-                <li>
+              <h2 className="text-base font-semibold text-cyan-400 mb-4">시리즈 정주행</h2>
+              <div className="space-y-4 text-sm">
+                <div>
+                  <p className="font-medium text-cyan-300 mb-1">Part 1</p>
                   <Link
                     href="/blog/brand-concept"
                     className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
                   >
                     구글 상위 노출의 시작, 광고 전 &apos;컨셉 점검&apos;이 필수인 진짜 이유
                   </Link>
-                </li>
-                <li>
+                  <p className="mt-2 text-[#F2F2F2]/90 leading-relaxed">
+                    컨셉이 명확하지 않은 상태에서 광고를 집행하는 것은 지도 없이 길을 나서는 것과 같습니다. 구글 상위
+                    노출을 위한 컨셉 점검 체크리스트와 시맨틱 DNA 설계의 기초를 공개하며, 광고 전 브랜드 메시지·타겟·차별점
+                    정리가 필수임을 10년 실행 데이터로 증명합니다.
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-cyan-300 mb-1">Part 2</p>
                   <Link
                     href="/blog/global-payment-dazhong-dianping"
                     className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
                   >
                     제주맛집 성공의 비밀, 알리페이와 따종디엔핑 도입 전략
                   </Link>
-                </li>
-              </ol>
+                  <p className="mt-2 text-[#F2F2F2]/90 leading-relaxed">
+                    중국 관광객에게 현금은 소비가 아니라 투자 자본이며, 알리페이·위챗 수용과 따종디엔핑 등록이 제주맛집
+                    매출의 핵심입니다. ICB·QRick 도입으로 원화 D+2 정산을 받고, 따종디엔핑 등록·리뷰 관리까지 한 번에
+                    연결하는 실전 전략을 담았습니다.
+                  </p>
+                </div>
+              </div>
             </nav>
 
             <div className="[&_.prose]:text-[#F2F2F2] [&_.prose_p]:text-[#F2F2F2] [&_.prose_ul]:text-[#F2F2F2] [&_.prose_ol]:text-[#F2F2F2] [&_.prose_li]:text-[#F2F2F2] [&_.prose_blockquote]:text-[#F2F2F2]/90 [&_.prose_h2]:text-cyan-400 [&_.prose_h3]:text-amber-400 [&_.prose_strong]:text-[#fde047]">
@@ -206,7 +217,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
               </div>
             </section>
 
-            {/* 실무 통찰 박스: 10년 차 현장 데이터가 증명하는 매출 치트키 (Expert Insight) */}
+            {/* Expert Insight 박스 확장: 매출 치트키 + 결제 오류 해결법 + 포토존 세팅 */}
             <aside
               className="mt-10 p-6 rounded-xl border-2 border-[#FFD700]/50 bg-gradient-to-br from-amber-950/30 to-black text-[#F2F2F2] shadow-lg shadow-amber-900/10"
               aria-label="10년 차 현장 데이터가 증명하는 매출 치트키"
@@ -226,6 +237,17 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 <li>
                   <strong className="text-amber-400">알리페이 로고 노출</strong>: 支付宝·微信 로고를 입구·결제대·테이블
                   tent 카드 등 2~3곳에 반복 노출하면, &quot;정식 가맹·결제 가능&quot; 신뢰와 검색 일치도가 올라간다.
+                </li>
+                <li>
+                  <strong className="text-amber-400">현장에서만 알 수 있는 결제 오류 해결법</strong>: QR 스캔 실패 시
+                  Wi-Fi·데이터 확인 후 재시도 안내, 단말기 재부팅·앱 업데이트 권유 순으로 대응하면 현금 결제 전환을
+                  줄일 수 있다. &quot;网络不好请稍候&quot;(네트워크 불안정 시 잠시만 기다려 주세요) 한 문장 안내지를
+                  결제대에 비치하면 클레임이 감소한다.
+                </li>
+                <li>
+                  <strong className="text-amber-400">중국인 손님이 좋아하는 포토존 세팅법</strong>: 자연광이 들어오는
+                  창가·벽면 한 곳에 小红书 스타일 포토존(간단한 문구·로고·제주 감성 소품)을 만들면 打卡 사진이 늘어나
+                  노트 노출이 증가한다. 배경은 단순하고 로고는 작게 넣어 브랜드가 자연스럽게 노출되도록 한다.
                 </li>
               </ul>
             </aside>
