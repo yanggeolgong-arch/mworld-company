@@ -20,6 +20,15 @@ export interface StaticPost {
 /** 정적 포스트: 블로그 리스트 노출용. 1person-agency-algorithm-spread.mdx 스키마와 대응 */
 export const staticPosts: StaticPost[] = [
   {
+    slug: 'global-payment-dazhong-dianping',
+    title: '제주맛집 글로벌 결제 & 따종디엔핑 전략 - 중국 관광객 현금을 거부하면 안 되는 진짜 이유',
+    description: '중국 관광객에게 현금은 소비가 아니라 투자 자본이다. 알리페이·위챗 수용과 따종디엔핑 등록으로 제주맛집 매출을 높이는 10년 차 전문가 전략.',
+    date: '2026-02-05',
+    category: '따종디엔핑 공략',
+    categorySlug: 'dazhong-dianping',
+    excerpt: '알리페이를 거부하는 것은 그들의 투자 기회를 박탈하는 것. ICB·QRick 도입과 따종디엔핑 등록으로 중국인 손님과 재방문을 늘립니다.',
+  },
+  {
     slug: 'insta-shortform',
     title: '제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유',
     description: '제주맛집 인스타그램·숏폼이 조회수 0인 이유와 해결책. 릴스 20개 촬영·제작·배포 등 실제 매출로 검증된 성공 사례 노하우를 적용한 인스타 마케팅 전략.',
