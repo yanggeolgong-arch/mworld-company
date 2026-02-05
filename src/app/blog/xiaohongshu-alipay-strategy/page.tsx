@@ -297,10 +297,10 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 </li>
                 <li>
                   <Link
-                    href="/blog/xiaohongshu-zhonghua-mz"
+                    href="/blog/brand-concept"
                     className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2"
                   >
-                    샤오홍슈 중화권 MZ
+                    컨셉 점검
                   </Link>
                 </li>
               </ul>
