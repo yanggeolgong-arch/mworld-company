@@ -35,6 +35,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 /* 프로토콜: 순검정 배경·연회색 텍스트 강제, color-scheme로 다크/라이트 무관 유지, 가독성 사수 */
