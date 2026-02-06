@@ -73,6 +73,15 @@ export const staticPosts: StaticPost[] = [
     categorySlug: 'xiaohongshu-alipay',
     excerpt: '小红书·支付宝 수용과 보조배터리(充电宝)·로고 배치로 체류 시간과 UGC를 늘리는 10년 차 현장 노하우.',
   },
+  {
+    slug: 'agency-startup-master-class-secrets',
+    title: '대행사 창업 마스터 클래스 비밀 - AI로 1인 기업이 대행사를 압도하는 15가지 시각',
+    description: '대행사 창업의 본질을 10년 차 실행 실무 전문가가 15장의 AI 시각과 함께 해부한다. 레거시 대행사 비효율부터 무인 자동화, 압도적 수익 그래프까지.',
+    date: '2026-01-27',
+    category: '대행사 창업',
+    categorySlug: 'ad-agency-startup',
+    excerpt: '직원 없이, 임대료 없이 AI 지능형 엔진 하나로 수익 한계를 깨는 시스템. 마스터 클래스 15가지 시각을 글로 공개합니다.',
+  },
 ];
 
 /**
