@@ -67,7 +67,7 @@ export default function Home() {
             복제 불가 기술력으로 구축한 프리미엄 솔루션
           </p>
         </div>
-        <div className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+        <div className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
           <article className="feature-card animate-stagger animate-stagger-delay-1 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
             <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
               <Image
@@ -143,6 +143,32 @@ export default function Home() {
               className="mt-auto text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]"
             >
               성공 사례 자세히 보기 →
+            </Link>
+          </article>
+
+          <article className="feature-card animate-stagger animate-stagger-delay-4 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
+            <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
+              <Image
+                src="/images/jeju-local-marketing-performance-report.webp"
+                alt="제주 로컬 성과 보고서 마케팅 데이터"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                loading="lazy"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+            </div>
+            <h3 className="text-xl font-semibold tracking-tight text-white">
+              제주 로컬 성과 보고서
+            </h3>
+            <p className="flex-1 text-slate-300 font-light leading-relaxed max-w-2xl mx-auto">
+              제주 로컬 시장 데이터와 성과 지표로 검증된 마케팅 결과를 보고합니다.
+            </p>
+            <Link
+              href="/insights"
+              className="mt-auto text-sm font-medium text-emerald-400 transition-colors hover:text-[#d4af37]"
+            >
+              성과 보고서 보기 →
             </Link>
           </article>
         </div>
