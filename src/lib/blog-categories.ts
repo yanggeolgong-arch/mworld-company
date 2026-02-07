@@ -47,6 +47,12 @@ export const blogCategories: BlogCategory[] = [
     seoKeywords: ['네이버 플레이스', '플레이스 최적화', '로컬 SEO', '구글 비즈니스', '플레이스 마케팅'],
   },
   {
+    slug: 'google-synergy',
+    name: '구글 지도 & 샤오홍슈',
+    description: '구글 지도 리뷰와 샤오홍슈 시너지 전략. 구글리뷰 대행사 관점의 리뷰 연동 자동화.',
+    seoKeywords: ['구글리뷰 대행사', '구글 지도 리뷰', '샤오홍슈', '시너지', '제주맛집'],
+  },
+  {
     slug: 'brand-concept',
     name: '광고 전 컨셉 점검',
     description: '광고 집행 전 반드시 점검해야 할 브랜드 컨셉과 메시지 전략. 효과적인 광고를 위한 필수 체크리스트.',

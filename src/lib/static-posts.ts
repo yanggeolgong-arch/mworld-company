@@ -74,6 +74,15 @@ export const staticPosts: StaticPost[] = [
     excerpt: '小红书·支付宝 수용과 보조배터리(充电宝)·로고 배치로 체류 시간과 UGC를 늘리는 10년 차 현장 노하우.',
   },
   {
+    slug: 'google-maps-xiaohongshu-synergy',
+    title: '구글 지도와 샤오홍슈 시너지 - [구글리뷰 대행사]가 말하는 리뷰 연동 전략',
+    description: '구글 지도 리뷰와 샤오홍슈 打卡를 묶는 [구글리뷰 대행사] 자동화 전략. 지오펜싱·위치 기반 노출로 제주맛집 상위노출을 만드는 10년 실행 노하우.',
+    date: '2026-02-06',
+    category: '구글 지도 & 샤오홍슈',
+    categorySlug: 'google-synergy',
+    excerpt: '[구글리뷰 대행사]가 설계한 구글 지도·샤오홍슈 리뷰 연동 자동화와 지오펜싱 기반 노출 전략.',
+  },
+  {
     slug: 'agency-startup-master-class-secrets',
     title: '대행사 창업 마스터 클래스 비밀 - AI로 1인 기업이 대행사를 압도하는 15가지 시각',
     description: '대행사 창업의 본질을 10년 차 실행 실무 전문가가 15장의 AI 시각과 함께 해부한다. 레거시 대행사 비효율부터 무인 자동화, 압도적 수익 그래프까지.',
