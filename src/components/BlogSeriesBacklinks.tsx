@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 
 /** 시리즈 백링크: 1~7편. */
 const SERIES = [
@@ -44,6 +45,7 @@ export function BlogSeriesBacklinks({ currentSlug }: BlogSeriesBacklinksProps) {
           );
         })}
       </nav>
+      <MasterClassHomeBacklink />
     </div>
   );
 }

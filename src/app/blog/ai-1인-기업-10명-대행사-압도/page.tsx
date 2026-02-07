@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { formatBlogDate } from '@/lib/blog-dates';
@@ -299,6 +300,7 @@ export default function AIPoweredSoloBusinessPage() {
                   엠월드컴퍼니는 결과로만 말합니다.
                 </p>
               </div>
+              <MasterClassHomeBacklink />
             </div>
           </div>
         </section>

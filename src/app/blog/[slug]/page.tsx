@@ -7,6 +7,7 @@ import { generateOptimizedUrl, generateCanonicalUrl, optimizeSlug } from '@/lib/
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { getStaticPostBySlug, getAllStaticPosts } from '@/lib/static-posts';
 import { PostNavigation } from '@/components/PostNavigation';
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateGeoMasterSchema } from '@/lib/geo-master-schema';
 import { generateKeywords, generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getSchemaDatesSyncToToday } from '@/lib/blog-dates';
@@ -376,6 +377,7 @@ export default async function BlogPostPage({
                 엠월드컴퍼니는 결과로만 말합니다.
               </p>
             </div>
+            <MasterClassHomeBacklink />
           </div>
         </section>
       </article>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { StructuredData } from '@/components/StructuredData';
 import { BlogContentWithImages } from '@/components/BlogContentWithImages';
 // import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks'; // 기존 컴포넌트 제거
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
@@ -204,6 +205,7 @@ export default async function GlobalPaymentDazhongDianpingPage() {
                 인스타 마케팅은 이제 기본이다. 다만 대만·싱가포르·필리핀을 포함한 화교권 MZ는 <span className="text-[#FFD700]">샤오홍슈(小红书)</span>에서 맛집을 찾는다. 인스타만으로는 그들의 심장을 건드리기 어렵다. 10년 차 현장에서 본 결론: 샤오홍슈는 중화권 관광객 공략의 <span className="text-[#FFD700]">필수 부스터</span>다.
               </p>
             </div>
+            <MasterClassHomeBacklink />
           </div>
         </section>
       </article>

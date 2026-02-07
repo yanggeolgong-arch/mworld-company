@@ -4,6 +4,7 @@ import { join } from 'path';
 import Link from 'next/link';
 import { StructuredData } from '@/components/StructuredData';
 import { BlogContentWithImages } from '@/components/BlogContentWithImages';
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { getStaticPostBySlug } from '@/lib/static-posts';
@@ -180,6 +181,7 @@ export default async function GoogleMapsXiaohongshuSynergyPage() {
               <p className="mt-4 text-sm text-[#F2F2F2]/90">
                 다음 시리즈: <Link href="/blog/1인-기업-알고리즘-확산-시장-장악-로드맵" className="text-cyan-400 hover:underline">플레이스 알고리즘 데이터 분석 - 3사 연동 자동화</Link>
               </p>
+              <MasterClassHomeBacklink />
             </div>
           </div>
         </section>

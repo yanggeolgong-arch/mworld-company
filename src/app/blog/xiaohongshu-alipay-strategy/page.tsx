@@ -4,6 +4,7 @@ import { join } from 'path';
 import Link from 'next/link';
 import { StructuredData } from '@/components/StructuredData';
 import { BlogContentWithImages } from '@/components/BlogContentWithImages';
+import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateCanonicalUrl } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { generateStaticPostKeywords } from '@/lib/keyword-generator';
@@ -305,6 +306,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 </li>
               </ul>
             </nav>
+            <MasterClassHomeBacklink />
           </div>
         </section>
       </article>
