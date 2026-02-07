@@ -61,6 +61,7 @@ export default async function NoAgencyMarketing01Page() {
       alt: VOL1_ALT,
     };
   }
+  // LCP: 첫 번째 이미지(blog-ctr-decline-01.webp)에 priority + fetchPriority="high" 강제
   const priorityImageKeys = ['1'];
 
   let processedMarkdown = markdownContent;
