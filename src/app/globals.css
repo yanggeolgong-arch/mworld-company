@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* 폰트: next/font(layout)에서 font-display: swap 적용. 글로벌 폰트 선언은 여기 없음. */
+/* Tailwind v4: 빌드 시 미사용 유틸리티 자동 제거. @layer base 미사용 - 전역은 아래만. */
+/* 폰트: next/font(layout)에서 font-display: swap 적용. */
 /* 엠월드컴퍼니 최고실행자 프로토콜: 전역 색상 강제·가독성·호환성 */
 :root {
   --background: #000000;

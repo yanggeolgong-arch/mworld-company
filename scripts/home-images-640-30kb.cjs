@@ -1,15 +1,15 @@
 /**
- * 초기 화면(홈) 이미지 4개: 최대 너비 640px, WebP 품질 65%, 파일당 30KB 이하.
+ * 초기 화면(홈) 이미지 4개: 모바일 기준 최대 너비 480px, WebP 품질 50%, 파일당 20KB 이하.
  */
 const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
 
 const imagesDir = path.join(process.cwd(), 'public', 'images');
-const outDir = path.join(process.cwd(), 'public', 'images', '_home_640');
-const MAX_WIDTH = 640;
-const MAX_KB = 30;
-const QUALITY = 65;
+const outDir = path.join(process.cwd(), 'public', 'images', '_home_480');
+const MAX_WIDTH = 480;
+const MAX_KB = 20;
+const QUALITY = 50;
 
 const files = [
   'ai-marketing-insights-automation.webp',
@@ -44,13 +44,10 @@ async function run() {
     try {
       fs.copyFileSync(dest, src);
     } catch (err) {
-      console.log('  -> Copy failed (file locked?). Run: Copy-Item public/images/_home_640/*.webp public/images/ -Force');
+      console.log('  -> Copy failed (file locked?). Run: Copy-Item public/images/_home_480/*.webp public/images/ -Force');
     }
     console.log(f, (fs.statSync(dest).size / 1024).toFixed(1), 'KB', 'quality', quality);
   }
-  try {
-    fs.rmSync(outDir, { recursive: true, force: true });
-  } catch (_) {}
   console.log('Done.');
 }
 run().catch((e) => {

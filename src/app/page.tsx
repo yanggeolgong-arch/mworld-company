@@ -74,7 +74,7 @@ export default function Home() {
                 src="/images/ai-marketing-insights-automation.webp"
                 alt="AI 마케팅 실무 인사이트 자동화"
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 480px"
                 priority
                 fetchPriority="high"
                 decoding="async"
@@ -102,7 +102,7 @@ export default function Home() {
                 src="/images/agency-startup-ai-automation.webp"
                 alt="대행사 창업 AI 자동화 성장 엔진"
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 480px"
                 loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -128,7 +128,7 @@ export default function Home() {
                 src="/images/unmanned-automation-workflow-system.webp"
                 alt="무인 자동화 워크플로우 시스템"
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 480px"
                 loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -154,7 +154,7 @@ export default function Home() {
                 src="/images/jeju-local-marketing-performance-report.webp"
                 alt="제주 로컬 성과 보고서 마케팅 데이터"
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                sizes="(max-width: 768px) 100vw, 480px"
                 loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />

@@ -115,7 +115,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
       </head>
       <body className={`${pretendard.className} antialiased`}>
-        {/* 외부/분석 스크립트는 strategy="lazyOnload"로 초기 로딩 비차단 */}
+        {/* TBT 제거: 모든 외부 스크립트 lazyOnload. 첫 화면 렌더 완료 후 연산. */}
         <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>
