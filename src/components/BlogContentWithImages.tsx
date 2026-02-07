@@ -107,6 +107,7 @@ export function BlogContentWithImages({
                   className="object-cover w-full h-auto"
                   loading={isPriority ? 'eager' : 'lazy'}
                   priority={isPriority}
+                  fetchPriority={isPriority ? 'high' : 'low'}
                   quality={isPriority ? 85 : 75}
                 />
               </div>
