@@ -103,13 +103,13 @@ export function BlogContentWithImages({
                   alt={alt}
                   width={width}
                   height={height}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 800px"
+                  sizes={isPriority ? '(max-width: 768px) 100vw, 640px' : '(max-width: 768px) 100vw, 640px'}
                   className="object-cover w-full h-auto"
                   loading={isPriority ? 'eager' : 'lazy'}
                   decoding={isPriority ? 'async' : undefined}
                   priority={isPriority}
                   fetchPriority={isPriority ? 'high' : 'low'}
-                  quality={isPriority ? 85 : 75}
+                  quality={isPriority ? 85 : 60}
                 />
               </div>
             </div>

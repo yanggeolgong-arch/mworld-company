@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import localFont from "next/font/local";
-import { Analytics } from "@vercel/analytics/react";
+import { DeferredAnalytics } from "@/components/DeferredAnalytics";
 import "./globals.css";
 
 const Header = dynamic(() => import("@/components/Header").then((m) => ({ default: m.Header })), {
@@ -120,7 +120,7 @@ export default function RootLayout({
           {JSON.stringify(organizationSchema)}
         </Script>
         <DeferredThemeWrapper header={<Header />} footer={<Footer />} main={children} />
-        <Analytics />
+        <DeferredAnalytics />
       </body>
     </html>
   );
