@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# vol1 WebP 재압축 임시 파일 (경로 정리용)
+public/images/blog/vol1/_*
+public/images/blog/vol1/*.new
