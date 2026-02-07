@@ -5,8 +5,8 @@ import { CTASection } from '@/components/CTASection';
 export default function Home() {
   return (
     <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
-      <section className="relative w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="hero-heading">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900" />
+      <section className="relative w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center min-h-[70vh]" style={{ minHeight: '70vh' }} aria-labelledby="hero-heading">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-black to-slate-900" aria-hidden="true" />
         <div className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center animate-stagger">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
@@ -69,13 +69,15 @@ export default function Home() {
         </div>
         <div className="w-full mx-auto mt-20 grid max-w-6xl grid-cols-1 gap-8 sm:mt-24 sm:grid-cols-2 lg:grid-cols-4 justify-items-center">
           <article className="feature-card animate-stagger animate-stagger-delay-1 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
+            <div className="relative mx-auto w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
               <Image
                 src="/images/ai-marketing-insights-automation.webp"
                 alt="AI 마케팅 실무 인사이트 자동화"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 priority
+                fetchPriority="high"
+                decoding="async"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
@@ -95,7 +97,7 @@ export default function Home() {
           </article>
 
           <article className="feature-card animate-stagger animate-stagger-delay-2 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
+            <div className="relative mx-auto w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
               <Image
                 src="/images/agency-startup-ai-automation.webp"
                 alt="대행사 창업 AI 자동화 성장 엔진"
@@ -121,7 +123,7 @@ export default function Home() {
           </article>
 
           <article className="feature-card animate-stagger animate-stagger-delay-3 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
+            <div className="relative mx-auto w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
               <Image
                 src="/images/unmanned-automation-workflow-system.webp"
                 alt="무인 자동화 워크플로우 시스템"
@@ -147,7 +149,7 @@ export default function Home() {
           </article>
 
           <article className="feature-card animate-stagger animate-stagger-delay-4 group w-full max-w-sm flex flex-col gap-4 rounded-2xl bg-slate-900/50 p-6 text-center transition-all hover:scale-105 hover:shadow-2xl sm:p-8 border border-white/5 backdrop-blur-sm">
-            <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-xl">
+            <div className="relative mx-auto w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
               <Image
                 src="/images/jeju-local-marketing-performance-report.webp"
                 alt="제주 로컬 성과 보고서 마케팅 데이터"
