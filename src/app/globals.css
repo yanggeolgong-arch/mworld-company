@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* 폰트: next/font(layout)에서 font-display: swap 적용. 글로벌 폰트 선언은 여기 없음. */
 /* 엠월드컴퍼니 최고실행자 프로토콜: 전역 색상 강제·가독성·호환성 */
 :root {
   --background: #000000;

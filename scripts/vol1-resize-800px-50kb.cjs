@@ -1,6 +1,6 @@
 /**
- * public/images/blog/vol1/ 모든 WebP를 가로 최대 800px 리사이즈, 50KB 이하로 압축.
- * 출력: public/images/blog/vol1_800_50kb/ (생성 후 여기 파일을 vol1로 교체)
+ * vol1 WebP: 가로 최대 800px, 품질 75% 목표, 파일당 50KB 이하 강제.
+ * 품질 75부터 낮추며 50KB 이하가 될 때까지 반복.
  */
 const path = require('path');
 const fs = require('fs');
@@ -18,8 +18,8 @@ async function run() {
   for (const f of files) {
     const src = path.join(vol1Dir, f);
     const dest = path.join(outDir, f);
-    let quality = 42;
-    for (let q = 42; q >= 28; q -= 4) {
+    let quality = 75;
+    for (let q = 75; q >= 24; q -= 6) {
       await sharp(src)
         .resize(MAX_WIDTH, null, { withoutEnlargement: true })
         .webp({ quality: q, effort: 6 })
