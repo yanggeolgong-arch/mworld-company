@@ -18,7 +18,7 @@ async function run() {
     const jpg = path.join(rawDir, `${i}.jpg`);
     let src = fs.existsSync(jpeg) ? jpeg : fs.existsSync(jpg) ? jpg : null;
     if (!src && lastSrc) {
-      await sharp(lastSrc).webp({ quality: 65, effort: 6 }).toFile(dest);
+      await sharp(lastSrc).webp({ quality: 52, effort: 6 }).toFile(dest);
       console.log('OK: (copy)', i, '→', `blog-ctr-decline-${num}.webp`);
       continue;
     }
@@ -27,7 +27,7 @@ async function run() {
       continue;
     }
     lastSrc = src;
-    await sharp(src).webp({ quality: 65, effort: 6 }).toFile(dest);
+    await sharp(src).webp({ quality: 52, effort: 6 }).toFile(dest);
     console.log('OK:', i, '→', `blog-ctr-decline-${num}.webp`);
   }
 }

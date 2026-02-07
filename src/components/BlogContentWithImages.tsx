@@ -3,12 +3,23 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
 
+/** 이미지 메타: width/height 명시 시 CLS 방지 (미지정 시 1200x675) */
+export interface ImageMapItem {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
 export interface BlogContentWithImagesProps {
   htmlContent: string;
-  imageMap: Record<string, { src: string; alt: string }>;
-  /** LCP 최적화: 이 키에 해당하는 이미지는 priority 로드(나머지는 lazy) */
+  imageMap: Record<string, ImageMapItem>;
+  /** LCP 최적화: 이 키에 해당하는 이미지는 priority 로드(나머지는 loading="lazy") */
   priorityImageKeys?: string[];
 }
+
+const DEFAULT_IMAGE_WIDTH = 1200;
+const DEFAULT_IMAGE_HEIGHT = 675;
 
 export function BlogContentWithImages({
   htmlContent,
@@ -79,23 +90,24 @@ export function BlogContentWithImages({
             />
           );
         } else if (part.type === 'image' && part.imageKey && imageMap[part.imageKey]) {
-          const { src, alt } = imageMap[part.imageKey];
+          const item = imageMap[part.imageKey];
+          const { src, alt } = item;
+          const width = item.width ?? DEFAULT_IMAGE_WIDTH;
+          const height = item.height ?? DEFAULT_IMAGE_HEIGHT;
           const isPriority = priorityImageKeys.includes(part.imageKey);
           return (
             <div key={`image-${index}`} className="my-8 w-full">
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+              <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: `${width}/${height}` }}>
                 <Image
                   src={src}
                   alt={alt}
-                  fill
+                  width={width}
+                  height={height}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
-                  className="object-cover"
+                  className="object-cover w-full h-auto"
                   loading={isPriority ? 'eager' : 'lazy'}
                   priority={isPriority}
                   quality={isPriority ? 85 : 75}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                  unoptimized={false}
                 />
               </div>
             </div>
