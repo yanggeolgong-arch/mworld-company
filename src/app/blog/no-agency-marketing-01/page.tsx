@@ -52,16 +52,18 @@ export default async function NoAgencyMarketing01Page() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
-  // vol1: blog-ctr-decline-01.webp~15.webp (15장), 1=priority/eager, 2~15=loading lazy, alt 일괄
-  const imageMap: Record<string, { src: string; alt: string }> = {};
+  // vol1: 15장 모두 width=800, height=450 고정(CLS 방지). 1번만 priority + loading="eager"(LCP)
+  const imageMap: Record<string, { src: string; alt: string; width: number; height: number }> = {};
   for (let i = 1; i <= 15; i++) {
     const num = String(i).padStart(2, '0');
     imageMap[String(i)] = {
       src: `/images/blog/vol1/blog-ctr-decline-${num}.webp`,
       alt: VOL1_ALT,
+      width: 800,
+      height: 450,
     };
   }
-  // LCP: 첫 번째 이미지(blog-ctr-decline-01.webp)에 priority + fetchPriority="high" 강제
+  // LCP: 첫 번째 이미지(blog-ctr-decline-01.webp)에 priority={true}, loading="eager" 강제
   const priorityImageKeys = ['1'];
 
   let processedMarkdown = markdownContent;

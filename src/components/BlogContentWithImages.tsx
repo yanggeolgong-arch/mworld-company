@@ -103,7 +103,7 @@ export function BlogContentWithImages({
                   alt={alt}
                   width={width}
                   height={height}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 800px"
                   className="object-cover w-full h-auto"
                   loading={isPriority ? 'eager' : 'lazy'}
                   priority={isPriority}
