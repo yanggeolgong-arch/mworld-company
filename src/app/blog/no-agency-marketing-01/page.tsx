@@ -52,6 +52,7 @@ export default async function NoAgencyMarketing01Page() {
   }
 
   const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
+  // vol1: blog-ctr-decline-01.webp~15.webp (15장), 1=priority/eager, 2~15=loading lazy, alt 일괄
   const imageMap: Record<string, { src: string; alt: string }> = {};
   for (let i = 1; i <= 15; i++) {
     const num = String(i).padStart(2, '0');
