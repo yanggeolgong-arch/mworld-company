@@ -91,6 +91,15 @@ export const staticPosts: StaticPost[] = [
     categorySlug: 'ad-agency-startup',
     excerpt: '직원 없이, 임대료 없이 AI 지능형 엔진 하나로 수익 한계를 깨는 시스템. 마스터 클래스 15가지 시각을 글로 공개합니다.',
   },
+  {
+    slug: 'no-agency-marketing-01',
+    title: '현저하게 줄어든 블로그 클릭률, 1인 AI 광고대행사가 되면 해결된다',
+    description: '블로그 CTR 저하를 1인 AI 광고대행사 전략과 릴스 20개 패키지로 돌파하는 방법. 10년 실행 실무 전문가의 알고리즘 확산 노하우.',
+    date: '2026-01-27',
+    category: '알고리즘 확산',
+    categorySlug: 'algorithm-spread',
+    excerpt: '현저하게 줄어든 블로그 클릭률을 1인 AI 광고대행사 구조와 릴스 20개 패키지로 해소하는 실전 가이드.',
+  },
 ];
 
 /**

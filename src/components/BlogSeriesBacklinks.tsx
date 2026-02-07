@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 
-/** 시리즈 백링크: 1~7편. */
+/** 시리즈 백링크: 1~8편. */
 const SERIES = [
   { slug: 'brand-concept', label: '1편', title: '구글 상위 노출의 시작, 광고 전 컨셉 점검이 필수인 진짜 이유', href: '/blog/brand-concept' },
   { slug: 'insta-shortform', label: '2편', title: '제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유', href: '/blog/insta-shortform' },
@@ -10,6 +10,7 @@ const SERIES = [
   { slug: 'ai-1인-기업-10명-대행사-압도', label: '5편', title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법', href: '/blog/ai-1인-기업-10명-대행사-압도' },
   { slug: 'xiaohongshu-alipay-strategy', label: '6편', title: '제주맛집 샤오홍슈·알리페이 전략 - 보조배터리와 로고 배치', href: '/blog/xiaohongshu-alipay-strategy' },
   { slug: 'agency-startup-master-class-secrets', label: '7편', title: '대행사 창업 마스터 클래스 비밀 - 15가지 AI 시각', href: '/blog/agency-startup-master-class-secrets' },
+  { slug: 'no-agency-marketing-01', label: '8편', title: '현저하게 줄어든 블로그 클릭률, 1인 AI 광고대행사가 되면 해결된다', href: '/blog/no-agency-marketing-01' },
 ] as const;
 
 type CurrentSlug = (typeof SERIES)[number]['slug'];
