@@ -21,14 +21,9 @@ export default function Home() {
             10년 차 전문가가 직접 설계한 지능형 엔진. 직원 없이, 임대료 없이 오직 성과로 증명하는 무인 대행사 운영 시스템.
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="https://open.kakao.com/o/sLMWQ5ei"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-[#d4af37] px-8 py-4 text-sm font-bold !text-black transition-all hover:bg-emerald-400 hover:shadow-xl"
-            >
-              [대행사 창업] 시스템 상담하기
-            </Link>
+            <a href="tel:010-4074-9343" className="text-lg font-bold text-slate-200 hover:underline">
+              문의: 010-4074-9343
+            </a>
             <Link
               href="/insights"
               className="text-sm font-medium leading-6 text-slate-200 transition-colors hover:text-emerald-400"
