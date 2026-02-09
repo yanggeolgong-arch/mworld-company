@@ -15,9 +15,11 @@ export default function Home() {
               엠월드컴퍼니
             </span>
           </div>
-          <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl">
-            사무실 없는 1인 기업, AI 자동화로{' '}
-            <span className="font-semibold text-[#d4af37]">[대행사 창업]</span>의 수익 한계를 깨다.
+          <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl text-center">
+            사무실 없는<br />
+            1인 기업, AI 자동화로<br />
+            <span className="font-semibold text-[#d4af37]">[대행사 창업]</span>의 수익<br />
+            한계를 깨다.
           </h1>
           <p className="mt-8 text-xl font-light leading-relaxed text-slate-200 max-w-2xl mx-auto">
             10년 차 전문가가 직접 설계한 지능형 엔진. 직원 없이, 임대료 없이 오직 성과로 증명하는 무인 대행사 운영 시스템.
