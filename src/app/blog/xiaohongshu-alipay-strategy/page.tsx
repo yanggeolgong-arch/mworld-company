@@ -147,6 +147,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={
                         index === breadcrumbs.length - 1
                           ? 'text-[#F2F2F2] font-medium'
@@ -184,6 +185,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                   <p className="font-medium text-cyan-300 mb-1">Part 1</p>
                   <Link
                     href="/blog/brand-concept"
+                    prefetch={false}
                     className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
                   >
                     구글 상위 노출의 시작, 광고 전 &apos;컨셉 점검&apos;이 필수인 진짜 이유
@@ -198,6 +200,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                   <p className="font-medium text-cyan-300 mb-1">Part 2</p>
                   <Link
                     href="/blog/global-payment-dazhong-dianping"
+                    prefetch={false}
                     className="text-cyan-400 font-medium hover:text-cyan-300 underline underline-offset-2"
                   >
                     제주맛집 성공의 비밀, 알리페이와 따종디엔핑 도입 전략
@@ -293,6 +296,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 <li>
                   <Link
                     href="/blog/global-payment-dazhong-dianping"
+                    prefetch={false}
                     className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2"
                   >
                     글로벌 결제 & 따종디엔핑
@@ -301,6 +305,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 <li>
                   <Link
                     href="/blog/brand-concept"
+                    prefetch={false}
                     className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2"
                   >
                     컨셉 점검

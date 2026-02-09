@@ -198,7 +198,7 @@ export default async function CategoryPage({
                     key={post.id}
                     className="group w-full max-w-sm flex flex-col overflow-hidden rounded-2xl bg-slate-900/50 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
                   >
-                    <Link href={postUrl} className="flex flex-col h-full">
+                    <Link href={postUrl} className="flex flex-col h-full" prefetch={false}>
                       {post.featuredImage && (
                         <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl">
                           <Image

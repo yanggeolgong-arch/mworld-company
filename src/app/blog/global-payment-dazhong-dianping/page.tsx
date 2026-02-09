@@ -141,6 +141,7 @@ export default async function GlobalPaymentDazhongDianpingPage() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={index === breadcrumbs.length - 1 ? 'text-[#F2F2F2] font-medium' : 'text-[#F2F2F2]/80 hover:text-emerald-400 transition-colors'}
                     >
                       {item.name}
@@ -180,17 +181,17 @@ export default async function GlobalPaymentDazhongDianpingPage() {
               <h2 className="text-sm font-medium text-[#FFD700] mb-4">시리즈 다시 보기</h2>
               <ul className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 flex-wrap list-none">
                 <li>
-                  <Link href="/blog/brand-concept" className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
+                  <Link href="/blog/brand-concept" prefetch={false} className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
                     1편 · 구글 상위 노출 컨셉 점검
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog/insta-shortform" className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
+                  <Link href="/blog/insta-shortform" prefetch={false} className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
                     2편 · 제주맛집 인스타그램 마케팅
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog/1인-기업-알고리즘-확산-시장-장악-로드맵" className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
+                  <Link href="/blog/1인-기업-알고리즘-확산-시장-장악-로드맵" prefetch={false} className="text-[#FFD700] font-medium hover:opacity-90 transition-opacity underline underline-offset-2">
                     3편 · 1인 기업 알고리즘 확산 로드맵
                   </Link>
                 </li>

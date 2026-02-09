@@ -83,6 +83,7 @@ export function MasterClassSample() {
               </a>
               <Link
                 href="/strategy"
+                prefetch={false}
                 className="inline-flex items-center justify-center rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-white/20 backdrop-blur-sm"
               >
                 Semantic DNA 알아보기 →

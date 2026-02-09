@@ -112,6 +112,7 @@ export default async function NoAgencyMarketing01Page() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400 hover:text-emerald-400 transition-colors'}
                     >
                       {item.name}
@@ -145,7 +146,7 @@ export default async function NoAgencyMarketing01Page() {
             <div className="mt-12 pt-8 border-t border-white/10 text-center">
               <p className="text-base font-medium text-slate-300">
                 <strong className="text-cyan-400">다음 시리즈:</strong>{' '}
-                <Link href="/blog/insta-shortform" className="text-cyan-400 hover:underline font-semibold">
+                <Link href="/blog/insta-shortform" prefetch={false} className="text-cyan-400 hover:underline font-semibold">
                   제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유
                 </Link>
               </p>

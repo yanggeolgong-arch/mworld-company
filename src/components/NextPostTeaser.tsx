@@ -13,6 +13,7 @@ export function NextPostTeaser({ title, slug, publishDate }: NextPostTeaserProps
         🚀 다음 이야기:{' '}
         <Link
           href={`/blog/${slug}`}
+          prefetch={false}
           className="text-emerald-400 hover:text-[#d4af37] transition-colors underline"
         >
           {title}

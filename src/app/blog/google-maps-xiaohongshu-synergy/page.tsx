@@ -142,6 +142,7 @@ export default async function GoogleMapsXiaohongshuSynergyPage() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={
                         index === breadcrumbs.length - 1
                           ? 'text-[#F2F2F2] font-medium'
@@ -181,7 +182,7 @@ export default async function GoogleMapsXiaohongshuSynergyPage() {
                 문의: <strong className="text-cyan-400">KakaoTalk: SG7979</strong> | 10년 이상 [구글리뷰 대행사] 실행 전문가
               </p>
               <p className="mt-4 text-sm text-[#F2F2F2]/90">
-                다음 시리즈: <Link href="/blog/1인-기업-알고리즘-확산-시장-장악-로드맵" className="text-cyan-400 hover:underline">플레이스 알고리즘 데이터 분석 - 3사 연동 자동화</Link>
+                다음 시리즈: <Link href="/blog/1인-기업-알고리즘-확산-시장-장악-로드맵" prefetch={false} className="text-cyan-400 hover:underline">플레이스 알고리즘 데이터 분석 - 3사 연동 자동화</Link>
               </p>
               <MasterClassHomeBacklink />
             </div>

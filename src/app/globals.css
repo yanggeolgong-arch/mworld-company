@@ -46,7 +46,7 @@ body {
   background: #000000 !important;
   background-color: #000000 !important;
   color-scheme: dark;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-pretendard), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;

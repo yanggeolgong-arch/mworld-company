@@ -114,14 +114,14 @@ export default async function InsightsPage() {
                   className="w-full rounded-2xl bg-slate-900/50 p-8 text-center transition-all hover:scale-105 hover:shadow-2xl border border-white/5 backdrop-blur-sm"
                   role="listitem"
                 >
-                  <Link href={`/insights/${post.slug}`} className="flex flex-col items-center">
+                  <Link href={`/insights/${post.slug}`} className="flex flex-col items-center" prefetch={false}>
                     {post.featuredImage?.node && (
                       <div className="mb-6 aspect-video w-full overflow-hidden rounded-lg mx-auto relative">
                         <Image
                           src={post.featuredImage.node.sourceUrl}
                           alt={post.featuredImage.node.altText || post.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 768px, 1200px"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover"
                           loading={index < 2 ? 'eager' : 'lazy'}
                           quality={75}

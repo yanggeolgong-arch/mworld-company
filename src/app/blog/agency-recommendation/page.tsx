@@ -111,6 +111,7 @@ export default async function AgencyRecommendationPage() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400 hover:text-emerald-400 transition-colors'}
                     >
                       {item.name}

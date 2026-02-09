@@ -39,6 +39,7 @@ export function BlogSeriesBacklinks({ currentSlug }: BlogSeriesBacklinksProps) {
               ) : (
                 <Link
                   href={item.href}
+                  prefetch={false}
                   className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors underline underline-offset-2"
                 >
                   {item.label} · {item.title}

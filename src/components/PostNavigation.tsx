@@ -28,6 +28,7 @@ export function PostNavigation({ prevPost, nextPost }: PostNavigationProps) {
         {prevPost ? (
           <Link
             href={prevPost.url}
+            prefetch={false}
             className="group flex flex-col p-4 rounded-lg bg-slate-900/50 border border-white/5 hover:border-emerald-400/30 transition-all hover:bg-slate-900/70"
           >
             <div className="text-xs text-slate-400 mb-2 font-light">이전 글</div>
@@ -41,6 +42,7 @@ export function PostNavigation({ prevPost, nextPost }: PostNavigationProps) {
         {nextPost ? (
           <Link
             href={nextPost.url}
+            prefetch={false}
             className="group flex flex-col p-4 rounded-lg bg-slate-900/50 border border-white/5 hover:border-emerald-400/30 transition-all hover:bg-slate-900/70 sm:text-right"
           >
             <div className="text-xs text-slate-400 mb-2 font-light">다음 글</div>

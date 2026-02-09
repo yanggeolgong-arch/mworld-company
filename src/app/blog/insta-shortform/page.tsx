@@ -137,6 +137,7 @@ export default async function InstaShortformPage() {
                     {index > 0 && <span className="mx-2">/</span>}
                     <Link
                       href={item.url}
+                      prefetch={false}
                       className={index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400 hover:text-emerald-400 transition-colors'}
                     >
                       {item.name}
@@ -171,6 +172,7 @@ export default async function InstaShortformPage() {
               </p>
               <Link
                 href="/success-cases"
+                prefetch={false}
                 className="inline-flex items-center justify-center rounded-xl bg-[#d4af37] px-6 py-3 text-base font-bold !text-black shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl"
               >
                 성공 사례 보기 (릴스 20개 촬영·제작·배포)

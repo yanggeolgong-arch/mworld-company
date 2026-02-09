@@ -22,17 +22,17 @@ export function Footer() {
               <h3 className="text-base font-semibold text-white text-center">서비스 안내</h3>
               <ul className="mt-4 space-y-2 text-base flex flex-col items-center justify-center">
                 <li className="text-center">
-                  <Link href="/strategy" className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
+                  <Link href="/strategy" prefetch={false} className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
                     마케팅 전략
                   </Link>
                 </li>
                 <li className="text-center">
-                  <Link href="/growth-engine" className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
+                  <Link href="/growth-engine" prefetch={false} className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
                     성장 엔진
                   </Link>
                 </li>
                 <li className="text-center">
-                  <Link href="/success-cases" className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
+                  <Link href="/success-cases" prefetch={false} className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
                     성공 사례
                   </Link>
                 </li>
@@ -42,12 +42,12 @@ export function Footer() {
               <h3 className="text-base font-semibold text-white text-center">자료실</h3>
               <ul className="mt-4 space-y-2 text-base flex flex-col items-center justify-center">
                 <li className="text-center">
-                  <Link href="/insights" className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
+                  <Link href="/insights" prefetch={false} className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
                     성공 노하우
                   </Link>
                 </li>
                 <li className="text-center">
-                  <Link href="/partnership" className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
+                  <Link href="/partnership" prefetch={false} className="text-slate-300 hover:text-emerald-400 font-medium transition-colors text-center">
                     협업 문의
                   </Link>
                 </li>
