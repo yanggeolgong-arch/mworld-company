@@ -100,6 +100,15 @@ export const staticPosts: StaticPost[] = [
     categorySlug: 'algorithm-spread',
     excerpt: '현저하게 줄어든 블로그 클릭률을 1인 AI 광고대행사 구조와 릴스 20개 패키지로 해소하는 실전 가이드.',
   },
+  {
+    slug: 'agency-recommendation',
+    title: '제주 마케팅 대행사 추천 - 10년 실행 전문가가 고른 라이프스타일 마케팅',
+    description: '제주 지역 맞춤 마케팅 대행사 추천과 라이프스타일 브랜딩 전략. 15장의 고품질 이미지와 함께 검증된 대행사 선정 기준을 공개합니다.',
+    date: '2026-02-05',
+    category: '대행사 창업',
+    categorySlug: 'ad-agency-startup',
+    excerpt: '제주 마케팅 대행사 추천과 라이프스타일 마케팅 전략을 15장의 최적화 이미지로 소개합니다.',
+  },
 ];
 
 /**

@@ -106,7 +106,7 @@ export function BlogContentWithImages({
                   sizes={isPriority ? '(max-width: 768px) 100vw, 640px' : '(max-width: 768px) 100vw, 640px'}
                   className="object-cover w-full h-auto"
                   loading={isPriority ? 'eager' : 'lazy'}
-                  decoding={isPriority ? 'async' : undefined}
+                  decoding="async"
                   priority={isPriority}
                   fetchPriority={isPriority ? 'high' : 'low'}
                   quality={isPriority ? 85 : 60}
