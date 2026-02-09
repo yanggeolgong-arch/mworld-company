@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 
-/** 시리즈 백링크: 1~8편. */
+/** 시리즈 백링크: 1~9편. */
 const SERIES = [
   { slug: 'brand-concept', label: '1편', title: '구글 상위 노출의 시작, 광고 전 컨셉 점검이 필수인 진짜 이유', href: '/blog/brand-concept' },
   { slug: 'insta-shortform', label: '2편', title: '제주맛집 인스타그램 마케팅 - 당신의 숏폼이 조회수 0인 진짜 이유', href: '/blog/insta-shortform' },
@@ -11,12 +11,14 @@ const SERIES = [
   { slug: 'xiaohongshu-alipay-strategy', label: '6편', title: '제주맛집 샤오홍슈·알리페이 전략 - 보조배터리와 로고 배치', href: '/blog/xiaohongshu-alipay-strategy' },
   { slug: 'agency-startup-master-class-secrets', label: '7편', title: '대행사 창업 마스터 클래스 비밀 - 15가지 AI 시각', href: '/blog/agency-startup-master-class-secrets' },
   { slug: 'no-agency-marketing-01', label: '8편', title: '현저하게 줄어든 블로그 클릭률, 1인 AI 광고대행사가 되면 해결된다', href: '/blog/no-agency-marketing-01' },
+  { slug: 'agency-recommendation', label: '9편', title: '제주 마케팅 대행사 추천 - 10년 실행 전문가가 고른 라이프스타일 마케팅', href: '/blog/agency-recommendation' },
 ] as const;
 
-type CurrentSlug = (typeof SERIES)[number]['slug'];
+/** currentSlug 허용 타입: 시리즈 slug + agency-recommendation */
+type SeriesSlug = (typeof SERIES)[number]['slug'];
 
 interface BlogSeriesBacklinksProps {
-  currentSlug: CurrentSlug;
+  currentSlug: SeriesSlug | string;
 }
 
 export function BlogSeriesBacklinks({ currentSlug }: BlogSeriesBacklinksProps) {
