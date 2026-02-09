@@ -14,6 +14,8 @@ import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug('insta-shortform');
   if (!staticPost) {

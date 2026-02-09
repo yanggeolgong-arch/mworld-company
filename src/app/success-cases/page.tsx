@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-static';
+
 const cases = [
   {
     title: '동영상 숏폼 20개 제작 + 대형 채널 페이지 33곳 업로드',

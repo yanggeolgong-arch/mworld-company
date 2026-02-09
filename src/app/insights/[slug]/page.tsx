@@ -39,6 +39,8 @@ async function getPost(slug: string) {
   }
 }
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata({
   params,
 }: {

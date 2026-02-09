@@ -52,6 +52,8 @@ const GLOBAL_ALT_SENTENCE: Record<number, string> = {
   15: '엠월드컴퍼니 브랜드 로고와 제주 No.1 실행 문구',
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {

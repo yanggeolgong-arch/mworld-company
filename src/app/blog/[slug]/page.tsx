@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import Link from 'next/link';
 import Image from 'next/image';
 import { requestPosts, GET_POST_BY_SLUG, GET_POSTS } from '@/lib/graphql';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { StructuredData } from '@/components/StructuredData';
+import { BlogContentWithImages } from '@/components/BlogContentWithImages';
+import { BlogSeriesBacklinks } from '@/components/BlogSeriesBacklinks';
 import { generateOptimizedUrl, generateCanonicalUrl, optimizeSlug } from '@/lib/url-optimizer';
 import { generateBlogBreadcrumbs, generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 import { getStaticPostBySlug, getAllStaticPosts } from '@/lib/static-posts';
@@ -10,7 +15,12 @@ import { PostNavigation } from '@/components/PostNavigation';
 import { MasterClassHomeBacklink } from '@/components/MasterClassHomeBacklink';
 import { generateGeoMasterSchema } from '@/lib/geo-master-schema';
 import { generateKeywords, generateStaticPostKeywords } from '@/lib/keyword-generator';
-import { getSchemaDatesSyncToToday } from '@/lib/blog-dates';
+import { getSchemaDatesSyncToToday, formatBlogDate, getTodayISO } from '@/lib/blog-dates';
+import { marked } from 'marked';
+
+marked.setOptions({ breaks: true, gfm: true });
+
+export const dynamic = 'force-static';
 
 interface PostData {
   post: {
@@ -50,6 +60,11 @@ async function getWordPressPost(slug: string) {
     console.error('Failed to fetch post:', error);
     return null;
   }
+}
+
+export async function generateStaticParams() {
+  const staticPosts = getAllStaticPosts();
+  return staticPosts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -122,60 +137,112 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
   
-  // 정적 포스트 확인
+  // 정적 포스트 확인: MDX 기반 정적 포스트는 여기서 렌더 (404 방지)
   const staticPost = getStaticPostBySlug(slug);
   if (staticPost) {
-    // 정적 포스트는 별도 페이지로 리다이렉트
-    // 또는 여기서 직접 렌더링할 수도 있지만, 기존 정적 페이지를 활용하는 것이 좋음
-    // 정적 페이지가 이미 존재하므로 해당 페이지로 리다이렉트하지 않고
-    // 동일한 내용을 여기서 렌더링하거나, 정적 페이지 컴포넌트를 import해서 사용
-    
-    // 정적 포스트의 경우, 이미 별도 페이지가 있으므로 해당 페이지로 리다이렉트
-    // 하지만 URL이 동일하므로 리다이렉트 없이 여기서 처리하는 것이 더 나음
-    // 대신 정적 포스트 페이지 컴포넌트를 동적으로 로드하거나
-    // 여기서 정적 포스트를 렌더링
-    
-    // 간단한 해결책: 정적 포스트가 있으면 해당 정적 페이지로 리다이렉트
-    // 하지만 이건 무한 리다이렉트를 일으킬 수 있으므로
-    // 대신 정적 포스트를 여기서 렌더링하도록 수정
-    
-    const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
-    const breadcrumbs = generateBlogBreadcrumbs(slug, staticPost.title, staticPost.category);
-    const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
-
-    const staticSchemaDates = getSchemaDatesSyncToToday();
-    const blogPostingSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: staticPost.title,
-      description: staticPost.description,
-      url: canonicalUrl,
-      datePublished: staticSchemaDates.datePublished,
-      dateModified: staticSchemaDates.dateModified,
-      author: {
-        '@type': 'Person',
-        name: '엠월드컴퍼니 최고실행자',
-        jobTitle: '10년 이상 실행사 대표 전문가',
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: '엠월드컴퍼니',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://www.aijeju.co.kr/logo.png',
-        },
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': canonicalUrl,
-      },
-      keywords: staticPost.category,
-    };
-
-    // 정적 포스트는 이미 별도 페이지가 있으므로 해당 페이지로 리다이렉트
-    // 하지만 URL이 동일하므로 여기서는 notFound() 대신 정적 페이지를 렌더링하도록
-    // 실제로는 정적 페이지가 우선순위가 높으므로 여기서는 WordPress 포스트만 처리
-    // 정적 포스트는 정적 페이지에서 처리되므로 여기서는 WordPress만 처리
+    let mdxContent = '';
+    try {
+      mdxContent = readFileSync(join(process.cwd(), 'src', 'content', 'blog', `${slug}.mdx`), 'utf-8');
+    } catch (_) {
+      // MDX 없으면 아래 WordPress 경로로 진행
+    }
+    if (mdxContent) {
+      const markdownContent = mdxContent.replace(/^\{[\s\S]*?\}\n\n/, '');
+      let imageMap: Record<string, { src: string; alt: string; width: number; height: number }> = {};
+      let priorityImageKeys: string[] = [];
+      if (slug === 'agency-recommendation') {
+        const alt = '제주 마케팅 대행사 추천 라이프스타일';
+        for (let i = 1; i <= 15; i++) {
+          const num = String(i).padStart(2, '0');
+          imageMap[String(i)] = {
+            src: `/images/blog/agency-rec/jeju-marketing-agency-recommendation-${num}.webp`,
+            alt,
+            width: 640,
+            height: 360,
+          };
+        }
+        priorityImageKeys = ['1', '2'];
+      }
+      if (Object.keys(imageMap).length > 0) {
+        let processedMarkdown = markdownContent;
+        for (let i = 1; i <= 15; i++) {
+          const regex = new RegExp(`!\\[IMAGE:${i}:(.+?)\\]`, 'g');
+          processedMarkdown = processedMarkdown.replace(regex, `<!--IMAGE_PLACEHOLDER:${i}-->`);
+        }
+        const raw = marked(processedMarkdown);
+        const htmlContent = typeof raw === 'string' ? raw : await raw;
+        const canonicalUrl = generateCanonicalUrl(`/blog/${slug}`);
+        const breadcrumbs = generateBlogBreadcrumbs(slug, staticPost.title, staticPost.category);
+        const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+        const blogPostingSchema = {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: staticPost.title,
+          description: staticPost.description,
+          url: canonicalUrl,
+          datePublished: staticPost.date,
+          dateModified: getTodayISO(),
+          author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행 실무 전문가' },
+          publisher: {
+            '@type': 'Organization',
+            name: '엠월드컴퍼니',
+            logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
+          },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+          keywords: staticPost.category,
+        };
+        return (
+          <>
+            <StructuredData data={breadcrumbSchema} />
+            <StructuredData data={blogPostingSchema} />
+            <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">
+              <section className="w-full mx-auto max-w-4xl px-6 py-24 lg:px-8">
+                <div className="rounded-2xl bg-slate-900/50 p-8 border border-white/5 backdrop-blur-sm">
+                  <nav className="mb-6" aria-label="Breadcrumb">
+                    <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
+                      {breadcrumbs.map((item, index) => (
+                        <li key={index} className="flex items-center">
+                          {index > 0 && <span className="mx-2">/</span>}
+                          <Link
+                            href={item.url}
+                            className={index === breadcrumbs.length - 1 ? 'text-white font-medium' : 'text-slate-400 hover:text-emerald-400 transition-colors'}
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                  <header className="mb-8">
+                    <div className="flex items-center justify-center gap-2 text-sm text-slate-400 mb-4">
+                      <span className="font-light">{staticPost.category}</span>
+                      <span>•</span>
+                      <time dateTime={staticPost.date} className="font-light">
+                        {formatBlogDate(staticPost.date)}
+                      </time>
+                    </div>
+                    <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl text-center">
+                      {staticPost.title}
+                    </h1>
+                  </header>
+                  <div className="[&_.prose]:text-white [&_.prose_p]:text-slate-200 [&_.prose_h2]:text-cyan-400 [&_.prose_h3]:text-amber-400 [&_.prose_strong]:text-[#fde047]">
+                    <BlogContentWithImages
+                      htmlContent={htmlContent}
+                      imageMap={imageMap}
+                      priorityImageKeys={priorityImageKeys}
+                    />
+                  </div>
+                  <div className="mt-12 pt-8 border-t border-white/10 text-center">
+                    <MasterClassHomeBacklink />
+                  </div>
+                  <BlogSeriesBacklinks currentSlug={slug} />
+                </div>
+              </section>
+            </article>
+          </>
+        );
+      }
+    }
   }
 
   // WordPress 포스트 처리

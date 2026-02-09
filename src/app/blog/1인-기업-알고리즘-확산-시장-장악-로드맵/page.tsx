@@ -9,6 +9,8 @@ import { formatBlogDate } from '@/lib/blog-dates';
 const SCHEMA_DATE_PUBLISHED = '2026-02-04';
 const SCHEMA_DATE_MODIFIED = '2026-02-06';
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: '1인 기업의 알고리즘 확산 점유 로드맵 - 엠월드컴퍼니',

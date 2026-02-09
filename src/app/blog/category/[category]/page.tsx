@@ -78,6 +78,8 @@ function getPostUrl(post: UnifiedPost): string {
   return generateOptimizedUrl(post.slug, post.title, post.category);
 }
 
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   return blogCategories.map((category) => ({
     category: category.slug,

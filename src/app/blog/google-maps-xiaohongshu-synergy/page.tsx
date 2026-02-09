@@ -52,6 +52,8 @@ const SENTENCE_ALT: Record<number, string> = {
   15: '구글 지도 샤오홍슈 시너지 상담 KakaoTalk SG7979',
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {

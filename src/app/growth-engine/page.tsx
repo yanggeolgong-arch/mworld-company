@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-static';
+
 const breadcrumbSchema = generateBreadcrumbSchema([
   { name: '홈', url: '/' },
   { name: '성장 엔진', url: '/growth-engine' },

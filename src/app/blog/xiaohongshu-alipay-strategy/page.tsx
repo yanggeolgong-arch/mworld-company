@@ -54,6 +54,8 @@ const SENTENCE_ALT: Record<number, string> = {
   15: '엠월드컴퍼니 제주맛집 알리페이·샤오홍슈 상위노출 10년 실행 브랜드',
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {

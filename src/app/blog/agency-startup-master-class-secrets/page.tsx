@@ -52,6 +52,8 @@ const MASTER_CLASS_ALT: Record<number, string> = {
   15: '시스템 가동 CTA와 대행사 창업 상담 시작',
 };
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {

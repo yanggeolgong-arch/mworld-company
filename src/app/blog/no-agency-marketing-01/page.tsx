@@ -14,6 +14,8 @@ import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
 
+export const dynamic = 'force-static';
+
 const SLUG = 'no-agency-marketing-01';
 const VOL1_ALT = '현저하게 줄어든 블로그 클릭률 해결책';
 

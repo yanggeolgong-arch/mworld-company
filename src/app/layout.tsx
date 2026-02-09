@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Script from "next/script";
-import localFont from "next/font/local";
 import { DeferredAnalytics } from "@/components/DeferredAnalytics";
 import "./globals.css";
 
@@ -22,23 +21,6 @@ const DeferredThemeWrapper = dynamic(
 const Footer = dynamic(() => import("@/components/Footer").then((m) => ({ default: m.Footer })), {
   ssr: true,
   loading: () => <footer className="w-full border-t border-white/5 bg-slate-950 min-h-[280px]" aria-hidden="true" />,
-});
-
-const pretendard = localFont({
-  src: [
-    {
-      path: "../../node_modules/pretendard-std/dist/web/static/woff2/PretendardStd-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../node_modules/pretendard-std/dist/web/static/woff2/PretendardStd-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-  variable: "--font-pretendard",
 });
 
 export const metadata: Metadata = {
@@ -91,12 +73,12 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ko" suppressHydrationWarning className={pretendard.variable}>
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <style
           dangerouslySetInnerHTML={{
             __html: [
-              '*,::before,::after{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100vh;background:#020617;color:#f8fafc;font-family:var(--font-pretendard),-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}',
+              '*,::before,::after{box-sizing:border-box}html,body{margin:0;padding:0;min-height:100vh;background:#020617;color:#f8fafc;font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}',
               '@keyframes semanticDNAFadeIn{0%{opacity:0;transform:translate3d(0,30px,0) scale(0.95)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}',
               '.animate-stagger{animation:semanticDNAFadeIn 0.8s cubic-bezier(0.4,0,0.2,1) forwards;opacity:0;will-change:transform;contain:layout style paint}',
               '.animate-stagger-delay-1{animation-delay:0.1s}.animate-stagger-delay-2{animation-delay:0.2s}.animate-stagger-delay-3{animation-delay:0.3s}.animate-stagger-delay-4{animation-delay:0.4s}.animate-stagger-delay-5{animation-delay:0.5s}.animate-stagger-delay-6{animation-delay:0.6s}',
@@ -114,8 +96,8 @@ export default function RootLayout({
         <meta name="naver-site-verification" content="6ffa483c33774a68981a4b95ad7e3169c029abe6" />
         <meta name="google-site-verification" content="9I4l_FHobA4V8PsTmiICuOS-uV5MgRl7BgmAxJcIUJ4" />
       </head>
-      <body className={`${pretendard.className} antialiased`}>
-        {/* TBT 제거: 모든 외부 스크립트 lazyOnload. 첫 화면 렌더 완료 후 연산. */}
+      <body className="antialiased">
+        {/* 스크립트 샌드박싱: next/script strategy="lazyOnload"로 메인 스레드와 분리, 성능 영향 최소화 */}
         <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>

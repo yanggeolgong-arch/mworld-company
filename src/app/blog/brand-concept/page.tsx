@@ -17,6 +17,8 @@ marked.setOptions({
   gfm: true,
 });
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug('brand-concept');
   if (!staticPost) {

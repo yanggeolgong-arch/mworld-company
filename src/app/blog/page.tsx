@@ -9,6 +9,8 @@ import { getAllStaticPosts, type StaticPost } from '@/lib/static-posts';
 import { getSchemaDatesSyncToToday, getTodayISO, formatBlogDate } from '@/lib/blog-dates';
 import { blogCategories } from '@/lib/blog-categories';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
   description: '엠월드컴퍼니는 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 실전 노하우를 공유합니다.',

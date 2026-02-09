@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CTASection } from '@/components/CTASection';
 
+export const dynamic = 'force-static';
+
 export default function Home() {
   return (
     <article className="min-h-screen bg-slate-950 flex flex-col items-center justify-center">

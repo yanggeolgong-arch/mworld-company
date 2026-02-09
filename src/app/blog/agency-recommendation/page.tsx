@@ -14,6 +14,8 @@ import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
 
+export const dynamic = 'force-static';
+
 const SLUG = 'agency-recommendation';
 const IMAGE_ALT = '제주 마케팅 대행사 추천 라이프스타일';
 

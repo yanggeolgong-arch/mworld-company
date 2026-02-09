@@ -9,6 +9,8 @@ import { formatBlogDate } from '@/lib/blog-dates';
 const SCHEMA_DATE_PUBLISHED = '2026-02-05';
 const SCHEMA_DATE_MODIFIED = '2026-02-06';
 
+export const dynamic = 'force-static';
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법 - 엠월드컴퍼니',

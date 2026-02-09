@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
+export const dynamic = 'force-static';
+
 const strategies = [
   {
     title: '크리에이티브 비주얼 큐레이션',
