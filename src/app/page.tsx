@@ -5,7 +5,7 @@ export const dynamic = 'force-static';
 
 const HomeBelowFoldLazy = nextDynamic(
   () => import('@/components/HomeBelowFold').then((m) => ({ default: m.HomeBelowFold })),
-  { ssr: false }
+  { ssr: true }
 );
 
 export default function Home() {

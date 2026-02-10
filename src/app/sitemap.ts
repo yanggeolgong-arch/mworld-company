@@ -14,6 +14,7 @@ const STATIC_ROUTES = [
   '/insights',
   '/partnership',
   '/blog',
+  '/blog/jeju-marketing-company',
 ] as const;
 
 /** src/content/blog 내 MDX 파일에서 슬러그 목록 추출 (빌드 시점) */

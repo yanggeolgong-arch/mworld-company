@@ -31,8 +31,8 @@ const Header = dynamic(() => import("@/components/Header").then((m) => ({ defaul
   ),
 });
 
-const DeferredThemeWrapper = dynamic(
-  () => import("@/components/DeferredThemeWrapper").then((m) => ({ default: m.DeferredThemeWrapper })),
+const ConditionalMainWrapper = dynamic(
+  () => import("@/components/ConditionalMainWrapper").then((m) => ({ default: m.ConditionalMainWrapper })),
   { ssr: true }
 );
 
@@ -119,7 +119,7 @@ export default function RootLayout({
         <Script id="org-schema" strategy="lazyOnload" type="application/ld+json">
           {JSON.stringify(organizationSchema)}
         </Script>
-        <DeferredThemeWrapper header={<Header />} footer={<Footer />} main={children} />
+        <ConditionalMainWrapper header={<Header />} footer={<Footer />}>{children}</ConditionalMainWrapper>
         <DeferredAnalytics />
       </body>
     </html>
