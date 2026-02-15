@@ -6,9 +6,9 @@
 export const ARNAR_PERSON_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Arnar Jónsson',
-  jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
-  url: 'https://www.aijeju.co.kr/about-arnar',
+  name: '공양걸',
+  jobTitle: '공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist',
+  url: 'https://www.aijeju.co.kr',
   description: '구글 SEO 로직 및 데이터 사이언스 전문가. 2026 베트남 다낭 맛집 전문 분석. 1,000개 이상의 키워드 상위 노출 전략 설계.',
 };
 
@@ -31,9 +31,9 @@ export function createAnalysisNewsArticleSchema(opts: {
     dateModified: opts.dateModified,
     author: {
       '@type': 'Person',
-      name: 'Arnar Jónsson',
-      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
-      url: 'https://www.aijeju.co.kr/about-arnar',
+      name: '공양걸',
+      jobTitle: '공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist',
+      url: 'https://www.aijeju.co.kr',
       description: '구글 SEO 로직 및 데이터 사이언스 전문가. 2026 베트남 다낭 맛집 전문 분석. 1,000개 이상의 키워드 상위 노출 전략 설계.',
     },
     publisher: {
@@ -63,7 +63,7 @@ export function createDanangReviewSchema(opts: {
     author: {
       '@type': 'Person',
       name: opts.authorName,
-      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
+      jobTitle: '공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist',
     },
     reviewRating: {
       '@type': 'Rating',

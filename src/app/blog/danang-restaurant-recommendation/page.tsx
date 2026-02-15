@@ -33,7 +33,7 @@ const DANANG_SEO_IMAGES: Record<number, { file: string; alt: string }> = {
   5: { file: 'cong-cafe-ugc-analysis.webp', alt: '2026 베트남 다낭 포박 63 UGC 분석 이미지' },
   6: { file: 'lau-restaurant-synergy.webp', alt: '2026 베트남 다낭 피자 4P\'s 시너지 이미지' },
   7: { file: 'gongyanggeol-data-chart.webp', alt: '2026 베트남 다낭 공양걸AI연구소 데이터 차트' },
-  8: { file: 'white-cat-analyst-arnar.webp', alt: '2026 베트남 다낭 전문 분석가 Arnar 흰색 고양이' },
+  8: { file: 'white-cat-analyst-arnar.webp', alt: '2026 베트남 다낭 전문 분석가 공양걸 흰색 고양이' },
 };
 
 export const dynamic = 'force-static';
@@ -112,7 +112,7 @@ export default async function DanangRestaurantRecommendationPage() {
     name: staticPost.title,
     url: canonicalUrl,
     datePublished: dates.datePublished,
-    authorName: 'Arnar Jónsson',
+    authorName: '공양걸',
   });
 
   return (
@@ -170,11 +170,11 @@ export default async function DanangRestaurantRecommendationPage() {
             </div>
 
             <AuthorBox
-              authorName="Arnar Jónsson"
-              jobTitle="공양걸AI연구소 2026 베트남 다낭 전문 분석가 | Google SEO Specialist"
-              quote="데이터는 거짓말을 하지 않습니다. 우리는 기술로 맛집의 권위를 증명합니다."
+              authorName="공양걸"
+              jobTitle="공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist"
+              quote="데이터는 거짓말을 하지 않습니다. 공양걸은 기술로 맛집의 권위를 증명합니다."
               imageSrc={AUTHOR_IMAGE}
-              imageAlt="2026 베트남 다낭 전문 분석가 Arnar - 공양걸AI연구소 흰색 고양이 EEAT 캐릭터"
+              imageAlt="2026 베트남 다낭 전문 분석가 공양걸 - 공양걸AI연구소 흰색 고양이 EEAT 캐릭터"
               verificationText="본 분석은 공양걸AI연구소 2026 베트남 다낭 전문 분석가가 직접 현지 데이터와 구글 랭킹 로직을 대조하여 작성한 신뢰 보고서입니다."
             />
 
