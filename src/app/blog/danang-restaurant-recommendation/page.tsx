@@ -26,12 +26,12 @@ const AUTHOR_IMAGE = (() => {
 })();
 
 const DANANG_SEO_IMAGES: Record<number, { file: string; alt: string }> = {
-  1: { file: 'main-2026-vietnam-danang.webp', alt: '2026 베트남 다낭 맛집 추천 타이틀 이미지' },
-  2: { file: 'moc-quan-2026-data.webp', alt: '2026 베트남 다낭 맛집 목 식당 데이터' },
-  3: { file: 'banh-mi-phu-logic.webp', alt: '2026 베트남 다낭 맛집 반미 푸 키워드 로직' },
-  4: { file: 'my-khe-quality-score.webp', alt: '2026 베트남 다낭 맛집 미케 식당 리뷰 품질' },
-  5: { file: 'cong-cafe-ugc-analysis.webp', alt: '2026 베트남 다낭 맛집 콩카페 UGC 분석' },
-  6: { file: 'lau-restaurant-synergy.webp', alt: '2026 베트남 다낭 맛집 라우 시너지' },
+  1: { file: 'main-2026-vietnam-danang.webp', alt: '2026 베트남 다낭 맛집 추천 메인 타이틀 이미지' },
+  2: { file: 'moc-quan-2026-data.webp', alt: '2026 베트남 다낭 목 식당 데이터 이미지' },
+  3: { file: 'banh-mi-phu-logic.webp', alt: '2026 베트남 다낭 반미프엉 키워드 로직 이미지' },
+  4: { file: 'my-khe-quality-score.webp', alt: '2026 베트남 다낭 냐벱 리뷰 품질 이미지' },
+  5: { file: 'cong-cafe-ugc-analysis.webp', alt: '2026 베트남 다낭 포박 63 UGC 분석 이미지' },
+  6: { file: 'lau-restaurant-synergy.webp', alt: '2026 베트남 다낭 피자 4P\'s 시너지 이미지' },
   7: { file: 'gongyanggeol-data-chart.webp', alt: '2026 베트남 다낭 공양걸AI연구소 데이터 차트' },
   8: { file: 'white-cat-analyst-arnar.webp', alt: '2026 베트남 다낭 전문 분석가 Arnar 흰색 고양이' },
 };
