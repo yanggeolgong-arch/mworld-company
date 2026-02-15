@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import Link from 'next/link';
 import { StructuredData } from '@/components/StructuredData';
@@ -17,17 +17,23 @@ import { marked } from 'marked';
 marked.setOptions({ breaks: true, gfm: true });
 
 const SLUG = 'danang-restaurant-recommendation';
-/** 안경 쓴 고양이 캐릭터 - .webp로 교체 가능 */
-const AUTHOR_IMAGE = '/images/blog/danang-seo/gongyanggeol-analysis.svg';
-
 const IMAGE_BASE = '/images/blog/danang-seo/';
 
+/** 8.webp: 흰색 고양이 EEAT 캐릭터 (분석가 프로필 박스). 변환 전에는 SVG 폴백 */
+const AUTHOR_IMAGE = (() => {
+  const webp = join(process.cwd(), 'public', 'images', 'blog', 'danang-seo', 'white-cat-analyst-arnar.webp');
+  return existsSync(webp) ? `${IMAGE_BASE}white-cat-analyst-arnar.webp` : `${IMAGE_BASE}gongyanggeol-analysis.svg`;
+})();
+
 const DANANG_SEO_IMAGES: Record<number, { file: string; alt: string }> = {
-  1: { file: 'main-danang-seo.webp', alt: '2026 베트남 다낭 맛집 목 식당 구글맵 Social Proof' },
-  2: { file: 'banh-mi-logic.webp', alt: '2026 베트남 다낭 맛집 반미프엉 키워드 로직' },
-  3: { file: 'nha-bep-targeting.webp', alt: '2026 베트남 다낭 맛집 냐벱 리뷰 타겟팅' },
-  4: { file: 'pho-63-essence.webp', alt: '2026 베트남 다낭 맛집 포박 63 경험 본질' },
-  5: { file: 'pizza-4ps-cx.webp', alt: '2026 베트남 다낭 맛집 피자 4P\'s 고객경험' },
+  1: { file: 'main-2026-vietnam-danang.webp', alt: '2026 베트남 다낭 맛집 추천 타이틀 이미지' },
+  2: { file: 'moc-quan-2026-data.webp', alt: '2026 베트남 다낭 맛집 목 식당 데이터' },
+  3: { file: 'banh-mi-phu-logic.webp', alt: '2026 베트남 다낭 맛집 반미 푸 키워드 로직' },
+  4: { file: 'my-khe-quality-score.webp', alt: '2026 베트남 다낭 맛집 미케 식당 리뷰 품질' },
+  5: { file: 'cong-cafe-ugc-analysis.webp', alt: '2026 베트남 다낭 맛집 콩카페 UGC 분석' },
+  6: { file: 'lau-restaurant-synergy.webp', alt: '2026 베트남 다낭 맛집 라우 시너지' },
+  7: { file: 'gongyanggeol-data-chart.webp', alt: '2026 베트남 다낭 공양걸AI연구소 데이터 차트' },
+  8: { file: 'white-cat-analyst-arnar.webp', alt: '2026 베트남 다낭 전문 분석가 Arnar 흰색 고양이' },
 };
 
 export const dynamic = 'force-static';
@@ -77,7 +83,7 @@ export default async function DanangRestaurantRecommendationPage() {
   const htmlContent = typeof raw === 'string' ? raw : await raw;
 
   const imageMap: Record<string, { src: string; alt: string }> = {};
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 8; i++) {
     const item = DANANG_SEO_IMAGES[i];
     imageMap[String(i)] = {
       src: `${IMAGE_BASE}${item.file}`,
@@ -165,11 +171,11 @@ export default async function DanangRestaurantRecommendationPage() {
 
             <AuthorBox
               authorName="Arnar Jónsson"
-              jobTitle="공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist"
+              jobTitle="공양걸AI연구소 2026 베트남 다낭 전문 분석가 | Google SEO Specialist"
               quote="데이터는 거짓말을 하지 않습니다. 우리는 기술로 맛집의 권위를 증명합니다."
               imageSrc={AUTHOR_IMAGE}
-              imageAlt="2026 베트남 다낭 맛집 공양걸AI연구소 수석 분석가 - 안경 쓴 고양이 캐릭터"
-              verificationText="본 분석은 공양걸AI연구소의 수석 분석가 공양걸이 직접 현지 데이터와 구글 랭킹 로직을 대조하여 작성한 신뢰 보고서입니다."
+              imageAlt="2026 베트남 다낭 전문 분석가 Arnar - 공양걸AI연구소 흰색 고양이 EEAT 캐릭터"
+              verificationText="본 분석은 공양걸AI연구소 2026 베트남 다낭 전문 분석가가 직접 현지 데이터와 구글 랭킹 로직을 대조하여 작성한 신뢰 보고서입니다."
             />
 
             <div className="mt-12 pt-8 border-t border-white/10 text-center">

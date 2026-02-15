@@ -7,9 +7,9 @@ export const ARNAR_PERSON_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Arnar Jónsson',
-  jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab',
+  jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
   url: 'https://www.aijeju.co.kr/about-arnar',
-  description: '구글 SEO 로직 및 데이터 사이언스 전문가. 1,000개 이상의 키워드 상위 노출 전략 설계.',
+  description: '구글 SEO 로직 및 데이터 사이언스 전문가. 2026 베트남 다낭 맛집 전문 분석. 1,000개 이상의 키워드 상위 노출 전략 설계.',
 };
 
 export function createAnalysisNewsArticleSchema(opts: {
@@ -32,9 +32,9 @@ export function createAnalysisNewsArticleSchema(opts: {
     author: {
       '@type': 'Person',
       name: 'Arnar Jónsson',
-      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab',
+      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
       url: 'https://www.aijeju.co.kr/about-arnar',
-      description: '구글 SEO 로직 및 데이터 사이언스 전문가. 1,000개 이상의 키워드 상위 노출 전략 설계.',
+      description: '구글 SEO 로직 및 데이터 사이언스 전문가. 2026 베트남 다낭 맛집 전문 분석. 1,000개 이상의 키워드 상위 노출 전략 설계.',
     },
     publisher: {
       '@type': 'Organization',
@@ -63,7 +63,7 @@ export function createDanangReviewSchema(opts: {
     author: {
       '@type': 'Person',
       name: opts.authorName,
-      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab',
+      jobTitle: 'Lead Data Analyst at Gongyang-geol AI Lab | 2026 베트남 다낭 전문 분석',
     },
     reviewRating: {
       '@type': 'Rating',
@@ -73,7 +73,7 @@ export function createDanangReviewSchema(opts: {
     },
     itemReviewed: {
       '@type': 'Place',
-      name: '2026 베트남 다낭 맛집 추천 5곳 (목 식당·반미프엉·냐벱·포박 63·피자 4P\'s)',
+      name: '2026 베트남 다낭 맛집 추천 5곳 (목 식당·반미 푸·미케·콩카페·라우)',
       address: { '@type': 'PostalAddress', addressLocality: 'Da Nang', addressCountry: 'VN' },
     },
   };

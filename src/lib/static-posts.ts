@@ -107,7 +107,7 @@ export const staticPosts: StaticPost[] = [
     date: '2026-02-15',
     category: '2026 베트남 다낭 맛집',
     categorySlug: 'danang-restaurant',
-    excerpt: '목 식당·반미프엉·냐벱·포박 63·피자 4P\'s. 2026 베트남 다낭 맛집 데이터로 검증한 실패 없는 추천.',
+    excerpt: '목 식당·반미 푸·미케·콩카페·라우. 2026 베트남 다낭 맛집 데이터로 검증한 실패 없는 추천.',
   },
   {
     slug: 'agency-recommendation',
