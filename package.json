@@ -12,7 +12,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ping-search-engines": "node -e \"fetch('https://www.aijeju.co.kr/api/ping-search-engines').then(r=>r.json()).then(d=>console.log(JSON.stringify(d,null,2)))\""
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",

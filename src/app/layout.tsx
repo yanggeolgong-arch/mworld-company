@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   keywords: ["공양걸AI연구소", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
   alternates: {
     canonical: 'https://www.aijeju.co.kr',
+    types: {
+      'application/rss+xml': 'https://www.aijeju.co.kr/feed',
+    },
   },
   openGraph: {
     title: "대행사 창업의 모든 것 : 공양걸AI연구소",

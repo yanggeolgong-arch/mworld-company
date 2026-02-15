@@ -41,13 +41,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.9,
   }));
 
+  const DANANG_SLUG = 'danang-restaurant-recommendation';
+
   const staticPosts = getAllStaticPosts();
-  const blogFromStaticPosts: MetadataRoute.Sitemap = staticPosts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: now,
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+  const blogFromStaticPosts: MetadataRoute.Sitemap = staticPosts.map((post) => {
+    const isDanang = post.slug === DANANG_SLUG;
+    const changeFreq: 'daily' | 'weekly' = isDanang ? 'daily' : 'weekly';
+    return {
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: now,
+      changeFrequency: changeFreq,
+      priority: isDanang ? 1.0 : 0.8,
+    };
+  });
 
   const mdxSlugs = getMdxSlugs();
   const existingSlugs = new Set(staticPosts.map((p) => p.slug));
