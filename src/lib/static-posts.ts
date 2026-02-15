@@ -102,12 +102,12 @@ export const staticPosts: StaticPost[] = [
   },
   {
     slug: 'danang-restaurant-recommendation',
-    title: '다낭 맛집 추천: 광고 대행사가 데이터 로직으로 분석한 실패 없는 5곳',
-    description: '광고 대행사가 다낭 현지 데이터와 구글 랭킹 로직을 대조하여 분석한 다낭맛집 추천 5곳. 검증된 신뢰 보고서.',
+    title: '2026 베트남 다낭 맛집 추천: 광고 대행사가 로직으로 분석한 실패 없는 5곳',
+    description: '2026년 최신 구글 맵 데이터와 베트남 현지 트래픽 기반 2026 다낭 맛집 추천 5곳. 베트남 다낭 자유여행 필수 리포트.',
     date: '2026-02-15',
-    category: '다낭 맛집',
+    category: '2026 베트남 다낭 맛집',
     categorySlug: 'danang-restaurant',
-    excerpt: '목 식당·반미 푸·미케·콩카페·라우. 구글 맵 트래픽과 리뷰 품질을 데이터로 검증한 다낭맛집 추천 리포트.',
+    excerpt: '목 식당·반미 푸·미케·콩카페·라우. 2026 베트남 다낭 맛집 데이터로 검증한 실패 없는 추천.',
   },
   {
     slug: 'agency-recommendation',

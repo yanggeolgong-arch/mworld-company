@@ -71,12 +71,15 @@ export default async function DanangRestaurantRecommendationPage() {
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
   const dates = getSchemaDates(staticPost.date);
 
+  const DANANG_KEYWORDS = '2026 베트남 다낭 맛집, 2026 다낭 맛집 추천, 다낭 쌀국수 맛집, 베트남 여행 정보, 베트남 다낭 자유여행';
+
   const analysisNewsArticleSchema = createAnalysisNewsArticleSchema({
-    headline: staticPost.title,
+    headline: '2026 베트남 다낭 맛집 추천: 광고 대행사가 로직으로 분석한 실패 없는 5곳',
     description: staticPost.description,
     url: canonicalUrl,
     datePublished: dates.datePublished,
     dateModified: dates.dateModified,
+    keywords: DANANG_KEYWORDS,
   });
 
   const reviewSchema = createDanangReviewSchema({
@@ -128,8 +131,7 @@ export default async function DanangRestaurantRecommendationPage() {
                 {staticPost.title}
               </h1>
               <p className="mt-3 text-center text-sm text-emerald-400/90">
-                Verified by Gongyang-geol AI Lab: 실제 현지 방문 데이터와 구글 알고리즘 분석을 결합한 1종 전문
-                리포트
+                2026 Freshness Update: 2026년 최신 구글 맵 데이터와 베트남 현지 트래픽 기반 전문 리포트
               </p>
             </header>
 
@@ -146,7 +148,7 @@ export default async function DanangRestaurantRecommendationPage() {
               jobTitle="공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist"
               quote="데이터는 거짓말을 하지 않습니다. 우리는 기술로 맛집의 권위를 증명합니다."
               imageSrc={AUTHOR_IMAGE}
-              imageAlt="공양걸AI연구소 수석 분석가 - 안경 쓴 고양이 캐릭터"
+              imageAlt="2026 베트남 다낭 맛집 공양걸AI연구소 수석 분석가 - 안경 쓴 고양이 캐릭터"
               verificationText="본 분석은 공양걸AI연구소의 수석 분석가 공양걸이 직접 현지 데이터와 구글 랭킹 로직을 대조하여 작성한 신뢰 보고서입니다."
             />
 

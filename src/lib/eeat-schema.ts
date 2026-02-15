@@ -19,6 +19,7 @@ export function createAnalysisNewsArticleSchema(opts: {
   datePublished: string;
   dateModified: string;
   image?: string;
+  keywords?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -42,6 +43,7 @@ export function createAnalysisNewsArticleSchema(opts: {
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': opts.url },
     ...(opts.image && { image: opts.image }),
+    ...(opts.keywords && { keywords: opts.keywords }),
   };
 }
 
@@ -71,7 +73,7 @@ export function createDanangReviewSchema(opts: {
     },
     itemReviewed: {
       '@type': 'Place',
-      name: '다낭 맛집 추천 5곳',
+      name: '2026 베트남 다낭 맛집 추천 5곳',
       address: { '@type': 'PostalAddress', addressLocality: 'Da Nang', addressCountry: 'VN' },
     },
   };
