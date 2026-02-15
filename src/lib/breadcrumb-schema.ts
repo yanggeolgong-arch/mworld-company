@@ -20,7 +20,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith('http') ? item.url : `https://aijeju.co.kr${item.url}`,
+      item: item.url.startsWith('http') ? item.url : `https://www.aijeju.co.kr${item.url}`,
     })),
   };
 }

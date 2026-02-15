@@ -103,7 +103,7 @@ export function generateOptimizedUrl(slug: string, title: string, category?: str
  * @returns Canonical URL
  */
 export function generateCanonicalUrl(path: string): string {
-  const baseUrl = 'https://aijeju.co.kr';
+  const baseUrl = 'https://www.aijeju.co.kr';
   
   // 쿼리 파라미터 제거
   const cleanPath = path.split('?')[0];
