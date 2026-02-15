@@ -20,6 +20,16 @@ const SLUG = 'danang-restaurant-recommendation';
 /** 안경 쓴 고양이 캐릭터 - .webp로 교체 가능 */
 const AUTHOR_IMAGE = '/images/blog/danang-seo/gongyanggeol-analysis.svg';
 
+const IMAGE_BASE = '/images/blog/danang-seo/';
+
+const DANANG_SEO_IMAGES: Record<number, { file: string; alt: string }> = {
+  1: { file: 'main-danang-seo.webp', alt: '2026 베트남 다낭 맛집 목 식당 구글맵 Social Proof' },
+  2: { file: 'banh-mi-logic.webp', alt: '2026 베트남 다낭 맛집 반미프엉 키워드 로직' },
+  3: { file: 'nha-bep-targeting.webp', alt: '2026 베트남 다낭 맛집 냐벱 리뷰 타겟팅' },
+  4: { file: 'pho-63-essence.webp', alt: '2026 베트남 다낭 맛집 포박 63 경험 본질' },
+  5: { file: 'pizza-4ps-cx.webp', alt: '2026 베트남 다낭 맛집 피자 4P\'s 고객경험' },
+};
+
 export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -65,6 +75,16 @@ export default async function DanangRestaurantRecommendationPage() {
   const markdownContent = mdxContent.replace(/^---[\s\S]*?---\s*\n\n?/, '');
   const raw = marked(markdownContent);
   const htmlContent = typeof raw === 'string' ? raw : await raw;
+
+  const imageMap: Record<string, { src: string; alt: string }> = {};
+  for (let i = 1; i <= 5; i++) {
+    const item = DANANG_SEO_IMAGES[i];
+    imageMap[String(i)] = {
+      src: `${IMAGE_BASE}${item.file}`,
+      alt: item.alt,
+    };
+  }
+  const priorityImageKeys = ['1', '2'];
 
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   const breadcrumbs = generateBlogBreadcrumbs(SLUG, staticPost.title, staticPost.category);
@@ -138,8 +158,8 @@ export default async function DanangRestaurantRecommendationPage() {
             <div className="[&_.prose]:text-[#F2F2F2] [&_.prose_p]:text-[#F2F2F2] [&_.prose_ul]:text-[#F2F2F2] [&_.prose_ol]:text-[#F2F2F2] [&_.prose_li]:text-[#F2F2F2] [&_.prose_blockquote]:text-[#F2F2F2]/90 [&_.prose_h2]:text-cyan-400 [&_.prose_h3]:text-amber-400 [&_.prose_strong]:text-[#fde047]">
               <BlogContentWithImages
                 htmlContent={htmlContent}
-                imageMap={{}}
-                priorityImageKeys={[]}
+                imageMap={imageMap}
+                priorityImageKeys={priorityImageKeys}
               />
             </div>
 

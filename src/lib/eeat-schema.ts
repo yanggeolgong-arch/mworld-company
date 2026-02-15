@@ -73,7 +73,7 @@ export function createDanangReviewSchema(opts: {
     },
     itemReviewed: {
       '@type': 'Place',
-      name: '2026 베트남 다낭 맛집 추천 5곳',
+      name: '2026 베트남 다낭 맛집 추천 5곳 (목 식당·반미프엉·냐벱·포박 63·피자 4P\'s)',
       address: { '@type': 'PostalAddress', addressLocality: 'Da Nang', addressCountry: 'VN' },
     },
   };
