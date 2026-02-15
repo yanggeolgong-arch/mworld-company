@@ -18,7 +18,7 @@ function runWhenIdle(cb: () => void) {
 
 const DefaultPlaceholderHeader = () => (
   <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md h-16 flex items-center justify-center">
-    <span className="text-xl font-medium text-white">엠월드컴퍼니</span>
+    <span className="text-xl font-medium text-white">공양걸AI연구소</span>
   </header>
 );
 

@@ -1,5 +1,5 @@
 /**
- * 엠월드컴퍼니 최고실행자 프로토콜 - 성능 98점 WebP
+ * 공양걸AI연구소 최고실행자 프로토콜 - 성능 98점 WebP
  * google-maps-xiaohongshu-synergy/ → google-synergy/google-review-agency-synergy-01~15.webp
  */
 const path = require('path');

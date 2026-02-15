@@ -51,7 +51,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다',
+      title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다',
     };
   }
 
@@ -62,7 +62,7 @@ export async function generateMetadata({
   const keywords = generateKeywords(post.title, post.categories.nodes, post.content);
 
   return {
-    title: `${post.title} - 엠월드컴퍼니 성공 노하우`,
+    title: `${post.title} - 공양걸AI연구소 성공 노하우`,
     description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
     keywords,
     alternates: {
@@ -172,7 +172,7 @@ export default async function PostPage({
                 문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
               </p>
               <p className="mt-2 text-sm text-slate-400">
-                엠월드컴퍼니는 결과로만 말합니다.
+                공양걸AI연구소는 결과로만 말합니다.
               </p>
             </div>
           </div>

@@ -5,8 +5,8 @@ import { StructuredData } from '@/components/StructuredData';
 import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
-  title: '엠월드컴퍼니 성공 사례 | 실행력으로 증명된 압도적 성과',
-  description: '엠월드컴퍼니는 10년 이상 실행력으로 증명된 압도적 성과를 통해 브랜드 성장 스토리를 만듭니다.',
+  title: '공양걸AI연구소 성공 사례 | 실행력으로 증명된 압도적 성과',
+  description: '공양걸AI연구소는 10년 이상 실행력으로 증명된 압도적 성과를 통해 브랜드 성장 스토리를 만듭니다.',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/success-cases',
   },
@@ -81,7 +81,7 @@ export default function SuccessCasesPage() {
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2">
             <span className="text-sm font-light text-slate-200">
-              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 엠월드컴퍼니는 결과로만 말합니다.
+              <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화. 공양걸AI연구소는 결과로만 말합니다.
             </span>
           </div>
         </header>

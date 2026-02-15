@@ -24,7 +24,7 @@ export function MasterClassSample() {
           </p>
           
           <p className="font-light leading-relaxed">
-            엠월드컴퍼니의 <span className="font-semibold text-[#d4af37]">AI-Identity Protocol</span>은 근본적으로 다릅니다. 
+            공양걸AI연구소의 <span className="font-semibold text-[#d4af37]">AI-Identity Protocol</span>은 근본적으로 다릅니다. 
             우리는 단순히 검색 결과 상단에 노출되는 것이 아니라, 
             <span className="font-semibold text-white"> 구글과 AI 검색 엔진의 뇌에 브랜드를 권위자로 각인</span>시킵니다.
           </p>
@@ -47,7 +47,7 @@ export function MasterClassSample() {
           <p className="font-light leading-relaxed">
             일반적인 알고리즘 확산 대행사는 <span className="font-semibold text-white">매월 광고비를 지속적으로 투입</span>해야 합니다. 
             광고비가 끊기는 순간, 노출도 사라집니다. 
-            하지만 엠월드컴퍼니의 AI-Identity Protocol은 <span className="font-semibold text-emerald-400">한 번의 설계로 영구적인 디지털 자산</span>을 만듭니다. 
+            하지만 공양걸AI연구소의 AI-Identity Protocol은 <span className="font-semibold text-emerald-400">한 번의 설계로 영구적인 디지털 자산</span>을 만듭니다. 
             이것이 <span className="text-emerald-400">10년 이상</span>의 실행 업무 노하우가 증명하는 근본적인 차이입니다.
           </p>
           
@@ -62,7 +62,7 @@ export function MasterClassSample() {
             왜 맛집과 브랜드가 이 자산이 필요한가? 
             <span className="font-semibold text-white">영구적인 디지털 자산은 매출의 기반</span>이 되기 때문입니다. 
             매월 광고비를 투입하는 것이 아니라, 한 번 구축된 Semantic DNA가 지속적으로 고객을 유입시킵니다. 
-            이것이 <span className="font-semibold text-emerald-400">엠월드컴퍼니가 <span className="text-[#d4af37]">10년 이상</span> 동안 <span className="text-[#d4af37]">1,000개</span> 이상의 브랜드를 성공시킨 이유</span>입니다.
+            이것이 <span className="font-semibold text-emerald-400">공양걸AI연구소가 <span className="text-[#d4af37]">10년 이상</span> 동안 <span className="text-[#d4af37]">1,000개</span> 이상의 브랜드를 성공시킨 이유</span>입니다.
           </p>
           
           <div className="mt-8 rounded-lg bg-gradient-to-r from-slate-900 to-black p-6 border border-white/5">

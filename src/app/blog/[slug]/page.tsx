@@ -81,7 +81,7 @@ export async function generateMetadata({
     // 키워드 스터핑 방지: 포스트 내용에 맞게 동적으로 생성
     const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
     return {
-      title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+      title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
       description: staticPost.description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
       keywords,
       alternates: {
@@ -101,7 +101,7 @@ export async function generateMetadata({
   const post = await getWordPressPost(slug);
   if (!post) {
     return {
-      title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다',
+      title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다',
     };
   }
 
@@ -113,7 +113,7 @@ export async function generateMetadata({
   const keywords = generateKeywords(post.title, post.categories.nodes, post.content);
 
   return {
-    title: `${post.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${post.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: description || '10년 이상 실행 업무 전문가의 알고리즘 확산 최적화 전략',
     keywords,
     alternates: {
@@ -182,10 +182,10 @@ export default async function BlogPostPage({
           url: canonicalUrl,
           datePublished: staticPost.date,
           dateModified: getTodayISO(),
-          author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행 실무 전문가' },
+          author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 실행 실무 전문가' },
           publisher: {
             '@type': 'Organization',
-            name: '엠월드컴퍼니',
+            name: '공양걸AI연구소',
             logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
           },
           mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
@@ -313,12 +313,12 @@ export default async function BlogPostPage({
     dateModified: schemaDates.dateModified,
     author: {
       '@type': 'Person',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       jobTitle: '10년 이상 실행 업무 전문가',
     },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aijeju.co.kr/logo.png',
@@ -442,7 +442,7 @@ export default async function BlogPostPage({
                 문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
               </p>
               <p className="mt-2 text-sm text-slate-400">
-                엠월드컴퍼니는 결과로만 말합니다.
+                공양걸AI연구소는 결과로만 말합니다.
               </p>
             </div>
             <MasterClassHomeBacklink />

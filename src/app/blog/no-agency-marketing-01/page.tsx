@@ -22,11 +22,11 @@ const VOL1_ALT = '현저하게 줄어든 블로그 클릭률 해결책';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -88,10 +88,10 @@ export default async function NoAgencyMarketing01Page() {
     url: canonicalUrl,
     datePublished: staticPost.date,
     dateModified: getTodayISO(),
-    author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행 실무 전문가' },
+    author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 실행 실무 전문가' },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },

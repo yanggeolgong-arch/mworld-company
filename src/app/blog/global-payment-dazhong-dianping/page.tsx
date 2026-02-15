@@ -35,7 +35,7 @@ const GLOBAL_SEO_FILES: Record<number, string> = {
   15: 'jeju-mworld-brand-execution-no1.webp',
 };
 const GLOBAL_ALT_SENTENCE: Record<number, string> = {
-  1: '엠월드컴퍼니 ICB 공식 대행사 인증서로 제주맛집 글로벌 결제 신뢰를 높이는 방법',
+  1: '공양걸AI연구소 ICB 공식 대행사 인증서로 제주맛집 글로벌 결제 신뢰를 높이는 방법',
   2: '제주맛집 QRick 통합 결제 UI로 알리페이·위챗·카카오 한 번에 받는 현장',
   3: '제주맛집에 가득한 20대 글로벌 손님과 알리페이·따종디엔핑 연계',
   4: '따종디엔핑 앱으로 맛집 순위와 리뷰를 확인하는 제주 관광객',
@@ -47,9 +47,9 @@ const GLOBAL_ALT_SENTENCE: Record<number, string> = {
   10: '제주맛집 음식 촬영 후 실시간 따종디엔핑 리뷰로 상위 노출',
   11: '제주 현지 실무 데이터 주차 정보와 매장 외부 전경',
   12: '제주맛집 밖에서 대기 중인 트렌디한 글로벌 관광객',
-  13: '엠월드컴퍼니 전문가의 제주맛집 알리페이·따종디엔핑 상담 현장',
+  13: '공양걸AI연구소 전문가의 제주맛집 알리페이·따종디엔핑 상담 현장',
   14: '따종디엔핑 등록문의 한글 그래픽 ID SG7979',
-  15: '엠월드컴퍼니 브랜드 로고와 제주 No.1 실행 문구',
+  15: '공양걸AI연구소 브랜드 로고와 제주 No.1 실행 문구',
 };
 
 export const dynamic = 'force-static';
@@ -57,12 +57,12 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     keywords,
     alternates: { canonical: canonicalUrl },
@@ -121,8 +121,8 @@ export default async function GlobalPaymentDazhongDianpingPage() {
     url: canonicalUrl,
     datePublished: staticPost.date,
     dateModified: '2026-02-06',
-    author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
-    publisher: { '@type': 'Organization', name: '엠월드컴퍼니', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
+    author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
+    publisher: { '@type': 'Organization', name: '공양걸AI연구소', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     keywords: '글로벌 결제, 따종디엔핑, 알리페이, 제주맛집, 중국 관광객, ICB, QRick',
   };
@@ -173,7 +173,7 @@ export default async function GlobalPaymentDazhongDianpingPage() {
               <p className="text-base font-medium text-[#F2F2F2]">
                 문의: KakaoTalk: SG7979 | 010-4074-9343 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
               </p>
-              <p className="mt-2 text-sm text-[#F2F2F2]/70">엠월드컴퍼니는 결과로만 말합니다.</p>
+              <p className="mt-2 text-sm text-[#F2F2F2]/70">공양걸AI연구소는 결과로만 말합니다.</p>
             </div>
 
             {/* 시리즈 다시 보기 - 백링크 3개, #FFD700 포인트 (블랙 테마 조화) */}

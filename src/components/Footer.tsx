@@ -7,12 +7,12 @@ export function Footer() {
         <div className="w-full flex justify-center items-center">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-4 justify-items-center items-center text-center justify-center w-full max-w-5xl mx-auto">
             <div className="flex flex-col items-center justify-center w-full">
-              <h3 className="text-base font-semibold text-white text-center">엠월드컴퍼니</h3>
+              <h3 className="text-base font-semibold text-white text-center">공양걸AI연구소</h3>
               <p className="mt-4 text-base font-medium text-slate-300 text-center">
                 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가, <span className="text-[#d4af37]">1,000개</span>의 신화.
               </p>
               <p className="mt-2 text-sm font-medium text-slate-300 text-center">
-                엠월드컴퍼니는 결과로만 말합니다.
+                공양걸AI연구소는 결과로만 말합니다.
               </p>
               <p className="mt-2 text-sm font-medium text-[#d4af37] text-center">
                 F&B(맛집) 마케팅의 절대 강자
@@ -79,7 +79,7 @@ export function Footer() {
         </div>
           <div className="w-full mt-8 border-t border-white/5 pt-8 text-center flex flex-col items-center justify-center">
             <p className="text-sm font-medium text-slate-400 text-center">
-            &copy; {new Date().getFullYear()} 엠월드컴퍼니. All rights reserved.
+            &copy; {new Date().getFullYear()} 공양걸AI연구소. All rights reserved.
           </p>
         </div>
         
@@ -87,7 +87,7 @@ export function Footer() {
         <div className="w-full mt-6 pt-6 border-t border-white/5 text-center flex flex-col items-center justify-center">
           <div className="flex flex-col items-center justify-center space-y-2 text-sm text-slate-400">
             <p className="font-medium text-slate-300 text-center">
-              상호명: 엠월드컴퍼니 | 대표자: 공양걸
+              상호명: 공양걸AI연구소 | 대표자: 공양걸
             </p>
             <p className="text-center">
               주소: 제주특별자치도 제주시 삼동2길 10, 201호(연동)

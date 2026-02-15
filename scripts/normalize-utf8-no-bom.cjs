@@ -1,5 +1,5 @@
 /**
- * 엠월드컴퍼니 최고실행자 프로토콜: 모든 .css, .js, .mdx(, .mjs)를 UTF-8 Without BOM으로 재저장
+ * 공양걸AI연구소 최고실행자 프로토콜: 모든 .css, .js, .mdx(, .mjs)를 UTF-8 Without BOM으로 재저장
  */
 const fs = require('fs');
 const path = require('path');

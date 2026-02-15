@@ -13,7 +13,7 @@ export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: '1인 기업의 알고리즘 확산 점유 로드맵 - 엠월드컴퍼니',
+    title: '1인 기업의 알고리즘 확산 점유 로드맵 - 공양걸AI연구소',
     description: '네이버 플레이스 컨디션 진단법부터 AI 자동화 파이프라인 구축까지, 1인 기업이 대행사를 압도하는 기술적 SEO 전략을 공개합니다.',
     keywords: '알고리즘 확산, 네이버 플레이스 최적화, 1인 기업 마케팅, AI 자동화, 트래픽 단가 할인, 실행사 직거래, 플레이스 컨디션, 알고리즘 데이터 분석',
     alternates: {
@@ -46,12 +46,12 @@ const baseBlogPostingSchema = {
   },
   author: {
     '@type': 'Person',
-    name: '엠월드컴퍼니 최고실행자',
+    name: '공양걸AI연구소 최고실행자',
     jobTitle: '10년 이상 실행사 대표 전문가',
   },
   publisher: {
     '@type': 'Organization',
-    name: '엠월드컴퍼니',
+    name: '공양걸AI연구소',
     logo: {
       '@type': 'ImageObject',
       url: 'https://www.aijeju.co.kr/logo.png',
@@ -644,7 +644,7 @@ export default function AlgorithmDiffusionRoadmapPage() {
                   문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
                 </p>
                 <p className="text-sm text-white font-light">
-                  엠월드컴퍼니는 결과로만 말합니다.
+                  공양걸AI연구소는 결과로만 말합니다.
                 </p>
               </div>
             </div>

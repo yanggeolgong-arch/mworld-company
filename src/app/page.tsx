@@ -16,7 +16,7 @@ export default function Home() {
         <div className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center animate-stagger">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
-              엠월드컴퍼니
+              공양걸AI연구소
             </span>
           </div>
           <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl text-center whitespace-pre-line">

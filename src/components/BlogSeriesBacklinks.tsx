@@ -25,7 +25,7 @@ export function BlogSeriesBacklinks({ currentSlug }: BlogSeriesBacklinksProps) {
   return (
     <div className="mt-8 pt-6 border-t border-white/10 text-center">
       <p className="text-sm text-slate-400 mb-3">
-        엠월드컴퍼니 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 시리즈 (E-E-A-T 검증 콘텐츠)
+        공양걸AI연구소 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가의 시리즈 (E-E-A-T 검증 콘텐츠)
       </p>
       <nav aria-label="시리즈 백링크" className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 flex-wrap">
         {SERIES.map((item) => {

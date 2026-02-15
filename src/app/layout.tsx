@@ -26,7 +26,7 @@ const Header = dynamic(() => import("@/components/Header").then((m) => ({ defaul
   ssr: true,
   loading: () => (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md h-16 flex items-center justify-center">
-      <span className="text-xl font-medium text-white">엠월드컴퍼니</span>
+      <span className="text-xl font-medium text-white">공양걸AI연구소</span>
     </header>
   ),
 });
@@ -42,14 +42,14 @@ const Footer = dynamic(() => import("@/components/Footer").then((m) => ({ defaul
 });
 
 export const metadata: Metadata = {
-  title: "대행사 창업의 모든 것 : 엠월드컴퍼니",
+  title: "대행사 창업의 모든 것 : 공양걸AI연구소",
   description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
-  keywords: ["엠월드컴퍼니", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
+  keywords: ["공양걸AI연구소", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
   alternates: {
     canonical: 'https://www.aijeju.co.kr',
   },
   openGraph: {
-    title: "대행사 창업의 모든 것 : 엠월드컴퍼니",
+    title: "대행사 창업의 모든 것 : 공양걸AI연구소",
     description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
     type: "website",
     url: 'https://www.aijeju.co.kr',
@@ -64,8 +64,8 @@ export default function RootLayout({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: '엠월드컴퍼니',
-    description: '엠월드컴퍼니는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 10년 차 전문가의 압도적 실행 전략',
+    name: '공양걸AI연구소',
+    description: '공양걸AI연구소는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 10년 차 전문가의 압도적 실행 전략',
     url: 'https://www.aijeju.co.kr',
     logo: 'https://www.aijeju.co.kr/logo.png',
     contactPoint: {

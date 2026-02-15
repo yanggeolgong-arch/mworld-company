@@ -37,7 +37,7 @@ const SEO_IMAGE_FILENAMES: Record<number, string> = {
 
 /** 15장 문장형 alt (변경된 파일명에 맞춘 상세 설명) */
 const SENTENCE_ALT: Record<number, string> = {
-  1: '엠월드컴퍼니 전문가가 제안하는 제주맛집 알리페이 결제와 샤오홍슈 상위노출 가이드',
+  1: '공양걸AI연구소 전문가가 제안하는 제주맛집 알리페이 결제와 샤오홍슈 상위노출 가이드',
   2: '제주맛집에서 알리페이 스캔 결제로 중화권 손님 신뢰를 높이는 현장 인증샷',
   3: '제주맛집 샤오홍슈 노트 검색 상위노출을 위한 키워드 전략',
   4: '제주맛집 입구·결제대에 알리페이·위챗 로고를 배치해 결제 전환을 높이는 방법',
@@ -49,9 +49,9 @@ const SENTENCE_ALT: Record<number, string> = {
   10: '제주맛집 샤오홍슈 실시간 리뷰·인증샷으로 상위노출을 끌어올리는 포토존',
   11: '제주맛집 알리페이·위챗 로고 2~3곳 배치로 결제 신뢰와 상위노출을 동시에 확보',
   12: '제주맛집 외관과 입구 로고 노출로 첫 인상에서 결제 가능을 전달하는 방법',
-  13: '엠월드컴퍼니 현장 컨설팅으로 제주맛집 알리페이·샤오홍슈 도입부터 상위노출까지',
+  13: '공양걸AI연구소 현장 컨설팅으로 제주맛집 알리페이·샤오홍슈 도입부터 상위노출까지',
   14: '제주맛집 샤오홍슈·알리페이 등록 문의와 10년 실행 노하우',
-  15: '엠월드컴퍼니 제주맛집 알리페이·샤오홍슈 상위노출 10년 실행 브랜드',
+  15: '공양걸AI연구소 제주맛집 알리페이·샤오홍슈 상위노출 10년 실행 브랜드',
 };
 
 export const dynamic = 'force-static';
@@ -59,12 +59,12 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     keywords,
     alternates: { canonical: canonicalUrl },
@@ -98,7 +98,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
   for (let i = 1; i <= 15; i++) {
     imageMap[String(i)] = {
       src: `/images/blog/xiaohongshu-alipay-strategy/${SEO_IMAGE_FILENAMES[i]}`,
-      alt: SENTENCE_ALT[i] || `엠월드컴퍼니 제주맛집 알리페이·샤오홍슈 전문가 인사이트 ${i}`,
+      alt: SENTENCE_ALT[i] || `공양걸AI연구소 제주맛집 알리페이·샤오홍슈 전문가 인사이트 ${i}`,
     };
   }
   const priorityImageKeys = ['1', '2'];
@@ -123,10 +123,10 @@ export default async function XiaohongshuAlipayStrategyPage() {
     url: canonicalUrl,
     datePublished: staticPost.date,
     dateModified: '2026-02-06',
-    author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
+    author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
@@ -282,7 +282,7 @@ export default async function XiaohongshuAlipayStrategyPage() {
                 문의: KakaoTalk SG7979 | 010-4074-9343 | <span className="text-emerald-400">10년 이상</span> 실행 업무
                 전문가
               </p>
-              <p className="mt-2 text-sm text-[#F2F2F2]/70">엠월드컴퍼니는 결과로만 말합니다.</p>
+              <p className="mt-2 text-sm text-[#F2F2F2]/70">공양걸AI연구소는 결과로만 말합니다.</p>
             </div>
 
             {/* 1인칭 실무 톤 & 하이브리드 선언 */}

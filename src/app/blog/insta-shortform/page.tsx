@@ -19,12 +19,12 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug('insta-shortform');
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl('/blog/insta-shortform');
   const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     keywords,
     alternates: { canonical: canonicalUrl },
@@ -56,7 +56,7 @@ const INSTA_SEO_FILES: Record<number, string> = {
   15: 'jeju-series-next-dazhong-dianping.webp',
 };
 const INSTA_ALT_SENTENCE: Record<number, string> = {
-  1: '엠월드컴퍼니 전문가가 말하는 제주맛집 인스타그램 숏폼이 조회수 0인 이유',
+  1: '공양걸AI연구소 전문가가 말하는 제주맛집 인스타그램 숏폼이 조회수 0인 이유',
   2: '조회수 0인 인스타 숏폼의 특징과 제주맛집 해결 전략',
   3: '인스타그램 숏폼 알고리즘 핵심과 제주맛집 릴스 전략',
   4: '제주맛집 인스타 마케팅에서 피해야 할 실수',
@@ -66,8 +66,8 @@ const INSTA_ALT_SENTENCE: Record<number, string> = {
   8: '채널 확장과 지속 업로드로 제주맛집 숏폼 지속 노출',
   9: '제주맛집 스토리텔링으로 인스타 알고리즘 활용하기',
   10: '20편 단위 제작의 이점과 제주맛집 숏폼 전략',
-  11: '엠월드컴퍼니가 제안하는 제주맛집 숏폼 체크리스트',
-  12: '엠월드컴퍼니 10년 이상 실행 업무 전문가와 제주맛집 인스타',
+  11: '공양걸AI연구소가 제안하는 제주맛집 숏폼 체크리스트',
+  12: '공양걸AI연구소 10년 이상 실행 업무 전문가와 제주맛집 인스타',
   13: '제주맛집 인스타 마케팅 정리와 다음 단계',
   14: '성공 사례 1번 릴스 20개 연동으로 제주맛집 매출 증대',
   15: '시리즈 예고 따종디엔핑 정복과 제주맛집 마케팅',
@@ -117,8 +117,8 @@ export default async function InstaShortformPage() {
     url: canonicalUrl,
     datePublished: staticPost.date,
     dateModified: '2026-02-06',
-    author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
-    publisher: { '@type': 'Organization', name: '엠월드컴퍼니', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
+    author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 실행사 대표 전문가' },
+    publisher: { '@type': 'Organization', name: '공양걸AI연구소', logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
     keywords: '제주맛집 인스타그램, 숏폼 마케팅, 인스타 릴스, 제주 맛집 SNS',
   };
@@ -182,9 +182,9 @@ export default async function InstaShortformPage() {
             {/* 고정 문구 & 브랜딩 */}
             <div className="mt-10 pt-8 border-t border-white/10 text-center">
               <p className="text-base font-medium text-slate-300">
-                엠월드컴퍼니 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 | KakaoTalk: SG7979
+                공양걸AI연구소 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 | KakaoTalk: SG7979
               </p>
-              <p className="mt-2 text-sm text-slate-400">엠월드컴퍼니는 결과로만 말합니다.</p>
+              <p className="mt-2 text-sm text-slate-400">공양걸AI연구소는 결과로만 말합니다.</p>
             </div>
 
             <BlogSeriesBacklinks currentSlug="insta-shortform" />

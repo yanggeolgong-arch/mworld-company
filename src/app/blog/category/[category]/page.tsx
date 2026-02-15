@@ -96,19 +96,19 @@ export async function generateMetadata({
 
   if (!categoryInfo) {
     return {
-      title: '엠월드컴퍼니 | 카테고리를 찾을 수 없습니다',
+      title: '공양걸AI연구소 | 카테고리를 찾을 수 없습니다',
     };
   }
 
   return {
-    title: `${categoryInfo.name} - 엠월드컴퍼니 블로그`,
+    title: `${categoryInfo.name} - 공양걸AI연구소 블로그`,
     description: categoryInfo.description,
     keywords: categoryInfo.seoKeywords.join(', '),
     alternates: {
       canonical: `https://www.aijeju.co.kr/blog/category/${category}`,
     },
     openGraph: {
-      title: `${categoryInfo.name} - 엠월드컴퍼니 블로그`,
+      title: `${categoryInfo.name} - 공양걸AI연구소 블로그`,
       description: categoryInfo.description,
       type: 'website',
       url: `https://www.aijeju.co.kr/blog/category/${category}`,

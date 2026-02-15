@@ -81,7 +81,7 @@ export function generateCategoryPageSchema(
     keywords: keywords.join(', '),
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aijeju.co.kr/logo.png',

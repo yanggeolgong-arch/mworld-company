@@ -25,7 +25,7 @@ src/app/blog/새-포스트-제목/page.tsx
 1. **메타데이터 (metadata)**
    ```typescript
    export const metadata: Metadata = {
-     title: '포스트 제목 - 엠월드컴퍼니',
+     title: '포스트 제목 - 공양걸AI연구소',
      description: '포스트 설명 (SEO용)',
      keywords: '키워드1, 키워드2, 키워드3',
      alternates: {
@@ -69,12 +69,12 @@ src/app/blog/새-포스트-제목/page.tsx
      dateModified: schemaDates.dateModified,
      author: {
        '@type': 'Person',
-       name: '엠월드컴퍼니 최고실행자',
+       name: '공양걸AI연구소 최고실행자',
        jobTitle: '10년 이상 실행사 대표 전문가',
      },
      publisher: {
        '@type': 'Organization',
-       name: '엠월드컴퍼니',
+       name: '공양걸AI연구소',
        logo: {
          '@type': 'ImageObject',
          url: 'https://aijeju.co.kr/logo.png',

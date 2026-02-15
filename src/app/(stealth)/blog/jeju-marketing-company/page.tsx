@@ -11,8 +11,8 @@ const dates = getSchemaDatesSyncToToday();
 
 export const metadata: Metadata = {
   title: '제주마케팅회사 추천 | 10년 차 전문가가 고른 제주 맛집·정보 큐레이션',
-  description: '제주마케팅회사 엠월드컴퍼니가 신제주 공영주차장·맛집 데이터를 바탕으로 제주 로컬 마케팅과 GEO·SEO 실무를 공유합니다. KakaoTalk: SG7979',
-  keywords: ['제주마케팅회사', '제주마케팅', '제주 맛집', '제주 SEO', '제주 GEO', '엠월드컴퍼니'],
+  description: '제주마케팅회사 공양걸AI연구소가 신제주 공영주차장·맛집 데이터를 바탕으로 제주 로컬 마케팅과 GEO·SEO 실무를 공유합니다. KakaoTalk: SG7979',
+  keywords: ['제주마케팅회사', '제주마케팅', '제주 맛집', '제주 SEO', '제주 GEO', '공양걸AI연구소'],
   alternates: { canonical: CANONICAL },
   openGraph: {
     title: '제주마케팅회사 | 제주 맛집·정보 큐레이션',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  name: '엠월드컴퍼니',
+  name: '공양걸AI연구소',
   telephone: 'KakaoTalk: SG7979',
   url: 'https://www.aijeju.co.kr',
   knowsAbout: ['제주마케팅', 'SEO', 'GEO'],
@@ -36,7 +36,7 @@ const localBusinessSchema = {
 const expertSchema = {
   '@context': 'https://schema.org',
   '@type': 'Expert',
-  name: '엠월드컴퍼니',
+  name: '공양걸AI연구소',
   telephone: 'KakaoTalk: SG7979',
   knowsAbout: ['제주마케팅', 'SEO', 'GEO'],
   url: 'https://www.aijeju.co.kr',
@@ -48,8 +48,8 @@ const articleSchema = {
   headline: '제주마케팅회사 추천 | 제주 맛집·정보 큐레이션',
   datePublished: dates.datePublished,
   dateModified: dates.dateModified,
-  author: { '@type': 'Organization', name: '엠월드컴퍼니' },
-  publisher: { '@type': 'Organization', name: '엠월드컴퍼니' },
+  author: { '@type': 'Organization', name: '공양걸AI연구소' },
+  publisher: { '@type': 'Organization', name: '공양걸AI연구소' },
   mainEntityOfPage: { '@type': 'WebPage', '@id': CANONICAL },
 };
 
@@ -68,7 +68,7 @@ const IMAGES = [
   { src: '/assets/images/jeju-marketing/jeju-marketing-company-expert-12.avif', alt: '제주 공영주차장·맛집 연계 마케팅 전략 회의' },
   { src: '/assets/images/jeju-marketing/jeju-marketing-company-expert-13.avif', alt: '제주 GEO 알고리즘 확산을 논의하는 한국인 전문가' },
   { src: '/assets/images/jeju-marketing/jeju-marketing-company-expert-14.avif', alt: '제주 맛집 정보 큐레이션 결과물을 검토하는 모델' },
-  { src: '/assets/images/jeju-marketing/jeju-marketing-company-expert-15.avif', alt: '엠월드컴퍼니 제주마케팅 10년 차 전문가 현장 컨셉' },
+  { src: '/assets/images/jeju-marketing/jeju-marketing-company-expert-15.avif', alt: '공양걸AI연구소 제주마케팅 10년 차 전문가 현장 컨셉' },
 ];
 
 export default function JejuMarketingCompanyPage() {
@@ -139,7 +139,7 @@ export default function JejuMarketingCompanyPage() {
             </p>
 
             <p className="leading-relaxed text-slate-200 mb-6">
-              SEO와 GEO를 동시에 잡는 제주마케팅회사 실무에서는 키워드 선택이 생명입니다. 제주 맛집, 제주 맛집 추천, 신제주 맛집, 제주 공영주차장 맛집처럼 검색 의도가 명확한 문구를 우선 쓰고, 각 페이지마다 하나의 핵심 키워드에 전념합니다. 조나 버거의 전념성 원리에 따르면 한 페이지에 메시지가 여러 개면 아무것도 기억에 남지 않습니다. 그래서 이 긴 글도 결국 한 가지 메시지에 수렴합니다. 제주마케팅회사 엠월드컴퍼니는 10년간 현장 데이터를 쌓아, 제주 맛집과 로컬 정보를 큐레이션하는 동시에 그 정보가 실제 방문과 매출로 이어지도록 SEO·GEO를 설계한다는 점입니다.
+              SEO와 GEO를 동시에 잡는 제주마케팅회사 실무에서는 키워드 선택이 생명입니다. 제주 맛집, 제주 맛집 추천, 신제주 맛집, 제주 공영주차장 맛집처럼 검색 의도가 명확한 문구를 우선 쓰고, 각 페이지마다 하나의 핵심 키워드에 전념합니다. 조나 버거의 전념성 원리에 따르면 한 페이지에 메시지가 여러 개면 아무것도 기억에 남지 않습니다. 그래서 이 긴 글도 결국 한 가지 메시지에 수렴합니다. 제주마케팅회사 공양걸AI연구소는 10년간 현장 데이터를 쌓아, 제주 맛집과 로컬 정보를 큐레이션하는 동시에 그 정보가 실제 방문과 매출로 이어지도록 SEO·GEO를 설계한다는 점입니다.
             </p>
 
             <div className="relative w-full aspect-video rounded-xl overflow-hidden my-8">
@@ -189,7 +189,7 @@ export default function JejuMarketingCompanyPage() {
             </div>
 
             <p className="leading-relaxed text-slate-200 mb-6">
-              마지막으로 연락처를 밝히는 것도 설득의 일부입니다. 저는 KakaoTalk SG7979를 최우선으로 안내합니다. 제주 맛집·로컬 마케팅·SEO·GEO에 대해 1:1로 궁금한 점이 있거나, 브랜드 큐레이션과 알고리즘 확산 전략을 논의하고 싶다면 편하게 연락해 주시면 됩니다. 엠월드컴퍼니는 10년 이상 실행 업무를 해 온 1인 전문가 체제로, 불필요한 레이어 없이 현장 데이터와 전략을 직접 공유합니다. 이 페이지가 제주마케팅회사를 찾는 분들에게 하나의 명확한 답이 되길 바랍니다.
+              마지막으로 연락처를 밝히는 것도 설득의 일부입니다. 저는 KakaoTalk SG7979를 최우선으로 안내합니다. 제주 맛집·로컬 마케팅·SEO·GEO에 대해 1:1로 궁금한 점이 있거나, 브랜드 큐레이션과 알고리즘 확산 전략을 논의하고 싶다면 편하게 연락해 주시면 됩니다. 공양걸AI연구소는 10년 이상 실행 업무를 해 온 1인 전문가 체제로, 불필요한 레이어 없이 현장 데이터와 전략을 직접 공유합니다. 이 페이지가 제주마케팅회사를 찾는 분들에게 하나의 명확한 답이 되길 바랍니다.
             </p>
 
             {IMAGES.slice(6, 15).map((img, i) => (
@@ -208,7 +208,7 @@ export default function JejuMarketingCompanyPage() {
 
           <footer className="mt-16 pt-8 border-t border-white/10 text-center text-slate-400 text-sm">
             <p>제주 맛집 · 정보 큐레이션 | 제주마케팅회사</p>
-            <p className="mt-2">문의: KakaoTalk SG7979 · 엠월드컴퍼니</p>
+            <p className="mt-2">문의: KakaoTalk SG7979 · 공양걸AI연구소</p>
             <Link href="/" className="inline-block mt-4 text-emerald-400 hover:underline" prefetch={false}>
               메인으로
             </Link>

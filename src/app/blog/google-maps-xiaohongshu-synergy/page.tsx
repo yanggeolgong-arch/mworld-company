@@ -48,7 +48,7 @@ const SENTENCE_ALT: Record<number, string> = {
   11: '구글리뷰 대행사 리뷰 품질 체크리스트',
   12: '제주맛집 구글 지도 샤오홍슈 시너지 상위노출 결과',
   13: '구글리뷰 대행사 연동 체크리스트',
-  14: '엠월드컴퍼니 구글리뷰 대행사 10년 실행 브랜드',
+  14: '공양걸AI연구소 구글리뷰 대행사 10년 실행 브랜드',
   15: '구글 지도 샤오홍슈 시너지 상담 KakaoTalk SG7979',
 };
 
@@ -57,11 +57,11 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
@@ -118,10 +118,10 @@ export default async function GoogleMapsXiaohongshuSynergyPage() {
     url: canonicalUrl,
     datePublished: staticPost.date,
     dateModified: '2026-02-06',
-    author: { '@type': 'Person', name: '엠월드컴퍼니 최고실행자', jobTitle: '10년 이상 구글리뷰 대행사 전문가' },
+    author: { '@type': 'Person', name: '공양걸AI연구소 최고실행자', jobTitle: '10년 이상 구글리뷰 대행사 전문가' },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },

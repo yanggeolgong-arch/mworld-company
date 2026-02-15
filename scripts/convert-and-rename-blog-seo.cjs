@@ -1,5 +1,5 @@
 /**
- * 엠월드컴퍼니 최고실행자 프로토콜 - 이전 포스팅 5개 이미지 SEO 소급 최적화
+ * 공양걸AI연구소 최고실행자 프로토콜 - 이전 포스팅 5개 이미지 SEO 소급 최적화
  * concept, global, insta 폴더: JPEG → WebP 변환 후 영문 SEO 파일명으로 일괄 변경
  */
 const path = require('path');

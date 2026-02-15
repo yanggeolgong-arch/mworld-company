@@ -37,7 +37,7 @@ export function generateKeywords(
   const allKeywords = [...new Set([...categoryKeywords, ...titleWords, ...contentKeywords])].slice(0, 5);
 
   // 자연스러운 키워드 문자열 생성
-  return allKeywords.join(', ') || '엠월드컴퍼니';
+  return allKeywords.join(', ') || '공양걸AI연구소';
 }
 
 /**
@@ -66,5 +66,5 @@ export function generateStaticPostKeywords(
   }
 
   const allKeywords = [...new Set([categoryKeyword, ...titleWords, ...descKeywords])].slice(0, 5);
-  return allKeywords.join(', ') || '엠월드컴퍼니';
+  return allKeywords.join(', ') || '공양걸AI연구소';
 }

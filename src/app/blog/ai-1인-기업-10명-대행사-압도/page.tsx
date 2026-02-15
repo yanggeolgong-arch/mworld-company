@@ -13,7 +13,7 @@ export const dynamic = 'force-static';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법 - 엠월드컴퍼니',
+    title: 'AI로 무장한 1인 기업이 10명 규모의 대행사를 압도하는 법 - 공양걸AI연구소',
     description: '일손은 부족하고 매출은 정체된 1인 대표의 고충을 해결하는 AI 자동화 파이프라인 구축 전략. 10년 이상 실행 업무 노하우와 AI 기술을 결합한 1:1 비공개 마스터 클래스.',
     keywords: 'AI 자동화, 1인 대행사, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, AI 마케팅, 디지털 마케팅 자동화',
     alternates: {
@@ -44,12 +44,12 @@ const baseBlogPostingSchema = {
   url: canonicalUrl,
   author: {
     '@type': 'Person',
-    name: '엠월드컴퍼니',
+    name: '공양걸AI연구소',
     jobTitle: '10년 이상 실행 업무 전문가',
   },
   publisher: {
     '@type': 'Organization',
-    name: '엠월드컴퍼니',
+    name: '공양걸AI연구소',
     logo: {
       '@type': 'ImageObject',
       url: 'https://www.aijeju.co.kr/logo.png',
@@ -166,7 +166,7 @@ export default function AIPoweredSoloBusinessPage() {
                 </div>
                 <h2 className="text-3xl font-semibold text-white mb-4">가이드의 등장</h2>
                 <p className="text-white font-light leading-relaxed mb-4">
-                  엠월드컴퍼니는 <strong className="text-white">10년 이상 실행 업무 전문가</strong>의 노하우와 
+                  공양걸AI연구소는 <strong className="text-white">10년 이상 실행 업무 전문가</strong>의 노하우와 
                   <strong className="text-emerald-400"> AI 자동화 기술</strong>을 결합했다.
                 </p>
                 <p className="text-white font-light leading-relaxed mb-4">
@@ -281,7 +281,7 @@ export default function AIPoweredSoloBusinessPage() {
                   직접 경험해야 한다.
                 </p>
                 <p className="text-white font-light leading-relaxed">
-                  엠월드컴퍼니의 1:1 비공개 마스터 클래스는 <strong className="text-white">즉시 창업과 매출 최적화</strong>가 가능하도록 설계되었다.
+                  공양걸AI연구소의 1:1 비공개 마스터 클래스는 <strong className="text-white">즉시 창업과 매출 최적화</strong>가 가능하도록 설계되었다.
                 </p>
               </section>
 
@@ -299,7 +299,7 @@ export default function AIPoweredSoloBusinessPage() {
                   문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행사 대표 전문가
                 </p>
                 <p className="text-sm text-white font-light">
-                  엠월드컴퍼니는 결과로만 말합니다.
+                  공양걸AI연구소는 결과로만 말합니다.
                 </p>
               </div>
               <MasterClassHomeBacklink />

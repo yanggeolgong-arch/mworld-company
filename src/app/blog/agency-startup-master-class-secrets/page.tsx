@@ -57,12 +57,12 @@ export const dynamic = 'force-static';
 export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug(SLUG);
   if (!staticPost) {
-    return { title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다' };
+    return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
   const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     keywords,
     alternates: { canonical: canonicalUrl },
@@ -125,12 +125,12 @@ export default async function AgencyStartupMasterClassSecretsPage() {
     dateModified,
     author: {
       '@type': 'Person',
-      name: '엠월드컴퍼니 최고실행자',
+      name: '공양걸AI연구소 최고실행자',
       jobTitle: '10년 차 실행 실무 전문가',
     },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
@@ -179,7 +179,7 @@ export default async function AgencyStartupMasterClassSecretsPage() {
               <p className="text-base font-medium text-slate-300">
                 문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행 실무 전문가
               </p>
-              <p className="mt-2 text-sm text-slate-400">엠월드컴퍼니는 결과로만 말합니다.</p>
+              <p className="mt-2 text-sm text-slate-400">공양걸AI연구소는 결과로만 말합니다.</p>
             </div>
 
             <BlogSeriesBacklinks currentSlug={SLUG} />

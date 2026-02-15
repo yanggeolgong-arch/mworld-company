@@ -2,7 +2,7 @@
 
 /* Tailwind v4: 빌드 시 미사용 유틸리티 자동 제거(Purge). tailwind.config 없이 CSS 기반 설정. */
 /* 폰트: next/font(layout)에서 font-display: swap 적용. */
-/* 엠월드컴퍼니 최고실행자 프로토콜: 전역 색상 강제·가독성·호환성 */
+/* 공양걸AI연구소 최고실행자 프로토콜: 전역 색상 강제·가독성·호환성 */
 :root {
   --background: #000000;
   --foreground: #F2F2F2;

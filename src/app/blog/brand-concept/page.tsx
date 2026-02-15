@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const staticPost = getStaticPostBySlug('brand-concept');
   if (!staticPost) {
     return {
-      title: '엠월드컴퍼니 | 포스트를 찾을 수 없습니다',
+      title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다',
     };
   }
 
@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const keywords = generateStaticPostKeywords(staticPost.title, staticPost.category, staticPost.description);
 
   return {
-    title: `${staticPost.title} - 엠월드컴퍼니 알고리즘 확산 블로그`,
+    title: `${staticPost.title} - 공양걸AI연구소 알고리즘 확산 블로그`,
     description: staticPost.description,
     keywords,
     alternates: {
@@ -84,7 +84,7 @@ export default async function BrandConceptPage() {
     15: 'google-ranking-concept-check.webp',
   };
   const CONCEPT_ALT: Record<number, string> = {
-    1: '엠월드컴퍼니 전문가가 말하는 광고 전 컨셉 점검의 중요성과 구글 상위 노출',
+    1: '공양걸AI연구소 전문가가 말하는 광고 전 컨셉 점검의 중요성과 구글 상위 노출',
     2: '구글이 선호하는 명확한 메시지와 브랜드 컨셉',
     3: '시맨틱 DNA와 브랜드 인식으로 검색 노출을 높이는 방법',
     4: '컨셉에 따른 광고 효율 차이를 보여주는 실무 데이터',
@@ -95,7 +95,7 @@ export default async function BrandConceptPage() {
     9: '경쟁 차별점을 담은 컨셉 개발',
     10: '검색 엔진이 이해하는 브랜드 메시지 설계',
     11: '컨셉 없이 광고할 때의 결과와 리스크',
-    12: '엠월드컴퍼니 컨셉 점검 프로세스',
+    12: '공양걸AI연구소 컨셉 점검 프로세스',
     13: '브랜드 컨셉 진단으로 광고 전 기초 다지기',
     14: '채널별 메시지 일관성과 구글 상위 노출',
     15: '구글 상위 노출과 컨셉 점검의 연관성',
@@ -134,12 +134,12 @@ export default async function BrandConceptPage() {
     dateModified: '2026-02-06',
     author: {
       '@type': 'Person',
-      name: '엠월드컴퍼니 최고실행자',
+      name: '공양걸AI연구소 최고실행자',
       jobTitle: '10년 이상 실행사 대표 전문가',
     },
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aijeju.co.kr/logo.png',
@@ -200,7 +200,7 @@ export default async function BrandConceptPage() {
                 문의: 카카오톡 SG7979 | <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가
               </p>
               <p className="mt-2 text-sm text-slate-400">
-                엠월드컴퍼니는 결과로만 말합니다.
+                공양걸AI연구소는 결과로만 말합니다.
               </p>
             </div>
 

@@ -12,15 +12,15 @@ import { blogCategories } from '@/lib/blog-categories';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
-  description: '엠월드컴퍼니는 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 실전 노하우를 공유합니다.',
-  keywords: '엠월드컴퍼니, 알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
+  title: '공양걸AI연구소 | 알고리즘 확산 최적화 블로그',
+  description: '공양걸AI연구소는 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 실전 노하우를 공유합니다.',
+  keywords: '공양걸AI연구소, 알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/blog',
   },
   openGraph: {
-    title: '엠월드컴퍼니 | 알고리즘 확산 최적화 블로그',
-    description: '엠월드컴퍼니는 알고리즘 확산 실전 노하우를 공유합니다.',
+    title: '공양걸AI연구소 | 알고리즘 확산 최적화 블로그',
+    description: '공양걸AI연구소는 알고리즘 확산 실전 노하우를 공유합니다.',
     type: 'website',
     url: 'https://www.aijeju.co.kr/blog',
   },
@@ -133,12 +133,12 @@ export default async function BlogPage() {
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: '엠월드컴퍼니 알고리즘 확산 최적화 블로그',
+    name: '공양걸AI연구소 알고리즘 확산 최적화 블로그',
     description: '광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전문가의 실전 노하우',
     url: 'https://www.aijeju.co.kr/blog',
     publisher: {
       '@type': 'Organization',
-      name: '엠월드컴퍼니',
+      name: '공양걸AI연구소',
       logo: {
         '@type': 'ImageObject',
         url: 'https://www.aijeju.co.kr/logo.png',
@@ -156,7 +156,7 @@ export default async function BlogPage() {
         dateModified: schemaDates.dateModified,
         author: {
           '@type': 'Person',
-          name: '엠월드컴퍼니',
+          name: '공양걸AI연구소',
           jobTitle: '10년 이상 실행 업무 전문가',
         },
         image: post.featuredImage || 'https://www.aijeju.co.kr/logo.png',
@@ -171,10 +171,10 @@ export default async function BlogPage() {
         <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="blog-heading">
           <header className="w-full mx-auto max-w-3xl flex flex-col items-center justify-center text-center">
             <h1 id="blog-heading" className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              엠월드컴퍼니 알고리즘 확산 최적화 블로그
+              공양걸AI연구소 알고리즘 확산 최적화 블로그
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
-              엠월드컴퍼니 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 실전 노하우
+              공양걸AI연구소 <span className="text-emerald-400">10년 이상</span> 실행 업무 전문가 실전 노하우
               <br />
               광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 전략을 공유합니다.
             </p>
