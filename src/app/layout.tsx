@@ -42,9 +42,9 @@ const Footer = dynamic(() => import("@/components/Footer").then((m) => ({ defaul
 });
 
 export const metadata: Metadata = {
-  title: "대행사 창업의 모든 것 : 공양걸AI연구소",
-  description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
-  keywords: ["공양걸AI연구소", "마케팅 전략", "알고리즘 확산", "실행사 전문가"],
+  title: "공양걸AI연구소 | AI 글로벌 마케팅 & 교육 전문 기지",
+  description: "10년 차 실행 전문가 공양걸 소장이 운영하는 공양걸AI연구소. AI 글로벌 마케팅 및 교육 전문. 사무실 없는 1인 기업, 알고리즘 확산 실무 로직.",
+  keywords: ["공양걸AI연구소", "공양걸 소장", "AI 글로벌 마케팅", "알고리즘 확산", "실행 전문가"],
   alternates: {
     canonical: 'https://www.aijeju.co.kr',
     types: {
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "대행사 창업의 모든 것 : 공양걸AI연구소",
-    description: "사무실 없는 1인 기업, AI 자동화로 완성하는 [대행사 창업] 마스터 클래스. 10년 차 전문가가 증명한 무인 수익화 실무 로직 공개.",
+    title: "공양걸AI연구소 | AI 글로벌 마케팅 & 교육 전문 기지",
+    description: "10년 차 실행 전문가 공양걸 소장이 운영하는 공양걸AI연구소. AI 글로벌 마케팅 및 교육 전문.",
     type: "website",
     url: 'https://www.aijeju.co.kr',
   },
@@ -66,26 +66,28 @@ export default function RootLayout({
 }>) {
   const organizationSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'LocalBusiness'],
     name: '공양걸AI연구소',
-    description: '공양걸AI연구소는 1인 AI 기업의 효율성을 극대화하여 알고리즘 확산을 실현합니다. 10년 차 전문가의 압도적 실행 전략',
+    alternateName: '엠월드컴퍼니',
+    description: '10년 차 실행 전문가 공양걸 소장이 운영하는 AI 글로벌 마케팅 및 교육 전문 연구소',
     url: 'https://www.aijeju.co.kr',
     logo: 'https://www.aijeju.co.kr/logo.png',
+    image: 'https://www.aijeju.co.kr/logo.png',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '010-4074-9343',
       contactType: 'Customer Service',
       areaServed: 'KR',
       availableLanguage: 'ko',
-      additionalProperty: {
-        '@type': 'PropertyValue',
-        name: '카카오톡',
-        value: 'SG7979',
-      },
+      additionalProperty: { '@type': 'PropertyValue', name: '카카오톡', value: 'SG7979' },
     },
-    sameAs: [
-      'https://www.aijeju.co.kr',
-    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: '제주특별자치도',
+      addressLocality: '제주시',
+      streetAddress: '삼동2길 10, 201호(연동)',
+    },
+    sameAs: ['https://www.aijeju.co.kr'],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5',

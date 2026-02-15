@@ -5,7 +5,7 @@ import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: '공양걸AI연구소 협업 문의 | 카카오톡 SG7979',
-  description: '공양걸AI연구소는 10년 이상 실행 업무 노하우를 가진 전문가 팀과 함께 브랜드 다음 단계로 나아갑니다. 협업 문의 카카오톡: SG7979',
+  description: '10년 차 실행 전문가 공양걸 소장의 공양걸AI연구소. 협업 문의 카카오톡 SG7979, 010-4074-9343',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/partnership',
   },

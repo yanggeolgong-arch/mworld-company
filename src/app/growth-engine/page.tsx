@@ -5,7 +5,7 @@ import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: '공양걸AI연구소 성장 엔진 | 효율성 극대화 AI 자동화 시스템',
-  description: '공양걸AI연구소는 10년 이상 실행 업무 노하우와 AI 기반 자동화 시스템으로 효율성을 극대화하는 성장 동력을 만듭니다.',
+  description: '10년 차 실행 전문가 공양걸 소장이 운영하는 공양걸AI연구소의 AI 자동화 시스템. 효율성 극대화 성장 동력.',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/growth-engine',
   },

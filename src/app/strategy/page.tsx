@@ -24,7 +24,7 @@ const strategies = [
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=640&h=480&fit=crop&q=75',
   },
   {
-    title: '엠월드 디지털 권위 엔진',
+    title: '공양걸AI연구소 디지털 권위 엔진',
     description: '실시간 트렌드를 즉각 자산화하여 트래픽과 구매 전환을 폭발시키는 차세대 웹 시스템 구축.',
     category: 'Engine',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=480&fit=crop&q=75',

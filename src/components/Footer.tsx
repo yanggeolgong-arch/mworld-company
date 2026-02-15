@@ -57,9 +57,14 @@ export function Footer() {
               <h3 className="text-base font-semibold text-white text-center">고객센터</h3>
               <ul className="mt-4 space-y-3 text-base flex flex-col items-center justify-center">
                 <li className="text-center">
-                  <p className="text-slate-300 font-bold text-center">
-                    문의: 카카오톡 SG7979
-                  </p>
+                  <a
+                    href="https://pf.kakao.com/_SG7979"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-300 font-bold hover:text-emerald-400 transition-colors"
+                  >
+                    카카오톡: SG7979
+                  </a>
                 </li>
                 <li className="text-center">
                   <a
@@ -67,7 +72,7 @@ export function Footer() {
                     className="flex items-center justify-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-[#d4af37] text-center"
                   >
                     <span className="text-[#d4af37]">📞</span>
-                    대표번호: 010-4074-9343
+                    010-4074-9343
                   </a>
                 </li>
               </ul>

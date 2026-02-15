@@ -6,7 +6,7 @@ import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: '공양걸AI연구소 성공 사례 | 실행력으로 증명된 압도적 성과',
-  description: '공양걸AI연구소는 10년 이상 실행력으로 증명된 압도적 성과를 통해 브랜드 성장 스토리를 만듭니다.',
+  description: '10년 차 실행 전문가 공양걸 소장의 공양걸AI연구소 성공 사례. 실행력으로 증명된 압도적 성과.',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/success-cases',
   },

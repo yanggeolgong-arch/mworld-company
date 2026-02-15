@@ -9,9 +9,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>공양걸AI연구소 알고리즘 확산 블로그</title>
+    <title>공양걸AI연구소 | Gong Yang-geol AI Lab - 알고리즘 확산 블로그</title>
     <link>${BASE_URL}/blog</link>
-    <description>2026 베트남 다낭 맛집, 광고대행사 창업, 알고리즘 확산 실전 노하우</description>
+    <description>공양걸AI연구소 | Gong Yang-geol AI Lab. 2026 베트남 다낭 맛집, 광고대행사 창업, 알고리즘 확산 실전 노하우</description>
     <language>ko-KR</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${BASE_URL}/feed" rel="self" type="application/rss+xml"/>

@@ -24,9 +24,10 @@ export function HomeBelowFold() {
             <div className="relative mx-auto w-full overflow-hidden rounded-xl" style={{ aspectRatio: '16/9' }}>
               <Image
                 src="/images/ai-marketing-insights-automation.webp"
-                alt="AI 마케팅 실무 인사이트 자동화"
+                alt="공양걸AI연구소 AI 마케팅 실무 인사이트 자동화"
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
+                priority
                 fetchPriority="high"
                 decoding="async"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"

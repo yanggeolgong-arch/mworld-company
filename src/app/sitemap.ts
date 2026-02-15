@@ -3,7 +3,7 @@ import { getAllStaticPosts } from '@/lib/static-posts';
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = 'https://www.aijeju.co.kr';
+const BASE_URL = 'https://www.aijeju.co.kr'; // 공양걸AI연구소 | Gong Yang-geol AI Lab
 
 /** 주요 정적 경로 */
 const STATIC_ROUTES = [

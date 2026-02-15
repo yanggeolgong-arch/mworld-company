@@ -13,7 +13,7 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: '공양걸AI연구소 | 알고리즘 확산 최적화 블로그',
-  description: '공양걸AI연구소는 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘 최적화 실전 노하우를 공유합니다.',
+  description: '10년 차 실행 전문가 공양걸 소장의 공양걸AI연구소 블로그. 광고대행사 창업, 숏폼 마케팅, 알고리즘 확산 실전.',
   keywords: '공양걸AI연구소, 알고리즘 확산, 광고대행사 창업, 숏폼 마케팅 실무, 플레이스 알고리즘, 네이버 플레이스 최적화',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/blog',

@@ -9,7 +9,7 @@ import { generateBreadcrumbSchema } from '@/lib/breadcrumb-schema';
 
 export const metadata: Metadata = {
   title: '공양걸AI연구소 성공 노하우 | 10년 차 전문가의 마케팅 인사이트',
-  description: '공양걸AI연구소는 10년 이상 실행 업무 노하우에서 나온 SNS 마케팅 인사이트와 최신 트렌드를 공유합니다.',
+  description: '10년 차 실행 전문가 공양걸 소장의 공양걸AI연구소 성공 노하우. SNS 마케팅 인사이트와 최신 트렌드.',
   alternates: {
     canonical: 'https://www.aijeju.co.kr/insights',
   },
