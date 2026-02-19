@@ -11,7 +11,7 @@ import { generateStaticPostKeywords } from '@/lib/keyword-generator';
 import { getStaticPostBySlug } from '@/lib/static-posts';
 import { formatBlogDate } from '@/lib/blog-dates';
 import { getSchemaDates } from '@/lib/blog-dates';
-import { ARNAR_PERSON_SCHEMA, createAnalysisNewsArticleSchema, createDanangReviewSchema } from '@/lib/eeat-schema';
+import { ARNAR_PERSON_SCHEMA, createAnalysisNewsArticleSchema } from '@/lib/eeat-schema';
 import { marked } from 'marked';
 
 marked.setOptions({ breaks: true, gfm: true });
@@ -120,12 +120,17 @@ export default async function DanangRestaurantRecommendationPage() {
     keywords: DANANG_KEYWORDS,
   });
 
-  const reviewSchema = createDanangReviewSchema({
-    name: staticPost.title,
-    url: canonicalUrl,
-    datePublished: dates.datePublished,
-    authorName: '공양걸',
-  });
+  const reviewSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'Restaurant',
+      name: '다낭 맛집 리스트',
+      image: 'https://www.aijeju.co.kr/images/blog/danang-restaurant-recommendation/main.png',
+    },
+    author: { '@type': 'Person', name: 'aijeju' },
+    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+  };
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -146,6 +151,10 @@ export default async function DanangRestaurantRecommendationPage() {
         '@type': 'ImageObject',
         url: 'https://www.aijeju.co.kr/logo.png',
       },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://www.aijeju.co.kr/blog/danang-restaurant-recommendation',
     },
     description:
       '2026년 베트남 다낭 여행 필수 코스! 현지인과 여행객 모두가 극찬한 다낭 최고의 맛집들을 소개합니다.',
