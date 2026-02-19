@@ -18,6 +18,7 @@ marked.setOptions({ breaks: true, gfm: true });
 
 const SLUG = 'danang-restaurant-recommendation';
 const IMAGE_BASE = '/images/blog/danang-seo/';
+const OG_IMAGE_URL = 'https://www.aijeju.co.kr/images/blog/danang-restaurant-recommendation/main.png';
 
 /** 8.webp: 흰색 고양이 EEAT 캐릭터 (분석가 프로필 박스). 변환 전에는 SVG 폴백 */
 const AUTHOR_IMAGE = (() => {
@@ -44,7 +45,6 @@ export async function generateMetadata(): Promise<Metadata> {
     return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
-  const ogImageUrl = `${generateCanonicalUrl('')}/images/blog/danang-seo/main-2026-vietnam-danang.webp`;
   const keywords = generateStaticPostKeywords(
     staticPost.title,
     staticPost.category,
@@ -63,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
       url: canonicalUrl,
       images: [
         {
-          url: ogImageUrl,
+          url: OG_IMAGE_URL,
           width: 1200,
           height: 630,
           alt: '다낭 맛집 추천 대표 이미지',
@@ -127,12 +127,12 @@ export default async function DanangRestaurantRecommendationPage() {
     authorName: '공양걸',
   });
 
-  const blogPostingSchema = {
+  const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: staticPost.title,
     description: staticPost.description,
-    image: [`${generateCanonicalUrl('')}/images/blog/danang-seo/main-2026-vietnam-danang.webp`],
+    image: ['https://www.aijeju.co.kr/images/blog/danang-restaurant-recommendation/main.png'],
     datePublished: dates.datePublished,
     dateModified: dates.dateModified,
     url: canonicalUrl,
@@ -143,16 +143,22 @@ export default async function DanangRestaurantRecommendationPage() {
     },
     publisher: {
       '@type': 'Organization',
-      name: '공양걸AI연구소',
-      logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
+      name: 'aijeju',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.aijeju.co.kr/logo.png',
+      },
     },
   };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <StructuredData data={breadcrumbSchema} />
       <StructuredData data={ARNAR_PERSON_SCHEMA} />
-      <StructuredData data={blogPostingSchema} />
       <StructuredData data={analysisNewsArticleSchema} />
       <StructuredData data={reviewSchema} />
       <article className="min-h-screen bg-black flex flex-col items-center justify-center">
