@@ -44,6 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     return { title: '공양걸AI연구소 | 포스트를 찾을 수 없습니다' };
   }
   const canonicalUrl = generateCanonicalUrl(`/blog/${SLUG}`);
+  const ogImageUrl = `${generateCanonicalUrl('')}/images/blog/danang-seo/main-2026-vietnam-danang.webp`;
   const keywords = generateStaticPostKeywords(
     staticPost.title,
     staticPost.category,
@@ -60,6 +61,17 @@ export async function generateMetadata(): Promise<Metadata> {
       type: 'article',
       publishedTime: staticPost.date,
       url: canonicalUrl,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: '다낭 맛집 추천 대표 이미지',
+        },
+      ],
+    },
+    other: {
+      'max-image-preview': 'large',
     },
   };
 }
@@ -115,10 +127,32 @@ export default async function DanangRestaurantRecommendationPage() {
     authorName: '공양걸',
   });
 
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: staticPost.title,
+    description: staticPost.description,
+    image: [`${generateCanonicalUrl('')}/images/blog/danang-seo/main-2026-vietnam-danang.webp`],
+    datePublished: dates.datePublished,
+    dateModified: dates.dateModified,
+    url: canonicalUrl,
+    author: {
+      '@type': 'Person',
+      name: '공양걸',
+      jobTitle: '공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: '공양걸AI연구소',
+      logo: { '@type': 'ImageObject', url: 'https://www.aijeju.co.kr/logo.png' },
+    },
+  };
+
   return (
     <>
       <StructuredData data={breadcrumbSchema} />
       <StructuredData data={ARNAR_PERSON_SCHEMA} />
+      <StructuredData data={blogPostingSchema} />
       <StructuredData data={analysisNewsArticleSchema} />
       <StructuredData data={reviewSchema} />
       <article className="min-h-screen bg-black flex flex-col items-center justify-center">
