@@ -130,16 +130,14 @@ export default async function DanangRestaurantRecommendationPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: staticPost.title,
-    description: staticPost.description,
-    image: [OG_IMAGE_URL],
-    datePublished: dates.datePublished,
-    dateModified: dates.dateModified,
-    url: canonicalUrl,
+    headline: '다낭 맛집 추천 | 2026 베트남 미식 여행 가이드',
+    image: ['https://www.aijeju.co.kr/images/blog/danang-restaurant-recommendation/main.png'],
+    datePublished: '2026-02-19T09:00:00+09:00',
+    dateModified: '2026-02-19T09:00:00+09:00',
     author: {
       '@type': 'Person',
-      name: '공양걸',
-      jobTitle: '공양걸AI연구소 수석 데이터 분석가 | Google SEO Specialist',
+      name: 'aijeju',
+      url: 'https://www.aijeju.co.kr',
     },
     publisher: {
       '@type': 'Organization',
@@ -149,6 +147,8 @@ export default async function DanangRestaurantRecommendationPage() {
         url: 'https://www.aijeju.co.kr/logo.png',
       },
     },
+    description:
+      '2026년 베트남 다낭 여행 필수 코스! 현지인과 여행객 모두가 극찬한 다낭 최고의 맛집들을 소개합니다.',
   };
 
   return (
