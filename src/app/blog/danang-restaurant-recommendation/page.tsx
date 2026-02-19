@@ -132,7 +132,7 @@ export default async function DanangRestaurantRecommendationPage() {
     '@type': 'BlogPosting',
     headline: staticPost.title,
     description: staticPost.description,
-    image: ['https://www.aijeju.co.kr/images/blog/danang-restaurant-recommendation/main.png'],
+    image: [OG_IMAGE_URL],
     datePublished: dates.datePublished,
     dateModified: dates.dateModified,
     url: canonicalUrl,
