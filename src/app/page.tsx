@@ -17,7 +17,7 @@ const SLOTS = [
 
 export default function Home() {
   return (
-    <main className="h-screen overflow-hidden bg-[#FFFFFF] font-sans">
+    <main className="h-screen overflow-hidden bg-white font-sans">
       <div className="relative flex h-full flex-col justify-between">
         {/* Background image - raw, no overlay */}
         <div className="absolute inset-0 z-0">
