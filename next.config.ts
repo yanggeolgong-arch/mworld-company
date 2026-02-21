@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["next-themes"],
   },
   images: {
+    localPatterns: [
+      {
+        pathname: '/images/**',
+      },
+    ],
     remotePatterns: [
       {
         protocol: 'https',

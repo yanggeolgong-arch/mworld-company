@@ -11,6 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const enReportEntries: MetadataRoute.Sitemap = [
+    'gourmet',
+    'cafe',
+    'stay',
+  ].map((slug) => ({
+    url: BASE_URL + `/en/reports/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
   return [
     {
       url: BASE_URL + '/',
@@ -25,5 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     ...reportEntries,
+    ...enReportEntries,
   ];
 }
