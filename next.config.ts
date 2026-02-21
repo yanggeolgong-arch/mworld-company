@@ -2,11 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      { source: '/jeju-best-10', destination: '/reports/jeju-best-10', permanent: true },
-    ];
-  },
   experimental: {
     optimizePackageImports: ["next-themes"],
   },
