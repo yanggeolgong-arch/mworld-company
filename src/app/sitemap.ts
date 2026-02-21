@@ -8,6 +8,7 @@ const BASE_URL = 'https://www.aijeju.co.kr'; // 공양걸AI연구소 | Gong Yang
 /** 주요 정적 경로 */
 const STATIC_ROUTES = [
   '',
+  '/jeju-best-10',
   '/strategy',
   '/growth-engine',
   '/success-cases',

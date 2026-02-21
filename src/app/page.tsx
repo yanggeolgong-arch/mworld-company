@@ -25,10 +25,17 @@ export default function Home() {
           <p className="mt-8 text-xl font-light leading-relaxed text-slate-200 max-w-2xl mx-auto">
             10년 차 전문가가 직접 설계한 지능형 엔진. 직원 없이, 임대료 없이 오직 성과로 증명하는 무인 대행사 운영 시스템.
           </p>
-          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             <a href="tel:010-4074-9343" className="text-lg font-bold text-slate-200 hover:underline">
               문의: 010-4074-9343
             </a>
+            <Link
+              href="/jeju-best-10"
+              prefetch={false}
+              className="rounded-lg border border-amber-400/40 bg-amber-400/10 px-5 py-2.5 text-sm font-medium text-amber-400 transition-colors hover:bg-amber-400/20"
+            >
+              제주 미식 AI 연구소 · Jeju Best 10 <span aria-hidden="true">→</span>
+            </Link>
             <Link
               href="/insights"
               prefetch={false}

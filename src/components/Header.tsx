@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
 const navigation = [
+  { name: 'Jeju Best 10', href: '/jeju-best-10' },
   { name: '마케팅 전략', href: '/strategy' },
   { name: '성장 엔진', href: '/growth-engine' },
   { name: '성공 사례', href: '/success-cases' },
