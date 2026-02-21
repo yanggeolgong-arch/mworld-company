@@ -5,9 +5,9 @@ import { LiveDataCounter } from '@/components/LiveDataCounter';
 
 export const dynamic = 'force-static';
 
-const HERO_IMAGE = '/images/jeju-gourmet-ai-research-lab-dashboard.jpg?v=5';
+const HERO_IMAGE = '/images/jeju-ai-culinary-intelligence-center.jpg';
 const HERO_ALT =
-  'Global Data Dashboard of Jeju Gourmet AI Research Lab - Analyzing Black Pork, Seafood, and Local Cafes';
+  'Jeju AI Culinary Intelligence Center - Global Data Dashboard';
 
 const SLOTS = [
   { slug: 'gourmet', title: 'AI-Curated Jeju Gourmet Top 10', subtext: 'Real-time Sentiment & Density Analysis', href: '/en/reports/gourmet' },
@@ -17,8 +17,8 @@ const SLOTS = [
 
 export default function Home() {
   return (
-    <main className="h-screen overflow-hidden bg-white font-sans">
-      <div className="relative flex h-full flex-col">
+    <main className="h-screen overflow-hidden bg-[#FFFFFF] font-sans">
+      <div className="relative flex h-full flex-col justify-between">
         {/* Background image - raw, no overlay */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
 
         {/* Top 65% - Hero */}
-        <section className="relative z-50 flex h-[65vh] flex-shrink-0 flex-col items-center justify-center px-4 py-4">
+        <section className="relative z-50 flex min-h-[65vh] flex-shrink-0 flex-col items-center justify-center px-4 py-4">
           <div className="flex flex-col items-center gap-3 text-center">
             <h1 className="text-2xl font-bold tracking-tight text-[#000000] sm:text-3xl md:text-4xl">
               Jeju Gourmet AI Research Lab
@@ -69,8 +69,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bottom 35% - 3 modules */}
-        <section className="relative z-50 flex h-[35vh] flex-shrink-0 flex-col items-center justify-center overflow-hidden px-4 py-2">
+        {/* Bottom 35% - 3 modules, locked to viewport bottom */}
+        <section className="relative z-50 flex min-h-[35vh] flex-shrink-0 flex-col items-center justify-center overflow-hidden px-4 py-2">
           <div className="grid w-full max-w-4xl grid-cols-1 gap-3 md:grid-cols-3">
             {SLOTS.map((slot) => (
               <Link

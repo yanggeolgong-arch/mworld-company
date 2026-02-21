@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 const BASE_URL = 'https://www.aijeju.co.kr';
-const OG_IMAGE = `${BASE_URL}/images/jeju-gourmet-ai-research-lab-dashboard.jpg`;
+const OG_IMAGE = `${BASE_URL}/images/jeju-ai-culinary-intelligence-center.jpg`;
 
 export const metadata: Metadata = {
   title: 'Jeju Gourmet AI Research Lab',
