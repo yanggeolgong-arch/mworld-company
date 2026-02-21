@@ -29,6 +29,11 @@ export default function Home() {
               className="object-cover object-center"
             />
           </div>
+          {/* White blur mask - neutralizes baked-in text in image */}
+          <div
+            className="absolute inset-0 backdrop-blur-md"
+            style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)' }}
+          />
         </div>
 
         {/* Layer 2: HUD - z-10, corners only */}
@@ -45,26 +50,28 @@ export default function Home() {
         {/* Layer 3: Hero Content - z-50, SEPARATE from background */}
         <section className="relative z-50 flex min-h-screen flex-col items-center justify-center p-6">
           <div className="flex flex-col items-center gap-8 text-center">
-            <div className="rounded-2xl bg-white/70 px-8 py-6 backdrop-blur-md">
-              <h1 className="text-2xl font-bold leading-[1.5] tracking-tight text-[#1a202c] sm:text-3xl md:text-4xl">
+            <div className="rounded-2xl bg-white px-8 py-6">
+              <h1 className="text-4xl font-extrabold leading-[1.5] tracking-tight text-[#000000]">
                 Jeju Gourmet AI Research Lab
               </h1>
-              <p className="mt-2 text-sm leading-[1.5] text-slate-600 sm:text-base">
+              <p className="mt-2 text-base font-medium leading-[1.5] text-gray-700">
                 Data-Driven Culinary Intelligence
               </p>
             </div>
 
-            {/* District Reports - own Safe Zone, high contrast */}
-            <div className="rounded-2xl bg-white/80 px-8 py-6 backdrop-blur-md">
-              <p className="mb-4 font-bold text-[#000000] sm:text-5xl md:text-6xl">
+            {/* District Reports - primary action, high contrast */}
+            <div className="rounded-2xl bg-white px-8 py-6">
+              <p className="mb-4 font-extrabold tracking-tight text-[#000000] sm:text-5xl">
                 District Reports
               </p>
-              <InteractiveJejuMap />
+              <div className="flex justify-center">
+                <InteractiveJejuMap />
+              </div>
             </div>
 
             <Link
               href="/reports"
-              className="rounded-xl border-2 border-[#000000] bg-white/90 px-8 py-4 font-semibold text-[#000000] transition hover:bg-gray-100"
+              className="rounded-xl border-2 border-[#000000] bg-white px-8 py-4 font-semibold text-[#000000] transition hover:bg-gray-50"
             >
               Access Research Data
             </Link>

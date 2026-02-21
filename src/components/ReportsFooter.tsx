@@ -15,7 +15,7 @@ export function ReportsFooter() {
   );
 
   return (
-    <footer className="flex flex-col items-center justify-center border-t border-gray-200 bg-white px-6 py-8 text-center">
+    <footer className="flex flex-col items-center justify-center border-t border-gray-100 bg-white px-6 py-8 text-center">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <p className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-500">
           Stealth Reports · Crawl Index
