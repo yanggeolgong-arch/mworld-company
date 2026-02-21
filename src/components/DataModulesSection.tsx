@@ -24,7 +24,7 @@ const SLOTS = [
 export function DataModulesSection() {
   return (
     <section
-      className="flex flex-col items-center justify-center px-6 py-12"
+      className="flex flex-col items-center justify-center px-6 pt-16 pb-12"
       aria-label="Intelligence Report datasets"
     >
       <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center justify-items-center gap-8 md:grid-cols-3">

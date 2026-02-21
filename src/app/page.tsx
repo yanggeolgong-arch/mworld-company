@@ -26,9 +26,11 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-center"
           />
-          {/* Subtle HUD - top right */}
-          <div className="absolute right-4 top-4 z-10 flex gap-3 opacity-65 transition-opacity hover:opacity-100">
+          {/* HUD - extreme corners, z-10, never overlap center 50% */}
+          <div className="absolute right-4 top-4 z-10 opacity-65 transition-opacity hover:opacity-100">
             <LiveDataCounter />
+          </div>
+          <div className="absolute bottom-4 left-4 z-10 opacity-65 transition-opacity hover:opacity-100">
             <div className="rounded border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
               <p className="text-[0.75rem] text-slate-400">Algorithm</p>
               <p className="text-[0.85rem] font-medium tabular-nums text-white">
@@ -37,15 +39,30 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Main content - centered, highest z-index */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-8 bg-black/20 p-6">
-            <h1 className="text-center text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl">
-              Jeju Gourmet AI Research Lab
-            </h1>
-            <p className="text-center text-sm text-slate-300">
-              Data-Driven Culinary Intelligence
-            </p>
-            <div className="flex flex-col items-center gap-6">
+          {/* Main content - z-20, Safe Zone, highest layer */}
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6">
+            <div className="flex w-full max-w-2xl flex-col items-center gap-8 px-4 py-8">
+              {/* Title block - backdrop blur for readability */}
+              <div className="relative w-full rounded-2xl bg-black/30 px-8 py-6 backdrop-blur-md">
+                <h1
+                  className="relative z-20 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl"
+                  style={{
+                    textShadow:
+                      '0 0 20px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(0,0,0,1)',
+                  }}
+                >
+                  Jeju Gourmet AI Research Lab
+                </h1>
+                <p
+                  className="relative z-20 mt-2 text-center text-sm text-slate-300 sm:text-base"
+                  style={{
+                    textShadow: '0 1px 3px rgba(0,0,0,0.8)',
+                  }}
+                >
+                  Data-Driven Culinary Intelligence
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-6">
               <div className="flex flex-col items-center">
                 <p className="mb-2 text-center text-xs font-medium uppercase tracking-wider text-slate-400">
                   District Reports
@@ -59,8 +76,11 @@ export default function Home() {
                 Access Research Data
               </Link>
             </div>
+            </div>
           </div>
         </div>
+        {/* Clear vertical gap between Hero and 3 modules */}
+        <div className="min-h-[4rem]" aria-hidden />
         <DataModulesSection />
         <ReportsFooter />
       </div>
