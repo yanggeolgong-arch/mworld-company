@@ -26,33 +26,39 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-center"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 bg-black/20 p-4">
-            <div className="flex flex-col items-center gap-6 sm:flex-row sm:gap-10">
-              <div className="rounded-2xl border border-white/10 bg-slate-900/80 px-8 py-6 shadow-2xl backdrop-blur-xl">
-                <p className="mb-4 text-center text-xs font-medium uppercase tracking-wider text-emerald-400/90">
-                  Live AI Analysis
-                </p>
-                <div className="flex flex-wrap justify-center gap-6">
-                  <LiveDataCounter />
-                  <div className="rounded-lg border border-white/10 bg-slate-800/80 px-4 py-3 text-center">
-                    <p className="text-sm text-slate-400">Algorithm</p>
-                    <p className="text-2xl font-semibold text-white">Stable 2.0</p>
-                  </div>
-                </div>
-              </div>
+          {/* Subtle HUD - top right */}
+          <div className="absolute right-4 top-4 z-10 flex gap-3 opacity-65 transition-opacity hover:opacity-100">
+            <LiveDataCounter />
+            <div className="rounded border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
+              <p className="text-[0.75rem] text-slate-400">Algorithm</p>
+              <p className="text-[0.85rem] font-medium tabular-nums text-white">
+                Stable 2.0
+              </p>
+            </div>
+          </div>
+
+          {/* Main content - centered, highest z-index */}
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-8 bg-black/20 p-6">
+            <h1 className="text-center text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl">
+              Jeju Gourmet AI Research Lab
+            </h1>
+            <p className="text-center text-sm text-slate-300">
+              Data-Driven Culinary Intelligence
+            </p>
+            <div className="flex flex-col items-center gap-6">
               <div className="flex flex-col items-center">
                 <p className="mb-2 text-center text-xs font-medium uppercase tracking-wider text-slate-400">
                   District Reports
                 </p>
                 <InteractiveJejuMap />
               </div>
+              <Link
+                href="/reports"
+                className="rounded-xl border-2 border-emerald-500/60 bg-emerald-500/20 px-8 py-4 font-semibold text-white shadow-lg transition hover:border-emerald-400 hover:bg-emerald-500/30"
+              >
+                Access Research Data
+              </Link>
             </div>
-            <Link
-              href="/reports"
-              className="rounded-xl border-2 border-emerald-500/60 bg-emerald-500/20 px-8 py-4 font-semibold text-white shadow-lg transition hover:border-emerald-400 hover:bg-emerald-500/30"
-            >
-              Access Research Data
-            </Link>
           </div>
         </div>
         <DataModulesSection />
