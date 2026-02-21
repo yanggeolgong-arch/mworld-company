@@ -26,11 +26,17 @@ export default function Home() {
             sizes="100vw"
             className="object-cover object-center"
           />
-          {/* HUD - extreme corners, z-10, never overlap center 50% */}
-          <div className="absolute right-4 top-4 z-10 opacity-65 transition-opacity hover:opacity-100">
+          {/* HUD - outer 10% only, pointer-events-none, center 80% reserved */}
+          <div
+            className="absolute right-[5%] top-[5%] z-10 pointer-events-none opacity-70"
+            aria-hidden
+          >
             <LiveDataCounter />
           </div>
-          <div className="absolute bottom-4 left-4 z-10 opacity-65 transition-opacity hover:opacity-100">
+          <div
+            className="absolute bottom-[5%] left-[5%] z-10 pointer-events-none opacity-70"
+            aria-hidden
+          >
             <div className="rounded border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
               <p className="text-[0.75rem] text-slate-400">Algorithm</p>
               <p className="text-[0.85rem] font-medium tabular-nums text-white">
@@ -39,13 +45,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Main content - z-20, Safe Zone, highest layer */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-6">
+          {/* Main content - z-50, Safe Zone, highest layer */}
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center p-6">
             <div className="flex w-full max-w-2xl flex-col items-center gap-8 px-4 py-8">
-              {/* Title block - backdrop blur for readability */}
-              <div className="relative w-full rounded-2xl bg-black/30 px-8 py-6 backdrop-blur-md">
+              {/* Title block - bg-black/40 for PSI contrast, Safe Zone */}
+              <div className="relative w-full rounded-2xl bg-black/40 px-8 py-6 backdrop-blur-md">
                 <h1
-                  className="relative z-20 text-center text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl"
+                  className="relative z-50 text-center text-2xl font-bold leading-[1.5] tracking-tight text-white sm:text-3xl sm:leading-[1.5] md:text-4xl"
                   style={{
                     textShadow:
                       '0 0 20px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5), 0 0 1px rgba(0,0,0,1)',
@@ -54,7 +60,7 @@ export default function Home() {
                   Jeju Gourmet AI Research Lab
                 </h1>
                 <p
-                  className="relative z-20 mt-2 text-center text-sm text-slate-300 sm:text-base"
+                  className="relative z-50 mt-2 text-center text-sm leading-[1.5] text-slate-300 sm:text-base"
                   style={{
                     textShadow: '0 1px 3px rgba(0,0,0,0.8)',
                   }}
@@ -64,7 +70,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center gap-6">
               <div className="flex flex-col items-center">
-                <p className="mb-2 text-center text-xs font-medium uppercase tracking-wider text-slate-400">
+                <p className="mb-2 text-center text-xs font-medium leading-[1.5] uppercase tracking-wider text-slate-400">
                   District Reports
                 </p>
                 <InteractiveJejuMap />

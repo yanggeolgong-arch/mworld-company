@@ -34,10 +34,10 @@ export function DataModulesSection() {
             href={slot.href}
             className="flex w-full max-w-sm flex-col items-center justify-center rounded-xl border border-white/10 bg-slate-900/80 px-6 py-8 text-center transition hover:border-emerald-500/30 hover:bg-slate-800/80"
           >
-            <h3 className="mb-2 text-lg font-semibold text-white">
+            <h3 className="mb-2 text-lg font-semibold leading-[1.5] text-white">
               {slot.title}
             </h3>
-            <p className="text-sm text-slate-400">{slot.subtext}</p>
+            <p className="text-sm leading-[1.5] text-slate-400">{slot.subtext}</p>
           </Link>
         ))}
       </div>
