@@ -32,9 +32,9 @@ export function DataModulesSection() {
           <Link
             key={slot.slug}
             href={slot.href}
-            className="flex w-full max-w-sm flex-col items-center justify-center rounded-xl border border-gray-100 bg-white px-6 py-8 text-center transition hover:border-gray-200 hover:bg-gray-50"
+            className="flex w-full max-w-sm flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-6 py-8 text-center shadow-sm transition hover:shadow-md"
           >
-            <h3 className="mb-2 text-lg font-semibold leading-[1.5] text-[#000000]">
+            <h3 className="mb-2 text-lg font-semibold leading-[1.5] text-black">
               {slot.title}
             </h3>
             <p className="text-sm font-medium leading-[1.5] text-gray-700">{slot.subtext}</p>
