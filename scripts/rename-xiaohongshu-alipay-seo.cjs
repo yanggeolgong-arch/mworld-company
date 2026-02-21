@@ -1,5 +1,5 @@
 /**
- * 공양걸AI연구소 최고실행자 프로토콜 - 이미지 SEO 자동화
+ * Jeju Gourmet AI Research Lab - Image SEO
  * 1~15번 사진을 영문 키워드 파일명으로 변경 (제주맛집, 알리페이, 샤오홍슈, 보조배터리 등)
  */
 const path = require('path');

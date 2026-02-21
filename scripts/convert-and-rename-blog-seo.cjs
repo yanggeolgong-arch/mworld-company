@@ -1,5 +1,5 @@
 /**
- * 공양걸AI연구소 최고실행자 프로토콜 - 이전 포스팅 5개 이미지 SEO 소급 최적화
+ * Jeju Gourmet AI Research Lab - Image SEO optimization
  * concept, global, insta 폴더: JPEG → WebP 변환 후 영문 SEO 파일명으로 일괄 변경
  */
 const path = require('path');
@@ -40,7 +40,7 @@ const GLOBAL_SEO = {
   11: 'jeju-local-parking-storefront.webp',
   12: 'jeju-restaurant-waiting-global-guests.webp',
   13: 'jeju-mworld-consulting-on-site.webp',
-  14: 'jeju-dazhong-dianping-inquiry-sg7979.webp',
+  14: 'jeju-dazhong-dianping-inquiry.webp',
   15: 'jeju-mworld-brand-execution-no1.webp',
 };
 

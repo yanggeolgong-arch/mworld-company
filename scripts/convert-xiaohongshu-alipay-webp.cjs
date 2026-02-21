@@ -1,5 +1,5 @@
 /**
- * 공양걸AI연구소 최고실행자 프로토콜 - 성능 98점 WebP 80%
+ * Jeju Gourmet AI Research Lab - WebP 80% optimization
  * public/images/blog/xiaohongshu-alipay-strategy/ 내 1,2,6,11번 → WebP 변환
  */
 const path = require('path');

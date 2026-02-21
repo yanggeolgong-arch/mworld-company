@@ -18,7 +18,7 @@ const FILE_MAP = {
   4: 'my-khe-quality-score.webp',
   5: 'cong-cafe-ugc-analysis.webp',
   6: 'lau-restaurant-synergy.webp',
-  7: 'gongyanggeol-data-chart.webp',
+  7: 'danang-data-chart.webp',
   8: 'white-cat-analyst-arnar.webp',
 };
 

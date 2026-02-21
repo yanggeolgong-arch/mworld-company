@@ -38,6 +38,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <footer className="absolute bottom-4 left-0 right-0 text-center text-sm text-slate-500">
+        Jeju Gourmet AI Research Lab · Data-Driven Culinary Intelligence
+      </footer>
     </main>
   );
 }

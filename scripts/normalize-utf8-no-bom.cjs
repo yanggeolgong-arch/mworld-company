@@ -1,5 +1,5 @@
 /**
- * 공양걸AI연구소 최고실행자 프로토콜: 모든 .css, .js, .mdx(, .mjs)를 UTF-8 Without BOM으로 재저장
+ * Jeju Gourmet AI Research Lab - UTF-8 Without BOM normalization
  */
 const fs = require('fs');
 const path = require('path');

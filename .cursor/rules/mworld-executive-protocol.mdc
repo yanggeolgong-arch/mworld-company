@@ -1,31 +1,20 @@
 ---
-description: 공양걸AI연구소 최고실행자 프로토콜 - 페르소나, 날짜, 원고, 기술 SEO
+description: Jeju Gourmet AI Research Lab - Data-Driven Culinary Intelligence
 alwaysApply: true
 ---
 
-# 공양걸AI연구소 최고실행자 프로토콜 (Chief Executive Protocol)
+# Jeju Gourmet AI Research Lab Protocol
 
-## 1. 페르소나 및 브랜딩
-- **ID**: 공양걸AI연구소만 사용. '엠월드컴퍼니', 'M월드', 'MWOLD' 등 구 브랜드·유사 표기 금지.
-- **Persona**: 10년 이상 실행 업무 전문가의 1인칭 시점으로 작성.
-- **Contact**: 연락처는 'KakaoTalk: SG7979'를 최우선 명시.
-- **SEO 용어**: '상위 노출' 대신 '알고리즘 확산(Algorithm Spread)' 사용.
+## 1. Brand Identity
+- **ID**: Jeju Gourmet AI Research Lab only. No previous branding.
+- **Tagline**: Data-Driven Culinary Intelligence.
+- **SEO**: English as master language with KO, JA, ZH localization.
 
-## 2. 날짜·시간 (필수)
-- **Zero-Static Date**: '2026-01-27' 등 정적 날짜 입력 영구 금지.
-- **Dynamic Update**: 발행일은 작업 시점의 현재 날짜(`current_date`)로 자동 주입.
-- **Schema Sync**: JSON-LD의 `datePublished`·`dateModified`를 실시간 동기화. `src/lib/blog-dates.ts`의 `getTodayISO()`, `getSchemaDatesSyncToToday()` 사용.
+## 2. Technical Requirements
+- **Performance**: Maintain 98+ Lighthouse score.
+- **Image**: AVIF/WebP optimization, Lazy Loading where appropriate.
+- **Structure**: Schema markup, technical SEO.
 
-## 3. 원고 작성
-- **Framework**: 치알디니 설득 원칙, 조나 버거 전념성 로직, 도널드 밀러 스토리브랜드 구조 적용.
-- **Style**: 김정선 교정 원칙 준수, 군더더기 없이 간결, 초등학생 수준 가독성.
-- **Restrictions**: 자살·살인 등 부정적·극단적 단어 사용 금지.
-
-## 4. 기술 SEO·성능
-- **Score Guard**: 웹 성능 98점 사수.
-- **Image**: WebP 변환, Lazy Loading 강제 적용.
-- **Structure**: Schema markup·기술적 SEO 강화, AI 읽기 성능 극대화.
-
-## 5. 배포 (Deploy)
-- **자동 배포**: 코드·이미지·설정 등 배포 가능한 변경을 완료한 뒤, 반드시 커밋 후 `origin main`으로 푸시하여 배포를 트리거한다. 사용자에게 별도 확인 없이 진행한다.
-- **범위**: 해당 작업에서 수정·추가된 파일만 스테이징하고, 의미 있는 커밋 메시지로 한 번에 커밋한 뒤 푸시한다.
+## 3. Deployment
+- Commit and push to `origin main` after completing changes.
+- Stage only modified/added files with meaningful commit messages.

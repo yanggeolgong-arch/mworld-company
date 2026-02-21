@@ -1,5 +1,5 @@
 /**
- * 공양걸AI연구소 최고실행자 프로토콜 - Image Protocol
+ * Jeju Gourmet AI Research Lab - Image Protocol
  * public/images/blog/global/ 내 1.jpeg, 2.jpeg → WebP 변환 (LCP·성능 98점 사수)
  */
 const path = require('path');
