@@ -15,7 +15,7 @@ export function ReportsFooter() {
   );
 
   return (
-    <footer className="flex flex-col items-center justify-center border-t border-white/5 bg-slate-950/95 px-6 py-8 text-center">
+    <footer className="flex flex-col items-center justify-center border-t border-gray-200 bg-white px-6 py-8 text-center">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <p className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-500">
           Stealth Reports · Crawl Index
@@ -26,13 +26,13 @@ export function ReportsFooter() {
         >
           {CATEGORIES.map((cat) => (
             <div key={cat} className="flex flex-col items-center justify-center">
-              <h3 className="mb-2 text-sm font-medium text-slate-400">{cat}</h3>
+              <h3 className="mb-2 text-sm font-medium text-slate-600">{cat}</h3>
               <ul className="flex flex-col items-center space-y-1">
                 {byCategory[cat]?.map((r) => (
                   <li key={r.slug}>
                     <Link
                       href={`/reports/${r.slug}`}
-                      className="text-sm text-slate-500 transition hover:text-emerald-400"
+                      className="text-sm text-slate-600 transition hover:text-[#0070f3]"
                     >
                       {r.title}
                     </Link>
@@ -42,7 +42,7 @@ export function ReportsFooter() {
             </div>
           ))}
         </nav>
-        <p className="mt-6 text-center text-xs text-slate-600">
+        <p className="mt-6 text-center text-xs text-slate-500">
           Jeju Gourmet AI Research Lab · Data-Driven Culinary Intelligence
         </p>
       </div>

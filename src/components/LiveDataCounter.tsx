@@ -31,10 +31,10 @@ export function LiveDataCounter() {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="rounded border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm transition hover:opacity-100"
+      className="rounded border border-gray-200 bg-white/60 px-3 py-2 backdrop-blur-sm"
     >
-      <p className="text-[0.75rem] text-slate-400">Data Points</p>
-      <p className="text-[0.85rem] font-medium tabular-nums text-white">
+      <p className="text-[0.75rem] text-gray-500">Data Points</p>
+      <p className="text-[0.85rem] font-medium tabular-nums text-gray-700">
         {count.toLocaleString()}
       </p>
     </div>

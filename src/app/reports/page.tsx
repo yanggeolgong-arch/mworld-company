@@ -10,10 +10,10 @@ export const metadata = {
 
 export default function ReportsIndexPage() {
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="mx-auto max-w-3xl px-6 py-16">
-        <h1 className="mb-2 text-2xl font-semibold">Stealth Reports</h1>
-        <p className="mb-8 text-slate-400">
+    <main className="min-h-screen bg-white text-[#1a202c]">
+      <div className="mx-auto max-w-3xl px-6 py-16 text-center">
+        <h1 className="mb-2 text-2xl font-semibold text-[#1a202c]">Stealth Reports</h1>
+        <p className="mb-8 text-slate-600">
           We analyze. We don&apos;t blog. Data-Driven Culinary Intelligence.
         </p>
         <ul className="space-y-3">
@@ -21,17 +21,17 @@ export default function ReportsIndexPage() {
             <li key={r.slug}>
               <Link
                 href={`/reports/${r.slug}`}
-                className="block rounded-lg border border-white/10 bg-white/5 px-4 py-3 transition hover:border-emerald-500/30 hover:bg-white/10"
+                className="block rounded-lg border border-gray-200 bg-white/70 px-4 py-3 text-center transition hover:border-[#0070f3]/40 hover:bg-white/90"
               >
-                <span className="text-xs text-emerald-400/90">{r.category}</span>
-                <p className="font-medium">{r.title}</p>
+                <span className="text-xs text-[#0070f3]">{r.category}</span>
+                <p className="font-medium text-[#1a202c]">{r.title}</p>
               </Link>
             </li>
           ))}
         </ul>
         <Link
           href="/"
-          className="mt-8 inline-block text-sm text-slate-500 hover:text-emerald-400"
+          className="mt-8 inline-block text-sm text-slate-600 hover:text-[#0070f3]"
         >
           ← Back to Dashboard
         </Link>

@@ -20,7 +20,7 @@ export function InteractiveJejuMap() {
       fill="none"
       stroke="currentColor"
       strokeWidth="1.2"
-      className="w-full max-w-[200px] text-slate-400 transition-colors"
+      className="w-full max-w-[200px] text-slate-600 transition-colors"
       aria-label="Interactive Jeju Island map - click districts for Stealth Reports"
     >
       <Link href={`/reports/${DISTRICT_REPORTS['jeju-city']}`} className="group block">
@@ -29,7 +29,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.12"
           strokeOpacity="0.5"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <Link href={`/reports/${DISTRICT_REPORTS.seogwipo}`} className="group block">
@@ -38,7 +38,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.12"
           strokeOpacity="0.5"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <Link href={`/reports/${DISTRICT_REPORTS['east-coast']}`} className="group block">
@@ -47,7 +47,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.12"
           strokeOpacity="0.5"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <Link href={`/reports/${DISTRICT_REPORTS['west-coast']}`} className="group block">
@@ -56,7 +56,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.12"
           strokeOpacity="0.5"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <Link href={`/reports/${DISTRICT_REPORTS.hallasan}`} className="group block">
@@ -68,7 +68,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.18"
           strokeOpacity="0.6"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <Link href={`/reports/${DISTRICT_REPORTS.airport}`} className="group block">
@@ -79,7 +79,7 @@ export function InteractiveJejuMap() {
           fill="currentColor"
           fillOpacity="0.18"
           strokeOpacity="0.6"
-          className="cursor-pointer transition hover:fill-emerald-500/30 hover:stroke-emerald-400"
+          className="cursor-pointer transition hover:fill-[#0070f3]/30 hover:stroke-[#0070f3]"
         />
       </Link>
       <title>{Object.entries(DISTRICT_LABELS).map(([k, v]) => `${k}: ${v}`).join(', ')}</title>

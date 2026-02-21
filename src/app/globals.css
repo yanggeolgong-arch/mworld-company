@@ -12,6 +12,8 @@ html {
 
 body {
   min-height: 100vh;
+  background-color: #ffffff;
+  color: #1a202c;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
