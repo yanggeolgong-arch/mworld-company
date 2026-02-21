@@ -15,16 +15,19 @@ export function ReportsFooter() {
   );
 
   return (
-    <footer className="border-t border-white/5 bg-slate-950/95 px-6 py-8">
-      <div className="mx-auto max-w-4xl">
+    <footer className="flex flex-col items-center justify-center border-t border-white/5 bg-slate-950/95 px-6 py-8 text-center">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center">
         <p className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-500">
           Stealth Reports · Crawl Index
         </p>
-        <nav className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" aria-label="Report links">
+        <nav
+          className="grid w-full max-w-4xl grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          aria-label="Report links"
+        >
           {CATEGORIES.map((cat) => (
-            <div key={cat}>
+            <div key={cat} className="flex flex-col items-center justify-center">
               <h3 className="mb-2 text-sm font-medium text-slate-400">{cat}</h3>
-              <ul className="space-y-1">
+              <ul className="flex flex-col items-center space-y-1">
                 {byCategory[cat]?.map((r) => (
                   <li key={r.slug}>
                     <Link
