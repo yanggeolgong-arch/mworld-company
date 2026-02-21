@@ -16,25 +16,25 @@ export default function Home() {
         <div className="relative w-full mx-auto max-w-4xl flex flex-col items-center justify-center text-center animate-stagger">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 backdrop-blur-sm">
             <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">
-              공양걸AI연구소
+              Jeju Gourmet AI Research Lab
             </span>
           </div>
           <h1 id="hero-heading" className="text-6xl font-light tracking-tight text-white sm:text-7xl lg:text-8xl text-center whitespace-pre-line">
-            {`사무실 없는\n1인 기업, AI 자동화로\n[대행사 창업]의 수익\n한계를 깨다.`}
+            {`Data-Driven\nCulinary Intelligence\nfor Jeju Island.`}
           </h1>
           <p className="mt-8 text-xl font-light leading-relaxed text-slate-200 max-w-2xl mx-auto">
-            10년 차 전문가가 직접 설계한 지능형 엔진. 직원 없이, 임대료 없이 오직 성과로 증명하는 무인 대행사 운영 시스템.
+            We don&apos;t blog. We analyze. AI-powered gourmet research delivering optimal solutions through real-time data mining.
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
             <a href="tel:010-4074-9343" className="text-lg font-bold text-slate-200 hover:underline">
               문의: 010-4074-9343
             </a>
             <Link
-              href="/jeju-best-10"
+              href="/reports"
               prefetch={false}
               className="rounded-lg border border-amber-400/40 bg-amber-400/10 px-5 py-2.5 text-sm font-medium text-amber-400 transition-colors hover:bg-amber-400/20"
             >
-              제주 미식 AI 연구소 · Jeju Best 10 <span aria-hidden="true">→</span>
+              Research Reports <span aria-hidden="true">→</span>
             </Link>
             <Link
               href="/insights"

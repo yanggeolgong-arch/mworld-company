@@ -13,7 +13,7 @@ export function HomeBelowFold() {
       <section className="w-full mx-auto max-w-7xl px-6 py-48 lg:px-8 flex flex-col items-center justify-center" aria-labelledby="features-heading">
         <div className="w-full mx-auto max-w-2xl text-center">
           <h2 id="features-heading" className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            공양걸AI연구소 핵심 역량
+            Jeju Gourmet AI Research Lab
           </h2>
           <p className="mt-6 text-lg font-light leading-8 text-slate-300 max-w-2xl mx-auto">
             복제 불가 기술력으로 구축한 프리미엄 솔루션

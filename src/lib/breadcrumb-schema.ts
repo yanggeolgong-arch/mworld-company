@@ -26,29 +26,35 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 /**
- * 블로그 포스트용 Breadcrumb 생성
+ * 인사이트/리포트용 Breadcrumb 생성
  * @param slug - 포스트 slug
  * @param title - 포스트 제목
  * @param category - 카테고리 이름 (선택)
+ * @param basePath - 기본 경로 (기본: /insights)
  * @returns Breadcrumb 항목 배열
  */
-export function generateBlogBreadcrumbs(slug: string, title: string, category?: string): BreadcrumbItem[] {
+export function generateBlogBreadcrumbs(
+  slug: string,
+  title: string,
+  category?: string,
+  basePath = '/insights'
+): BreadcrumbItem[] {
   const items: BreadcrumbItem[] = [
     { name: '홈', url: '/' },
-    { name: '알고리즘 확산 블로그', url: '/blog' },
+    { name: '성공 노하우', url: basePath },
   ];
 
   if (category) {
     const categorySlug = category.toLowerCase().replace(/\s+/g, '-');
     items.push({
       name: category,
-      url: `/blog/${categorySlug}`,
+      url: `${basePath}/${categorySlug}`,
     });
   }
 
   items.push({
     name: title,
-    url: `/blog/${slug}`,
+    url: `${basePath}/${slug}`,
   });
 
   return items;

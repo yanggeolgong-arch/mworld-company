@@ -78,23 +78,23 @@ export function generateOptimizedUrl(slug: string, title: string, category?: str
   // 카테고리 기반 URL 구조
   if (category) {
     const categorySlug = optimizeSlug(category);
-    return `/blog/${categorySlug}/${optimizedSlug}`;
+    return `/insights/${categorySlug}/${optimizedSlug}`;
   }
 
   // 키워드 기반 자동 분류
   const titleLower = title.toLowerCase();
   if (titleLower.includes('창업') || titleLower.includes('대행사') || titleLower.includes('startup') || titleLower.includes('agency')) {
-    return `/blog/ad-agency-startup/${optimizedSlug}`;
+    return `/insights/ad-agency-startup/${optimizedSlug}`;
   }
   if (titleLower.includes('숏폼') || titleLower.includes('마케팅') || titleLower.includes('shortform') || titleLower.includes('marketing')) {
-    return `/blog/shortform-marketing-practice/${optimizedSlug}`;
+    return `/insights/shortform-marketing-practice/${optimizedSlug}`;
   }
   if (titleLower.includes('플레이스') || titleLower.includes('알고리즘') || titleLower.includes('place') || titleLower.includes('algorithm')) {
-    return `/blog/place-algorithm/${optimizedSlug}`;
+    return `/insights/place-algorithm/${optimizedSlug}`;
   }
 
   // 기본 URL
-  return `/blog/${optimizedSlug}`;
+  return `/insights/${optimizedSlug}`;
 }
 
 /**

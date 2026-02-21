@@ -26,7 +26,7 @@ const Header = dynamic(() => import("@/components/Header").then((m) => ({ defaul
   ssr: true,
   loading: () => (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-md h-16 flex items-center justify-center">
-      <span className="text-xl font-medium text-white">공양걸AI연구소</span>
+      <span className="text-xl font-medium text-white">Jeju Gourmet AI Research Lab</span>
     </header>
   ),
 });
@@ -42,9 +42,9 @@ const Footer = dynamic(() => import("@/components/Footer").then((m) => ({ defaul
 });
 
 export const metadata: Metadata = {
-  title: "공양걸AI연구소 | AI 글로벌 마케팅 & 교육 전문 기지",
-  description: "10년 차 실행 전문가 공양걸 소장이 운영하는 공양걸AI연구소. AI 글로벌 마케팅 및 교육 전문. 사무실 없는 1인 기업, 알고리즘 확산 실무 로직.",
-  keywords: ["공양걸AI연구소", "공양걸 소장", "AI 글로벌 마케팅", "알고리즘 확산", "실행 전문가"],
+  title: "Jeju Gourmet AI Research Lab - Data-Driven Culinary Intelligence",
+  description: "AI가 분석한 제주도 최고의 맛집 데이터 리포트. 실시간 데이터 마이닝을 통해 최적의 미식 솔루션을 제공합니다. We don't blog. We analyze.",
+  keywords: ["Jeju Gourmet AI", "제주 미식 AI 연구소", "AIJEJU", "Data-Driven Culinary", "Jeju restaurants"],
   alternates: {
     canonical: 'https://www.aijeju.co.kr',
     types: {
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "공양걸AI연구소 | AI 글로벌 마케팅 & 교육 전문 기지",
-    description: "10년 차 실행 전문가 공양걸 소장이 운영하는 공양걸AI연구소. AI 글로벌 마케팅 및 교육 전문.",
+    title: "Jeju Gourmet AI Research Lab - Data-Driven Culinary Intelligence",
+    description: "We don't blog. We analyze. AI-powered gourmet research for Jeju Island.",
     type: "website",
     url: 'https://www.aijeju.co.kr',
   },
@@ -67,9 +67,9 @@ export default function RootLayout({
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'LocalBusiness'],
-    name: '공양걸AI연구소',
-    alternateName: '엠월드컴퍼니',
-    description: '10년 차 실행 전문가 공양걸 소장이 운영하는 AI 글로벌 마케팅 및 교육 전문 연구소',
+    name: 'Jeju Gourmet AI Research Lab',
+    alternateName: '제주 미식 AI 연구소',
+    description: 'Data-Driven Culinary Intelligence for Jeju Island. We don\'t blog. We analyze.',
     url: 'https://www.aijeju.co.kr',
     logo: 'https://www.aijeju.co.kr/logo.png',
     image: 'https://www.aijeju.co.kr/logo.png',

@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { type ReactNode } from 'react';
 import { DeferredThemeWrapper } from '@/components/DeferredThemeWrapper';
 
-const STEALTH_PATH = '/blog/jeju-marketing-company';
+const STEALTH_PATH = '/reports';
 
 interface ConditionalMainWrapperProps {
   header: ReactNode;

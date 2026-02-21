@@ -1,71 +1,29 @@
 import type { MetadataRoute } from 'next';
-import { getAllStaticPosts } from '@/lib/static-posts';
-import fs from 'fs';
-import path from 'path';
 
-const BASE_URL = 'https://www.aijeju.co.kr'; // 공양걸AI연구소 | Gong Yang-geol AI Lab
+const BASE_URL = 'https://www.aijeju.co.kr';
 
-/** 주요 정적 경로 */
+/** 주요 정적 경로 - Blog 제거, Reports 추가 */
 const STATIC_ROUTES = [
   '',
-  '/jeju-best-10',
+  '/reports',
+  '/reports/jeju-best-10',
   '/strategy',
   '/growth-engine',
   '/success-cases',
   '/insights',
   '/partnership',
-  '/blog',
-  '/blog/jeju-marketing-company',
 ] as const;
-
-/** src/content/blog 내 MDX 파일에서 슬러그 목록 추출 (빌드 시점) */
-function getMdxSlugs(): string[] {
-  try {
-    const contentDir = path.join(process.cwd(), 'src', 'content', 'blog');
-    if (!fs.existsSync(contentDir)) return [];
-    const files = fs.readdirSync(contentDir);
-    return files
-      .filter((f) => f.endsWith('.mdx'))
-      .map((f) => f.replace(/\.mdx$/i, ''));
-  } catch {
-    return [];
-  }
-}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
-    url: route ? `${BASE_URL}${route}` : BASE_URL + '/',
-    lastModified: now,
-    changeFrequency: route === '' ? 'daily' as const : 'weekly' as const,
-    priority: route === '' ? 1 : 0.9,
-  }));
-
-  const DANANG_SLUG = 'danang-restaurant-recommendation';
-
-  const staticPosts = getAllStaticPosts();
-  const blogFromStaticPosts: MetadataRoute.Sitemap = staticPosts.map((post) => {
-    const isDanang = post.slug === DANANG_SLUG;
-    const changeFreq: 'daily' | 'weekly' = isDanang ? 'daily' : 'weekly';
+  return STATIC_ROUTES.map((route) => {
+    const changeFreq: 'daily' | 'weekly' = route === '' ? 'daily' : 'weekly';
     return {
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: route ? `${BASE_URL}${route}` : BASE_URL + '/',
       lastModified: now,
       changeFrequency: changeFreq,
-      priority: isDanang ? 1.0 : 0.8,
+      priority: route === '' ? 1 : 0.9,
     };
   });
-
-  const mdxSlugs = getMdxSlugs();
-  const existingSlugs = new Set(staticPosts.map((p) => p.slug));
-  const blogFromMdx: MetadataRoute.Sitemap = mdxSlugs
-    .filter((slug) => !existingSlugs.has(slug))
-    .map((slug) => ({
-      url: `${BASE_URL}/blog/${slug}`,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }));
-
-  return [...staticEntries, ...blogFromStaticPosts, ...blogFromMdx];
 }
