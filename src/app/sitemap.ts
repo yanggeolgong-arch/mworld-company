@@ -22,6 +22,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const blogEntries: MetadataRoute.Sitemap = [
+    { slug: 'haedong-yonggungsa-global-data-guide', priority: 0.7 },
+  ].map(({ slug, priority }) => ({
+    url: BASE_URL + `/en/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority,
+  }));
+
   return [
     {
       url: BASE_URL + '/',
@@ -37,5 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...reportEntries,
     ...enReportEntries,
+    ...blogEntries,
   ];
 }
