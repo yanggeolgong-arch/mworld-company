@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: '/stealth-best-10', destination: '/ko/stealth-best-10', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

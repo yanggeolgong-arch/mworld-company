@@ -132,7 +132,7 @@ export default function StealthBest10Page() {
   return (
     <main className="min-h-screen bg-slate-950 overflow-y-auto">
       <h1 className="text-center text-white text-2xl font-bold py-6">
-        Stealth Best 10
+        스텔스 베스트 10
       </h1>
 
       {/* VS 그리드: 2열, 1:1 정방형, 중앙 VS 구분선 */}

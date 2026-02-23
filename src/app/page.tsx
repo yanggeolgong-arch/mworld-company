@@ -89,7 +89,7 @@ export default function Home() {
             Jeju Gourmet AI Research Lab · Data-Driven Culinary Intelligence
           </p>
           <Link
-            href="/stealth-best-10"
+            href="/ko/stealth-best-10"
             className="mt-1 text-center text-[0.6rem] text-orange-600 hover:text-orange-700 block"
           >
             Stealth Best 10
