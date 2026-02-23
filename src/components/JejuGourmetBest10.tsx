@@ -15,7 +15,7 @@ const initialShops = [
   { id: 7, name: '램스키친', img: `${IMG_BASE}/7.jpg`, brief: '양고기의 미학, 냄새 없는 부드러움의 극치', teaser: '양고기가 이렇게 부드러울 수 있다고? 편견을 깨는 그 맛의 비결이 궁금하다면...', blogUrl: 'https://blog.naver.com/jejuopsuye/224002909182', story: '엄선된 프리미엄 양갈비만을 고집합니다. 전문적인 그릴링 서비스와 세련된 분위기가 당신의 저녁을 더욱 특별하게 만듭니다.', query: '제주 램스키친' },
   { id: 8, name: '청기와장어', img: `${IMG_BASE}/8.jpg`, brief: '지친 영혼을 달래는 기력 보강의 끝판왕', teaser: '숯불 위에서 피어나는 고소함, 지친 몸이 달리는 그 힘의 비결이 궁금하다면...', blogUrl: 'https://blog.naver.com/jejuopsuye/223972283259', story: '숯불향 가득 머금은 장어의 고소함이 입안 가득 퍼집니다. 제주의 에너지를 한 몸에 받는 보양식의 명가입니다.', query: '제주 청기와장어' },
   { id: 9, name: '섬타르', img: `${IMG_BASE}/9.jpg`, brief: '제주의 자연을 굽다, 로컬 타르트의 달콤한 향연', teaser: '구좌 당근, 우도 땅콩이 타르트에? 섬의 맛을 달콤하게 번역한 그 비결...', blogUrl: 'https://blog.naver.com/jejuopsuye/224066284940', story: '구좌 당근, 우도 땅콩 등 제주의 원재료를 현대적 감각으로 재해석한 디저트입니다. 시각과 미각을 동시에 만족시키는 걸작입니다.', query: '제주 섬타르' },
-  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.jpg`, brief: '매일 아침 깨어나는 빵의 생명력, 베이커리의 정석', teaser: '매일 아침 갓 구운 빵 냄새가 반긴다. 그 생명의 비결을 알고 싶다면...', blogUrl: 'https://blog.naver.com/jejuopsuye/224039782737', story: '신선한 밀가루와 건강한 효모가 빚어낸 빵의 향연입니다. 여유로운 오후를 완성해주는 베이커리 카페의 정점입니다.', query: '제주 브와두스' },
+  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.jpg`, brief: '매일 아침 깨어나는 빵의 생명력, 베이커리의 정석', teaser: '매일 아침 갓 구운 빵 냄새가 반긴다. 그 생명의 비결을 알고 싶다면...', blogUrl: 'https://blog.naver.com/expsyting/224039782737', story: '신선한 밀가루와 건강한 효모가 빚어낸 빵의 향연입니다. 여유로운 오후를 완성해주는 베이커리 카페의 정점입니다.', query: '제주 브와두스' },
 ];
 
 export default function JejuGourmetBest10() {
