@@ -1,3 +1,4 @@
+// Deployment Timestamp: 2026-02-23-Force-Build-01
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
@@ -132,7 +133,7 @@ export default function StealthBest10Page() {
   return (
     <main className="min-h-screen bg-slate-950 overflow-y-auto">
       <h1 className="text-center text-white text-2xl font-bold py-6">
-        스텔스 베스트 10
+        제주 스텔스 베스트 10
       </h1>
 
       {/* VS 그리드: 2열, 1:1 정방형, 중앙 VS 구분선 */}
