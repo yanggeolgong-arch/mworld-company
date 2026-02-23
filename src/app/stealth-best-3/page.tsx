@@ -12,7 +12,8 @@ function isVercelHost(host: string | null): boolean {
 export default async function StealthBest3Page() {
   const headersList = await headers();
   const host = headersList.get('host') ?? headersList.get('x-forwarded-host');
-  if (!isVercelHost(host)) {
+  const isLocalDev = process.env.NODE_ENV === 'development' && host?.startsWith('localhost');
+  if (!isVercelHost(host) && !isLocalDev) {
     notFound();
   }
   return <JejuRealMaster />;
