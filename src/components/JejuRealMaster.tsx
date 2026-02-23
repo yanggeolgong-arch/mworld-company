@@ -15,7 +15,7 @@ const initialShops = [
   { id: 7, name: '램스키친', img: `${IMG_BASE}/7.jpg`, brief: '양고기의 편견을 깨는 부드럽고 잡내 없는 식감... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224002909182', story: '프리미엄 양갈비를 전문적으로 다루는 이곳은 양고기에 대한 편견을 해체한다. 전문 에디터의 그릴링은 온도와 시간에 대한 이해가 녹아 있다. 와인 한 잔과 함께하면 제주의 밤은 예상과 다른 방식으로 기억에 남는다.', query: '제주 램스키친' },
   { id: 8, name: '청기와장어', img: `${IMG_BASE}/8.jpg`, brief: '지친 기력을 보강해줄 힘이 불끈 솟는 장어... ', blogUrl: 'https://blog.naver.com/jejuopsuye/223972283259', story: '숯불 위에서 구워지는 두툼한 장어는 고소함의 정점을 보여준다. 특제 소스와 생강채의 조합은 환절기 보양의 정석이다. 지친 기력을 보충하는 한 끼로서의 역할을 넘어, 맛 그 자체로 기억에 남는 공간이다.', query: '제주 청기와장어' },
   { id: 9, name: '섬타르', img: `${IMG_BASE}/9.jpg`, brief: '제주 로컬 식재료를 담은 타르트의 달콤한 유혹... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224066284940', story: '제주의 흙과 바람이 키운 재료들이 타르트 속에 담긴다. 시각과 미각을 동시에 만족시키는 구성은 선물용으로도 손색이 없다. 섬의 맛을 달콤함으로 번역한 결과물이 이곳에 있다.', query: '제주 섬타르' },
-  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.jpg`, brief: '매일 아침 갓 구운 빵 냄새가 반겨주는 베이커리... ', blogUrl: 'https://blog.naver.com/expsyting/224039782737', story: '신선한 재료와 정직한 제조 과정이 만드는 빵과 케이크가 공간을 채운다. 넓은 매장은 서두르지 않는 커피 타임을 위한 설계다. 베이커리 카페가 지향해야 할 모델을 보여주는 공간이다.', query: '제주 브와두스' },
+  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.jpg`, brief: '매일 아침 갓 구운 빵 냄새가 반겨주는 베이커리... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224039782737', story: '신선한 재료와 정직한 제조 과정이 만드는 빵과 케이크가 공간을 채운다. 넓은 매장은 서두르지 않는 커피 타임을 위한 설계다. 베이커리 카페가 지향해야 할 모델을 보여주는 공간이다.', query: '제주 브와두스' },
 ];
 
 type Shop = (typeof initialShops)[number];
