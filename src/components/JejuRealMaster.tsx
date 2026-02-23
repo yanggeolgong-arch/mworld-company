@@ -4,18 +4,19 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const IMG_BASE = '/images/stealth-best-10';
+const IMG_V = '?v=966x645'; // 캐시 무효화 (966×645 리사이즈 적용)
 
 const initialShops = [
-  { id: 1, name: '빨간대게', img: `${IMG_BASE}/1.avif`, brief: '눅진한 게 내장에 밥을 볶아 먹는 그 전율의 맛... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221278283818', story: '제주항 인근에서 대게의 진수를 보여주는 곳입니다. 수율 좋은 대게와 서비스로 나오는 해산물들이 압권이죠. 특히 마지막 볶음밥은 선택이 아닌 필수입니다. ㅋㅋㅋㅋ', query: '제주 빨간대게' },
-  { id: 2, name: '왕서방식당', img: `${IMG_BASE}/2.avif`, brief: '로컬들만 조용히 찾아가는 숨은 중식의 고수... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221242208075', story: '화려하지 않지만 기본에 충실한 맛입니다. 깊은 불맛이 느껴지는 짬뽕 국물은 해장과 동시에 다시 소주를 부르는 마력이 있죠. ㅋㅋㅋㅋ', query: '제주 왕서방식당' },
-  { id: 3, name: '황금돈가', img: `${IMG_BASE}/3.avif`, brief: '제주 흑돼지의 육즙이 입안에서 폭발하는 순간... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221209043068', story: '고기 질부터 다릅니다. 두툼한 목살을 멜젓에 찍어 먹는 정석적인 맛부터, 사장님의 노하우가 담긴 그릴링까지 완벽한 한 끼입니다. ㅋㅋㅋㅋ', query: '제주 황금돈가' },
-  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.avif`, brief: '인생 커피를 만날 확률 99.9%의 감성 공간... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224114102719', story: '제주 시내에서 가장 아늑한 휴식처 중 하나입니다. 직접 로스팅한 원두의 향미가 살아있는 커피와 수제 디저트의 조화가 일품이죠. ㅋㅋㅋㅋ', query: '제주 커피구십구점구' },
-  { id: 5, name: '짬뽕에취한날', img: `${IMG_BASE}/5.avif`, brief: '갈비짬뽕 한 그릇에 담긴 묵직한 내공... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221207381828', story: '갈비가 통째로 들어간 짬뽕은 비주얼만큼이나 맛도 묵직합니다. 해산물 위주의 짬뽕과는 또 다른 매력의 깊은 고기 육수를 느껴보세요. ㅋㅋㅋㅋ', query: '제주 짬뽕에취한날' },
-  { id: 6, name: '하윤이네', img: `${IMG_BASE}/6.avif`, brief: '집밥보다 더 따뜻한 정성이 가득한 제주 식탁... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224063605688', story: '정갈한 밑반찬과 메인 요리들이 엄마의 손맛을 떠올리게 합니다. 제주 여행 중 속이 편안한 한 끼를 찾는다면 여기가 정답입니다. ㅋㅋㅋㅋ', query: '제주 하윤이네' },
-  { id: 7, name: '램스키친', img: `${IMG_BASE}/7.avif`, brief: '양고기의 편견을 깨는 부드럽고 잡내 없는 식감... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224002909182', story: '프리미엄 양갈비를 전문 에디터가 직접 구워주는 곳입니다. 와인 한 잔과 곁들이면 제주의 밤이 더욱 특별해지는 마법을 경험하세요. ㅋㅋㅋㅋ', query: '제주 램스키친' },
-  { id: 8, name: '청기와장어', img: `${IMG_BASE}/8.avif`, brief: '지친 기력을 보강해줄 힘이 불끈 솟는 장어... ', blogUrl: 'https://blog.naver.com/jejuopsuye/223972283259', story: '두툼한 장어를 숯불에 구워 고소함이 남다릅니다. 특제 소스와 생강채를 곁들여 먹으면 환절기 보양으로 이만한 게 없습니다. ㅋㅋㅋㅋ', query: '제주 청기와장어' },
-  { id: 9, name: '섬타르', img: `${IMG_BASE}/9.avif`, brief: '제주 로컬 식재료를 담은 타르트의 달콤한 유혹... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224066284940', story: '제주의 흙과 바람이 키운 재료들로 만든 타르트는 선물용으로도 최고입니다. 시각과 미각을 동시에 만족시키는 제주의 달콤함을 맛보세요. ㅋㅋㅋㅋ', query: '제주 섬타르' },
-  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.avif`, brief: '매일 아침 갓 구운 빵 냄새가 반겨주는 베이커리... ', blogUrl: 'https://blog.naver.com/expsyting/224039782737', story: '베이커리 카페의 정석입니다. 신선한 재료로 만든 빵과 케이크들이 가득하며, 넓은 매장은 여유로운 커피 타임을 즐기기에 최적입니다. ㅋㅋㅋㅋ', query: '제주 브와두스' },
+  { id: 1, name: '빨간대게', img: `${IMG_BASE}/1.avif${IMG_V}`, brief: '눅진한 게 내장에 밥을 볶아 먹는 그 전율의 맛... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221278283818', story: '제주항 인근에서 대게의 진수를 보여주는 곳입니다. 수율 좋은 대게와 서비스로 나오는 해산물들이 압권이죠. 특히 마지막 볶음밥은 선택이 아닌 필수입니다. ㅋㅋㅋㅋ', query: '제주 빨간대게' },
+  { id: 2, name: '왕서방식당', img: `${IMG_BASE}/2.avif${IMG_V}`, brief: '로컬들만 조용히 찾아가는 숨은 중식의 고수... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221242208075', story: '화려하지 않지만 기본에 충실한 맛입니다. 깊은 불맛이 느껴지는 짬뽕 국물은 해장과 동시에 다시 소주를 부르는 마력이 있죠. ㅋㅋㅋㅋ', query: '제주 왕서방식당' },
+  { id: 3, name: '황금돈가', img: `${IMG_BASE}/3.avif${IMG_V}`, brief: '제주 흑돼지의 육즙이 입안에서 폭발하는 순간... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221209043068', story: '고기 질부터 다릅니다. 두툼한 목살을 멜젓에 찍어 먹는 정석적인 맛부터, 사장님의 노하우가 담긴 그릴링까지 완벽한 한 끼입니다. ㅋㅋㅋㅋ', query: '제주 황금돈가' },
+  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.avif${IMG_V}`, brief: '인생 커피를 만날 확률 99.9%의 감성 공간... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224114102719', story: '제주 시내에서 가장 아늑한 휴식처 중 하나입니다. 직접 로스팅한 원두의 향미가 살아있는 커피와 수제 디저트의 조화가 일품이죠. ㅋㅋㅋㅋ', query: '제주 커피구십구점구' },
+  { id: 5, name: '짬뽕에취한날', img: `${IMG_BASE}/5.avif${IMG_V}`, brief: '갈비짬뽕 한 그릇에 담긴 묵직한 내공... ', blogUrl: 'https://blog.naver.com/jejuopsuye/221207381828', story: '갈비가 통째로 들어간 짬뽕은 비주얼만큼이나 맛도 묵직합니다. 해산물 위주의 짬뽕과는 또 다른 매력의 깊은 고기 육수를 느껴보세요. ㅋㅋㅋㅋ', query: '제주 짬뽕에취한날' },
+  { id: 6, name: '하윤이네', img: `${IMG_BASE}/6.avif${IMG_V}`, brief: '집밥보다 더 따뜻한 정성이 가득한 제주 식탁... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224063605688', story: '정갈한 밑반찬과 메인 요리들이 엄마의 손맛을 떠올리게 합니다. 제주 여행 중 속이 편안한 한 끼를 찾는다면 여기가 정답입니다. ㅋㅋㅋㅋ', query: '제주 하윤이네' },
+  { id: 7, name: '램스키친', img: `${IMG_BASE}/7.avif${IMG_V}`, brief: '양고기의 편견을 깨는 부드럽고 잡내 없는 식감... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224002909182', story: '프리미엄 양갈비를 전문 에디터가 직접 구워주는 곳입니다. 와인 한 잔과 곁들이면 제주의 밤이 더욱 특별해지는 마법을 경험하세요. ㅋㅋㅋㅋ', query: '제주 램스키친' },
+  { id: 8, name: '청기와장어', img: `${IMG_BASE}/8.avif${IMG_V}`, brief: '지친 기력을 보강해줄 힘이 불끈 솟는 장어... ', blogUrl: 'https://blog.naver.com/jejuopsuye/223972283259', story: '두툼한 장어를 숯불에 구워 고소함이 남다릅니다. 특제 소스와 생강채를 곁들여 먹으면 환절기 보양으로 이만한 게 없습니다. ㅋㅋㅋㅋ', query: '제주 청기와장어' },
+  { id: 9, name: '섬타르', img: `${IMG_BASE}/9.avif${IMG_V}`, brief: '제주 로컬 식재료를 담은 타르트의 달콤한 유혹... ', blogUrl: 'https://blog.naver.com/jejuopsuye/224066284940', story: '제주의 흙과 바람이 키운 재료들로 만든 타르트는 선물용으로도 최고입니다. 시각과 미각을 동시에 만족시키는 제주의 달콤함을 맛보세요. ㅋㅋㅋㅋ', query: '제주 섬타르' },
+  { id: 10, name: '브와두스', img: `${IMG_BASE}/10.avif${IMG_V}`, brief: '매일 아침 갓 구운 빵 냄새가 반겨주는 베이커리... ', blogUrl: 'https://blog.naver.com/expsyting/224039782737', story: '베이커리 카페의 정석입니다. 신선한 재료로 만든 빵과 케이크들이 가득하며, 넓은 매장은 여유로운 커피 타임을 즐기기에 최적입니다. ㅋㅋㅋㅋ', query: '제주 브와두스' },
 ];
 
 type Shop = (typeof initialShops)[number];
