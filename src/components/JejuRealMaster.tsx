@@ -130,6 +130,18 @@ export default function JejuRealMaster() {
           </article>
         ))}
       </section>
+
+      {/* 배포 출처 표기 */}
+      <footer className="bg-slate-900 border-t border-slate-800 py-6 text-center">
+        <a
+          href="https://mworld-company.vercel.app/stealth-best-3"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-500 text-xs hover:text-orange-500 transition-colors"
+        >
+          mworld-company.vercel.app
+        </a>
+      </footer>
     </div>
   );
 }
