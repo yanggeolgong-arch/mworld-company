@@ -3,7 +3,7 @@ import { PretendardLoader } from './PretendardLoader';
 
 export const metadata: Metadata = {
   title: 'Jeju Gourmet Intelligence: Real Battle | mworld-company.vercel.app',
-  description: 'Data-Driven Culinary Intelligence · Stealth Best 10',
+  description: 'Data-Driven Culinary Intelligence · Stealth Best 10 · v1.1',
   robots: { index: false, follow: false, noarchive: true },
 };
 
