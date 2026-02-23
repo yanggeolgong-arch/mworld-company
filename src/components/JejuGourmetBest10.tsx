@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const IMG_BASE = '/images/stealth-best-10';
@@ -19,6 +19,7 @@ const initialShops = [
 ];
 
 export default function JejuGourmetBest10() {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [gridShops, setGridShops] = useState<typeof initialShops>([]);
   const [detailShops, setDetailShops] = useState<typeof initialShops>([]);
 
@@ -34,26 +35,19 @@ export default function JejuGourmetBest10() {
     if (selected) setDetailShops([selected, ...others]);
 
     setTimeout(() => {
+      const container = scrollRef.current;
       const element = document.getElementById(`detail-${selectedId}`);
-      if (element) {
+      if (container && element) {
         const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({ top: elementPosition - headerOffset, behavior: 'smooth' });
+        const targetScroll = container.scrollTop + element.getBoundingClientRect().top - headerOffset;
+        container.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
       }
     }, 100);
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#050505] flex justify-center overflow-y-auto overflow-x-hidden selection:bg-orange-500 text-white">
-      <style jsx global>{`
-        html, body {
-          height: auto !important;
-          overflow: auto !important;
-          background: #050505;
-        }
-      `}</style>
-
-      <main className="w-full max-w-[600px] bg-black shadow-[0_0_100px_rgba(0,0,0,0.8)] relative flex flex-col min-h-screen">
+    <div ref={scrollRef} className="h-screen w-full bg-[#050505] flex justify-center overflow-y-auto overflow-x-hidden selection:bg-orange-500 text-white">
+      <main className="w-full max-w-[600px] bg-black shadow-[0_0_100px_rgba(0,0,0,0.8)] relative flex flex-col min-h-full">
         <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10">
           <h1 className="text-center text-[18px] md:text-[20px] font-black py-6 tracking-tighter text-white px-4">
             AI 가 뽑은 현재 가장 핫한 제주 미식 베스트 10
