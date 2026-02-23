@@ -37,23 +37,30 @@ export default function JejuGourmetBest10() {
       const element = document.getElementById(`detail-${selectedId}`);
       if (element) {
         const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: elementPosition - headerOffset, behavior: 'smooth' });
       }
     }, 100);
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-white flex justify-center overflow-y-visible py-0">
-      <main className="w-full max-w-2xl bg-black flex flex-col min-h-screen shadow-2xl relative overflow-visible">
-        <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10">
-          <h1 className="text-center text-[18px] md:text-[22px] font-black py-7 tracking-tighter text-orange-500 px-4">
+    <div className="min-h-screen w-full bg-[#050505] flex justify-center overflow-y-auto overflow-x-hidden selection:bg-orange-500 text-white">
+      <style jsx global>{`
+        html, body {
+          height: auto !important;
+          overflow: auto !important;
+          background: #050505;
+        }
+      `}</style>
+
+      <main className="w-full max-w-[600px] bg-black shadow-[0_0_100px_rgba(0,0,0,0.8)] relative flex flex-col min-h-screen">
+        <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10">
+          <h1 className="text-center text-[18px] md:text-[20px] font-black py-6 tracking-tighter text-white px-4">
             AI 가 뽑은 현재 가장 핫한 제주 미식 베스트 10
           </h1>
         </header>
 
-        <section className="grid grid-cols-2 gap-[1px] bg-white/10 overflow-visible">
+        <section className="grid grid-cols-2 gap-[1px] bg-white/10">
           {gridShops.map((shop, index) => (
             <div
               key={shop.id}
@@ -64,32 +71,32 @@ export default function JejuGourmetBest10() {
                 src={shop.img}
                 alt={shop.name}
                 fill
-                sizes="(max-width: 640px) 50vw, 25vw"
+                sizes="(max-width: 640px) 50vw, 300px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-black/90 p-5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                <p className="text-[11px] font-black text-orange-500 mb-1">RANK {index + 1}</p>
-                <h3 className="text-[22px] font-black text-white leading-tight">{shop.name}</h3>
-                <p className="text-[10px] text-white/50 mt-1 uppercase tracking-widest font-bold">Read Intelligence</p>
+              <div className="absolute inset-x-0 bottom-0 bg-black/80 p-5 transform translate-y-1 group-hover:translate-y-0 transition-all">
+                <p className="text-[10px] font-black text-orange-500 mb-1">REAL-TIME RANK {index + 1}</p>
+                <h3 className="text-[24px] font-black text-white leading-tight break-keep">{shop.name}</h3>
+                <p className="text-[9px] text-white/40 mt-1 font-bold tracking-widest uppercase">Tap to Gourmet Analysis</p>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="p-6 md:p-10 space-y-40 pb-60 overflow-visible">
+        <section className="p-8 space-y-40 pb-60">
           {detailShops.map((shop, index) => (
             <article
               id={`detail-${shop.id}`}
               key={shop.id}
-              className={`transition-all duration-700 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-70'}`}
+              className={`transition-all duration-1000 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-60'}`}
             >
               <div className="mb-10">
-                <div className="flex items-center gap-5 mb-4">
-                  <span className="text-6xl font-black text-white/10 italic">0{index + 1}</span>
-                  <div className="h-px flex-grow bg-white/10" />
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-6xl font-black text-white/5 italic">0{index + 1}</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
                 </div>
                 <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
-                <div className="inline-block px-3 py-1 bg-orange-600 text-black text-[10px] font-black mb-4">AI RECOMMENDED</div>
+                <div className="inline-block px-3 py-1 bg-white text-black text-[10px] font-black mb-4">PREMIUM SELECTION</div>
                 <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
               </div>
 
@@ -102,7 +109,7 @@ export default function JejuGourmetBest10() {
                   href={`https://map.naver.com/v5/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 transition-colors text-center block"
+                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 text-center block"
                 >
                   NAVER MAP
                 </a>
@@ -110,7 +117,7 @@ export default function JejuGourmetBest10() {
                   href={`https://www.google.com/maps/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 transition-colors text-center block"
+                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 text-center block"
                 >
                   GOOGLE MAP
                 </a>
@@ -120,7 +127,7 @@ export default function JejuGourmetBest10() {
                 href={shop.blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-white text-black py-6 rounded-[30px] text-center font-black text-[20px] hover:bg-orange-500 hover:text-white transition-all shadow-2xl"
+                className="block w-full bg-white text-black py-6 rounded-[30px] text-center font-black text-[22px] hover:bg-orange-600 hover:text-white transition-all shadow-2xl"
               >
                 미식 분석 리포트 전문 보기
               </a>
@@ -128,8 +135,8 @@ export default function JejuGourmetBest10() {
           ))}
         </section>
 
-        <footer className="p-16 border-t border-white/10 text-center bg-black">
-          <p className="text-[11px] font-bold tracking-[0.6em] text-zinc-700 uppercase">
+        <footer className="p-20 border-t border-white/5 text-center bg-black">
+          <p className="text-[10px] font-bold tracking-[0.6em] text-zinc-800 uppercase">
             Jeju Gourmet Intelligence Research Lab
           </p>
         </footer>
