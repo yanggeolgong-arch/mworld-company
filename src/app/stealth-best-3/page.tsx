@@ -1,7 +1,19 @@
+import { headers } from 'next/headers';
+import { notFound } from 'next/navigation';
 import { JejuStealthBest3 } from '@/components/JejuStealthBest3';
 
 export const dynamic = 'force-dynamic';
 
-export default function StealthBest3Page() {
+function isVercelHost(host: string | null): boolean {
+  if (!host) return false;
+  return host.endsWith('.vercel.app') || host === 'vercel.app';
+}
+
+export default async function StealthBest3Page() {
+  const headersList = await headers();
+  const host = headersList.get('host') ?? headersList.get('x-forwarded-host');
+  if (!isVercelHost(host)) {
+    notFound();
+  }
   return <JejuStealthBest3 />;
 }
