@@ -15,6 +15,10 @@ alwaysApply: true
 - **Image**: AVIF/WebP optimization, Lazy Loading where appropriate.
 - **Structure**: Schema markup, technical SEO.
 
-## 3. Deployment
+## 3. Content Boundaries (절대 위반 금지)
+- **busan-insight** 폴더와 **ai-jeju-blog** 폴더를 절대 혼용하지 말 것.
+- **해동용궁사(haedong-yonggungsa)** 관련 콘텐츠는 aijeju/ai-jeju-blog에서 절대 생성·추가하지 말 것.
+
+## 4. Deployment
 - Commit and push to `origin main` after completing changes.
 - Stage only modified/added files with meaningful commit messages.
