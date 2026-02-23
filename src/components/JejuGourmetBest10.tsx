@@ -59,19 +59,32 @@ export default function JejuGourmetBest10() {
             <div
               key={shop.id}
               onClick={() => handleSelection(shop.id)}
-              className="relative aspect-square cursor-pointer group overflow-hidden"
+              className="flex flex-col cursor-pointer group overflow-hidden bg-black aspect-[3/4]"
             >
-              <Image
-                src={shop.img}
-                alt={shop.name}
-                fill
-                sizes="(max-width: 640px) 50vw, 300px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-black/80 p-5 transform translate-y-1 group-hover:translate-y-0 transition-all">
-                <p className="text-[10px] font-black text-orange-500 mb-1">REAL-TIME RANK {index + 1}</p>
-                <h3 className="text-[24px] font-black text-white leading-tight break-keep">{shop.name}</h3>
-                <p className="text-[9px] text-white/40 mt-1 font-bold tracking-widest uppercase">Tap to Gourmet Analysis</p>
+              {/* 상단: 식당 이름 (첫 글자 빨간색) */}
+              <div className="flex-none px-3 py-2 bg-black border-b border-white/5">
+                <p className="text-[9px] font-black text-orange-500 mb-0.5">RANK {index + 1}</p>
+                <h3 className="text-lg font-black leading-tight break-keep">
+                  {shop.name[0] && <span className="text-red-500">{shop.name[0]}</span>}
+                  <span className="text-white">{shop.name.slice(1)}</span>
+                </h3>
+              </div>
+              {/* 사진: 2/3 비율 (줄어든 크기) */}
+              <div className="relative w-full aspect-[3/2] overflow-hidden flex-shrink-0">
+                <Image
+                  src={shop.img}
+                  alt={shop.name}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 300px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                />
+              </div>
+              {/* 하단 1/3: 흰색 설명 + [더보기] */}
+              <div className="flex-1 min-h-[52px] px-3 py-2 bg-black flex flex-col justify-center">
+                <p className="text-white text-[11px] leading-snug line-clamp-2">
+                  {shop.brief.length > 28 ? `${shop.brief.slice(0, 28)}...` : shop.brief}
+                  <span className="text-orange-400 font-bold ml-1">[더보기]</span>
+                </p>
               </div>
             </div>
           ))}
