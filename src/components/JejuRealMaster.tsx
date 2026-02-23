@@ -60,7 +60,7 @@ export default function JejuRealMaster() {
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col items-center justify-center py-1">
                   <span className="text-[10px] font-black bg-slate-800 px-2 py-0.5 rounded italic mb-1.5">RANK {index + 1}</span>
-                  <h2 className="text-xl sm:text-2xl font-black tracking-tight text-center w-full leading-none">
+                  <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-center w-full leading-none">
                     {shop.name[0] && <span className="text-red-500">{shop.name[0]}</span>}
                     <span className="text-white">{shop.name.slice(1)}</span>
                   </h2>
@@ -77,7 +77,13 @@ export default function JejuRealMaster() {
                 </div>
                 <p className="text-[11px] text-slate-400 leading-[1.4] tracking-tight">
                   {shop.brief}
-                  <a href={`#story-${shop.id}`} className="text-blue-400 font-bold ml-1 hover:text-white transition-colors">
+                  <a
+                    href={`#story-${shop.id}`}
+                    onClick={(e) => {
+                      handlePromoteToFirst(shop);
+                    }}
+                    className="text-blue-400 font-bold ml-1 hover:text-white transition-colors"
+                  >
                     [자세히 더보기]
                   </a>
                 </p>
