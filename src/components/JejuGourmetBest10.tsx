@@ -50,7 +50,7 @@ export default function JejuGourmetBest10() {
       <main className="w-full max-w-[600px] bg-black shadow-[0_0_100px_rgba(0,0,0,0.8)] relative flex flex-col min-h-full">
         <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10">
           <h1 className="text-center text-[18px] md:text-[20px] font-black py-6 tracking-tighter text-white px-4">
-            AI 가 뽑은 현재 가장 핫한 제주 미식 베스트 10
+            2026년 2월 AI 미식 데이터 베스트10
           </h1>
         </header>
 
@@ -95,22 +95,22 @@ export default function JejuGourmetBest10() {
             <article
               id={`detail-${shop.id}`}
               key={shop.id}
-              className={`transition-all duration-1000 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-60'}`}
+              className={`transition-all duration-1000 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-95 bg-zinc-900/30'}`}
             >
-              <div className="mb-10 flex gap-4">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="text-6xl font-black text-white/5 italic">0{index + 1}</span>
-                    <div className="h-[1px] flex-grow bg-white/10" />
+              <div className="mb-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-6xl font-black text-white/5 italic">0{index + 1}</span>
+                  <div className="h-[1px] flex-grow bg-white/10" />
+                </div>
+                {/* 01 라인 바로 밑, 중앙에 고급스러운 썸네일 */}
+                <div className="flex justify-center my-6">
+                  <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10">
+                    <Image src={shop.img} alt={shop.name} fill sizes="112px" className="object-cover" />
                   </div>
-                  <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
-                  <div className="inline-block px-3 py-1 bg-white text-black text-[10px] font-black mb-4">PREMIUM SELECTION</div>
-                  <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
                 </div>
-                {/* 제목 옆 여백에 작은 사진 */}
-                <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden relative">
-                  <Image src={shop.img} alt={shop.name} fill sizes="80px" className="object-cover" />
-                </div>
+                <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
+                <div className="inline-block px-3 py-1 bg-white text-black text-[10px] font-black mb-4">PREMIUM SELECTION</div>
+                <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
               </div>
 
               <p className="text-zinc-400 text-[17px] leading-[1.8] font-light mb-12 whitespace-pre-line">
