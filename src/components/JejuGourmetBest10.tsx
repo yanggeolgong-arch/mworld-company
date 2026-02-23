@@ -28,29 +28,33 @@ export default function JejuGourmetBest10() {
     setDetailShops(shuffled);
   }, []);
 
-  const handleShopSelection = (selectedId: number) => {
+  const handleSelection = (selectedId: number) => {
     const selected = initialShops.find((s) => s.id === selectedId);
     const others = initialShops.filter((s) => s.id !== selectedId).sort(() => Math.random() - 0.5);
     if (selected) setDetailShops([selected, ...others]);
 
     const element = document.getElementById(`detail-${selectedId}`);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+    }
   };
 
   return (
-    <div className="bg-[#050505] text-white min-h-screen scroll-smooth overflow-y-auto">
-      <main className="max-w-2xl mx-auto shadow-[0_0_100px_rgba(0,0,0,1)] bg-black min-h-screen">
-        <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-          <h1 className="text-center text-lg font-bold py-5 tracking-tighter text-orange-500">
+    <div className="w-full bg-[#050505] text-white flex justify-center overflow-x-hidden">
+      <main className="w-full max-w-2xl bg-black min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,1)]">
+        <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/5">
+          <h1 className="text-center text-base md:text-lg font-black py-6 tracking-tighter text-orange-500 px-4">
             AI 가 뽑은 현재 가장 핫한 제주 미식 베스트 10
           </h1>
         </header>
 
-        <section className="grid grid-cols-2 gap-[1px] bg-white/10 border-b border-white/10">
+        <section className="grid grid-cols-2 gap-[1px] bg-white/5">
           {gridShops.map((shop, index) => (
             <div
               key={shop.id}
-              onClick={() => handleShopSelection(shop.id)}
+              onClick={() => handleSelection(shop.id)}
               className="relative aspect-square cursor-pointer group overflow-hidden"
             >
               <Image
@@ -58,72 +62,70 @@ export default function JejuGourmetBest10() {
                 alt={shop.name}
                 fill
                 sizes="(max-width: 640px) 50vw, 25vw"
-                className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
-              <div className="absolute bottom-0 left-0 right-0 bg-black/60 backdrop-blur-sm p-4 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <p className="text-[10px] text-orange-500 font-black mb-1">BEST {index + 1}</p>
-                <h3 className="text-xl font-black text-white leading-none mb-1">{shop.name}</h3>
-                <p className="text-[9px] text-slate-300 truncate tracking-tighter">Click to Analysis</p>
+              <div className="absolute inset-x-0 bottom-0 bg-black/80 backdrop-blur-md p-4 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                <p className="text-[10px] font-black text-orange-500 mb-1">TOP {index + 1}</p>
+                <h3 className="text-xl font-black text-white leading-tight break-keep">{shop.name}</h3>
+                <p className="text-[9px] text-white/40 mt-1 uppercase tracking-widest">Detail View</p>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="p-8 space-y-24 pb-40">
+        <section className="p-6 md:p-10 space-y-32 pb-40">
           {detailShops.map((shop, index) => (
             <article
               id={`detail-${shop.id}`}
               key={shop.id}
-              className={`transition-all duration-1000 ${index === 0 ? 'scale-105 ring-2 ring-orange-500/50 p-6 rounded-3xl bg-slate-900/40' : 'opacity-80'}`}
+              className={`transition-all duration-700 ${index === 0 ? 'bg-gradient-to-b from-slate-900/50 to-transparent p-6 rounded-3xl border border-white/10' : 'opacity-60'}`}
             >
-              <div className="flex items-baseline gap-3 mb-6">
-                <span className="text-5xl font-black text-white/10 italic">0{index + 1}</span>
-                <div>
-                  <h2 className="text-3xl font-black tracking-tighter text-white mb-2">{shop.name}</h2>
-                  <div className="h-1 w-12 bg-orange-600" />
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-2">
+                  <span className="text-5xl font-black text-white/5 tracking-tighter">0{index + 1}</span>
+                  <div className="h-[2px] flex-grow bg-white/5" />
                 </div>
+                <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
+                <p className="text-xl font-bold text-orange-500 leading-tight italic">&quot;{shop.brief}&quot;</p>
               </div>
 
-              <div className="space-y-6">
-                <p className="text-lg font-medium text-orange-400 leading-tight italic">&quot;{shop.brief}&quot;</p>
-                <p className="text-slate-400 leading-relaxed text-base font-light">{shop.story}</p>
+              <p className="text-slate-400 text-lg leading-relaxed font-light mb-10 whitespace-pre-line">
+                {shop.story}
+              </p>
 
-                <div className="pt-6 border-t border-white/5 flex flex-col gap-4">
-                  <div className="grid grid-cols-2 gap-2">
-                    <a
-                      href={`https://map.naver.com/v5/search/${encodeURIComponent(shop.query)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/5 hover:bg-white/10 py-3 rounded-xl text-[10px] font-bold tracking-widest transition-all text-center"
-                    >
-                      NAVER MAP
-                    </a>
-                    <a
-                      href={`https://www.google.com/maps/search/${encodeURIComponent(shop.query)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/5 hover:bg-white/10 py-3 rounded-xl text-[10px] font-bold tracking-widest transition-all text-center"
-                    >
-                      GOOGLE MAP
-                    </a>
-                  </div>
-                  <a
-                    href={shop.blogUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-white text-black py-5 rounded-2xl text-center font-black text-lg hover:bg-orange-500 hover:text-white transition-all shadow-xl"
-                  >
-                    미식 분석 리포트 전문 보기
-                  </a>
-                </div>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <a
+                  href={`https://map.naver.com/v5/search/${encodeURIComponent(shop.query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-colors text-center block"
+                >
+                  NAVER MAP
+                </a>
+                <a
+                  href={`https://www.google.com/maps/search/${encodeURIComponent(shop.query)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-colors text-center block"
+                >
+                  GOOGLE MAP
+                </a>
               </div>
+
+              <a
+                href={shop.blogUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-white text-black py-6 rounded-3xl text-center font-black text-xl hover:bg-orange-600 hover:text-white transition-all transform hover:scale-[1.02] active:scale-95 shadow-2xl"
+              >
+                미식 분석 리포트 전문 보기
+              </a>
             </article>
           ))}
         </section>
 
         <footer className="p-10 border-t border-white/5 text-center bg-black">
-          <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase">
+          <p className="text-[10px] font-bold tracking-[0.5em] text-slate-700 uppercase">
             Jeju Gourmet Intelligence Research Lab
           </p>
         </footer>

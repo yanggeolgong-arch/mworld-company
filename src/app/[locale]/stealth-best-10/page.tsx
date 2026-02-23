@@ -1,4 +1,4 @@
-// Auto-deploy: 2026-02-23
+// Auto-deploy: 2026-02-23-v2
 import JejuGourmetBest10 from '@/components/JejuGourmetBest10';
 
 export const dynamic = 'force-dynamic';
