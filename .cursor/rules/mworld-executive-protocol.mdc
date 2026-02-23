@@ -21,4 +21,5 @@ alwaysApply: true
 
 ## 4. Deployment
 - Commit and push to `origin main` after completing changes.
+- **Vercel 배포용**: `git push vercel main` — yonggeongyun/vercel-ai-jeju-blog에 푸시 시 www.aijeju.co.kr 자동 배포.
 - Stage only modified/added files with meaningful commit messages.
