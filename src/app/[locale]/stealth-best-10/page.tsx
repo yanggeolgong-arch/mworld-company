@@ -1,4 +1,4 @@
-// Deployment Timestamp: 2026-02-23-Emergency-Sync
+// Deployment Timestamp: 2026-02-23-Final-Reconnect
 import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
