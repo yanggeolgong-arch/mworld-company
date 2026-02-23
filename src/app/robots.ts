@@ -9,14 +9,22 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/stealth-best-3'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
+        disallow: ['/stealth-best-3'],
       },
       {
         userAgent: 'Googlebot-Image',
         allow: '/',
+        disallow: ['/stealth-best-3'],
+      },
+      {
+        userAgent: 'Yeti',
+        allow: '/',
+        disallow: ['/stealth-best-3'],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
