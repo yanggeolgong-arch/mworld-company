@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PretendardLoader } from './PretendardLoader';
 
 export const metadata: Metadata = {
-  title: 'Stealth Best 3 | Classified',
+  title: 'Stealth Best 10 | Classified',
   description: 'Data Command · Vercel Only',
   robots: { index: false, follow: false, noarchive: true },
 };
