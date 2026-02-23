@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { PretendardLoader } from './PretendardLoader';
 
 export const metadata: Metadata = {
-  title: 'Stealth Best 10 | Classified',
+  title: 'Jeju Gourmet Intelligence: Real Battle | Classified',
   description: 'Data Command · Vercel Only',
   robots: { index: false, follow: false, noarchive: true },
 };

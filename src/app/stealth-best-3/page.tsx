@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { JejuStealthBest3 } from '@/components/JejuStealthBest3';
+import JejuRealMaster from '@/components/JejuRealMaster';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,5 +15,5 @@ export default async function StealthBest3Page() {
   if (!isVercelHost(host)) {
     notFound();
   }
-  return <JejuStealthBest3 />;
+  return <JejuRealMaster />;
 }
