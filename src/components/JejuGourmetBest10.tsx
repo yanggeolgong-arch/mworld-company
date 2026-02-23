@@ -33,24 +33,27 @@ export default function JejuGourmetBest10() {
     const others = initialShops.filter((s) => s.id !== selectedId).sort(() => Math.random() - 0.5);
     if (selected) setDetailShops([selected, ...others]);
 
-    const element = document.getElementById(`detail-${selectedId}`);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const element = document.getElementById(`detail-${selectedId}`);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
-    <div className="w-full bg-[#050505] text-white flex justify-center overflow-x-hidden">
-      <main className="w-full max-w-2xl bg-black min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,1)]">
-        <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/5">
-          <h1 className="text-center text-base md:text-lg font-black py-6 tracking-tighter text-orange-500 px-4">
+    <div className="w-full min-h-screen bg-[#050505] text-white flex justify-center overflow-y-visible py-0">
+      <main className="w-full max-w-2xl bg-black flex flex-col min-h-screen shadow-2xl relative overflow-visible">
+        <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10">
+          <h1 className="text-center text-[18px] md:text-[22px] font-black py-7 tracking-tighter text-orange-500 px-4">
             AI 가 뽑은 현재 가장 핫한 제주 미식 베스트 10
           </h1>
         </header>
 
-        <section className="grid grid-cols-2 gap-[1px] bg-white/5">
+        <section className="grid grid-cols-2 gap-[1px] bg-white/10 overflow-visible">
           {gridShops.map((shop, index) => (
             <div
               key={shop.id}
@@ -62,43 +65,44 @@ export default function JejuGourmetBest10() {
                 alt={shop.name}
                 fill
                 sizes="(max-width: 640px) 50vw, 25vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-black/80 backdrop-blur-md p-4 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                <p className="text-[10px] font-black text-orange-500 mb-1">TOP {index + 1}</p>
-                <h3 className="text-xl font-black text-white leading-tight break-keep">{shop.name}</h3>
-                <p className="text-[9px] text-white/40 mt-1 uppercase tracking-widest">Detail View</p>
+              <div className="absolute inset-x-0 bottom-0 bg-black/90 p-5 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                <p className="text-[11px] font-black text-orange-500 mb-1">RANK {index + 1}</p>
+                <h3 className="text-[22px] font-black text-white leading-tight">{shop.name}</h3>
+                <p className="text-[10px] text-white/50 mt-1 uppercase tracking-widest font-bold">Read Intelligence</p>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="p-6 md:p-10 space-y-32 pb-40">
+        <section className="p-6 md:p-10 space-y-40 pb-60 overflow-visible">
           {detailShops.map((shop, index) => (
             <article
               id={`detail-${shop.id}`}
               key={shop.id}
-              className={`transition-all duration-700 ${index === 0 ? 'bg-gradient-to-b from-slate-900/50 to-transparent p-6 rounded-3xl border border-white/10' : 'opacity-60'}`}
+              className={`transition-all duration-700 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-70'}`}
             >
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-2">
-                  <span className="text-5xl font-black text-white/5 tracking-tighter">0{index + 1}</span>
-                  <div className="h-[2px] flex-grow bg-white/5" />
+              <div className="mb-10">
+                <div className="flex items-center gap-5 mb-4">
+                  <span className="text-6xl font-black text-white/10 italic">0{index + 1}</span>
+                  <div className="h-px flex-grow bg-white/10" />
                 </div>
                 <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
-                <p className="text-xl font-bold text-orange-500 leading-tight italic">&quot;{shop.brief}&quot;</p>
+                <div className="inline-block px-3 py-1 bg-orange-600 text-black text-[10px] font-black mb-4">AI RECOMMENDED</div>
+                <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
               </div>
 
-              <p className="text-slate-400 text-lg leading-relaxed font-light mb-10 whitespace-pre-line">
+              <p className="text-zinc-400 text-[17px] leading-[1.8] font-light mb-12 whitespace-pre-line">
                 {shop.story}
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-3 mb-4">
                 <a
                   href={`https://map.naver.com/v5/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-colors text-center block"
+                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 transition-colors text-center block"
                 >
                   NAVER MAP
                 </a>
@@ -106,7 +110,7 @@ export default function JejuGourmetBest10() {
                   href={`https://www.google.com/maps/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/5 border border-white/10 py-4 rounded-2xl text-[10px] font-black tracking-[0.2em] hover:bg-white/10 transition-colors text-center block"
+                  className="bg-zinc-800 py-4 rounded-2xl text-[11px] font-black tracking-widest hover:bg-zinc-700 transition-colors text-center block"
                 >
                   GOOGLE MAP
                 </a>
@@ -116,7 +120,7 @@ export default function JejuGourmetBest10() {
                 href={shop.blogUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-white text-black py-6 rounded-3xl text-center font-black text-xl hover:bg-orange-600 hover:text-white transition-all transform hover:scale-[1.02] active:scale-95 shadow-2xl"
+                className="block w-full bg-white text-black py-6 rounded-[30px] text-center font-black text-[20px] hover:bg-orange-500 hover:text-white transition-all shadow-2xl"
               >
                 미식 분석 리포트 전문 보기
               </a>
@@ -124,8 +128,8 @@ export default function JejuGourmetBest10() {
           ))}
         </section>
 
-        <footer className="p-10 border-t border-white/5 text-center bg-black">
-          <p className="text-[10px] font-bold tracking-[0.5em] text-slate-700 uppercase">
+        <footer className="p-16 border-t border-white/10 text-center bg-black">
+          <p className="text-[11px] font-bold tracking-[0.6em] text-zinc-700 uppercase">
             Jeju Gourmet Intelligence Research Lab
           </p>
         </footer>
