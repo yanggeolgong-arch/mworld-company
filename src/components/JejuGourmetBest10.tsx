@@ -102,13 +102,25 @@ export default function JejuGourmetBest10() {
                   <span className="text-6xl font-black text-white/5 italic">0{index + 1}</span>
                   <div className="h-[1px] flex-grow bg-white/10" />
                 </div>
-                {/* 01 라인 바로 밑, 중앙에 고급스러운 썸네일 */}
-                <div className="flex justify-center my-6">
-                  <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden shadow-xl ring-1 ring-white/10">
-                    <Image src={shop.img} alt={shop.name} fill sizes="112px" className="object-cover" />
-                  </div>
+                {/* 가게명 (첫 글자 빨간색) - 상단 배치 */}
+                <h2 className="text-4xl font-black tracking-tighter mb-5">
+                  {shop.name[0] && <span className="text-red-500">{shop.name[0]}</span>}
+                  <span className="text-white">{shop.name.slice(1)}</span>
+                </h2>
+                {/* 가게명 아래 간격 후, 5장 썸네일 가로 배치 (동일 사이즈) */}
+                <div className="flex justify-center gap-1.5 mb-6">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <div key={i} className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden shadow-lg ring-1 ring-white/10 flex-shrink-0">
+                      <Image
+                        src={shop.img}
+                        alt={`${shop.name} ${i + 1}`}
+                        fill
+                        sizes="64px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
-                <h2 className="text-4xl font-black text-white tracking-tighter mb-4">{shop.name}</h2>
                 <div className="inline-block px-3 py-1 bg-white text-black text-[10px] font-black mb-4">PREMIUM SELECTION</div>
                 <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
               </div>
