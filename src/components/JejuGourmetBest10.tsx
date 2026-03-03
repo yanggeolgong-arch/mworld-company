@@ -30,7 +30,7 @@ const initialShops: Shop[] = [
   { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', query: '제주 섬타르', address: '제주특별자치도 제주시 다랑곶1길 9', phone: '064-744-4467', hours: '09:30 ~ 22:30', parking: '불가(인근 주차)', menuPrice: '에그타르트 4,500원~', youtubeUrl: 'https://www.youtube.com/shorts/e-94iwTxuDk', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+섬타르', googlePlaceUrl: 'https://www.google.com/maps/search/제주+섬타르' },
   { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', query: '제주 브와두스', address: '제주특별자치도 제주시 애월읍 애월로1길 23', phone: '064-799-7717', hours: '08:00 ~ 20:00', parking: '가능', menuPrice: '크루아상 4,500원~', youtubeUrl: 'https://www.youtube.com/shorts/ZaOsu9VlM2A', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+브와두스', googlePlaceUrl: 'https://www.google.com/maps/search/제주+브와두스' },
   { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', query: '제주 커피구십구점구', address: '제주특별자치도 제주시 한림읍 한림로 585', phone: '064-796-9099', hours: '10:00 ~ 19:00', parking: '가능', menuPrice: '아메리카노 5,000원~', youtubeUrl: 'https://www.youtube.com/shorts/UdV2_-9_2iE', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+커피구십구점구', googlePlaceUrl: 'https://www.google.com/maps/search/제주+커피구십구점구' },
-  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '제주 돈이랑', address: '제주특별자치도 제주시 애월읍 애월북서로 532', phone: '064-799-6669', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+돈이랑', googlePlaceUrl: 'https://www.google.com/maps/search/제주+돈이랑' },
+  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '돈이랑 일주서로', address: '제주특별자치도 서귀포시 일주서로 953', phone: '0507-1435-9278', hours: '11:30 ~ 24:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=돈이랑+일주서로+953', googlePlaceUrl: 'https://www.google.com/maps/search/돈이랑+일주서로+953' },
   { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', query: '제주 자매국수', address: '제주특별자치도 제주시 한림읍 한림로 559', phone: '064-796-2020', hours: '09:00 ~ 20:00', parking: '가능', menuPrice: '칼국수 8,000원~', youtubeUrl: 'https://www.youtube.com/shorts/r5NfMgCbU8Y', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+자매국수', googlePlaceUrl: 'https://www.google.com/maps/search/제주+자매국수' },
   { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', query: '제주 우진해장국', address: '제주특별자치도 제주시 삼도2동 1075-3', phone: '064-722-0033', hours: '07:00 ~ 21:00', parking: '가능', menuPrice: '해장국 9,000원~', youtubeUrl: 'https://www.youtube.com/shorts/4DlRyY9UP08', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+우진해장국', googlePlaceUrl: 'https://www.google.com/maps/search/제주+우진해장국' },
   { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', query: '제주 고집돌우럭', address: '제주특별자치도 서귀포시 성산읍 성산중앙로 64', phone: '064-782-0011', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '우럭구이 1인분 35,000원~', youtubeUrl: 'https://www.youtube.com/shorts/4OVfq2hI3vo', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+고집돌우럭', googlePlaceUrl: 'https://www.google.com/maps/search/제주+고집돌우럭' },
@@ -65,8 +65,8 @@ export default function JejuGourmetBest10() {
   };
 
   return (
-    <div className="min-h-[100dvh] w-full max-w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
-      <main className="flex-1 min-h-0 flex flex-col items-center w-full px-3 sm:px-4 md:px-6 lg:px-8 overflow-y-auto lg:overflow-hidden pb-4">
+    <div className="min-h-[100dvh] lg:h-screen w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
+      <main className="flex-1 min-h-0 flex flex-col items-center w-full px-4 sm:px-6 lg:px-6 overflow-y-auto lg:overflow-hidden">
         {/* 헤더 - 모바일/태블릿 (< 1024px) */}
         <header className="text-center py-3 sm:py-4 lg:py-0 lg:mb-0 lg:hidden flex-shrink-0 w-full">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-0.5 tracking-tight">
@@ -77,12 +77,12 @@ export default function JejuGourmetBest10() {
           </p>
         </header>
 
-        {/* 헤더 - PC (>= 1024px) - 한 화면에 맞춤 */}
-        <header className="text-center py-2 hidden lg:block w-full flex-shrink-0">
-          <h1 className="text-2xl font-bold text-gray-900 mb-0.5 tracking-tight">
+        {/* 헤더 - PC (>= 1024px) - 5단계 축소 */}
+        <header className="text-center py-0.5 hidden lg:block w-full flex-shrink-0">
+          <h1 className="text-lg font-bold text-gray-900 mb-0 tracking-tight">
             제주도 맛집 베스트 10
           </h1>
-          <p className="text-sm text-gray-500 tracking-wide">
+          <p className="text-xs text-gray-500 tracking-wide">
             접속할 때마다 무작위로 순위가 바뀝니다!
           </p>
         </header>
@@ -139,37 +139,37 @@ export default function JejuGourmetBest10() {
           </div>
         </section>
 
-        {/* PC: 5열 2행 - 한 화면에 전체 노출 (스크롤 없음) */}
-        <section className="hidden lg:flex flex-1 min-h-0 w-full justify-center items-stretch">
-          <div className="grid grid-cols-5 grid-rows-2 gap-2 w-full max-w-[1400px] h-full min-h-0">
+        {/* PC: 5열 2행 - 화면 꽉 채움 (완벽 1페이지) */}
+        <section className="hidden lg:flex flex-1 min-h-0 w-full justify-center items-stretch px-2">
+          <div className="grid grid-cols-5 grid-rows-2 gap-3 w-full h-full min-h-0">
             {shops.map((shop, index) => (
               <div
                 key={shop.id}
                 onClick={() => handleDetail(shop, index)}
-                className="bg-white rounded-xl p-2 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex flex-col text-center min-h-0 cursor-pointer active:scale-[0.99] transition-transform"
+                className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex flex-col text-center min-h-0 cursor-pointer active:scale-[0.99] transition-transform"
               >
                 <div className="flex flex-col items-center gap-0.5 mb-1 flex-shrink-0">
-                  <span className="w-7 h-7 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center tracking-tight">
+                  <span className="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-bold flex items-center justify-center tracking-tight">
                     {index + 1}
                   </span>
-                  <h3 className="font-bold text-gray-900 truncate w-full text-sm tracking-tight">{shop.name}</h3>
+                  <h3 className="font-bold text-gray-900 truncate w-full text-3xl tracking-tight">{shop.name}</h3>
                 </div>
                 <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer">
                   <Image
                     src={shop.img}
                     alt={shop.name}
                     fill
-                    sizes="(max-width: 1536px) 18vw, 220px"
+                    sizes="20vw"
                     className="object-contain"
                   />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-shrink-0 mt-1">
-                  <p className="text-xs text-gray-500 flex items-center justify-center gap-0.5 tracking-wide">
+                  <p className="text-2xl text-gray-500 flex items-center justify-center gap-0.5 tracking-wide">
                     <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                   </p>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleDetail(shop, index); }}
-                    className="w-full py-1.5 px-2 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold rounded-lg transition-colors tracking-wide"
+                    className="w-full py-4 px-4 bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold rounded-lg transition-colors tracking-wide"
                   >
                     자세히 보기
                   </button>
@@ -278,8 +278,8 @@ export default function JejuGourmetBest10() {
           </>
         )}
 
-        <footer className="py-2 w-full flex-shrink-0">
-          <p className="text-xs text-gray-500 text-right tracking-wide">
+        <footer className="py-1 lg:py-0.5 w-full flex-shrink-0">
+          <p className="text-[10px] lg:text-xs text-gray-500 text-right tracking-wide">
             * 이것은 샘플이며, 실제 업체명과 사진은 다를 수 있습니다.
           </p>
         </footer>
