@@ -40,7 +40,7 @@ export default function JejuGourmetBest10() {
   };
 
   return (
-    <div ref={scrollRef} className="min-h-screen w-full bg-[#f0f0f0] overflow-y-auto overflow-x-hidden">
+    <div ref={scrollRef} className="min-h-screen w-full bg-[#f5f5f0] overflow-y-auto overflow-x-hidden">
       <main className="w-full max-w-5xl mx-auto px-4 py-6 md:py-10">
         {/* 헤더 - 모바일 */}
         <header className="text-center mb-6 md:mb-8 md:hidden">
@@ -62,32 +62,51 @@ export default function JejuGourmetBest10() {
           </p>
         </header>
 
-        {/* 모바일: 세로 리스트 - 오렌지 원형 랭킹 + 이미지 우측 */}
+        {/* 모바일: 상위 3개 - 세로 카드(이미지 포함) */}
         <section className="md:hidden space-y-3">
-          {shops.map((shop, index) => (
+          {shops.slice(0, 3).map((shop, index) => (
             <div
               key={shop.id}
               onClick={() => handleDetail(shop.id)}
-              className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="flex items-center gap-4 bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform"
             >
-              <span className="flex-shrink-0 w-9 h-9 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center">
+              <span className="flex-shrink-0 text-2xl font-bold text-amber-600">
                 {index + 1}
               </span>
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-gray-900 truncate">{shop.name}</h3>
-                <p className="text-sm text-gray-500 flex items-center gap-1">
-                  <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                <p className="text-sm text-gray-600 flex items-center gap-1">
+                  <span className="text-amber-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                 </p>
               </div>
-              <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+              <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
                 <Image
                   src={shop.img}
                   alt={shop.name}
                   fill
-                  sizes="64px"
+                  sizes="80px"
                   className="object-cover"
                 />
               </div>
+            </div>
+          ))}
+        </section>
+
+        {/* 모바일: 4~10위 - 2열 그리드(이미지 없음) */}
+        <section className="md:hidden grid grid-cols-2 gap-3 mt-3">
+          {shops.slice(3, 10).map((shop, index) => (
+            <div
+              key={shop.id}
+              onClick={() => handleDetail(shop.id)}
+              className="bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform"
+            >
+              <span className="text-xl font-bold text-amber-600 block mb-1">
+                {index + 4}
+              </span>
+              <h3 className="font-bold text-gray-900 text-sm truncate">{shop.name}</h3>
+              <p className="text-xs text-gray-600 flex items-center gap-0.5 mt-1">
+                <span className="text-amber-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+              </p>
             </div>
           ))}
         </section>
@@ -133,7 +152,7 @@ export default function JejuGourmetBest10() {
         <div className="mt-8 flex justify-center md:hidden">
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-2 px-10 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl transition-colors"
+            className="flex items-center gap-2 px-10 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-2xl transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
