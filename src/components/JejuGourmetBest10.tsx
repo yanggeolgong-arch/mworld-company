@@ -65,14 +65,14 @@ export default function JejuGourmetBest10() {
   };
 
   return (
-    <div className="h-screen w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
-      <main className="flex-1 min-h-0 flex flex-col items-center w-full px-4 sm:px-6 lg:px-8 overflow-y-auto lg:overflow-hidden">
+    <div className="min-h-[100dvh] w-full max-w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
+      <main className="flex-1 min-h-0 flex flex-col items-center w-full px-3 sm:px-4 md:px-6 lg:px-8 overflow-y-auto lg:overflow-hidden pb-4">
         {/* 헤더 - 모바일/태블릿 (< 1024px) */}
-        <header className="text-center py-2 lg:py-0 lg:mb-0 lg:hidden flex-shrink-0">
-          <h1 className="text-3xl font-bold text-gray-900 mb-1 tracking-tight">
+        <header className="text-center py-3 sm:py-4 lg:py-0 lg:mb-0 lg:hidden flex-shrink-0 w-full">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-0.5 tracking-tight">
             제주도 맛집 베스트 10
           </h1>
-          <p className="text-base text-gray-500 tracking-wide">
+          <p className="text-sm sm:text-base text-gray-500 tracking-wide">
             접속 시 순위가 랜덤으로 바뀝니다!
           </p>
         </header>
@@ -88,52 +88,55 @@ export default function JejuGourmetBest10() {
         </header>
 
         {/* 모바일/태블릿: 상위 3개 - 세로 카드(이미지 포함) */}
-        <section className="lg:hidden space-y-3">
+        <section className="lg:hidden w-full max-w-lg mx-auto space-y-3 sm:space-y-4 flex-1 min-h-0 overflow-y-auto">
           {shops.slice(0, 3).map((shop, index) => (
             <div
               key={shop.id}
               onClick={() => handleDetail(shop, index)}
-              className="flex items-center gap-4 bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform"
+              className="flex items-center gap-3 sm:gap-4 bg-[#fafaf5] rounded-2xl p-3 sm:p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform min-h-[88px] touch-manipulation"
             >
-              <span className="flex-shrink-0 text-3xl font-bold text-amber-600">
+              <span className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-500/20 text-amber-600 text-xl sm:text-2xl font-bold flex items-center justify-center">
                 {index + 1}
               </span>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-lg text-gray-900 truncate tracking-tight">{shop.name}</h3>
-                <p className="text-base text-gray-600 flex items-center gap-1 tracking-wide">
+                <h3 className="font-bold text-base sm:text-lg text-gray-900 truncate tracking-tight">{shop.name}</h3>
+                <p className="text-sm sm:text-base text-gray-600 flex items-center gap-1 tracking-wide mt-0.5">
                   <span className="text-amber-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                 </p>
+                <span className="inline-block mt-1.5 text-xs font-semibold text-orange-500 tracking-wide">자세히 보기</span>
               </div>
-              <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
                 <Image
                   src={shop.img}
                   alt={shop.name}
-                  fill
-                  sizes="80px"
-                  className="object-contain"
+                  width={96}
+                  height={96}
+                  sizes="(max-width: 640px) 80px, 96px"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
           ))}
-        </section>
 
-        {/* 모바일/태블릿: 4~10위 - 2열 그리드(이미지 없음) */}
-        <section className="lg:hidden grid grid-cols-2 gap-3 mt-3">
-          {shops.slice(3, 10).map((shop, index) => (
-            <div
-              key={shop.id}
-              onClick={() => handleDetail(shop, index + 3)}
-              className="bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform"
-            >
-              <span className="text-2xl font-bold text-amber-600 block mb-1 tracking-tight">
-                {index + 4}
-              </span>
-              <h3 className="font-bold text-gray-900 text-base truncate tracking-tight">{shop.name}</h3>
-              <p className="text-sm text-gray-600 flex items-center gap-0.5 mt-1 tracking-wide">
-                <span className="text-amber-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
-              </p>
-            </div>
-          ))}
+          {/* 모바일/태블릿: 4~10위 - 2열 그리드(이미지 없음) */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4 pb-4">
+            {shops.slice(3, 10).map((shop, index) => (
+              <div
+                key={shop.id}
+                onClick={() => handleDetail(shop, index + 3)}
+                className="bg-[#fafaf5] rounded-2xl p-3 sm:p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform min-h-[88px] touch-manipulation flex flex-col justify-center"
+              >
+                <span className="text-xl sm:text-2xl font-bold text-amber-600 block mb-0.5 tracking-tight">
+                  {index + 4}
+                </span>
+                <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate tracking-tight">{shop.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-0.5 mt-0.5 tracking-wide">
+                  <span className="text-amber-500">★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
+                </p>
+                <span className="inline-block mt-1.5 text-xs font-semibold text-orange-500 tracking-wide">자세히 보기</span>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* PC: 5열 2행 - 한 화면에 전체 노출 (스크롤 없음) */}
