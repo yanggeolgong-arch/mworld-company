@@ -5,139 +5,180 @@ import Image from 'next/image';
 
 const IMG_BASE = '/images/stealth-best-10';
 
-const initialShops: Array<{
-  id: number;
-  name: string;
-  img: string;
-  brief: string;
-  teaser: string;
-  story: string;
-  blogUrl: string;
-  query: string;
-}> = [];
+const initialShops = [
+  { id: 1, name: '연동대게회타운', img: `${IMG_BASE}/1.jpeg`, rating: 4.9, reviewCount: 12345, brief: '제주 대게의 정점', teaser: '신선한 대게 회와 볶음밥', story: '제주 연동에서 대게 전문으로 운영하는 맛집입니다.', blogUrl: '#', query: '제주 연동대게회타운' },
+  { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', blogUrl: '#', query: '제주 섬타르' },
+  { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', blogUrl: '#', query: '제주 브와두스' },
+  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', blogUrl: '#', query: '제주 커피구십구점구' },
+  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', blogUrl: '#', query: '제주 돈이랑' },
+  { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', blogUrl: '#', query: '제주 자매국수' },
+  { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', blogUrl: '#', query: '제주 우진해장국' },
+  { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', blogUrl: '#', query: '제주 고집돌우럭' },
+  { id: 9, name: '맛나식당', img: `${IMG_BASE}/9.jpeg`, rating: 4.5, reviewCount: 5678, brief: '제주 향토음식', teaser: '전통 한정식', story: '갈치조림, 해물탕 등 푸짐한 상차림을 맛보세요.', blogUrl: '#', query: '제주 맛나식당' },
+  { id: 10, name: '램스키친', img: `${IMG_BASE}/10.jpeg`, rating: 4.9, reviewCount: 7890, brief: '양갈비 전문', teaser: '프리미엄 양고기', story: '잡내 없는 부드러운 양갈비를 경험해보세요.', blogUrl: '#', query: '제주 램스키친' },
+];
 
 export default function JejuGourmetBest10() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [gridShops, setGridShops] = useState<typeof initialShops>([]);
-  const [detailShops, setDetailShops] = useState<typeof initialShops>([]);
+  const [shops, setShops] = useState<typeof initialShops>([]);
 
   useEffect(() => {
-    const shuffled = [...initialShops].sort(() => Math.random() - 0.5);
-    setGridShops(shuffled);
-    setDetailShops(shuffled);
+    setShops([...initialShops].sort(() => Math.random() - 0.5));
   }, []);
 
-  const handleSelection = (selectedId: number) => {
-    const selected = initialShops.find((s) => s.id === selectedId);
-    const others = initialShops.filter((s) => s.id !== selectedId).sort(() => Math.random() - 0.5);
-    if (selected) setDetailShops([selected, ...others]);
+  const handleRefresh = () => {
+    setShops([...initialShops].sort(() => Math.random() - 0.5));
+  };
 
-    setTimeout(() => {
-      const container = scrollRef.current;
-      const element = document.getElementById(`detail-${selectedId}`);
-      if (container && element) {
-        const headerOffset = 100;
-        const targetScroll = container.scrollTop + element.getBoundingClientRect().top - headerOffset;
-        container.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
-      }
-    }, 100);
+  const handleDetail = (shopId: number) => {
+    const element = document.getElementById(`detail-${shopId}`);
+    if (element && scrollRef.current) {
+      const headerOffset = 80;
+      const targetScroll = scrollRef.current.scrollTop + element.getBoundingClientRect().top - headerOffset;
+      scrollRef.current.scrollTo({ top: Math.max(0, targetScroll), behavior: 'smooth' });
+    }
   };
 
   return (
-    <div ref={scrollRef} className="h-screen w-full bg-[#050505] flex justify-center overflow-y-auto overflow-x-hidden selection:bg-orange-500 text-white">
-      <main className="w-full max-w-[600px] bg-black shadow-[0_0_100px_rgba(0,0,0,0.8)] relative flex flex-col min-h-full">
-        <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10">
-          <h1 className="text-center text-[18px] md:text-[20px] font-black py-6 tracking-tighter text-white px-4">
-            2026년 2월 AI 미식 데이터 베스트10
+    <div ref={scrollRef} className="min-h-screen w-full bg-white overflow-y-auto overflow-x-hidden">
+      <main className="w-full max-w-4xl mx-auto px-4 py-6 md:py-10">
+        {/* 헤더 */}
+        <header className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            제주도 맛집 베스트 10
           </h1>
+          <p className="text-sm md:text-base text-gray-500">
+            접속 시 순위가 랜덤으로 바뀝니다!
+          </p>
         </header>
 
-        <section className="grid grid-cols-2 gap-[1px] bg-white/10 min-h-[200px]">
-          {gridShops.length === 0 && (
-            <div className="col-span-2 flex items-center justify-center py-20 text-zinc-500 text-sm">
-              새 포스팅을 추가해주세요
-            </div>
-          )}
-          {gridShops.map((shop, index) => (
+        {/* 모바일: 세로 리스트 */}
+        <section className="md:hidden space-y-3">
+          {shops.map((shop, index) => (
             <div
               key={shop.id}
-              onClick={() => handleSelection(shop.id)}
-              className="flex flex-col cursor-pointer group overflow-hidden bg-black aspect-[3/4]"
+              onClick={() => handleDetail(shop.id)}
+              className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
             >
-              <div className="flex-none px-3 py-2 bg-black border-b border-white/5">
-                <p className="text-[9px] font-black text-orange-500 mb-0.5">RANK {index + 1}</p>
-                <h3 className="text-lg font-black leading-tight break-keep">
-                  {shop.name[0] && <span className="text-red-500">{shop.name[0]}</span>}
-                  <span className="text-white">{shop.name.slice(1)}</span>
-                </h3>
+              <span
+                className={`text-xl font-bold flex-shrink-0 w-8 ${
+                  index < 3 ? 'text-orange-500' : 'text-gray-700'
+                }`}
+              >
+                {index + 1}
+              </span>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-gray-900 truncate">{shop.name}</h3>
+                <p className="text-sm text-gray-500">
+                  ★ {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                </p>
               </div>
-              <div className="relative w-full aspect-[3/2] overflow-hidden flex-shrink-0 bg-zinc-900">
+              <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                 <Image
                   src={shop.img}
                   alt={shop.name}
                   fill
-                  sizes="(max-width: 640px) 50vw, 300px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                  sizes="64px"
+                  className="object-cover"
                 />
-              </div>
-              <div className="flex-1 min-h-[88px] px-3 py-2.5 bg-black flex flex-col justify-center">
-                <p className="text-white text-[22px] leading-snug line-clamp-3">
-                  {shop.teaser}
-                  <span className="text-orange-400 font-bold ml-1 text-[20px]">[더보기]</span>
-                </p>
               </div>
             </div>
           ))}
         </section>
 
-        <section className="p-8 space-y-40 pb-60">
-          {detailShops.length === 0 && (
-            <div className="flex items-center justify-center py-20 text-zinc-500 text-sm">
-              새 포스팅을 추가해주세요
+        {/* PC: 4열 그리드 */}
+        <section className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {shops.map((shop, index) => (
+            <div
+              key={shop.id}
+              className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-start gap-3 mb-3">
+                <span className="bg-orange-500 text-white text-sm font-bold px-2 py-0.5 rounded">
+                  {index + 1}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-bold text-gray-900 truncate">{shop.name}</h3>
+                  <p className="text-xs text-gray-500">
+                    ★ {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                  </p>
+                </div>
+                <div className="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0">
+                  <Image
+                    src={shop.img}
+                    alt={shop.name}
+                    fill
+                    sizes="56px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <button
+                onClick={() => handleDetail(shop.id)}
+                className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-xl transition-colors"
+              >
+                자세히 보기
+              </button>
             </div>
-          )}
-          {detailShops.map((shop, index) => (
+          ))}
+        </section>
+
+        {/* 새로고침 버튼 (모바일) */}
+        <div className="mt-8 flex justify-center md:hidden">
+          <button
+            onClick={handleRefresh}
+            className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            새로고침
+          </button>
+        </div>
+
+        {/* PC 새로고침 */}
+        <div className="mt-8 hidden md:flex justify-center">
+          <button
+            onClick={handleRefresh}
+            className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors"
+          >
+            순위 새로고침
+          </button>
+        </div>
+
+        {/* 상세 섹션 */}
+        <section className="mt-16 space-y-20 pb-20">
+          {shops.map((shop, index) => (
             <article
               id={`detail-${shop.id}`}
               key={shop.id}
-              className={`transition-all duration-1000 ${index === 0 ? 'bg-zinc-900/50 p-8 rounded-[40px] border border-orange-500/30' : 'opacity-95 bg-zinc-900/30'}`}
+              className="bg-gray-50 rounded-3xl p-6 md:p-10 border border-gray-100"
             >
-              <div className="mb-10">
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-6xl font-black text-white/5 italic">0{index + 1}</span>
-                  <div className="h-[1px] flex-grow bg-white/10" />
+              <div className="flex items-center gap-4 mb-6">
+                <span className="bg-orange-500 text-white text-2xl font-bold w-12 h-12 flex items-center justify-center rounded-xl">
+                  {index + 1}
+                </span>
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{shop.name}</h2>
+                  <p className="text-gray-500">★ {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}</p>
                 </div>
-                <h2 className="text-4xl font-black tracking-tighter mb-5">
-                  {shop.name[0] && <span className="text-red-500">{shop.name[0]}</span>}
-                  <span className="text-white">{shop.name.slice(1)}</span>
-                </h2>
-                <div className="flex justify-center gap-1.5 mb-6">
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <div key={i} className="relative w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden shadow-lg ring-1 ring-white/10 flex-shrink-0 bg-zinc-900">
-                      <Image
-                        src={shop.img}
-                        alt={`${shop.name} ${i + 1}`}
-                        fill
-                        sizes="64px"
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="inline-block px-3 py-1 bg-white text-black text-[10px] font-black mb-4">PREMIUM SELECTION</div>
-                <p className="text-2xl font-bold text-orange-400 leading-tight italic break-keep">&quot;{shop.brief}&quot;</p>
               </div>
-
-              <p className="text-zinc-400 text-[17px] leading-[1.8] font-light mb-12 whitespace-pre-line">
-                {shop.story}
-              </p>
-
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="relative w-full aspect-video md:aspect-[2/1] rounded-2xl overflow-hidden mb-6 bg-gray-200">
+                <Image
+                  src={shop.img}
+                  alt={shop.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-gray-700 leading-relaxed mb-6">{shop.story}</p>
+              <div className="flex flex-wrap gap-3">
                 <a
                   href={`https://map.naver.com/v5/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-zinc-800 py-4 rounded-2xl text-[13px] font-bold hover:bg-zinc-700 text-center block text-white"
+                  className="px-4 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl"
                 >
                   네이버 지도 바로가기
                 </a>
@@ -145,26 +186,28 @@ export default function JejuGourmetBest10() {
                   href={`https://www.google.com/maps/search/${encodeURIComponent(shop.query)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-zinc-800 py-4 rounded-2xl text-[13px] font-bold hover:bg-zinc-700 text-center block text-white"
+                  className="px-4 py-2.5 bg-gray-800 hover:bg-gray-900 text-white text-sm font-bold rounded-xl"
                 >
                   구글 지도 바로가기
                 </a>
+                <a
+                  href={shop.blogUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-xl"
+                >
+                  자세히 보기
+                </a>
               </div>
-
-              <a
-                href={shop.blogUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-white text-black py-6 rounded-[30px] text-center font-black text-[22px] hover:bg-orange-600 hover:text-white transition-all shadow-2xl"
-              >
-                실제 후기 동영상이 포함된 전문 보기
-              </a>
             </article>
           ))}
         </section>
 
-        <footer className="p-20 border-t border-white/5 text-center bg-black">
-          <p className="text-[10px] font-bold tracking-[0.6em] text-zinc-800 uppercase">
+        <footer className="py-10 text-center">
+          <p className="text-xs text-gray-400">
+            * 이것은 샘플이며, 실제 업체명과 사진은 다를 수 있습니다.
+          </p>
+          <p className="text-xs text-gray-400 mt-2">
             Jeju Gourmet Intelligence Research Lab
           </p>
         </footer>
