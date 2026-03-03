@@ -40,37 +40,43 @@ export default function JejuGourmetBest10() {
   };
 
   return (
-    <div ref={scrollRef} className="min-h-screen w-full bg-white overflow-y-auto overflow-x-hidden">
-      <main className="w-full max-w-4xl mx-auto px-4 py-6 md:py-10">
-        {/* 헤더 */}
-        <header className="text-center mb-6 md:mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+    <div ref={scrollRef} className="min-h-screen w-full bg-[#f0f0f0] overflow-y-auto overflow-x-hidden">
+      <main className="w-full max-w-5xl mx-auto px-4 py-6 md:py-10">
+        {/* 헤더 - 모바일 */}
+        <header className="text-center mb-6 md:mb-8 md:hidden">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
             제주도 맛집 베스트 10
           </h1>
-          <p className="text-sm md:text-base text-gray-500">
+          <p className="text-sm text-gray-500">
             접속 시 순위가 랜덤으로 바뀝니다!
           </p>
         </header>
 
-        {/* 모바일: 세로 리스트 */}
+        {/* 헤더 - PC */}
+        <header className="text-center mb-6 md:mb-8 hidden md:block">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            제주도 맛집 베스트 10
+          </h1>
+          <p className="text-sm md:text-base text-gray-500">
+            접속할 때마다 무작위로 순위가 바뀝니다!
+          </p>
+        </header>
+
+        {/* 모바일: 세로 리스트 - 오렌지 원형 랭킹 + 이미지 우측 */}
         <section className="md:hidden space-y-3">
           {shops.map((shop, index) => (
             <div
               key={shop.id}
               onClick={() => handleDetail(shop.id)}
-              className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-shadow"
+              className="flex items-center gap-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-200 cursor-pointer hover:shadow-md transition-shadow"
             >
-              <span
-                className={`text-xl font-bold flex-shrink-0 w-8 ${
-                  index < 3 ? 'text-orange-500' : 'text-gray-700'
-                }`}
-              >
+              <span className="flex-shrink-0 w-9 h-9 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center">
                 {index + 1}
               </span>
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-gray-900 truncate">{shop.name}</h3>
-                <p className="text-sm text-gray-500">
-                  ★ {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                <p className="text-sm text-gray-500 flex items-center gap-1">
+                  <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                 </p>
               </div>
               <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
@@ -86,48 +92,48 @@ export default function JejuGourmetBest10() {
           ))}
         </section>
 
-        {/* PC: 4열 그리드 */}
+        {/* PC: 4열 그리드 - 이미지가 이름 아래, 카드 너비 채움 */}
         <section className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {shops.map((shop, index) => (
             <div
               key={shop.id}
-              className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              className="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
             >
-              <div className="flex items-start gap-3 mb-3">
-                <span className="bg-orange-500 text-white text-sm font-bold px-2 py-0.5 rounded">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center">
                   {index + 1}
                 </span>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-gray-900 truncate">{shop.name}</h3>
-                  <p className="text-xs text-gray-500">
-                    ★ {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
-                  </p>
-                </div>
-                <div className="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0">
-                  <Image
-                    src={shop.img}
-                    alt={shop.name}
-                    fill
-                    sizes="56px"
-                    className="object-cover"
-                  />
-                </div>
+                <h3 className="font-bold text-gray-900 truncate flex-1 min-w-0">{shop.name}</h3>
               </div>
-              <button
-                onClick={() => handleDetail(shop.id)}
-                className="w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-xl transition-colors"
-              >
-                자세히 보기
-              </button>
+              <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-3">
+                <Image
+                  src={shop.img}
+                  alt={shop.name}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs text-gray-500 flex items-center gap-0.5">
+                  <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                </p>
+                <button
+                  onClick={() => handleDetail(shop.id)}
+                  className="flex-shrink-0 py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-xl transition-colors"
+                >
+                  자세히 보기
+                </button>
+              </div>
             </div>
           ))}
         </section>
 
-        {/* 새로고침 버튼 (모바일) */}
+        {/* 새로고침 버튼 (모바일) - 시계 반대방향 화살표 */}
         <div className="mt-8 flex justify-center md:hidden">
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl transition-colors"
+            className="flex items-center gap-2 px-10 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -140,9 +146,12 @@ export default function JejuGourmetBest10() {
         <div className="mt-8 hidden md:flex justify-center">
           <button
             onClick={handleRefresh}
-            className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors"
+            className="flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors"
           >
-            순위 새로고침
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            새로고침
           </button>
         </div>
 
@@ -203,12 +212,9 @@ export default function JejuGourmetBest10() {
           ))}
         </section>
 
-        <footer className="py-10 text-center">
-          <p className="text-xs text-gray-400">
+        <footer className="py-10">
+          <p className="text-xs text-gray-500 text-right">
             * 이것은 샘플이며, 실제 업체명과 사진은 다를 수 있습니다.
-          </p>
-          <p className="text-xs text-gray-400 mt-2">
-            Jeju Gourmet Intelligence Research Lab
           </p>
         </footer>
       </main>
