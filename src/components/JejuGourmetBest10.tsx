@@ -1,9 +1,19 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 
 const IMG_BASE = '/images/stealth-best-10';
+
+/** 1~10 중 n개 랜덤 추출 (중복 없음) */
+function pickRandomRanks(n: number): number[] {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, n);
+}
 
 type Shop = {
   id: number;
@@ -22,32 +32,61 @@ type Shop = {
   menuPrice: string;
   carMinutesFromAirport: number;
   busRoutesFromAirport: string;
+  mapX: number;
+  mapY: number;
   youtubeUrl: string;
   naverPlaceUrl: string;
   googlePlaceUrl: string;
 };
 
 const initialShops: Shop[] = [
-  { id: 1, name: '연동대게회타운', img: `${IMG_BASE}/1.jpeg`, rating: 4.9, reviewCount: 12345, brief: '제주 대게의 정점', teaser: '신선한 대게 회와 볶음밥', story: '제주 연동에서 대게 전문으로 운영하는 맛집입니다.', query: '제주 연동대게회타운', address: '제주특별자치도 제주시 서해안로 638', phone: '064-747-9289', hours: '10:00 ~ 22:00', parking: '가능', menuPrice: '대게회 1인분 45,000원~', carMinutesFromAirport: 12, busRoutesFromAirport: '100번, 200번 (연동정류장 하차)', youtubeUrl: 'https://www.youtube.com/shorts/GY5YA2WraCc', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+연동대게회타운', googlePlaceUrl: 'https://www.google.com/maps/search/제주+연동대게회타운' },
-  { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', query: '제주 섬타르', address: '제주특별자치도 제주시 다랑곶1길 9', phone: '064-744-4467', hours: '09:30 ~ 22:30', parking: '불가(인근 주차)', menuPrice: '에그타르트 4,500원~', carMinutesFromAirport: 38, busRoutesFromAirport: '201번, 202번 (구좌 방면)', youtubeUrl: 'https://www.youtube.com/shorts/e-94iwTxuDk', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+섬타르', googlePlaceUrl: 'https://www.google.com/maps/search/제주+섬타르' },
-  { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', query: '제주 브와두스', address: '제주특별자치도 제주시 애월읍 애월로1길 23', phone: '064-799-7717', hours: '08:00 ~ 20:00', parking: '가능', menuPrice: '크루아상 4,500원~', carMinutesFromAirport: 32, busRoutesFromAirport: '202번 (애월 방면)', youtubeUrl: 'https://www.youtube.com/shorts/ZaOsu9VlM2A', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+브와두스', googlePlaceUrl: 'https://www.google.com/maps/search/제주+브와두스' },
-  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', query: '제주 커피구십구점구', address: '제주특별자치도 제주시 한림읍 한림로 585', phone: '064-796-9099', hours: '10:00 ~ 19:00', parking: '가능', menuPrice: '아메리카노 5,000원~', carMinutesFromAirport: 42, busRoutesFromAirport: '202번 (한림 방면)', youtubeUrl: 'https://www.youtube.com/shorts/UdV2_-9_2iE', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+커피구십구점구', googlePlaceUrl: 'https://www.google.com/maps/search/제주+커피구십구점구' },
-  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '돈이랑 일주서로', address: '제주특별자치도 서귀포시 일주서로 953', phone: '0507-1435-9278', hours: '11:30 ~ 24:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', carMinutesFromAirport: 48, busRoutesFromAirport: '600번 공항리무진 (중문 터미널 하차)', youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=돈이랑+일주서로+953', googlePlaceUrl: 'https://www.google.com/maps/search/돈이랑+일주서로+953' },
-  { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', query: '제주 자매국수', address: '제주특별자치도 제주시 한림읍 한림로 559', phone: '064-796-2020', hours: '09:00 ~ 20:00', parking: '가능', menuPrice: '칼국수 8,000원~', carMinutesFromAirport: 44, busRoutesFromAirport: '202번 (한림 방면)', youtubeUrl: 'https://www.youtube.com/shorts/r5NfMgCbU8Y', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+자매국수', googlePlaceUrl: 'https://www.google.com/maps/search/제주+자매국수' },
-  { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', query: '제주 우진해장국', address: '제주특별자치도 제주시 삼도2동 1075-3', phone: '064-722-0033', hours: '07:00 ~ 21:00', parking: '가능', menuPrice: '해장국 9,000원~', carMinutesFromAirport: 15, busRoutesFromAirport: '100번, 200번 (삼도정류장 하차)', youtubeUrl: 'https://www.youtube.com/shorts/4DlRyY9UP08', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+우진해장국', googlePlaceUrl: 'https://www.google.com/maps/search/제주+우진해장국' },
-  { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', query: '제주 고집돌우럭', address: '제주특별자치도 서귀포시 성산읍 성산중앙로 64', phone: '064-782-0011', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '우럭구이 1인분 35,000원~', carMinutesFromAirport: 52, busRoutesFromAirport: '201번 (성산 방면)', youtubeUrl: 'https://www.youtube.com/shorts/4OVfq2hI3vo', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+고집돌우럭', googlePlaceUrl: 'https://www.google.com/maps/search/제주+고집돌우럭' },
-  { id: 9, name: '맛나식당', img: `${IMG_BASE}/9.jpeg`, rating: 4.5, reviewCount: 5678, brief: '제주 향토음식', teaser: '전통 한정식', story: '갈치조림, 해물탕 등 푸짐한 상차림을 맛보세요.', query: '제주 맛나식당', address: '제주특별자치도 제주시 구좌읍 해맞이해안로 402', phone: '064-782-3333', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '갈치조림 25,000원~', carMinutesFromAirport: 40, busRoutesFromAirport: '201번 (구좌 방면)', youtubeUrl: 'https://www.youtube.com/shorts/hvwZbDSkLG8', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+맛나식당', googlePlaceUrl: 'https://www.google.com/maps/search/제주+맛나식당' },
-  { id: 10, name: '램스키친', img: `${IMG_BASE}/10.jpeg`, rating: 4.9, reviewCount: 7890, brief: '양갈비 전문', teaser: '프리미엄 양고기', story: '잡내 없는 부드러운 양갈비를 경험해보세요.', query: '제주 램스키친', address: '제주특별자치도 제주시 노형동 1055', phone: '064-711-9292', hours: '12:00 ~ 22:00', parking: '가능', menuPrice: '양갈비 1인분 28,000원~', carMinutesFromAirport: 18, busRoutesFromAirport: '100번, 200번 (노형 방면)', youtubeUrl: 'https://www.youtube.com/shorts/IdMwKln6sqw', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+램스키친', googlePlaceUrl: 'https://www.google.com/maps/search/제주+램스키친' },
+  { id: 1, name: '연동대게회타운', img: `${IMG_BASE}/1.jpeg`, rating: 4.9, reviewCount: 12345, brief: '제주 대게의 정점', teaser: '신선한 대게 회와 볶음밥', story: '제주 연동에서 대게 전문으로 운영하는 맛집입니다.', query: '제주 연동대게회타운', address: '제주특별자치도 제주시 서해안로 638', phone: '064-747-9289', hours: '10:00 ~ 22:00', parking: '가능', menuPrice: '대게회 1인분 45,000원~', carMinutesFromAirport: 12, busRoutesFromAirport: '100번, 200번 (연동정류장 하차)', mapX: 25, mapY: 48, youtubeUrl: 'https://www.youtube.com/shorts/GY5YA2WraCc', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+연동대게회타운', googlePlaceUrl: 'https://www.google.com/maps/search/제주+연동대게회타운' },
+  { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', query: '제주 섬타르', address: '제주특별자치도 제주시 다랑곶1길 9', phone: '064-744-4467', hours: '09:30 ~ 22:30', parking: '불가(인근 주차)', menuPrice: '에그타르트 4,500원~', carMinutesFromAirport: 38, busRoutesFromAirport: '201번, 202번 (구좌 방면)', mapX: 78, mapY: 52, youtubeUrl: 'https://www.youtube.com/shorts/e-94iwTxuDk', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+섬타르', googlePlaceUrl: 'https://www.google.com/maps/search/제주+섬타르' },
+  { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', query: '제주 브와두스', address: '제주특별자치도 제주시 애월읍 애월로1길 23', phone: '064-799-7717', hours: '08:00 ~ 20:00', parking: '가능', menuPrice: '크루아상 4,500원~', carMinutesFromAirport: 32, busRoutesFromAirport: '202번 (애월 방면)', mapX: 20, mapY: 42, youtubeUrl: 'https://www.youtube.com/shorts/ZaOsu9VlM2A', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+브와두스', googlePlaceUrl: 'https://www.google.com/maps/search/제주+브와두스' },
+  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', query: '제주 커피구십구점구', address: '제주특별자치도 제주시 한림읍 한림로 585', phone: '064-796-9099', hours: '10:00 ~ 19:00', parking: '가능', menuPrice: '아메리카노 5,000원~', carMinutesFromAirport: 42, busRoutesFromAirport: '202번 (한림 방면)', mapX: 15, mapY: 58, youtubeUrl: 'https://www.youtube.com/shorts/UdV2_-9_2iE', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+커피구십구점구', googlePlaceUrl: 'https://www.google.com/maps/search/제주+커피구십구점구' },
+  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '돈이랑 일주서로', address: '제주특별자치도 서귀포시 일주서로 953', phone: '0507-1435-9278', hours: '11:30 ~ 24:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', carMinutesFromAirport: 48, busRoutesFromAirport: '600번 공항리무진 (중문 터미널 하차)', mapX: 52, mapY: 88, youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=돈이랑+일주서로+953', googlePlaceUrl: 'https://www.google.com/maps/search/돈이랑+일주서로+953' },
+  { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', query: '제주 자매국수', address: '제주특별자치도 제주시 한림읍 한림로 559', phone: '064-796-2020', hours: '09:00 ~ 20:00', parking: '가능', menuPrice: '칼국수 8,000원~', carMinutesFromAirport: 44, busRoutesFromAirport: '202번 (한림 방면)', mapX: 16, mapY: 60, youtubeUrl: 'https://www.youtube.com/shorts/r5NfMgCbU8Y', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+자매국수', googlePlaceUrl: 'https://www.google.com/maps/search/제주+자매국수' },
+  { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', query: '제주 우진해장국', address: '제주특별자치도 제주시 삼도2동 1075-3', phone: '064-722-0033', hours: '07:00 ~ 21:00', parking: '가능', menuPrice: '해장국 9,000원~', carMinutesFromAirport: 15, busRoutesFromAirport: '100번, 200번 (삼도정류장 하차)', mapX: 38, mapY: 42, youtubeUrl: 'https://www.youtube.com/shorts/4DlRyY9UP08', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+우진해장국', googlePlaceUrl: 'https://www.google.com/maps/search/제주+우진해장국' },
+  { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', query: '제주 고집돌우럭', address: '제주특별자치도 서귀포시 성산읍 성산중앙로 64', phone: '064-782-0011', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '우럭구이 1인분 35,000원~', carMinutesFromAirport: 52, busRoutesFromAirport: '201번 (성산 방면)', mapX: 85, mapY: 72, youtubeUrl: 'https://www.youtube.com/shorts/4OVfq2hI3vo', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+고집돌우럭', googlePlaceUrl: 'https://www.google.com/maps/search/제주+고집돌우럭' },
+  { id: 9, name: '맛나식당', img: `${IMG_BASE}/9.jpeg`, rating: 4.5, reviewCount: 5678, brief: '제주 향토음식', teaser: '전통 한정식', story: '갈치조림, 해물탕 등 푸짐한 상차림을 맛보세요.', query: '제주 맛나식당', address: '제주특별자치도 제주시 구좌읍 해맞이해안로 402', phone: '064-782-3333', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '갈치조림 25,000원~', carMinutesFromAirport: 40, busRoutesFromAirport: '201번 (구좌 방면)', mapX: 78, mapY: 55, youtubeUrl: 'https://www.youtube.com/shorts/hvwZbDSkLG8', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+맛나식당', googlePlaceUrl: 'https://www.google.com/maps/search/제주+맛나식당' },
+  { id: 10, name: '램스키친', img: `${IMG_BASE}/10.jpeg`, rating: 4.9, reviewCount: 7890, brief: '양갈비 전문', teaser: '프리미엄 양고기', story: '잡내 없는 부드러운 양갈비를 경험해보세요.', query: '제주 램스키친', address: '제주특별자치도 제주시 노형동 1055', phone: '064-711-9292', hours: '12:00 ~ 22:00', parking: '가능', menuPrice: '양갈비 1인분 28,000원~', carMinutesFromAirport: 18, busRoutesFromAirport: '100번, 200번 (노형 방면)', mapX: 32, mapY: 38, youtubeUrl: 'https://www.youtube.com/shorts/IdMwKln6sqw', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+램스키친', googlePlaceUrl: 'https://www.google.com/maps/search/제주+램스키친' },
 ];
 
 export default function JejuGourmetBest10() {
   const [shops, setShops] = useState<Shop[]>([]);
   const [expandedShop, setExpandedShop] = useState<{ shop: Shop; index: number } | null>(null);
   const hasPushedRef = useRef(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setShops([...initialShops].sort(() => Math.random() - 0.5));
   }, []);
+
+  /** 모바일 슬라이드 페이지: 1~3페이지=9개 고유, 4페이지부터=랜덤 3개 */
+  const slidePages = useMemo(() => {
+    if (shops.length < 10) return [];
+    const pages: { shops: Shop[]; ranks: number[] }[] = [];
+    for (let i = 0; i < 3; i++) {
+      const trio = shops.slice(i * 3, i * 3 + 3);
+      pages.push({ shops: trio, ranks: pickRandomRanks(3) });
+    }
+    const remaining = shops[9];
+    const extra = shops.filter((_, idx) => idx < 9);
+    const j = Math.floor(Math.random() * extra.length);
+    const k = Math.floor(Math.random() * extra.length);
+    const a = extra[j];
+    const b = j === k ? extra[(k + 1) % extra.length] : extra[k];
+    pages.push({ shops: [remaining, a, b], ranks: pickRandomRanks(3) });
+    return pages;
+  }, [shops]);
+
+  /** 모바일 하단: 나머지 7개 (인덱스 3~9) 랜덤 배치 + 랜덤 순위 */
+  const belowShopsWithRanks = useMemo(() => {
+    if (shops.length < 10) return [];
+    const list = [...shops.slice(3, 10)].sort(() => Math.random() - 0.5);
+    const ranks = pickRandomRanks(7);
+    return list.map((shop, i) => ({ shop, rank: ranks[i] ?? i + 4 }));
+  }, [shops]);
 
   const handleDetail = (shop: Shop, index: number) => {
     setExpandedShop({ shop, index });
@@ -107,68 +146,92 @@ export default function JejuGourmetBest10() {
           </p>
         </header>
 
-        {/* 모바일/태블릿: 상위 3개 - 세로 카드(이미지 포함) - 태블릿 여백 채움 */}
-        <section className="lg:hidden w-full max-w-lg sm:max-w-2xl mx-auto space-y-3 sm:space-y-4 flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain px-1">
-          {shops.slice(0, 3).map((shop, index) => (
-            <div
-              key={shop.id}
-              onClick={() => handleDetail(shop, index)}
-              className="flex items-center gap-4 sm:gap-5 bg-[#fafaf5] rounded-2xl p-4 sm:p-5 shadow-md cursor-pointer active:scale-[0.99] transition-transform min-h-[100px] sm:min-h-[112px] touch-manipulation select-none"
-            >
-              <span className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-amber-500/20 text-amber-600 text-2xl sm:text-3xl font-bold flex items-center justify-center">
-                {index + 1}
-              </span>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-lg sm:text-xl text-gray-900 truncate tracking-tight">{shop.name}</h3>
-                <p className="text-base sm:text-lg text-gray-600 flex items-center gap-1 tracking-wide mt-1">
-                  <span className="text-amber-500 text-lg">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
-                </p>
-                <span className="inline-block mt-2 text-sm font-semibold text-orange-500 tracking-wide">자세히 보기</span>
-              </div>
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
-                <Image
-                  src={shop.img}
-                  alt={shop.name}
-                  width={112}
-                  height={112}
-                  sizes="(max-width: 640px) 96px, 112px"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
-          ))}
-
-          {/* 모바일: 4~10위 2열 / 태블릿: 2열+이미지 - 허접한 빈 여백 제거 */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-5 pb-[max(1rem,env(safe-area-inset-bottom))]">
-            {shops.slice(3, 10).map((shop, index) => (
+        {/* 모바일: 가로 슬라이드(3개씩) + 하단 7개 */}
+        <section className="lg:hidden w-full flex-1 min-h-0 flex flex-col overflow-hidden">
+          {/* 가로 슬라이드 - 한 화면에 3개, 스와이프 */}
+          <div
+            ref={carouselRef}
+            className="flex-1 min-h-0 overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex scrollbar-hide"
+            style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
+          >
+            {slidePages.map((page, pageIdx) => (
               <div
-                key={shop.id}
-                onClick={() => handleDetail(shop, index + 3)}
-                className="bg-[#fafaf5] rounded-2xl p-4 sm:p-5 shadow-md cursor-pointer active:scale-[0.99] transition-transform min-h-[96px] sm:min-h-[120px] touch-manipulation select-none flex flex-col sm:flex-row sm:items-center sm:gap-4 sm:text-left"
+                key={pageIdx}
+                className="flex-shrink-0 w-full min-w-full snap-center grid grid-cols-3 gap-2 px-3"
+                style={{ width: '100%' }}
               >
-                <div className="flex flex-col justify-center flex-1 min-w-0">
-                  <span className="text-2xl sm:text-3xl font-bold text-amber-600 block mb-1 tracking-tight">
-                    {index + 4}
-                  </span>
-                  <h3 className="font-bold text-gray-900 text-base sm:text-lg truncate tracking-tight">{shop.name}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 flex items-center gap-0.5 mt-1 tracking-wide">
-                    <span className="text-amber-500">★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
-                  </p>
-                  <span className="inline-block mt-2 text-sm font-semibold text-orange-500 tracking-wide">자세히 보기</span>
-                </div>
-                {/* 태블릿(폴드 펼침): 4~10위에도 이미지 추가 */}
-                <div className="hidden sm:block relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 mt-2 sm:mt-0">
-                  <Image
-                    src={shop.img}
-                    alt={shop.name}
-                    width={80}
-                    height={80}
-                    sizes="80px"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                {page.shops.map((shop, idx) => {
+                  const rank = page.ranks[idx];
+                  const isTopInPage = rank === Math.min(...page.ranks);
+                  const realIndex = shops.findIndex((s) => s.id === shop.id);
+                  return (
+                    <div
+                      key={`${pageIdx}-${shop.id}`}
+                      onClick={() => handleDetail(shop, realIndex)}
+                      className="flex flex-col bg-[#fafaf5] rounded-2xl p-3 shadow-lg cursor-pointer active:scale-[0.98] transition-transform touch-manipulation select-none overflow-hidden"
+                    >
+                      <span
+                        className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl font-bold ${
+                          isTopInPage
+                            ? 'bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 text-white shadow-md'
+                            : 'bg-amber-500/25 text-amber-700'
+                        }`}
+                      >
+                        {rank}
+                      </span>
+                      <div className="relative flex-1 min-h-[72px] sm:min-h-[88px] rounded-xl overflow-hidden bg-gray-100 mt-2">
+                        <Image
+                          src={shop.img}
+                          alt={shop.name}
+                          fill
+                          sizes="(max-width: 640px) 33vw, 120px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mt-2 tracking-tight">
+                        {shop.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-0.5 mt-0.5">
+                        <span className="text-amber-500">★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
+                      </p>
+                      <span className="inline-block mt-1.5 text-xs font-semibold text-orange-500">자세히 보기</span>
+                    </div>
+                  );
+                })}
               </div>
             ))}
+          </div>
+          {/* 하단: 나머지 7개 랜덤 배치 (블로그 글 공간 위) */}
+          <div className="flex-shrink-0 overflow-y-auto overscroll-contain px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+            <p className="text-sm text-gray-500 mb-3">예시이며, 실제 데이터는 무작위로 변경됩니다.</p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {belowShopsWithRanks.map(({ shop, rank }) => {
+                const realIndex = shops.findIndex((s) => s.id === shop.id);
+                return (
+                  <div
+                    key={shop.id}
+                    onClick={() => handleDetail(shop, realIndex)}
+                    className="bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform touch-manipulation select-none flex flex-col"
+                  >
+                    <span className="text-2xl font-bold text-amber-600 block mb-1">{rank}</span>
+                    <h3 className="font-bold text-gray-900 text-base truncate">{shop.name}</h3>
+                    <p className="text-sm text-gray-600 flex items-center gap-0.5 mt-1">
+                      <span className="text-amber-500">★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
+                    </p>
+                    <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mt-2">
+                      <Image
+                        src={shop.img}
+                        alt={shop.name}
+                        fill
+                        sizes="50vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <span className="inline-block mt-2 text-sm font-semibold text-orange-500">자세히 보기</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
 
@@ -270,6 +333,32 @@ export default function JejuGourmetBest10() {
                     <p><span className="font-semibold text-gray-900">대표메뉴 가격:</span> {expandedShop.shop.menuPrice}</p>
                     <p><span className="font-semibold text-gray-900">공항에서 차로:</span> 약 {expandedShop.shop.carMinutesFromAirport}분</p>
                     <p><span className="font-semibold text-gray-900">공항 버스:</span> {expandedShop.shop.busRoutesFromAirport}</p>
+                  </div>
+                  {/* 제주도 지도 - 공항 기점, 업체 위치 표시 */}
+                  <div className="mb-4 rounded-xl overflow-hidden bg-[#f8f9fa] border border-gray-200 p-4">
+                    <p className="text-sm font-semibold text-gray-700 mb-2">
+                      공항에서 {expandedShop.shop.name} 위치
+                    </p>
+                    <div className="relative w-full aspect-[4/3] max-h-[200px] bg-[#e8f4f8] rounded-lg">
+                      <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                        {/* 제주도 윤곽 (간소화된 타원형) */}
+                        <ellipse cx="50" cy="50" rx="42" ry="45" fill="#d4e8ec" stroke="#94b8c4" strokeWidth="1.5" />
+                        {/* 공항 마커 - 가장 눈에 띄게 */}
+                        <g transform="translate(28, 32)">
+                          <circle r="6" fill="#dc2626" stroke="#fff" strokeWidth="2" />
+                          <text x="0" y="18" textAnchor="middle" fontSize="5" fontWeight="bold" fill="#dc2626">공항</text>
+                        </g>
+                        {/* 업체 마커 */}
+                        <g transform={`translate(${expandedShop.shop.mapX}, ${expandedShop.shop.mapY})`}>
+                          <circle r="4" fill="#ea580c" stroke="#fff" strokeWidth="1.5" />
+                        </g>
+                        {/* 공항→업체 연결선 */}
+                        <line x1="28" y1="32" x2={expandedShop.shop.mapX} y2={expandedShop.shop.mapY} stroke="#f97316" strokeWidth="0.8" strokeDasharray="2 2" opacity="0.8" />
+                      </svg>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1.5">
+                      ● 공항(빨강) · ● {expandedShop.shop.name}(주황) · 차로 약 {expandedShop.shop.carMinutesFromAirport}분
+                    </p>
                   </div>
                   <div className="flex flex-col gap-5">
                     <a
