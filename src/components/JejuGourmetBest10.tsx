@@ -132,27 +132,22 @@ export default function JejuGourmetBest10() {
 
   return (
     <div className="h-[100dvh] lg:h-screen w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
+      <a href="#main-content" className="sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-orange-500 focus:text-white focus:rounded-lg focus:font-bold focus:w-auto focus:h-auto focus:m-0 focus:overflow-visible focus:clip-auto">
+        본문으로 건너뛰기
+      </a>
       <main
+        id="main-content"
         className="flex-1 min-h-0 flex flex-col items-center w-full px-4 sm:px-6 lg:px-6 overflow-y-scroll overflow-x-hidden lg:overflow-hidden overscroll-contain pt-[max(1rem,env(safe-area-inset-top))] lg:pt-0"
+        aria-label="제주도 맛집 베스트 10 목록"
         style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
       >
-        {/* 헤더 - 모바일/태블릿 (< 1024px) - 폴드 상단 잘림 방지 */}
-        <header className="text-center py-3 sm:py-4 lg:py-0 lg:mb-0 lg:hidden flex-shrink-0 w-full">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tracking-tight">
+        {/* 헤더 - 페이지당 h1 하나, 시맨틱 제목 계층 준수 */}
+        <header className="text-center py-3 sm:py-4 lg:py-0.5 lg:mb-0 w-full flex-shrink-0">
+          <h1 className="text-2xl sm:text-3xl lg:text-lg font-bold text-gray-900 mb-1 lg:mb-0 tracking-tight">
             제주도 맛집 베스트 10
           </h1>
-          <p className="text-sm sm:text-base text-gray-700 tracking-wide">
+          <p className="text-sm sm:text-base lg:text-xs text-gray-700 lg:text-gray-600 tracking-wide">
             접속 시 순위가 랜덤으로 바뀝니다!
-          </p>
-        </header>
-
-        {/* 헤더 - PC (>= 1024px) - 5단계 축소 */}
-        <header className="text-center py-0.5 hidden lg:block w-full flex-shrink-0">
-          <h1 className="text-lg font-bold text-gray-900 mb-0 tracking-tight">
-            제주도 맛집 베스트 10
-          </h1>
-          <p className="text-xs text-gray-600 tracking-wide">
-            접속할 때마다 무작위로 순위가 바뀝니다!
           </p>
         </header>
 
@@ -187,7 +182,7 @@ export default function JejuGourmetBest10() {
                         className={`flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl font-bold ${
                           isTopInPage
                             ? 'bg-gradient-to-br from-amber-400 via-orange-500 to-amber-600 text-white shadow-md'
-                            : 'bg-amber-500/25 text-amber-700'
+                            : 'bg-amber-500/30 text-amber-800'
                         }`}
                         aria-hidden
                       >
@@ -204,13 +199,13 @@ export default function JejuGourmetBest10() {
                           fetchPriority={isLcp ? 'high' : undefined}
                         />
                       </div>
-                      <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mt-2 tracking-tight">
+                      <h2 className="font-bold text-gray-900 text-sm sm:text-base truncate mt-2 tracking-tight">
                         {shop.name}
-                      </h3>
+                      </h2>
                       <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-0.5 mt-0.5">
-                        <span className="text-amber-500" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
+                        <span className="text-amber-600" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
                       </p>
-                      <span className="inline-block mt-1.5 text-xs font-semibold text-orange-500">자세히 보기</span>
+                      <span className="inline-block mt-1.5 text-xs font-semibold text-orange-600">자세히 보기</span>
                     </button>
                   );
                 })}
@@ -232,9 +227,9 @@ export default function JejuGourmetBest10() {
                     aria-label={`${shop.name}, ${rank}위, 자세히 보기`}
                   >
                     <span className="text-2xl font-bold text-amber-600 block mb-1" aria-hidden>{rank}</span>
-                    <h3 className="font-bold text-gray-900 text-base truncate">{shop.name}</h3>
+                    <h2 className="font-bold text-gray-900 text-base truncate">{shop.name}</h2>
                     <p className="text-sm text-gray-600 flex items-center gap-0.5 mt-1">
-                      <span className="text-amber-500" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
+                      <span className="text-amber-600" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
                     </p>
                     <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mt-2">
                       <Image
@@ -246,7 +241,7 @@ export default function JejuGourmetBest10() {
                         loading="lazy"
                       />
                     </div>
-                    <span className="inline-block mt-2 text-sm font-semibold text-orange-500">자세히 보기</span>
+                    <span className="inline-block mt-2 text-sm font-semibold text-orange-600">자세히 보기</span>
                   </button>
                 );
               })}
@@ -271,7 +266,7 @@ export default function JejuGourmetBest10() {
                   <span className="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-bold flex items-center justify-center tracking-tight">
                     {index + 1}
                   </span>
-                  <h3 className="font-bold text-gray-900 truncate w-full text-3xl tracking-tight">{shop.name}</h3>
+                  <h2 className="font-bold text-gray-900 truncate w-full text-3xl tracking-tight">{shop.name}</h2>
                 </div>
                 <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer">
                   <Image
@@ -284,7 +279,7 @@ export default function JejuGourmetBest10() {
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-shrink-0 mt-1">
                   <p className="text-2xl text-gray-600 flex items-center justify-center gap-0.5 tracking-wide">
-                    <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
+                    <span className="text-amber-600">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                   </p>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleDetail(shop, index); }}
@@ -308,6 +303,10 @@ export default function JejuGourmetBest10() {
             />
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
               <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
                 className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -321,11 +320,14 @@ export default function JejuGourmetBest10() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="w-12 h-12 rounded-xl bg-orange-500 text-white text-2xl font-bold flex items-center justify-center flex-shrink-0 tracking-tight">
+                  <div className="flex items-center gap-4 mb-4" id="modal-title">
+                    <span className="w-12 h-12 rounded-xl bg-orange-500 text-white text-2xl font-bold flex items-center justify-center flex-shrink-0 tracking-tight" aria-hidden>
                       {expandedShop.index + 1}
                     </span>
                     <h2 className="text-3xl font-bold text-gray-900 tracking-tight">{expandedShop.shop.name}</h2>
+                  </div>
+                  <div id="modal-desc" className="sr-only">
+                    {expandedShop.shop.name} 상세 정보. 주소, 전화번호, 영업시간, 네이버 플레이스, 구글 플레이스 링크 제공.
                   </div>
                   {getYoutubeVideoId(expandedShop.shop.youtubeUrl) ? (
                     <div className="relative w-full aspect-[9/16] max-h-[320px] rounded-xl overflow-hidden mb-4 bg-black">
@@ -461,7 +463,7 @@ export default function JejuGourmetBest10() {
                       )}
                       <span className="text-gray-600">· 차로 약 {expandedShop.shop.carMinutesFromAirport}분</span>
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-1">지도: © OpenStreetMap, Kelisi (CC BY-SA 4.0)</p>
+                    <p className="text-[10px] text-gray-600 mt-1">지도: © OpenStreetMap, Kelisi (CC BY-SA 4.0)</p>
                   </div>
                   <div className="flex flex-col gap-5">
                     <a
