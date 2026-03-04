@@ -157,7 +157,7 @@ export default function JejuGourmetBest10() {
           {/* 가로 슬라이드 - 한 화면에 3개, 스와이프 (고정 높이) */}
           <div
             ref={carouselRef}
-            className="flex-shrink-0 min-h-[36vh] sm:min-h-[38vh] md:min-h-[32vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex scrollbar-hide"
+            className="flex-shrink-0 min-h-[40vh] sm:min-h-[42vh] md:min-h-[36vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex scrollbar-hide"
             style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
           >
             {slidePages.map((page, pageIdx) => (
@@ -185,13 +185,13 @@ export default function JejuGourmetBest10() {
                       >
                         {rank}
                       </span>
-                      <div className="relative flex-1 min-h-[72px] sm:min-h-[88px] rounded-xl overflow-hidden bg-gray-100 mt-2">
+                      <div className="relative flex-1 min-h-[96px] sm:min-h-[110px] rounded-xl overflow-hidden bg-gray-100 mt-2">
                         <Image
                           src={shop.img}
                           alt={shop.name}
                           fill
                           sizes="(max-width: 640px) 33vw, 120px"
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                       <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mt-2 tracking-tight">
@@ -230,7 +230,7 @@ export default function JejuGourmetBest10() {
                         alt={shop.name}
                         fill
                         sizes="50vw"
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
                     <span className="inline-block mt-2 text-sm font-semibold text-orange-500">자세히 보기</span>
@@ -340,50 +340,55 @@ export default function JejuGourmetBest10() {
                     <p><span className="font-semibold text-gray-900">공항에서 차로:</span> 약 {expandedShop.shop.carMinutesFromAirport}분</p>
                     <p><span className="font-semibold text-gray-900">공항 버스:</span> {expandedShop.shop.busRoutesFromAirport}</p>
                   </div>
-                  {/* 제주도 지도 - 공항(눈에 띄게), 매장, 근처 관광지 */}
+                  {/* 제주도 지도 - OSM 기반 지도 이미지 + 공항/매장/관광지 마커 */}
                   <div className="mb-4 rounded-xl overflow-hidden bg-[#f0f9ff] border border-gray-200 p-4">
                     <p className="text-sm font-semibold text-gray-800 mb-2">
                       공항에서 {expandedShop.shop.name} 위치
                     </p>
-                    <div className="relative w-full aspect-[4/3] max-h-[240px] rounded-lg overflow-hidden">
-                      <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-                        {/* 바다 배경 */}
-                        <rect width="100" height="100" fill="#b8dce8" />
-                        {/* 제주도 윤곽 - 실제 섬 형태 (북쪽 평평, 서쪽 한림만, 동쪽 성산, 남쪽 곡선) */}
-                        <path
-                          d="M 22,12 L 38,8 L 52,7 L 68,9 L 82,16 L 90,28 L 91,48 L 88,68 L 80,84 L 64,94 L 48,96 L 32,93 L 18,82 L 10,64 L 8,44 L 10,26 L 16,16 Z"
-                          fill="#f5f0d8"
-                          stroke="#8b7355"
-                          strokeWidth="1"
-                        />
-                        {/* 한라산 국립공원 (중앙 녹지) */}
-                        <ellipse cx="50" cy="52" rx="14" ry="16" fill="#7cb87c" fillOpacity="0.6" stroke="#5a9a5a" strokeWidth="0.5" />
-                        {/* 주요 도로 (노란색) */}
-                        <path d="M 32,14 L 50,52 L 78,70" stroke="#f7d74a" strokeWidth="1" fill="none" strokeLinecap="round" />
-                        <path d="M 50,52 L 50,78" stroke="#f7d74a" strokeWidth="0.7" fill="none" />
-                        <path d="M 18,45 L 50,52 L 85,52" stroke="#f7d74a" strokeWidth="0.7" fill="none" />
-                        {/* ① 제주국제공항 - 북부 서쪽, 가장 눈에 띄게 */}
-                        <g transform="translate(32, 14)">
-                          <circle r="9" fill="#dc2626" stroke="#fff" strokeWidth="2.5" />
-                          <path d="M-2.5,-2 L0,-4 L2.5,-2 L0.8,0.5 L-0.8,0.5 Z" fill="#fff" opacity="0.95" />
-                          <text x="0" y="24" textAnchor="middle" fontSize="6" fontWeight="bold" fill="#7f1d1d">제주국제공항</text>
-                        </g>
-                        {/* ② 매장 위치 */}
-                        <g transform={`translate(${expandedShop.shop.mapX}, ${expandedShop.shop.mapY})`}>
-                          <circle r="5" fill="#ea580c" stroke="#fff" strokeWidth="2" />
-                          <circle r="2" fill="#fff" opacity="0.8" />
-                          <text x="0" y="16" textAnchor="middle" fontSize="4.5" fontWeight="600" fill="#c2410c">{expandedShop.shop.name}</text>
-                        </g>
+                    <div className="relative w-full aspect-[16/10] max-h-[260px] rounded-lg overflow-hidden bg-gray-100">
+                      <Image
+                        src="/images/jeju-map/jeju-osm.png"
+                        alt="제주도 지도"
+                        fill
+                        sizes="(max-width: 640px) 100vw, 400px"
+                        className="object-contain"
+                      />
+                      {/* 마커 오버레이 (0-100 좌표계 → % 위치) */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        {/* ① 제주국제공항 */}
+                        <div
+                          className="absolute -translate-x-1/2 -translate-y-full"
+                          style={{ left: '32%', top: '14%' }}
+                        >
+                          <div className="flex flex-col items-center">
+                            <div className="w-6 h-6 rounded-full bg-red-600 border-2 border-white shadow-lg flex items-center justify-center">
+                              <span className="text-white text-xs font-bold">✈</span>
+                            </div>
+                            <span className="text-[10px] font-bold text-red-700 whitespace-nowrap mt-0.5">제주국제공항</span>
+                          </div>
+                        </div>
+                        {/* ② 매장 */}
+                        <div
+                          className="absolute -translate-x-1/2 -translate-y-1/2"
+                          style={{ left: `${expandedShop.shop.mapX}%`, top: `${expandedShop.shop.mapY}%` }}
+                        >
+                          <div className="flex flex-col items-center">
+                            <div className="w-5 h-5 rounded-full bg-orange-500 border-2 border-white shadow-md" />
+                            <span className="text-[9px] font-semibold text-orange-700 whitespace-nowrap mt-0.5 max-w-[80px] truncate">{expandedShop.shop.name}</span>
+                          </div>
+                        </div>
                         {/* ③ 근처 관광지 */}
                         {expandedShop.shop.nearbySpots.map((spot) => (
-                          <g key={spot.name} transform={`translate(${spot.mapX}, ${spot.mapY})`}>
-                            <circle r="3" fill="#2563eb" fillOpacity="0.9" stroke="#fff" strokeWidth="1" />
-                            <text x="0" y="12" textAnchor="middle" fontSize="3.5" fill="#1d4ed8">{spot.name}</text>
-                          </g>
+                          <div
+                            key={spot.name}
+                            className="absolute -translate-x-1/2 -translate-y-1/2"
+                            style={{ left: `${spot.mapX}%`, top: `${spot.mapY}%` }}
+                          >
+                            <div className="w-3 h-3 rounded-full bg-blue-500 border border-white" />
+                            <span className="text-[8px] text-blue-700 whitespace-nowrap block text-center mt-0.5">{spot.name}</span>
+                          </div>
                         ))}
-                        {/* 공항→매장 연결선 */}
-                        <line x1="32" y1="14" x2={expandedShop.shop.mapX} y2={expandedShop.shop.mapY} stroke="#f97316" strokeWidth="0.6" strokeDasharray="1.5 1.5" opacity="0.7" />
-                      </svg>
+                      </div>
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-600">
                       <span><span className="inline-block w-2 h-2 rounded-full bg-red-600 mr-1 align-middle" />제주국제공항</span>
@@ -393,6 +398,7 @@ export default function JejuGourmetBest10() {
                       )}
                       <span className="text-gray-500">· 차로 약 {expandedShop.shop.carMinutesFromAirport}분</span>
                     </div>
+                    <p className="text-[10px] text-gray-400 mt-1">지도: © OpenStreetMap, Kelisi (CC BY-SA 4.0)</p>
                   </div>
                   <div className="flex flex-col gap-5">
                     <a
