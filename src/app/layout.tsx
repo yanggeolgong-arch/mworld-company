@@ -4,6 +4,12 @@ import './globals.css';
 const BASE_URL = 'https://www.aijeju.co.kr';
 const OG_IMAGE = `${BASE_URL}/images/jeju-ai-culinary-intelligence-center.jpg`;
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
+
 export const metadata: Metadata = {
   title: 'Jeju Gourmet AI Research Lab',
   description: 'Data-Driven Culinary Intelligence.',

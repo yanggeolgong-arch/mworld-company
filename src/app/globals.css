@@ -8,6 +8,7 @@
 
 html {
   min-height: 100vh;
+  min-height: 100dvh; /* 모바일 뷰포트 대응 */
   scroll-behavior: smooth;
 }
 
