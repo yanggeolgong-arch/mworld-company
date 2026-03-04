@@ -20,22 +20,24 @@ type Shop = {
   hours: string;
   parking: string;
   menuPrice: string;
+  carMinutesFromAirport: number;
+  busRoutesFromAirport: string;
   youtubeUrl: string;
   naverPlaceUrl: string;
   googlePlaceUrl: string;
 };
 
 const initialShops: Shop[] = [
-  { id: 1, name: '연동대게회타운', img: `${IMG_BASE}/1.jpeg`, rating: 4.9, reviewCount: 12345, brief: '제주 대게의 정점', teaser: '신선한 대게 회와 볶음밥', story: '제주 연동에서 대게 전문으로 운영하는 맛집입니다.', query: '제주 연동대게회타운', address: '제주특별자치도 제주시 서해안로 638', phone: '064-747-9289', hours: '10:00 ~ 22:00', parking: '가능', menuPrice: '대게회 1인분 45,000원~', youtubeUrl: 'https://www.youtube.com/shorts/GY5YA2WraCc', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+연동대게회타운', googlePlaceUrl: 'https://www.google.com/maps/search/제주+연동대게회타운' },
-  { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', query: '제주 섬타르', address: '제주특별자치도 제주시 다랑곶1길 9', phone: '064-744-4467', hours: '09:30 ~ 22:30', parking: '불가(인근 주차)', menuPrice: '에그타르트 4,500원~', youtubeUrl: 'https://www.youtube.com/shorts/e-94iwTxuDk', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+섬타르', googlePlaceUrl: 'https://www.google.com/maps/search/제주+섬타르' },
-  { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', query: '제주 브와두스', address: '제주특별자치도 제주시 애월읍 애월로1길 23', phone: '064-799-7717', hours: '08:00 ~ 20:00', parking: '가능', menuPrice: '크루아상 4,500원~', youtubeUrl: 'https://www.youtube.com/shorts/ZaOsu9VlM2A', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+브와두스', googlePlaceUrl: 'https://www.google.com/maps/search/제주+브와두스' },
-  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', query: '제주 커피구십구점구', address: '제주특별자치도 제주시 한림읍 한림로 585', phone: '064-796-9099', hours: '10:00 ~ 19:00', parking: '가능', menuPrice: '아메리카노 5,000원~', youtubeUrl: 'https://www.youtube.com/shorts/UdV2_-9_2iE', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+커피구십구점구', googlePlaceUrl: 'https://www.google.com/maps/search/제주+커피구십구점구' },
-  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '돈이랑 일주서로', address: '제주특별자치도 서귀포시 일주서로 953', phone: '0507-1435-9278', hours: '11:30 ~ 24:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=돈이랑+일주서로+953', googlePlaceUrl: 'https://www.google.com/maps/search/돈이랑+일주서로+953' },
-  { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', query: '제주 자매국수', address: '제주특별자치도 제주시 한림읍 한림로 559', phone: '064-796-2020', hours: '09:00 ~ 20:00', parking: '가능', menuPrice: '칼국수 8,000원~', youtubeUrl: 'https://www.youtube.com/shorts/r5NfMgCbU8Y', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+자매국수', googlePlaceUrl: 'https://www.google.com/maps/search/제주+자매국수' },
-  { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', query: '제주 우진해장국', address: '제주특별자치도 제주시 삼도2동 1075-3', phone: '064-722-0033', hours: '07:00 ~ 21:00', parking: '가능', menuPrice: '해장국 9,000원~', youtubeUrl: 'https://www.youtube.com/shorts/4DlRyY9UP08', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+우진해장국', googlePlaceUrl: 'https://www.google.com/maps/search/제주+우진해장국' },
-  { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', query: '제주 고집돌우럭', address: '제주특별자치도 서귀포시 성산읍 성산중앙로 64', phone: '064-782-0011', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '우럭구이 1인분 35,000원~', youtubeUrl: 'https://www.youtube.com/shorts/4OVfq2hI3vo', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+고집돌우럭', googlePlaceUrl: 'https://www.google.com/maps/search/제주+고집돌우럭' },
-  { id: 9, name: '맛나식당', img: `${IMG_BASE}/9.jpeg`, rating: 4.5, reviewCount: 5678, brief: '제주 향토음식', teaser: '전통 한정식', story: '갈치조림, 해물탕 등 푸짐한 상차림을 맛보세요.', query: '제주 맛나식당', address: '제주특별자치도 제주시 구좌읍 해맞이해안로 402', phone: '064-782-3333', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '갈치조림 25,000원~', youtubeUrl: 'https://www.youtube.com/shorts/hvwZbDSkLG8', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+맛나식당', googlePlaceUrl: 'https://www.google.com/maps/search/제주+맛나식당' },
-  { id: 10, name: '램스키친', img: `${IMG_BASE}/10.jpeg`, rating: 4.9, reviewCount: 7890, brief: '양갈비 전문', teaser: '프리미엄 양고기', story: '잡내 없는 부드러운 양갈비를 경험해보세요.', query: '제주 램스키친', address: '제주특별자치도 제주시 노형동 1055', phone: '064-711-9292', hours: '12:00 ~ 22:00', parking: '가능', menuPrice: '양갈비 1인분 28,000원~', youtubeUrl: 'https://www.youtube.com/shorts/IdMwKln6sqw', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+램스키친', googlePlaceUrl: 'https://www.google.com/maps/search/제주+램스키친' },
+  { id: 1, name: '연동대게회타운', img: `${IMG_BASE}/1.jpeg`, rating: 4.9, reviewCount: 12345, brief: '제주 대게의 정점', teaser: '신선한 대게 회와 볶음밥', story: '제주 연동에서 대게 전문으로 운영하는 맛집입니다.', query: '제주 연동대게회타운', address: '제주특별자치도 제주시 서해안로 638', phone: '064-747-9289', hours: '10:00 ~ 22:00', parking: '가능', menuPrice: '대게회 1인분 45,000원~', carMinutesFromAirport: 12, busRoutesFromAirport: '100번, 200번 (연동정류장 하차)', youtubeUrl: 'https://www.youtube.com/shorts/GY5YA2WraCc', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+연동대게회타운', googlePlaceUrl: 'https://www.google.com/maps/search/제주+연동대게회타운' },
+  { id: 2, name: '섬타르', img: `${IMG_BASE}/2.jpeg`, rating: 4.8, reviewCount: 8765, brief: '제주 로컬 타르트', teaser: '구좌 당근, 우도 땅콩 타르트', story: '제주 원재료를 담은 달콤한 타르트 전문점입니다.', query: '제주 섬타르', address: '제주특별자치도 제주시 다랑곶1길 9', phone: '064-744-4467', hours: '09:30 ~ 22:30', parking: '불가(인근 주차)', menuPrice: '에그타르트 4,500원~', carMinutesFromAirport: 38, busRoutesFromAirport: '201번, 202번 (구좌 방면)', youtubeUrl: 'https://www.youtube.com/shorts/e-94iwTxuDk', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+섬타르', googlePlaceUrl: 'https://www.google.com/maps/search/제주+섬타르' },
+  { id: 3, name: '브와두스', img: `${IMG_BASE}/3.jpeg`, rating: 4.9, reviewCount: 9876, brief: '베이커리 카페', teaser: '갓 구운 빵과 커피', story: '매일 아침 갓 구운 빵이 반기는 베이커리 카페입니다.', query: '제주 브와두스', address: '제주특별자치도 제주시 애월읍 애월로1길 23', phone: '064-799-7717', hours: '08:00 ~ 20:00', parking: '가능', menuPrice: '크루아상 4,500원~', carMinutesFromAirport: 32, busRoutesFromAirport: '202번 (애월 방면)', youtubeUrl: 'https://www.youtube.com/shorts/ZaOsu9VlM2A', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+브와두스', googlePlaceUrl: 'https://www.google.com/maps/search/제주+브와두스' },
+  { id: 4, name: '커피구십구점구', img: `${IMG_BASE}/4.jpeg`, rating: 4.7, reviewCount: 5432, brief: '바리스타의 철학', teaser: '99.9% 완벽한 커피', story: '직접 로스팅한 원두의 깊은 향미를 느껴보세요.', query: '제주 커피구십구점구', address: '제주특별자치도 제주시 한림읍 한림로 585', phone: '064-796-9099', hours: '10:00 ~ 19:00', parking: '가능', menuPrice: '아메리카노 5,000원~', carMinutesFromAirport: 42, busRoutesFromAirport: '202번 (한림 방면)', youtubeUrl: 'https://www.youtube.com/shorts/UdV2_-9_2iE', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+커피구십구점구', googlePlaceUrl: 'https://www.google.com/maps/search/제주+커피구십구점구' },
+  { id: 5, name: '돈이랑', img: `${IMG_BASE}/5.jpeg`, rating: 4.8, reviewCount: 7654, brief: '흑돼지 전문', teaser: '제주 흑돼지의 정석', story: '숯불에 구운 흑돼지의 육즙을 만나보세요.', query: '돈이랑 일주서로', address: '제주특별자치도 서귀포시 일주서로 953', phone: '0507-1435-9278', hours: '11:30 ~ 24:00', parking: '가능', menuPrice: '흑돼지 1인분 15,000원~', carMinutesFromAirport: 48, busRoutesFromAirport: '600번 공항리무진 (중문 터미널 하차)', youtubeUrl: 'https://www.youtube.com/shorts/NNiF2xzWorg', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=돈이랑+일주서로+953', googlePlaceUrl: 'https://www.google.com/maps/search/돈이랑+일주서로+953' },
+  { id: 6, name: '자매국수', img: `${IMG_BASE}/6.jpeg`, rating: 4.6, reviewCount: 4321, brief: '칼국수·비빔국수', teaser: '쫄깃한 면발의 맛', story: '로컬들이 찾는 국수 전문점입니다.', query: '제주 자매국수', address: '제주특별자치도 제주시 한림읍 한림로 559', phone: '064-796-2020', hours: '09:00 ~ 20:00', parking: '가능', menuPrice: '칼국수 8,000원~', carMinutesFromAirport: 44, busRoutesFromAirport: '202번 (한림 방면)', youtubeUrl: 'https://www.youtube.com/shorts/r5NfMgCbU8Y', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+자매국수', googlePlaceUrl: 'https://www.google.com/maps/search/제주+자매국수' },
+  { id: 7, name: '우진해장국', img: `${IMG_BASE}/7.jpeg`, rating: 4.7, reviewCount: 6543, brief: '30년 전통 해장국', teaser: '진한 소고기 육수', story: '깊은 육수에 푹 고아낸 해장국 전문입니다.', query: '제주 우진해장국', address: '제주특별자치도 제주시 삼도2동 1075-3', phone: '064-722-0033', hours: '07:00 ~ 21:00', parking: '가능', menuPrice: '해장국 9,000원~', carMinutesFromAirport: 15, busRoutesFromAirport: '100번, 200번 (삼도정류장 하차)', youtubeUrl: 'https://www.youtube.com/shorts/4DlRyY9UP08', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+우진해장국', googlePlaceUrl: 'https://www.google.com/maps/search/제주+우진해장국' },
+  { id: 8, name: '고집돌우럭', img: `${IMG_BASE}/8.jpeg`, rating: 4.8, reviewCount: 3456, brief: '우럭 전문', teaser: '바다의 신선함', story: '제주 바다의 우럭을 신선하게 제공합니다.', query: '제주 고집돌우럭', address: '제주특별자치도 서귀포시 성산읍 성산중앙로 64', phone: '064-782-0011', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '우럭구이 1인분 35,000원~', carMinutesFromAirport: 52, busRoutesFromAirport: '201번 (성산 방면)', youtubeUrl: 'https://www.youtube.com/shorts/4OVfq2hI3vo', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+고집돌우럭', googlePlaceUrl: 'https://www.google.com/maps/search/제주+고집돌우럭' },
+  { id: 9, name: '맛나식당', img: `${IMG_BASE}/9.jpeg`, rating: 4.5, reviewCount: 5678, brief: '제주 향토음식', teaser: '전통 한정식', story: '갈치조림, 해물탕 등 푸짐한 상차림을 맛보세요.', query: '제주 맛나식당', address: '제주특별자치도 제주시 구좌읍 해맞이해안로 402', phone: '064-782-3333', hours: '11:00 ~ 21:00', parking: '가능', menuPrice: '갈치조림 25,000원~', carMinutesFromAirport: 40, busRoutesFromAirport: '201번 (구좌 방면)', youtubeUrl: 'https://www.youtube.com/shorts/hvwZbDSkLG8', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+맛나식당', googlePlaceUrl: 'https://www.google.com/maps/search/제주+맛나식당' },
+  { id: 10, name: '램스키친', img: `${IMG_BASE}/10.jpeg`, rating: 4.9, reviewCount: 7890, brief: '양갈비 전문', teaser: '프리미엄 양고기', story: '잡내 없는 부드러운 양갈비를 경험해보세요.', query: '제주 램스키친', address: '제주특별자치도 제주시 노형동 1055', phone: '064-711-9292', hours: '12:00 ~ 22:00', parking: '가능', menuPrice: '양갈비 1인분 28,000원~', carMinutesFromAirport: 18, busRoutesFromAirport: '100번, 200번 (노형 방면)', youtubeUrl: 'https://www.youtube.com/shorts/IdMwKln6sqw', naverPlaceUrl: 'https://m.place.naver.com/place/list?query=제주+램스키친', googlePlaceUrl: 'https://www.google.com/maps/search/제주+램스키친' },
 ];
 
 export default function JejuGourmetBest10() {
@@ -232,7 +234,7 @@ export default function JejuGourmetBest10() {
                       />
                     </div>
                   ) : (
-                    <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-2 bg-gray-100">
+                    <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4 bg-gray-100">
                       <Image
                         src={expandedShop.shop.img}
                         alt={expandedShop.shop.name}
@@ -248,6 +250,8 @@ export default function JejuGourmetBest10() {
                     <p><span className="font-semibold text-gray-900">영업시간:</span> {expandedShop.shop.hours}</p>
                     <p><span className="font-semibold text-gray-900">주차:</span> {expandedShop.shop.parking}</p>
                     <p><span className="font-semibold text-gray-900">대표메뉴 가격:</span> {expandedShop.shop.menuPrice}</p>
+                    <p><span className="font-semibold text-gray-900">공항에서 차로:</span> 약 {expandedShop.shop.carMinutesFromAirport}분</p>
+                    <p><span className="font-semibold text-gray-900">공항 버스:</span> {expandedShop.shop.busRoutesFromAirport}</p>
                   </div>
                   <div className="flex flex-col gap-5">
                     <a
@@ -272,17 +276,6 @@ export default function JejuGourmetBest10() {
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                       </svg>
                       구글 플레이스
-                    </a>
-                    <a
-                      href={expandedShop.shop.youtubeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-5 w-full py-7 px-8 rounded-xl bg-[#FF0000] hover:bg-[#cc0000] text-white font-bold text-2xl transition-colors tracking-wide"
-                    >
-                      <svg className="w-16 h-16 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                      </svg>
-                      유튜브 후기 보기
                     </a>
                   </div>
                 </div>
