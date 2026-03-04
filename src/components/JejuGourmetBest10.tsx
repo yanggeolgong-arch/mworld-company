@@ -157,7 +157,7 @@ export default function JejuGourmetBest10() {
           {/* 가로 슬라이드 - 한 화면에 3개, 스와이프 (고정 높이) */}
           <div
             ref={carouselRef}
-            className="flex-shrink-0 min-h-[40vh] sm:min-h-[42vh] md:min-h-[36vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex scrollbar-hide"
+            className="flex-shrink-0 min-h-[36vh] sm:min-h-[38vh] md:min-h-[32vh] overflow-x-auto overflow-y-hidden snap-x snap-mandatory flex scrollbar-hide"
             style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
           >
             {slidePages.map((page, pageIdx) => (
@@ -185,13 +185,13 @@ export default function JejuGourmetBest10() {
                       >
                         {rank}
                       </span>
-                      <div className="relative flex-1 min-h-[96px] sm:min-h-[110px] rounded-xl overflow-hidden bg-gray-100 mt-2">
+                      <div className="relative flex-1 min-h-[72px] sm:min-h-[88px] rounded-xl overflow-hidden bg-gray-100 mt-2">
                         <Image
                           src={shop.img}
                           alt={shop.name}
                           fill
                           sizes="(max-width: 640px) 33vw, 120px"
-                          className="object-contain"
+                          className="object-cover"
                         />
                       </div>
                       <h3 className="font-bold text-gray-900 text-sm sm:text-base truncate mt-2 tracking-tight">
@@ -230,7 +230,7 @@ export default function JejuGourmetBest10() {
                         alt={shop.name}
                         fill
                         sizes="50vw"
-                        className="object-contain"
+                        className="object-cover"
                       />
                     </div>
                     <span className="inline-block mt-2 text-sm font-semibold text-orange-500">자세히 보기</span>
