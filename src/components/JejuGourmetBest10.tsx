@@ -59,6 +59,7 @@ export default function JejuGourmetBest10() {
   const [shops, setShops] = useState<Shop[]>([]);
   const [expandedShop, setExpandedShop] = useState<{ shop: Shop; index: number } | null>(null);
   const [ytMuted, setYtMuted] = useState(true);
+  const [ytLoaded, setYtLoaded] = useState(false);
   const hasPushedRef = useRef(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -95,6 +96,7 @@ export default function JejuGourmetBest10() {
   const handleDetail = (shop: Shop, index: number) => {
     setExpandedShop({ shop, index });
     setYtMuted(true);
+    setYtLoaded(false);
     if (typeof window !== 'undefined') {
       window.history.pushState({ modal: 'detail' }, '', window.location.href);
       hasPushedRef.current = true;
@@ -139,7 +141,7 @@ export default function JejuGourmetBest10() {
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tracking-tight">
             제주도 맛집 베스트 10
           </h1>
-          <p className="text-sm sm:text-base text-gray-600 tracking-wide">
+          <p className="text-sm sm:text-base text-gray-700 tracking-wide">
             접속 시 순위가 랜덤으로 바뀝니다!
           </p>
         </header>
@@ -258,8 +260,12 @@ export default function JejuGourmetBest10() {
             {shops.map((shop, index) => (
               <div
                 key={shop.id}
+                role="button"
+                tabIndex={0}
                 onClick={() => handleDetail(shop, index)}
+                onKeyDown={(e) => e.key === 'Enter' && handleDetail(shop, index)}
                 className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex flex-col text-center min-h-0 cursor-pointer active:scale-[0.99] transition-transform"
+                aria-label={`${shop.name}, ${index + 1}위, 자세히 보기`}
               >
                 <div className="flex flex-col items-center gap-0.5 mb-1 flex-shrink-0">
                   <span className="w-16 h-16 rounded-full bg-orange-500 text-white text-3xl font-bold flex items-center justify-center tracking-tight">
@@ -277,7 +283,7 @@ export default function JejuGourmetBest10() {
                   />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-shrink-0 mt-1">
-                  <p className="text-2xl text-gray-500 flex items-center justify-center gap-0.5 tracking-wide">
+                  <p className="text-2xl text-gray-600 flex items-center justify-center gap-0.5 tracking-wide">
                     <span className="text-yellow-500">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                   </p>
                   <button
@@ -323,32 +329,57 @@ export default function JejuGourmetBest10() {
                   </div>
                   {getYoutubeVideoId(expandedShop.shop.youtubeUrl) ? (
                     <div className="relative w-full aspect-[9/16] max-h-[320px] rounded-xl overflow-hidden mb-4 bg-black">
-                      <iframe
-                        id="yt-embed-player"
-                        src={`https://www.youtube.com/embed/${getYoutubeVideoId(expandedShop.shop.youtubeUrl)}?autoplay=1&mute=1&enablejsapi=1`}
-                        title={`${expandedShop.shop.name} 유튜브 후기`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        loading="lazy"
-                        className="absolute inset-0 w-full h-full"
-                      />
-                      {ytMuted && (
+                      {ytLoaded ? (
+                        <>
+                          <iframe
+                            id="yt-embed-player"
+                            src={`https://www.youtube.com/embed/${getYoutubeVideoId(expandedShop.shop.youtubeUrl)}?autoplay=1&mute=1&enablejsapi=1`}
+                            title={`${expandedShop.shop.name} 유튜브 후기`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="absolute inset-0 w-full h-full"
+                          />
+                          {ytMuted && (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const iframe = document.getElementById('yt-embed-player') as HTMLIFrameElement | null;
+                                if (iframe?.contentWindow) {
+                                  iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', 'https://www.youtube.com');
+                                }
+                                setYtMuted(false);
+                              }}
+                              className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 py-3 px-6 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-base shadow-lg border-2 border-white pointer-events-auto z-10 transition-colors min-h-[48px] min-w-[48px]"
+                              aria-label="음소거 해제"
+                            >
+                              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+                              </svg>
+                              음소거 해제
+                            </button>
+                          )}
+                        </>
+                      ) : (
                         <button
                           type="button"
-                          onClick={() => {
-                            const iframe = document.getElementById('yt-embed-player') as HTMLIFrameElement | null;
-                            if (iframe?.contentWindow) {
-                              iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', 'https://www.youtube.com');
-                            }
-                            setYtMuted(false);
-                          }}
-                          className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 py-3 px-6 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-bold text-base shadow-lg border-2 border-white pointer-events-auto z-10 transition-colors min-h-[48px] min-w-[48px]"
-                          aria-label="음소거 해제"
+                          onClick={() => setYtLoaded(true)}
+                          className="absolute inset-0 w-full h-full flex items-center justify-center group cursor-pointer"
+                          aria-label={`${expandedShop.shop.name} 유튜브 재생`}
                         >
-                          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
-                          </svg>
-                          음소거 해제
+                          <Image
+                            src={`https://img.youtube.com/vi/${getYoutubeVideoId(expandedShop.shop.youtubeUrl)}/hqdefault.jpg`}
+                            alt=""
+                            fill
+                            sizes="(max-width: 640px) 100vw, 400px"
+                            className="object-cover"
+                            unoptimized
+                          />
+                          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" aria-hidden />
+                          <div className="absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10" aria-hidden>
+                            <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
                         </button>
                       )}
                     </div>
@@ -428,7 +459,7 @@ export default function JejuGourmetBest10() {
                       {expandedShop.shop.nearbySpots.length > 0 && (
                         <span><span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1 align-middle" />{expandedShop.shop.nearbySpots.map((s) => s.name).join(', ')}</span>
                       )}
-                      <span className="text-gray-500">· 차로 약 {expandedShop.shop.carMinutesFromAirport}분</span>
+                      <span className="text-gray-600">· 차로 약 {expandedShop.shop.carMinutesFromAirport}분</span>
                     </div>
                     <p className="text-[10px] text-gray-400 mt-1">지도: © OpenStreetMap, Kelisi (CC BY-SA 4.0)</p>
                   </div>
@@ -464,7 +495,7 @@ export default function JejuGourmetBest10() {
         )}
 
         <footer className="py-1 lg:py-0.5 w-full flex-shrink-0 pb-[max(0.25rem,env(safe-area-inset-bottom))] lg:pb-0 hidden lg:block">
-          <p className="text-[10px] lg:text-xs text-gray-500 text-right tracking-wide">
+          <p className="text-[10px] lg:text-xs text-gray-600 text-right tracking-wide">
             * 이것은 샘플이며, 실제 업체명과 사진은 다를 수 있습니다.
           </p>
         </footer>

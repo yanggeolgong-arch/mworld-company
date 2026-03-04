@@ -54,6 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://img.youtube.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen bg-white antialiased text-[#1a202c]">{children}</body>
     </html>
   );
