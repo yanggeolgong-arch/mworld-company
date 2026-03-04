@@ -57,6 +57,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://img.youtube.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-white antialiased text-[#1a202c]">{children}</body>
     </html>

@@ -212,8 +212,8 @@ export default function JejuGourmetBest10() {
               </div>
             ))}
           </div>
-          {/* 하단: 나머지 7개 랜덤 배치 (블로그 글 공간 위) - 스크롤 끝까지 표시 */}
-          <div className="flex-shrink-0 px-4 pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]">
+          {/* 하단: 나머지 7개 랜덤 배치 - content-visibility로 초기 렌더 비용 절감 */}
+          <div className="flex-shrink-0 px-4 pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]" style={{ contentVisibility: 'auto' } as React.CSSProperties}>
             <p className="text-sm text-gray-600 mb-3">예시이며, 실제 데이터는 무작위로 변경됩니다.</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {belowShopsWithRanks.map(({ shop, rank }) => {
