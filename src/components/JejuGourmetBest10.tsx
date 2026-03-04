@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 const IMG_BASE = '/images/stealth-best-10';
@@ -43,6 +43,7 @@ const initialShops: Shop[] = [
 export default function JejuGourmetBest10() {
   const [shops, setShops] = useState<Shop[]>([]);
   const [expandedShop, setExpandedShop] = useState<{ shop: Shop; index: number } | null>(null);
+  const hasPushedRef = useRef(false);
 
   useEffect(() => {
     setShops([...initialShops].sort(() => Math.random() - 0.5));
@@ -50,11 +51,28 @@ export default function JejuGourmetBest10() {
 
   const handleDetail = (shop: Shop, index: number) => {
     setExpandedShop({ shop, index });
+    if (typeof window !== 'undefined') {
+      window.history.pushState({ modal: 'detail' }, '', window.location.href);
+      hasPushedRef.current = true;
+    }
   };
 
   const closeDetail = () => {
     setExpandedShop(null);
+    if (typeof window !== 'undefined' && hasPushedRef.current) {
+      hasPushedRef.current = false;
+      window.history.back();
+    }
   };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setExpandedShop(null);
+      hasPushedRef.current = false;
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const getYoutubeVideoId = (url: string): string | null => {
     const shortsMatch = url.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/);
