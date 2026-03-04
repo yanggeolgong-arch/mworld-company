@@ -127,8 +127,11 @@ export default function JejuGourmetBest10() {
   };
 
   return (
-    <div className="min-h-[100dvh] lg:h-screen w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
-      <main className="flex-1 min-h-0 flex flex-col items-center w-full px-4 sm:px-6 lg:px-6 overflow-y-auto lg:overflow-hidden overscroll-contain pt-[max(1rem,env(safe-area-inset-top))] lg:pt-0">
+    <div className="h-[100dvh] lg:h-screen w-full bg-[#f5f5f0] overflow-hidden flex flex-col tracking-[-0.01em] leading-relaxed">
+      <main
+        className="flex-1 min-h-0 flex flex-col items-center w-full px-4 sm:px-6 lg:px-6 overflow-y-scroll overflow-x-hidden lg:overflow-hidden overscroll-contain pt-[max(1rem,env(safe-area-inset-top))] lg:pt-0"
+        style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+      >
         {/* 헤더 - 모바일/태블릿 (< 1024px) - 폴드 상단 잘림 방지 */}
         <header className="text-center py-3 sm:py-4 lg:py-0 lg:mb-0 lg:hidden flex-shrink-0 w-full">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 tracking-tight">
@@ -346,21 +349,21 @@ export default function JejuGourmetBest10() {
                       <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                         {/* 바다 배경 */}
                         <rect width="100" height="100" fill="#b8dce8" />
-                        {/* 제주도 윤곽 - 실제 형태에 가까운 path */}
+                        {/* 제주도 윤곽 - 실제 섬 형태 (북쪽 평평, 서쪽 한림만, 동쪽 성산, 남쪽 곡선) */}
                         <path
-                          d="M 20,15 L 32,10 L 52,8 L 72,12 L 86,20 L 92,38 L 90,58 L 85,78 L 72,92 L 52,96 L 32,92 L 18,80 L 10,58 L 8,38 L 12,22 Z"
+                          d="M 22,12 L 38,8 L 52,7 L 68,9 L 82,16 L 90,28 L 91,48 L 88,68 L 80,84 L 64,94 L 48,96 L 32,93 L 18,82 L 10,64 L 8,44 L 10,26 L 16,16 Z"
                           fill="#f5f0d8"
-                          stroke="#a8a078"
-                          strokeWidth="0.8"
+                          stroke="#8b7355"
+                          strokeWidth="1"
                         />
                         {/* 한라산 국립공원 (중앙 녹지) */}
-                        <ellipse cx="52" cy="55" rx="18" ry="20" fill="#7cb87c" fillOpacity="0.6" stroke="#5a9a5a" strokeWidth="0.5" />
+                        <ellipse cx="50" cy="52" rx="14" ry="16" fill="#7cb87c" fillOpacity="0.6" stroke="#5a9a5a" strokeWidth="0.5" />
                         {/* 주요 도로 (노란색) */}
-                        <path d="M 28,32 L 52,55 L 75,70" stroke="#f7d74a" strokeWidth="1.2" fill="none" strokeLinecap="round" />
-                        <path d="M 50,55 L 52,75" stroke="#f7d74a" strokeWidth="0.8" fill="none" />
-                        <path d="M 20,45 L 52,55 L 85,55" stroke="#f7d74a" strokeWidth="0.8" fill="none" />
-                        {/* ① 제주국제공항 - 가장 눈에 띄게 */}
-                        <g transform="translate(28, 28)">
+                        <path d="M 32,14 L 50,52 L 78,70" stroke="#f7d74a" strokeWidth="1" fill="none" strokeLinecap="round" />
+                        <path d="M 50,52 L 50,78" stroke="#f7d74a" strokeWidth="0.7" fill="none" />
+                        <path d="M 18,45 L 50,52 L 85,52" stroke="#f7d74a" strokeWidth="0.7" fill="none" />
+                        {/* ① 제주국제공항 - 북부 서쪽, 가장 눈에 띄게 */}
+                        <g transform="translate(32, 14)">
                           <circle r="9" fill="#dc2626" stroke="#fff" strokeWidth="2.5" />
                           <path d="M-2.5,-2 L0,-4 L2.5,-2 L0.8,0.5 L-0.8,0.5 Z" fill="#fff" opacity="0.95" />
                           <text x="0" y="24" textAnchor="middle" fontSize="6" fontWeight="bold" fill="#7f1d1d">제주국제공항</text>
@@ -379,7 +382,7 @@ export default function JejuGourmetBest10() {
                           </g>
                         ))}
                         {/* 공항→매장 연결선 */}
-                        <line x1="28" y1="28" x2={expandedShop.shop.mapX} y2={expandedShop.shop.mapY} stroke="#f97316" strokeWidth="0.6" strokeDasharray="1.5 1.5" opacity="0.7" />
+                        <line x1="32" y1="14" x2={expandedShop.shop.mapX} y2={expandedShop.shop.mapY} stroke="#f97316" strokeWidth="0.6" strokeDasharray="1.5 1.5" opacity="0.7" />
                       </svg>
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-600">
