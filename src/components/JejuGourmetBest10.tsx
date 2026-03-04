@@ -96,7 +96,7 @@ export default function JejuGourmetBest10() {
   const handleDetail = (shop: Shop, index: number) => {
     setExpandedShop({ shop, index });
     setYtMuted(true);
-    setYtLoaded(false);
+    setYtLoaded(true);
     if (typeof window !== 'undefined') {
       window.history.pushState({ modal: 'detail' }, '', window.location.href);
       hasPushedRef.current = true;
@@ -398,6 +398,25 @@ export default function JejuGourmetBest10() {
                   )}
                   <div className="space-y-3 text-base text-gray-700 mb-4 leading-relaxed tracking-wide">
                     <p><span className="font-semibold text-gray-900">주소:</span> {expandedShop.shop.address}</p>
+                    {/* 구글맵·네이버맵 - 주소~공항버스 사이 컴팩트 배치 */}
+                    <div className="grid grid-cols-2 gap-2 my-3">
+                      <div className="rounded-lg overflow-hidden border border-gray-200 h-[100px]">
+                        <iframe
+                          src={`https://www.google.com/maps?q=${encodeURIComponent(expandedShop.shop.address)}&output=embed&z=15`}
+                          title={`${expandedShop.shop.name} 구글 지도`}
+                          className="w-full h-full border-0"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="rounded-lg overflow-hidden border border-gray-200 h-[100px]">
+                        <iframe
+                          src={`https://map.naver.com/v5/search/${encodeURIComponent(expandedShop.shop.name + ' 제주')}`}
+                          title={`${expandedShop.shop.name} 네이버 지도`}
+                          className="w-full h-full border-0"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
                     <p><span className="font-semibold text-gray-900">전화:</span> {expandedShop.shop.phone}</p>
                     <p><span className="font-semibold text-gray-900">영업시간:</span> {expandedShop.shop.hours}</p>
                     <p><span className="font-semibold text-gray-900">주차:</span> {expandedShop.shop.parking}</p>
