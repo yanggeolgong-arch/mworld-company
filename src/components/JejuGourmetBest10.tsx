@@ -28,29 +28,20 @@ export default function JejuGourmetBest10() {
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
         
-        /* 럭셔리 그리드: 반응형 2열 (모바일 1열) */
+        /* 하단 2열 (모바일·태블릿·PC 동일) */
         .luxury-grid {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 12px;
-          padding: 8px 12px;
-        }
-        @media (min-width: 640px) {
-          .luxury-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 8px 12px; }
+          grid-template-columns: repeat(2, 1fr);
+          gap: 8px;
+          padding: 8px;
         }
 
-        /* 상단 3열: 모바일 1열, 태블릿 2열, PC 3열 */
+        /* 상단 3열 (모바일·태블릿·PC 동일) */
         .top-row {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 12px;
-          padding: 0 12px 8px;
-        }
-        @media (min-width: 640px) {
-          .top-row { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 1024px) {
-          .top-row { grid-template-columns: repeat(3, 1fr); }
+          grid-template-columns: repeat(3, 1fr);
+          gap: 8px;
+          padding: 0 8px 8px;
         }
 
         /* Zero CLS: 이미지 4/3 비율 (원본 비율 유지, 잘림 최소화) */
@@ -97,9 +88,9 @@ export default function JejuGourmetBest10() {
         </div>
       </header>
 
-      {/* 스크롤 영역 - body overflow:hidden 대응 */}
-      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
-        <div className="max-w-4xl mx-auto">
+      {/* 스크롤 영역 - body overflow:hidden 대응, PC 중앙 정렬 */}
+      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain flex justify-center" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
+        <div className="w-full max-w-4xl min-w-0 px-4 sm:px-6 lg:px-8">
         {/* 상단 TOP 1, 2, 3 (3열 배치) */}
         <div className="top-row">
           {shops.slice(0, 3).map((shop, index) => (
