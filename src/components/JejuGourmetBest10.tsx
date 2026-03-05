@@ -1,8 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
-import { LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight,
+  LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck,
+} from 'lucide-react';
 import { initialShops, getYoutubeVideoId, type Shop } from '@/data/stealth-best-10';
+import { initFirebase, trackInteraction, type StatsState } from '@/lib/firebase-stats';
 
 /**
  * Fisher-Yates Shuffle (성능 최적화 랜덤 알고리즘)
@@ -20,6 +24,22 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
 export default function JejuGourmetBest10() {
   const [shops] = useState<Shop[]>(() => fisherYatesShuffle([...initialShops]));
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [stats, setStats] = useState<StatsState>({});
+  const [showAdminStats, setShowAdminStats] = useState(false);
+
+  useEffect(() => {
+    const cleanup = initFirebase(
+      (uid) => setUserId(uid),
+      (shopId, data) => setStats((prev) => ({ ...prev, [shopId]: data }))
+    );
+    return cleanup;
+  }, []);
+
+  const handleOpenDetail = (shop: Shop) => {
+    setSelectedShop(shop);
+    trackInteraction(shop.id, 'youtube');
+  };
 
   return (
     <div className="h-[100dvh] flex flex-col bg-[#f8f9fa] text-[#1a1c1e] font-sans overflow-hidden">
@@ -79,7 +99,24 @@ export default function JejuGourmetBest10() {
 
         .text-title { font-size: 15px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
         .text-meta { font-size: 11px; color: #94a3b8; }
+        .stat-overlay { position: absolute; bottom: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
+        .stat-badge { background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: white; padding: 3px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.1); }
       `}</style>
+
+      {/* Admin Control Bar */}
+      <div className="bg-[#1e293b] text-white py-1.5 px-4 flex justify-between items-center text-[10px] font-bold sticky top-0 z-[1100] shadow-md">
+        <div className="flex items-center gap-2">
+          <LucideShieldCheck size={12} className="text-blue-400" />
+          <span className="opacity-60 font-mono tracking-tighter">ADMIN: {userId?.substring(0, 8) ?? '...'}</span>
+        </div>
+        <button
+          onClick={() => setShowAdminStats(!showAdminStats)}
+          className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all duration-300 ${showAdminStats ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300'}`}
+        >
+          {showAdminStats ? <LucideEye size={12} /> : <LucideEyeOff size={12} />}
+          <span>{showAdminStats ? 'STATS LIVE' : 'STATS HIDDEN'}</span>
+        </button>
+      </div>
 
       {/* Header */}
       <header className="flex-shrink-0 bg-white pt-[max(2.5rem,env(safe-area-inset-top))] pb-6 text-center">
@@ -96,9 +133,9 @@ export default function JejuGourmetBest10() {
             <article
               key={shop.id}
               className="item-card cursor-pointer active:scale-95 transition-transform"
-              onClick={() => setSelectedShop(shop)}
+              onClick={() => handleOpenDetail(shop)}
             >
-              <div className="image-aspect">
+              <div className="image-aspect relative">
                 <div className="rank-badge">{index + 1}</div>
                 <img
                   src={shop.img}
@@ -109,6 +146,11 @@ export default function JejuGourmetBest10() {
                   fetchPriority="high"
                   className="w-full h-full object-cover"
                 />
+                {showAdminStats && (
+                  <div className="stat-overlay">
+                    <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
+                  </div>
+                )}
               </div>
               <div className="p-2.5">
                 <h3 className="text-title truncate">{shop.name}</h3>
@@ -129,9 +171,9 @@ export default function JejuGourmetBest10() {
             <article
               key={shop.id}
               className="item-card cursor-pointer active:scale-95 transition-transform"
-              onClick={() => setSelectedShop(shop)}
+              onClick={() => handleOpenDetail(shop)}
             >
-              <div className="image-aspect">
+              <div className="image-aspect relative">
                 <div className="rank-badge" style={{ background: '#64748b' }}>{index + 4}</div>
                 <img
                   src={shop.img}
@@ -142,6 +184,11 @@ export default function JejuGourmetBest10() {
                   decoding="async"
                   className="w-full h-full object-cover"
                 />
+                {showAdminStats && (
+                  <div className="stat-overlay">
+                    <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
+                  </div>
+                )}
               </div>
               <div className="p-3">
                 <h3 className="text-title truncate">{shop.name}</h3>
@@ -151,6 +198,11 @@ export default function JejuGourmetBest10() {
                   <span className="text-gray-300 mx-1.5">|</span>
                   <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
                 </div>
+                {showAdminStats && (
+                  <div className="mt-2 text-[10px] font-bold text-blue-600 flex items-center gap-1">
+                    <LucideYoutube size={10} /> {stats[shop.id]?.youtube ?? 0} PLAYS TRACKED
+                  </div>
+                )}
                 <div className="text-[#ff6b00] text-[11px] font-black mt-3 flex items-center">
                   자세히 보기 <LucideChevronRight size={10} className="ml-1" />
                 </div>
@@ -193,7 +245,12 @@ export default function JejuGourmetBest10() {
 
             {/* 유튜브 영역 (클릭 즉시 로드 및 자동 재생) */}
             {getYoutubeVideoId(selectedShop.youtubeUrl) && (
-              <div className="w-full aspect-video bg-black">
+              <div className="w-full aspect-video bg-black relative">
+                {showAdminStats && (
+                  <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20 z-10">
+                    <LucideYoutube size={12} fill="white" /> LIVE PLAYS: {stats[selectedShop.id]?.youtube ?? 0}
+                  </div>
+                )}
                 <iframe
                   width="100%"
                   height="100%"
@@ -235,19 +292,23 @@ export default function JejuGourmetBest10() {
                     href={selectedShop.googlePlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackInteraction(selectedShop.id, 'google')}
                     className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-gray-200 py-3.5 rounded-xl font-bold text-center text-[13px]"
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded bg-[#4285f4] text-white text-[11px] font-black">G</span>
                     구글 플레이스
+                    {showAdminStats && <span className="bg-gray-100 text-gray-500 px-1.5 rounded text-[9px] border font-black">{stats[selectedShop.id]?.google ?? 0}</span>}
                   </a>
                   <a
                     href={selectedShop.naverPlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackInteraction(selectedShop.id, 'naver')}
                     className="flex-1 flex items-center justify-center gap-1.5 bg-[#03cf5d] text-white py-3.5 rounded-xl font-bold text-center text-[13px]"
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded border-2 border-white/80 text-white text-[11px] font-black">N</span>
                     네이버 플레이스
+                    {showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.naver ?? 0}</span>}
                   </a>
                 </div>
               </div>
