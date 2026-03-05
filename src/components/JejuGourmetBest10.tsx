@@ -164,6 +164,7 @@ export default function JejuGourmetBest10() {
                       <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-0.5 mt-0.5">
                         <span className="text-amber-600" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
                       </p>
+                      <p className="text-[10px] text-gray-500 mt-0.5">출처: {shop.ratingSource}</p>
                       <span className="inline-block mt-1.5 text-xs font-semibold text-orange-600 text-center w-full">자세히 보기</span>
                     </button>
                   );
@@ -190,6 +191,7 @@ export default function JejuGourmetBest10() {
                     <p className="text-sm text-gray-600 flex items-center gap-0.5 mt-1">
                       <span className="text-amber-600" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
                     </p>
+                    <p className="text-[10px] text-gray-500 mt-0.5">출처: {shop.ratingSource}</p>
                     <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mt-2">
                       <Image
                         src={shop.img}
@@ -240,6 +242,7 @@ export default function JejuGourmetBest10() {
                   <p className="text-2xl text-gray-600 flex items-center justify-center gap-0.5 tracking-wide">
                     <span className="text-amber-600">★</span> {shop.rating} · 리뷰 {shop.reviewCount.toLocaleString()}
                   </p>
+                  <p className="text-[10px] text-gray-500">출처: {shop.ratingSource}</p>
                   <button
                     onClick={(e) => { e.stopPropagation(); handleDetail(shop, index); }}
                     className="w-full py-4 px-4 bg-orange-500 hover:bg-orange-600 text-white text-2xl font-bold rounded-lg transition-colors tracking-wide"
@@ -384,6 +387,7 @@ export default function JejuGourmetBest10() {
                         구글 플레이스
                       </a>
                     </div>
+                    <p><span className="font-semibold text-gray-900">평점·리뷰 출처:</span> {expandedShop.shop.ratingSource}</p>
                     <p><span className="font-semibold text-gray-900">전화:</span> {expandedShop.shop.phone}</p>
                     <p><span className="font-semibold text-gray-900">영업시간:</span> {expandedShop.shop.hours}</p>
                     <p><span className="font-semibold text-gray-900">주차:</span> {expandedShop.shop.parking}</p>

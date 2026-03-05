@@ -1,5 +1,5 @@
 import PretendardLoader from '@/components/PretendardLoader';
-import { initialShops, buildRestaurantSchema, BASE_URL } from '@/data/stealth-best-10';
+import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from '@/data/stealth-best-10';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -96,6 +96,27 @@ export default function StealthBest10Layout({
     ],
   };
 
+  const videoObjects = initialShops
+    .filter((s) => getYoutubeVideoId(s.youtubeUrl))
+    .map((shop) => {
+      const videoId = getYoutubeVideoId(shop.youtubeUrl)!;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: `${shop.name} 제주 맛집 후기`,
+        description: shop.story,
+        thumbnailUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        uploadDate: '2024-06-01',
+        embedUrl: `https://www.youtube.com/embed/${videoId}`,
+        contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+        isFamilyFriendly: true,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Jeju Gourmet AI Research Lab',
+        },
+      };
+    });
+
   return (
     <div
       className="stealth-best-10-font"
@@ -108,6 +129,9 @@ export default function StealthBest10Layout({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      {videoObjects.map((vo, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(vo) }} />
+      ))}
       <PretendardLoader />
       {children}
     </div>
