@@ -2,24 +2,24 @@ import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '제주도 맛집 베스트 10 | Jeju Gourmet AI Research Lab',
-  description: '제주도 맛집 베스트 10. 접속 시 순위가 랜덤으로 바뀌는 데이터 기반 제주 맛집 추천. Data-Driven Culinary Intelligence.',
+  title: '제주도 맛집 베스트 | Jeju Gourmet AI Research Lab',
+  description: '제주도 맛집 베스트. 접속 시 순위가 랜덤으로 바뀌는 실시간 큐레이션. Data-Driven Culinary Intelligence.',
   metadataBase: new URL(BASE_URL),
   alternates: {
     canonical: `${BASE_URL}/ko/stealth-best-10`,
   },
   openGraph: {
-    title: '제주도 맛집 베스트 10 | Jeju Gourmet AI Research Lab',
-    description: '제주도 맛집 베스트 10. 접속 시 순위가 랜덤으로 바뀌는 데이터 기반 제주 맛집 추천.',
+    title: '제주도 맛집 베스트 | Jeju Gourmet AI Research Lab',
+    description: '제주도 맛집 베스트. 접속 시 순위가 랜덤으로 바뀌는 실시간 큐레이션.',
     url: `${BASE_URL}/ko/stealth-best-10`,
     type: 'website',
     siteName: 'Jeju Gourmet AI Research Lab',
-    images: [{ url: `${BASE_URL}/images/stealth-best-10/1.avif`, width: 966, height: 645, alt: '제주도 맛집 베스트 10 - 연동대게회타운 대게회' }],
+    images: [{ url: `${BASE_URL}/images/stealth-best-10/1.avif`, width: 966, height: 645, alt: '제주도 맛집 베스트 - 연동대게회타운 대게회' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '제주도 맛집 베스트 10 | Jeju Gourmet AI Research Lab',
-    description: '제주도 맛집 베스트 10. 접속 시 순위가 랜덤으로 바뀌는 데이터 기반 제주 맛집 추천.',
+    title: '제주도 맛집 베스트 | Jeju Gourmet AI Research Lab',
+    description: '제주도 맛집 베스트. 접속 시 순위가 랜덤으로 바뀌는 실시간 큐레이션.',
     images: [`${BASE_URL}/images/stealth-best-10/1.avif`],
   },
 };
@@ -33,8 +33,8 @@ export default function StealthBest10Layout({
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     '@id': `${BASE_URL}/ko/stealth-best-10#webpage`,
-    name: '제주도 맛집 베스트 10',
-    description: '제주도 맛집 베스트 10. 접속 시 순위가 랜덤으로 바뀌는 데이터 기반 제주 맛집 추천. 네이버 플레이스, 구글 플레이스 연동.',
+    name: '제주도 맛집 베스트',
+    description: '제주도 맛집 베스트. 접속 시 순위가 랜덤으로 바뀌는 실시간 큐레이션. 네이버 플레이스, 구글 플레이스 연동.',
     url: `${BASE_URL}/ko/stealth-best-10`,
     inLanguage: 'ko',
     publisher: {
@@ -44,9 +44,9 @@ export default function StealthBest10Layout({
     },
     mainEntity: {
       '@type': 'ItemList',
-      name: '제주도 맛집 베스트 10',
-      description: '제주도 추천 맛집 10선. 대게, 흑돼지, 양갈비, 국수, 해산물 등.',
-      numberOfItems: 10,
+      name: '제주도 맛집 베스트',
+      description: '제주도 추천 맛집 7선. 대게, 흑돼지, 양갈비, 국수, 해산물 등.',
+      numberOfItems: 7,
       itemListElement: initialShops.map((shop, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -70,10 +70,10 @@ export default function StealthBest10Layout({
     mainEntity: [
       {
         '@type': 'Question',
-        name: '제주도 맛집 베스트 10은 어떻게 선정되나요?',
+        name: '제주도 맛집 베스트는 어떻게 선정되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '데이터 기반으로 제주도 인기 맛집 10곳을 선정했습니다. 네이버 플레이스, 구글 플레이스 리뷰와 평점을 참고합니다.',
+          text: '데이터 기반으로 제주도 인기 맛집 7곳을 선정했습니다. 네이버 플레이스, 구글 플레이스 리뷰와 평점을 참고합니다.',
         },
       },
       {
