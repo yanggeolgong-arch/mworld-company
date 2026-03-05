@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "compress:stealth-avif": "node scripts/compress-stealth-best-10-avif.mjs",
     "start": "next start",
     "lint": "eslint"
   },
@@ -25,6 +26,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@jsquash/avif": "^2.1.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

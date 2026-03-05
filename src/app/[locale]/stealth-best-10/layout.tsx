@@ -1,4 +1,3 @@
-import PretendardLoader from '@/components/PretendardLoader';
 import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from '@/data/stealth-best-10';
 import type { Metadata } from 'next';
 
@@ -121,18 +120,31 @@ export default function StealthBest10Layout({
     <div
       className="stealth-best-10-font"
       style={{
-        fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+        fontFamily: "'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
         letterSpacing: '-0.01em',
         lineHeight: 1.6,
       }}
     >
+      <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+.stealth-card-container{display:grid;gap:20px}
+.stealth-image-wrapper{width:100%;aspect-ratio:4/3;background:#f0f0f0;border-radius:12px;overflow:hidden}
+.stealth-card{contain:content}
+#stealth-best-10-header{contain:layout}
+`,
+        }}
+      />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       {videoObjects.map((vo, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(vo) }} />
       ))}
-      <PretendardLoader />
       {children}
     </div>
   );

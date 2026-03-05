@@ -4,7 +4,17 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
 import { initialShops, type Shop } from '@/data/stealth-best-10';
 
-/** 1~10 중 n개 랜덤 추출 (중복 없음) */
+/** Fisher-Yates 셔플 - DOMContentLoaded 시점과 동일하게 첫 렌더에서 즉시 실행 */
+function fisherYatesShuffle<T>(arr: T[]): T[] {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/** 1~10 중 n개 랜덤 추출 (Fisher-Yates) */
 function pickRandomRanks(n: number): number[] {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -15,16 +25,12 @@ function pickRandomRanks(n: number): number[] {
 }
 
 export default function JejuGourmetBest10() {
-  const [shops, setShops] = useState<Shop[]>([]);
+  const [shops] = useState<Shop[]>(() => fisherYatesShuffle([...initialShops]));
   const [expandedShop, setExpandedShop] = useState<{ shop: Shop; index: number } | null>(null);
   const [ytMuted, setYtMuted] = useState(true);
   const [ytLoaded, setYtLoaded] = useState(false);
   const hasPushedRef = useRef(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setShops([...initialShops].sort(() => Math.random() - 0.5));
-  }, []);
 
   /** 모바일 슬라이드 페이지: 1~3페이지=9개 고유, 4페이지부터=랜덤 3개 */
   const slidePages = useMemo(() => {
@@ -100,8 +106,8 @@ export default function JejuGourmetBest10() {
         aria-label="제주도 맛집 베스트 10 목록"
         style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
       >
-        {/* 헤더 - 페이지당 h1 하나, 시맨틱 제목 계층 준수 */}
-        <header className="text-center py-3 sm:py-4 lg:py-0.5 lg:mb-0 w-full flex-shrink-0">
+        {/* 헤더 - Critical CSS로 레이아웃 고정 */}
+        <header id="stealth-best-10-header" className="text-center py-3 sm:py-4 lg:py-0.5 lg:mb-0 w-full flex-shrink-0">
           <h1 className="text-2xl sm:text-3xl lg:text-lg font-bold text-gray-900 mb-1 lg:mb-0 tracking-tight">
             제주도 맛집 베스트 10
           </h1>
@@ -134,7 +140,7 @@ export default function JejuGourmetBest10() {
                       key={`${pageIdx}-${shop.id}`}
                       type="button"
                       onClick={() => handleDetail(shop, realIndex)}
-                      className="flex flex-col bg-[#fafaf5] rounded-2xl p-3 shadow-lg cursor-pointer active:scale-[0.98] transition-transform touch-manipulation select-none overflow-hidden text-left w-full min-h-[44px]"
+                      className="stealth-card flex flex-col bg-[#fafaf5] rounded-2xl p-3 shadow-lg cursor-pointer active:scale-[0.98] transition-transform touch-manipulation select-none overflow-hidden text-left w-full min-h-[44px]"
                       aria-label={`${shop.name}, ${rank}위, 자세히 보기`}
                     >
                       <span
@@ -147,13 +153,15 @@ export default function JejuGourmetBest10() {
                       >
                         {rank}
                       </span>
-                      <div className="relative flex-1 min-h-[72px] sm:min-h-[88px] rounded-xl overflow-hidden bg-gray-100 mt-2">
+                      <div className="stealth-image-wrapper relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mt-2">
                         <Image
                           src={shop.img}
                           alt={shop.imgAlt}
                           fill
                           sizes="(max-width: 640px) 33vw, 120px"
                           className="object-cover"
+                          loading={isLcp ? undefined : 'lazy'}
+                          decoding="async"
                           priority={isLcp}
                           fetchPriority={isLcp ? 'high' : undefined}
                         />
@@ -175,15 +183,16 @@ export default function JejuGourmetBest10() {
           {/* 하단: 나머지 7개 랜덤 배치 - content-visibility로 초기 렌더 비용 절감 */}
           <div className="flex-shrink-0 px-4 pt-4 pb-[max(2rem,env(safe-area-inset-bottom))]" >
             <p className="text-sm text-gray-600 mb-3">예시이며, 실제 데이터는 무작위로 변경됩니다.</p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-              {belowShopsWithRanks.map(({ shop, rank }) => {
+            <div className="stealth-card-container grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+              {belowShopsWithRanks.map(({ shop, rank }, belowIdx) => {
                 const realIndex = shops.findIndex((s) => s.id === shop.id);
+                const isAboveFold = belowIdx < 4;
                 return (
                   <button
                     key={shop.id}
                     type="button"
                     onClick={() => handleDetail(shop, realIndex)}
-                    className="bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform touch-manipulation select-none flex flex-col text-left w-full min-h-[44px]"
+                    className="stealth-card bg-[#fafaf5] rounded-2xl p-4 shadow-md cursor-pointer active:scale-[0.99] transition-transform touch-manipulation select-none flex flex-col text-left w-full min-h-[44px]"
                     aria-label={`${shop.name}, ${rank}위, 자세히 보기`}
                   >
                     <span className="text-2xl font-bold text-amber-600 block mb-1" aria-hidden>{rank}</span>
@@ -192,14 +201,17 @@ export default function JejuGourmetBest10() {
                       <span className="text-amber-600" aria-hidden>★</span> {shop.rating} · {shop.reviewCount.toLocaleString()}
                     </p>
                     <p className="text-[10px] text-gray-500 mt-0.5">출처: {shop.ratingSource}</p>
-                    <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mt-2">
+                    <div className="stealth-image-wrapper relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-gray-100 mt-2">
                       <Image
                         src={shop.img}
                         alt={shop.imgAlt}
                         fill
-                        sizes="50vw"
+                        sizes="(max-width: 640px) 50vw, 200px"
                         className="object-cover"
-                        loading="lazy"
+                        loading={isAboveFold ? undefined : 'lazy'}
+                        decoding="async"
+                        priority={isAboveFold}
+                        fetchPriority={isAboveFold ? 'high' : undefined}
                       />
                     </div>
                     <span className="inline-block mt-2 text-sm font-semibold text-orange-600 text-center w-full">자세히 보기</span>
@@ -220,7 +232,7 @@ export default function JejuGourmetBest10() {
                 tabIndex={0}
                 onClick={() => handleDetail(shop, index)}
                 onKeyDown={(e) => e.key === 'Enter' && handleDetail(shop, index)}
-                className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex flex-col text-center min-h-0 cursor-pointer active:scale-[0.99] transition-transform"
+                className="stealth-card bg-white rounded-xl p-4 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex flex-col text-center min-h-0 cursor-pointer active:scale-[0.99] transition-transform"
                 aria-label={`${shop.name}, ${index + 1}위, 자세히 보기`}
               >
                 <div className="flex flex-col items-center gap-0.5 mb-1 flex-shrink-0">
@@ -229,13 +241,17 @@ export default function JejuGourmetBest10() {
                   </span>
                   <h2 className="font-bold text-gray-900 truncate w-full text-3xl tracking-tight">{shop.name}</h2>
                 </div>
-                <div className="relative flex-1 min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer">
+                <div className="stealth-image-wrapper relative w-full aspect-[4/3] min-h-0 rounded-lg overflow-hidden bg-gray-100 cursor-pointer">
                   <Image
                     src={shop.img}
                     alt={shop.imgAlt}
                     fill
                     sizes="20vw"
                     className="object-contain"
+                    loading={index < 4 ? undefined : 'lazy'}
+                    decoding="async"
+                    priority={index < 4}
+                    fetchPriority={index < 4 ? 'high' : undefined}
                   />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-shrink-0 mt-1">
