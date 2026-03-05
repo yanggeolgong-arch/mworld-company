@@ -395,51 +395,39 @@ export default function JejuGourmetBest10() {
                     <p><span className="font-semibold text-gray-900">공항에서 차로:</span> 약 {expandedShop.shop.carMinutesFromAirport}분</p>
                     <p><span className="font-semibold text-gray-900">공항 버스:</span> {expandedShop.shop.busRoutesFromAirport}</p>
                   </div>
-                  {/* 제주도 지도 - 공항 → 목적지(맛집)만 표기 */}
+                  {/* 제주도 지도 - OSM iframe (위경도 기반 정확한 위치) */}
                   <div className="mb-4 rounded-xl overflow-hidden bg-[#f0f9ff] border border-gray-200 p-4">
                     <p className="text-sm font-semibold text-gray-800 mb-2">
                       공항에서 {expandedShop.shop.name} 위치
                     </p>
                     <div className="relative w-full aspect-[16/10] max-h-[260px] rounded-lg overflow-hidden bg-gray-100">
-                      <Image
-                        src="/images/jeju-map/jeju-osm.avif"
-                        alt={`제주국제공항에서 ${expandedShop.shop.name}까지 위치 - 제주도 지도`}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 400px"
-                        className="object-contain"
+                      <iframe
+                        title={`${expandedShop.shop.name} 위치 - 제주도 지도`}
+                        src={(() => {
+                          const AIRPORT_LAT = 33.507;
+                          const AIRPORT_LNG = 126.492;
+                          const lat = expandedShop.shop.lat;
+                          const lng = expandedShop.shop.lng;
+                          const pad = 0.08;
+                          const minLon = Math.min(AIRPORT_LNG, lng) - pad;
+                          const maxLon = Math.max(AIRPORT_LNG, lng) + pad;
+                          const minLat = Math.min(AIRPORT_LAT, lat) - pad;
+                          const maxLat = Math.max(AIRPORT_LAT, lat) + pad;
+                          const bbox = `${minLon},${minLat},${maxLon},${maxLat}`;
+                          return `https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(bbox)}&layer=mapnik&marker=${lat},${lng}`;
+                        })()}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        sandbox="allow-scripts"
                       />
-                      {/* 마커 오버레이 (0-100 좌표계 → % 위치) */}
-                      <div className="absolute inset-0 pointer-events-none">
-                        {/* ① 제주국제공항 - 서쪽 해안 육지 (연동 인근) */}
-                        <div
-                          className="absolute -translate-x-1/2 -translate-y-full"
-                          style={{ left: '26%', top: '24%' }}
-                        >
-                          <div className="flex flex-col items-center">
-                            <div className="w-6 h-6 rounded-full bg-red-600 border-2 border-white shadow-lg flex items-center justify-center">
-                              <span className="text-white text-xs font-bold">✈</span>
-                            </div>
-                            <span className="text-[10px] font-bold text-red-700 whitespace-nowrap mt-0.5">제주국제공항</span>
-                          </div>
-                        </div>
-                        {/* ② 목적지(맛집) */}
-                        <div
-                          className="absolute -translate-x-1/2 -translate-y-1/2"
-                          style={{ left: `${expandedShop.shop.mapX}%`, top: `${expandedShop.shop.mapY}%` }}
-                        >
-                          <div className="flex flex-col items-center">
-                            <div className="w-5 h-5 rounded-full bg-orange-500 border-2 border-white shadow-md" />
-                            <span className="text-[9px] font-semibold text-orange-700 whitespace-nowrap mt-0.5 max-w-[80px] truncate">{expandedShop.shop.name}</span>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs text-gray-600">
-                      <span><span className="inline-block w-2 h-2 rounded-full bg-red-600 mr-1 align-middle" />제주국제공항</span>
                       <span><span className="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1 align-middle" />{expandedShop.shop.name}</span>
                       <span className="text-gray-600">· 차로 약 {expandedShop.shop.carMinutesFromAirport}분</span>
                     </div>
-                    <p className="text-[10px] text-gray-600 mt-1">지도: © OpenStreetMap, Kelisi (CC BY-SA 4.0)</p>
+                    <p className="text-[10px] text-gray-600 mt-1">지도: © OpenStreetMap contributors</p>
                   </div>
                 </div>
               </div>
