@@ -28,27 +28,26 @@ export default function JejuGourmetBest10() {
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
         
-        /* 하단 2열 (모바일·태블릿·PC 동일) */
+        /* 하단 2열 - 가로 2개 배치 (min-width로 칼럼 유지) */
         .luxury-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 8px;
-          padding: 8px;
-          content-visibility: auto;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+          padding: 12px;
         }
 
-        /* 상단 3열 (모바일·태블릿·PC 동일) */
+        /* 상단 3열 - 가로 3개 배치 */
         .top-row {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          padding: 0 8px 8px;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+          padding: 0 12px 12px;
         }
 
-        /* Zero CLS: 가로세로 비율 미리 확보 (4:3 비율 근사치) */
+        /* Zero CLS: 4/3 비율 (원본 이미지 비율, 잘림 최소화) */
         .image-aspect {
           width: 100%;
-          aspect-ratio: 1 / 1.35;
+          aspect-ratio: 4 / 3;
           background: #eef0f2;
           border-radius: 12px;
           overflow: hidden;
@@ -60,7 +59,7 @@ export default function JejuGourmetBest10() {
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-          contain: layout;
+          min-width: 0;
         }
 
         .rank-badge {
@@ -88,9 +87,9 @@ export default function JejuGourmetBest10() {
         <p className="text-[12px] text-gray-400 mt-1">공항에서 바로 떠나는 실시간 큐레이션</p>
       </header>
 
-      {/* 스크롤 영역 - body overflow:hidden 대응, PC 중앙 정렬 */}
-      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain flex justify-center" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
-        <div className="w-full max-w-4xl min-w-0 px-4 sm:px-6 lg:px-8">
+      {/* 스크롤 영역 - body overflow:hidden 대응, 하단까지 스크롤 보장 */}
+      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain flex justify-center items-start" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
+        <div className="w-full max-w-4xl min-w-0 shrink-0 px-4 sm:px-6 lg:px-8">
         {/* 상단 TOP 1, 2, 3 (3열 배치) */}
         <div className="top-row">
           {shops.slice(0, 3).map((shop, index) => (
