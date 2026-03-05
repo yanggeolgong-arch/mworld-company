@@ -232,20 +232,22 @@ export default function JejuGourmetBest10() {
               <div className="pt-4 border-t border-gray-100">
                 <div className="flex gap-2">
                   <a
-                    href={selectedShop.naverPlaceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-[#03cf5d] text-white py-3.5 rounded-xl font-bold text-center text-[13px]"
-                  >
-                    네이버 플레이스
-                  </a>
-                  <a
                     href={selectedShop.googlePlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-white border border-gray-200 py-3.5 rounded-xl font-bold text-center text-[13px]"
+                    className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-gray-200 py-3.5 rounded-xl font-bold text-center text-[13px]"
                   >
-                    구글 지도
+                    <span className="flex items-center justify-center w-5 h-5 rounded bg-[#4285f4] text-white text-[11px] font-black">G</span>
+                    구글 플레이스
+                  </a>
+                  <a
+                    href={selectedShop.naverPlaceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 bg-[#03cf5d] text-white py-3.5 rounded-xl font-bold text-center text-[13px]"
+                  >
+                    <span className="flex items-center justify-center w-5 h-5 rounded border-2 border-white/80 text-white text-[11px] font-black">N</span>
+                    네이버 플레이스
                   </a>
                 </div>
               </div>
