@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideChevronRight } from 'lucide-react';
+import { LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight } from 'lucide-react';
 import { initialShops, getYoutubeVideoId, type Shop } from '@/data/stealth-best-10';
 
 /**
@@ -34,6 +34,7 @@ export default function JejuGourmetBest10() {
           grid-template-columns: repeat(2, 1fr);
           gap: 8px;
           padding: 8px;
+          content-visibility: auto;
         }
 
         /* 상단 3열 (모바일·태블릿·PC 동일) */
@@ -44,10 +45,10 @@ export default function JejuGourmetBest10() {
           padding: 0 8px 8px;
         }
 
-        /* Zero CLS: 이미지 4/3 비율 (원본 비율 유지, 잘림 최소화) */
+        /* Zero CLS: 가로세로 비율 미리 확보 (4:3 비율 근사치) */
         .image-aspect {
           width: 100%;
-          aspect-ratio: 4 / 3;
+          aspect-ratio: 1 / 1.35;
           background: #eef0f2;
           border-radius: 12px;
           overflow: hidden;
@@ -59,6 +60,7 @@ export default function JejuGourmetBest10() {
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          contain: layout;
         }
 
         .rank-badge {
@@ -73,19 +75,17 @@ export default function JejuGourmetBest10() {
           z-index: 10;
         }
 
-        .modal-enter { animation: modalIn 0.25s cubic-bezier(0, 0, 0.2, 1); }
-        @keyframes modalIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-enter { animation: modalIn 0.2s cubic-bezier(0, 0, 0.2, 1); }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .text-title { font-size: 15px; font-weight: 700; }
-        .text-sub { font-size: 11px; color: #94a3b8; }
+        .text-title { font-size: 15px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
+        .text-meta { font-size: 11px; color: #94a3b8; }
       `}</style>
 
-      {/* Header - 고정 */}
+      {/* Header */}
       <header className="flex-shrink-0 bg-white pt-[max(2.5rem,env(safe-area-inset-top))] pb-6 text-center">
-        <h1 className="text-2xl font-black text-[#1a1c1e] tracking-tight">제주도 맛집 베스트 10</h1>
-        <div className="inline-block mt-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold">
-          <LucideStar size={10} className="inline mr-1 fill-blue-600" /> 실시간 AI 큐레이션 중
-        </div>
+        <h1 className="text-2xl font-black text-[#1a1c1e] tracking-tighter">제주도 맛집 베스트</h1>
+        <p className="text-[12px] text-gray-400 mt-1">공항에서 바로 떠나는 실시간 큐레이션</p>
       </header>
 
       {/* 스크롤 영역 - body overflow:hidden 대응, PC 중앙 정렬 */}
@@ -113,11 +113,11 @@ export default function JejuGourmetBest10() {
               </div>
               <div className="p-2.5">
                 <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center text-[11px] mt-0.5">
+                <div className="flex items-center text-meta mt-1">
                   <LucideStar size={10} className="text-orange-400 fill-orange-400 mr-1" />
-                  <span className="font-bold">{shop.rating}</span>
-                  <span className="text-gray-300 mx-1">·</span>
-                  <span className="text-gray-400">자세히 보기</span>
+                  <span className="font-bold text-gray-700">{shop.rating}</span>
+                  <span className="mx-1">·</span>
+                  <span>상세보기</span>
                 </div>
               </div>
             </article>
@@ -153,7 +153,7 @@ export default function JejuGourmetBest10() {
                   <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
                 </div>
                 <div className="text-[#ff6b00] text-[11px] font-black mt-3 flex items-center">
-                  영상을 확인하세요 <LucideChevronRight size={10} className="ml-1" />
+                  자세히 보기 <LucideChevronRight size={10} className="ml-1" />
                 </div>
               </div>
             </article>
@@ -162,7 +162,6 @@ export default function JejuGourmetBest10() {
 
         <footer className="py-12 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-[11px] text-gray-300">
           <p>© 2026 JEJU GOURMET AI RESEARCH INSTITUTE</p>
-          <p className="mt-1">모든 데이터는 실시간으로 최적화되어 제공됩니다.</p>
         </footer>
         </div>
       </main>
@@ -225,6 +224,10 @@ export default function JejuGourmetBest10() {
               <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                 <LucideCar className="text-blue-500" size={16} />
                 <p><strong>주차:</strong> {selectedShop.parking}</p>
+              </div>
+              <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
+                <LucideBus className="text-blue-500" size={16} />
+                <p><strong>공항 버스 노선:</strong> {selectedShop.busRoutesFromAirport}</p>
               </div>
 
               <div className="pt-4 border-t border-gray-100">
