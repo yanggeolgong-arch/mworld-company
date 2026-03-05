@@ -22,33 +22,41 @@ export default function JejuGourmetBest10() {
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-[#1a1c1e] font-sans overflow-x-hidden">
+    <div className="h-[100dvh] flex flex-col bg-[#f8f9fa] text-[#1a1c1e] font-sans overflow-hidden">
       {/* Critical CSS 인라인화 (성능 극대화) */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
         
-        /* 럭셔리 그리드: 1번 화면의 3열 + 2열 레이아웃 */
+        /* 럭셔리 그리드: 반응형 2열 (모바일 1열) */
         .luxury-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 8px;
-          padding: 8px;
-          content-visibility: auto;
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 8px 12px;
+        }
+        @media (min-width: 640px) {
+          .luxury-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 8px 12px; }
         }
 
+        /* 상단 3열: 모바일 1열, 태블릿 2열, PC 3열 */
         .top-row {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          padding: 0 8px;
-          margin-bottom: 8px;
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 0 12px 8px;
+        }
+        @media (min-width: 640px) {
+          .top-row { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .top-row { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Zero CLS: 가로세로 비율 미리 확보 */
+        /* Zero CLS: 이미지 4/3 비율 (원본 비율 유지, 잘림 최소화) */
         .image-aspect {
           width: 100%;
-          aspect-ratio: 1 / 1.35;
+          aspect-ratio: 4 / 3;
           background: #eef0f2;
           border-radius: 12px;
           overflow: hidden;
@@ -60,7 +68,6 @@ export default function JejuGourmetBest10() {
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-          contain: layout;
         }
 
         .rank-badge {
@@ -82,15 +89,17 @@ export default function JejuGourmetBest10() {
         .text-sub { font-size: 11px; color: #94a3b8; }
       `}</style>
 
-      {/* Header */}
-      <header className="bg-white pt-10 pb-6 text-center">
+      {/* Header - 고정 */}
+      <header className="flex-shrink-0 bg-white pt-[max(2.5rem,env(safe-area-inset-top))] pb-6 text-center">
         <h1 className="text-2xl font-black text-[#1a1c1e] tracking-tight">제주도 맛집 베스트 10</h1>
         <div className="inline-block mt-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold">
           <LucideStar size={10} className="inline mr-1 fill-blue-600" /> 실시간 AI 큐레이션 중
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto">
+      {/* 스크롤 영역 - body overflow:hidden 대응 */}
+      <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
+        <div className="max-w-4xl mx-auto">
         {/* 상단 TOP 1, 2, 3 (3열 배치) */}
         <div className="top-row">
           {shops.slice(0, 3).map((shop, index) => (
@@ -160,10 +169,11 @@ export default function JejuGourmetBest10() {
           ))}
         </div>
 
-        <footer className="py-12 px-6 text-center text-[11px] text-gray-300">
+        <footer className="py-12 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-[11px] text-gray-300">
           <p>© 2026 JEJU GOURMET AI RESEARCH INSTITUTE</p>
           <p className="mt-1">모든 데이터는 실시간으로 최적화되어 제공됩니다.</p>
         </footer>
+        </div>
       </main>
 
       {/* 킬러 모달 (유튜브 원클릭 자동 재생) */}
