@@ -23,6 +23,10 @@ alwaysApply: true
 ## 2. Technical Requirements
 - **Performance**: Maintain 98+ Lighthouse score.
 - **Image**: AVIF/WebP optimization, Lazy Loading where appropriate.
+- **이미지 파일명 규칙 (영구)**:
+  - `[지역]-[동네]-[업체명]-[대표메뉴].avif`
+  - 예: `jeju-yeondong-yeondongdaegyehoetown-king-crab.avif`
+  - AVIF 변환 및 신규 이미지 추가 시 반드시 적용.
 - **Structure**: Schema markup, technical SEO.
 
 ## 3. 1번 틀 규칙 (카드·모달 레이아웃)
