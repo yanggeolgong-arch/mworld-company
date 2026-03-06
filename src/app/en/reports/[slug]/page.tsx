@@ -30,9 +30,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const report = REPORTS[slug];
   if (!report) return {};
+  const BASE_URL = 'https://aikoreadatalab.com';
   return {
     title: `${report.title} | Jeju Gourmet AI Research Lab`,
     description: `Intelligence Report: ${report.title}. ${report.subtext}`,
+    alternates: { canonical: `${BASE_URL}/en/reports/${slug}` },
   };
 }
 

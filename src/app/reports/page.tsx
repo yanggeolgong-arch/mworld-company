@@ -6,6 +6,7 @@ export const dynamic = 'force-static';
 export const metadata = {
   title: 'Stealth Reports | Jeju Gourmet AI Research Lab',
   description: 'Data-Driven Culinary Intelligence. Access research data.',
+  alternates: { canonical: 'https://aikoreadatalab.com/reports' },
 };
 
 export default function ReportsIndexPage() {
