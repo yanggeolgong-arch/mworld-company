@@ -349,8 +349,31 @@ export default function JejuGourmetBest10() {
           </ul>
         </section>
 
-        <footer className="py-12 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-[11px] text-gray-300">
-          <p>© 2026 AI KOREA DATA LAB</p>
+        <footer className="py-12 bg-white border-t border-slate-100 px-6 mt-20 pb-[max(2rem,env(safe-area-inset-bottom))]">
+          <div className="max-w-5xl mx-auto text-[11px] text-slate-400 leading-relaxed font-medium">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-black text-slate-800 uppercase tracking-tighter">
+              <a href="#privacy" className="underline decoration-blue-500 decoration-2 underline-offset-4">개인정보처리방침</a>
+              <a href="#terms">이용약관</a>
+              <a href="#about">연구소 소개</a>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-12">
+              <div className="space-y-1">
+                <p>상호명: 공양걸AI미식데이터연구소 | 대표자: 공양걸</p>
+                <p>사업자등록번호: 603-20-65775</p>
+                <p>소재지: 제주특별자치도 제주시 삼동2길 10 돌담빌 2동 201호</p>
+              </div>
+              <div className="space-y-1">
+                <p>이메일: yanggeolgong@gmail.com</p>
+                <p>연락처: 010-4074-9343</p>
+                <p>개인정보보호책임자: 공양걸</p>
+              </div>
+            </div>
+
+            <p className="mt-8 opacity-40 uppercase tracking-[0.2em] font-black">
+              © 2026 AI KOREA DATA LAB PERFORMANCE ENGINE. ALL RIGHTS RESERVED.
+            </p>
+          </div>
         </footer>
         </div>
       </main>

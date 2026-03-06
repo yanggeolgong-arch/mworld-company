@@ -1,12 +1,17 @@
 ---
-description: Jeju Gourmet AI Research Lab - Data-Driven Culinary Intelligence
+description: AI KOREA DATA LAB - 프로토콜 및 배포
 alwaysApply: true
 ---
 
-# Jeju Gourmet AI Research Lab Protocol
+# AI KOREA DATA LAB Protocol
+
+## 0. URL · 지역 확장 (전국 확장 시 필수)
+→ `.cursor/rules/url-region-expansion.mdc` 참조
+- `aikoreadatalab.com/{region}/{path}` (지역명 영어)
+- 다국어: `-ko`, `-ja`, `-en` **URL 맨 마지막에만**, 중간에 넣지 말 것
 
 ## 1. Brand Identity
-- **ID**: Jeju Gourmet AI Research Lab only. No previous branding.
+- **ID**: AI KOREA DATA LAB
 - **Tagline**: Data-Driven Culinary Intelligence.
 - **SEO**: English as master language with KO, JA, ZH localization.
 

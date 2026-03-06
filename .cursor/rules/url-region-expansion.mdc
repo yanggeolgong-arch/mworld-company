@@ -1,0 +1,52 @@
+---
+description: 전국 확장 URL 구조 및 다국어 규칙 (영구 준수)
+alwaysApply: true
+---
+
+# AI KOREA DATA LAB - URL · 지역 확장 규칙
+
+## 1. 기본 URL 구조
+
+```
+https://www.aikoreadatalab.com/{region}/{path}
+```
+
+- **지역(region)**: 반드시 **영어**로 표기
+- **경로(path)**: 기능별 경로 (예: `best`, `cafe` 등)
+
+### 지역별 예시
+
+| 지역 | URL |
+|------|-----|
+| 제주 | `aikoreadatalab.com/jeju/best` |
+| 서울 | `aikoreadatalab.com/seoul/...` (서울 → seoul) |
+| 부산 | `aikoreadatalab.com/busan/...` |
+| 인천 | `aikoreadatalab.com/incheon/...` |
+| 대구 | `aikoreadatalab.com/daegu/...` |
+| 광주 | `aikoreadatalab.com/gwangju/...` |
+| 대전 | `aikoreadatalab.com/daejeon/...` |
+| 울산 | `aikoreadatalab.com/ulsan/...` |
+
+## 2. 다국어 번역 규칙 (절대 위반 금지)
+
+- **언어 코드는 반드시 URL 마지막에만** 배치
+- **중간에 넣지 말 것**
+
+### ✅ 올바른 예
+
+- `aikoreadatalab.com/jeju/best-ko`
+- `aikoreadatalab.com/jeju/best-ja`
+- `aikoreadatalab.com/jeju/best-en`
+- `aikoreadatalab.com/seoul/cafe-en`
+
+### ❌ 잘못된 예
+
+- `aikoreadatalab.com/ko/jeju/best` (중간에 언어)
+- `aikoreadatalab.com/jeju-ko/best` (지역과 언어 혼재)
+- `aikoreadatalab.com/en/seoul/...` (언어가 앞에 옴)
+
+## 3. 라우팅 구현 참고
+
+- `app/{region}/best/page.tsx` 형태로 지역별 라우트 구성
+- 다국어 시: `?lang=ko` 또는 path 끝 `-ko`, `-ja`, `-en` 방식 선택 후 일관 적용
+- `[locale]` 등 locale 세그먼트는 URL **앞이나 중간**에 두지 말 것
