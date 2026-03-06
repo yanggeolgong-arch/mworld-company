@@ -22,6 +22,33 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
   return result;
 }
 
+/** 1번 틀 규칙: 3+2+2+2+1 반복 (1,2,3 / 4,5 / 6,7 / 8,9 / 10단일) */
+type LayoutRow = { type: 'triple' | 'double' | 'single'; shops: Shop[]; startIndex: number };
+function buildLayoutRows(shops: Shop[]): LayoutRow[] {
+  const CYCLE = [3, 2, 2, 2, 1]; // 3-col, 2-col, 2-col, 2-col, 1-col
+  const rows: LayoutRow[] = [];
+  let i = 0;
+  let startIndex = 0;
+  while (i < shops.length) {
+    const cyclePos = (i % 10); // 0-9
+    let count: number;
+    if (cyclePos < 3) count = 3;
+    else if (cyclePos < 5) count = 2;
+    else if (cyclePos < 7) count = 2;
+    else if (cyclePos < 9) count = 2;
+    else count = 1;
+
+    const slice = shops.slice(i, i + count);
+    if (slice.length === 0) break;
+
+    const type: LayoutRow['type'] = count === 3 ? 'triple' : count === 1 ? 'single' : 'double';
+    rows.push({ type, shops: slice, startIndex });
+    startIndex += slice.length;
+    i += slice.length;
+  }
+  return rows;
+}
+
 export default function JejuGourmetBest10() {
   const [shops] = useState<Shop[]>(() => fisherYatesShuffle([...initialShops]));
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
@@ -44,12 +71,6 @@ export default function JejuGourmetBest10() {
     trackInteraction(shop.id, 'youtube');
   };
 
-  const handleOpenShare = (e: React.MouseEvent, shop: Shop) => {
-    e.stopPropagation();
-    setOpenWithShareExpanded(true);
-    setSelectedShop(shop);
-  };
-
   return (
     <div className="h-[100dvh] flex flex-col bg-[#f8f9fa] text-[#1a1c1e] font-sans overflow-hidden">
       {/* Critical CSS 인라인화 (성능 극대화) */}
@@ -57,20 +78,29 @@ export default function JejuGourmetBest10() {
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
         
-        /* 하단 2열 - 가로 2개 배치 (min-width로 칼럼 유지) */
-        .luxury-grid {
+        /* 1번 틀: 2열 그리드 */
+        .layout-row-double {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
           gap: 12px;
-          padding: 12px;
+          padding: 0 12px 12px;
         }
 
-        /* 상단 3열 - 가로 3개 배치 */
-        .top-row {
+        /* 1번 틀: 3열 그리드 */
+        .layout-row-triple {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 12px;
           padding: 0 12px 12px;
+        }
+
+        /* 1번 틀: 1열 단일 큰화면 */
+        .layout-row-single {
+          padding: 0 12px 12px;
+        }
+
+        .image-aspect-single {
+          aspect-ratio: 16 / 9;
         }
 
         /* Zero CLS: 4/3 비율 (원본 이미지 비율, 잘림 최소화) */
@@ -136,107 +166,82 @@ export default function JejuGourmetBest10() {
       {/* 스크롤 영역 - body overflow:hidden 대응, 하단까지 스크롤 보장 */}
       <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain flex justify-center items-start" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
         <div className="w-full max-w-4xl min-w-0 shrink-0 px-4 sm:px-6 lg:px-8">
-        {/* 상단 TOP 1, 2, 3 (3열 배치) */}
-        <div className="top-row">
-          {shops.slice(0, 3).map((shop, index) => (
-            <article
-              key={shop.id}
-              className="item-card cursor-pointer active:scale-95 transition-transform"
-              onClick={() => handleOpenDetail(shop)}
-            >
-              <div className="image-aspect relative">
-                <div className="rank-badge">{index + 1}</div>
-                <img
-                  src={shop.img}
-                  alt={shop.imgAlt}
-                  width={300}
-                  height={405}
-                  loading="eager"
-                  fetchPriority="high"
-                  className="w-full h-full object-cover"
-                />
-                {showAdminStats && (
-                  <div className="stat-overlay">
-                    <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
+        {/* 1번 틀: 3+2+2+2+1 반복 레이아웃 */}
+        {buildLayoutRows(shops).map((row) => (
+          <div
+            key={row.startIndex}
+            className={
+              row.type === 'triple' ? 'layout-row-triple' :
+              row.type === 'double' ? 'layout-row-double' :
+              'layout-row-single'
+            }
+          >
+            {row.shops.map((shop, idx) => {
+              const rank = row.startIndex + idx + 1;
+              const isSingle = row.type === 'single';
+              const isTopThree = rank <= 3;
+              return (
+                <article
+                  key={shop.id}
+                  className="item-card cursor-pointer active:scale-95 transition-transform"
+                  onClick={() => handleOpenDetail(shop)}
+                >
+                  <div className={`image-aspect relative ${isSingle ? 'image-aspect-single' : ''}`}>
+                    <div
+                      className="rank-badge"
+                      style={isTopThree ? undefined : { background: '#64748b' }}
+                    >
+                      {rank}
+                    </div>
+                    <img
+                      src={shop.img}
+                      alt={shop.imgAlt}
+                      width={isSingle ? 800 : 400}
+                      height={isSingle ? 450 : 540}
+                      loading={rank <= 3 ? 'eager' : 'lazy'}
+                      fetchPriority={rank <= 3 ? 'high' : undefined}
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                    {showAdminStats && (
+                      <div className="stat-overlay">
+                        <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <div className="p-2.5">
-                <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center justify-between mt-1">
-                  <div className="flex items-center text-meta">
-                    <LucideStar size={10} className="text-orange-400 fill-orange-400 mr-1" />
-                    <span className="font-bold text-gray-700">{shop.rating}</span>
-                    <span className="mx-1">·</span>
-                    <span>상세보기</span>
+                  <div className={isSingle ? 'p-4' : 'p-2.5'}>
+                    <h3 className={`text-title truncate ${isSingle ? 'text-lg' : ''}`}>{shop.name}</h3>
+                    <div className={`flex items-center ${isSingle ? 'text-[14px]' : 'text-meta'} mt-1`}>
+                      <LucideStar size={isSingle ? 14 : 10} className="text-orange-400 fill-orange-400 mr-1" />
+                      <span className="font-bold text-gray-700">{shop.rating}</span>
+                      {isTopThree ? (
+                        <>
+                          <span className="mx-1">·</span>
+                          <span>상세보기</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="text-gray-300 mx-1.5">|</span>
+                          <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
+                        </>
+                      )}
+                    </div>
+                    {showAdminStats && !isTopThree && (
+                      <div className="mt-2 text-[10px] font-bold text-blue-600 flex items-center gap-1">
+                        <LucideYoutube size={10} /> {stats[shop.id]?.youtube ?? 0} PLAYS TRACKED
+                      </div>
+                    )}
+                    {!isTopThree && (
+                      <div className="text-[#ff6b00] text-[11px] font-black mt-3 flex items-center">
+                        자세히 보기 <LucideChevronRight size={10} className="ml-1" />
+                      </div>
+                    )}
                   </div>
-                  <button
-                    onClick={(e) => handleOpenShare(e, shop)}
-                    className="flex items-center gap-1 px-2 py-1 rounded-lg bg-[#ff6b00]/10 text-[#ff6b00] hover:bg-[#ff6b00]/20 font-bold text-[11px] transition-colors"
-                  >
-                    <LucideShare2 size={12} />
-                    공유하기
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* 하위 리스트 (2열 배치 - 럭셔리 그리드) */}
-        <div className="luxury-grid">
-          {shops.slice(3).map((shop, index) => (
-            <article
-              key={shop.id}
-              className="item-card cursor-pointer active:scale-95 transition-transform"
-              onClick={() => handleOpenDetail(shop)}
-            >
-              <div className="image-aspect relative">
-                <div className="rank-badge" style={{ background: '#64748b' }}>{index + 4}</div>
-                <img
-                  src={shop.img}
-                  alt={shop.imgAlt}
-                  width={400}
-                  height={540}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
-                />
-                {showAdminStats && (
-                  <div className="stat-overlay">
-                    <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
-                  </div>
-                )}
-              </div>
-              <div className="p-3">
-                <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center text-[12px] mt-0.5">
-                  <LucideStar size={12} className="text-orange-400 fill-orange-400 mr-1" />
-                  <span className="font-bold text-gray-700">{shop.rating}</span>
-                  <span className="text-gray-300 mx-1.5">|</span>
-                  <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
-                </div>
-                {showAdminStats && (
-                  <div className="mt-2 text-[10px] font-bold text-blue-600 flex items-center gap-1">
-                    <LucideYoutube size={10} /> {stats[shop.id]?.youtube ?? 0} PLAYS TRACKED
-                  </div>
-                )}
-                <div className="flex items-center gap-3 mt-3">
-                  <div className="text-[#ff6b00] text-[11px] font-black flex items-center">
-                    자세히 보기 <LucideChevronRight size={10} className="ml-1" />
-                  </div>
-                  <button
-                    onClick={(e) => handleOpenShare(e, shop)}
-                    className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#ff6b00] text-white hover:bg-[#e55d00] font-black text-[11px] transition-colors shadow-sm"
-                  >
-                    <LucideShare2 size={12} />
-                    공유하기
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                </article>
+              );
+            })}
+          </div>
+        ))}
 
         <footer className="py-12 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-[11px] text-gray-300">
           <p>© 2026 JEJU GOURMET AI RESEARCH INSTITUTE</p>
@@ -281,16 +286,9 @@ export default function JejuGourmetBest10() {
               </button>
             </div>
 
-            {/* SNS 공유 패널 (11개 아이콘) - 공유하기로 열었을 때 또는 토글 시 표시 */}
-            {openWithShareExpanded && (
-              <div className="px-4 pt-3 pb-4 border-b bg-gray-50/50">
-                <SnsShareButtons shopName={selectedShop.name} expanded={true} />
-              </div>
-            )}
-
-            {/* 유튜브 영역 (클릭 즉시 로드 및 자동 재생) */}
+            {/* 유튜브 영역 (헤더 바로 아래, 상단까지 확장) */}
             {getYoutubeVideoId(selectedShop.youtubeUrl) && (
-              <div className="w-full aspect-video bg-black relative">
+              <div className="w-full min-h-[50vh] aspect-video bg-black relative">
                 {showAdminStats && (
                   <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20 z-10">
                     <LucideYoutube size={12} fill="white" /> LIVE PLAYS: {stats[selectedShop.id]?.youtube ?? 0}
@@ -305,6 +303,13 @@ export default function JejuGourmetBest10() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
+              </div>
+            )}
+
+            {/* SNS 공유 패널 (11개 아이콘) - 토글 시 표시 */}
+            {openWithShareExpanded && (
+              <div className="px-4 pt-3 pb-4 border-b bg-gray-50/50">
+                <SnsShareButtons shopName={selectedShop.name} expanded={true} />
               </div>
             )}
 

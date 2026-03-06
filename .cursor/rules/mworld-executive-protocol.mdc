@@ -15,11 +15,20 @@ alwaysApply: true
 - **Image**: AVIF/WebP optimization, Lazy Loading where appropriate.
 - **Structure**: Schema markup, technical SEO.
 
-## 3. Content Boundaries (절대 위반 금지)
+## 3. 1번 틀 규칙 (카드·모달 레이아웃)
+- **패턴**: 3+2+2+2+1 반복 (무제한)
+  - 1,2,3: 3열 그리드
+  - 4,5: 2열 그리드
+  - 6,7: 2열 그리드
+  - 8,9: 2열 그리드
+  - 10: 단일 큰화면 (16:9)
+- 11,12,13 / 14,15 / 16,17 / 18,19 / 20(단일) … 동일 규칙 반복.
+
+## 4. Content Boundaries (절대 위반 금지)
 - **busan-insight** 폴더와 **ai-jeju-blog** 폴더를 절대 혼용하지 말 것.
 - **해동용궁사(haedong-yonggungsa)** 관련 콘텐츠는 aijeju/ai-jeju-blog에서 절대 생성·추가하지 말 것.
 
-## 4. Deployment
+## 5. Deployment
 - Commit and push to `origin main` after completing changes.
 - **Vercel 배포용**: `git push vercel main` — yonggeongyun/vercel-ai-jeju-blog에 푸시 시 www.aijeju.co.kr 자동 배포.
 - Stage only modified/added files with meaningful commit messages.

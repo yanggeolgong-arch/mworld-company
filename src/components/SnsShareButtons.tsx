@@ -12,7 +12,7 @@ const SNS_LIST: {
   color: string;
   getHref: (url: string, text: string) => string | null;
 }[] = [
-  { id: 'kakao', name: '카카오톡', icon: 'kakaotalk', color: 'FEE500', getHref: (u) => `https://story.kakao.com/s/share?url=${encodeURIComponent(u)}` },
+  { id: 'kakao', name: '카카오톡', icon: 'kakaotalk', color: 'FEE500', getHref: () => null },
   { id: 'band', name: '네이버 밴드', icon: 'naver', color: '03C75A', getHref: (u) => `https://band.us/plugin/share?body=${encodeURIComponent(u)}` },
   { id: 'line', name: '라인', icon: 'line', color: '00B900', getHref: (u) => `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(u)}` },
   { id: 'instagram', name: '인스타그램', icon: 'instagram', color: 'E4405F', getHref: () => null },
@@ -47,8 +47,16 @@ export function SnsShareButtons({ shopName, expanded = true, onCopy }: Props) {
   const { url, text } = getShareData(shopName);
 
   const handleClick = async (item: (typeof SNS_LIST)[number]) => {
-    if (item.id === 'instagram') {
-      const ok = await copyToClipboard(`${text}\n${url}`);
+    if (item.id === 'instagram' || item.id === 'kakao') {
+      const shareText = `${text}\n${url}`;
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        try {
+          await navigator.share({ title: text, text: shareText, url });
+          onCopy?.();
+          return;
+        } catch {}
+      }
+      const ok = await copyToClipboard(shareText);
       if (ok) onCopy?.();
       return;
     }
