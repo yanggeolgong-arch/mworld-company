@@ -471,8 +471,14 @@ export default function JejuGourmetBest10() {
               <div className="px-4 pt-3 pb-4 border-b bg-slate-50/50 space-y-3">
                 <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">실제 방문자 리뷰</p>
                 {selectedShop.highlightReviews.map((r, i) => (
-                  <div key={i} className="border-l-2 border-amber-400 pl-3 py-1">
-                    <p className="text-[13px] text-slate-700 leading-snug line-clamp-2">{r.text}</p>
+                  <div key={i} className="border-l-2 border-amber-400 pl-3 py-1.5 bg-amber-50/80 rounded-r-lg">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="flex items-center gap-1" aria-hidden>
+                        <LucideStar size={18} className="fill-amber-500 text-amber-500" />
+                        <span className="text-[16px] font-black text-amber-600">{r.rating.toFixed(1)}</span>
+                      </span>
+                    </div>
+                    <p className="text-[15px] font-bold text-amber-950 leading-snug italic">&ldquo;{r.teaser}&rdquo;</p>
                     <a
                       href={r.url}
                       target="_blank"
