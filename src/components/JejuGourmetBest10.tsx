@@ -467,42 +467,46 @@ export default function JejuGourmetBest10() {
               <div className="px-4 pt-3 pb-4 border-b bg-gray-50/50">
                 <SnsShareButtons shopName={selectedShop.name} expanded={true} />
               </div>
-            ) : selectedShop.highlightReviews && selectedShop.highlightReviews.length > 0 ? (
-              <div className="px-4 pt-3 pb-4 border-b bg-slate-50/50 space-y-3">
-                <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">실제 방문자 리뷰</p>
-                {selectedShop.highlightReviews.map((r, i) => (
-                  <div key={i} className="border-l-2 border-amber-400 pl-3 py-1.5 bg-amber-50/80 rounded-r-lg">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="flex items-center gap-1" aria-hidden>
-                        <LucideStar size={18} className="fill-amber-500 text-amber-500" />
-                        <span className="text-[16px] font-black text-amber-600">{r.rating.toFixed(1)}</span>
-                      </span>
-                    </div>
-                    <p className="text-[15px] font-bold text-amber-950 leading-snug italic">&ldquo;{r.teaser}&rdquo;</p>
-                    <a
-                      href={r.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 mt-2 text-[12px] font-bold text-blue-600 hover:text-blue-700"
-                      onClick={() => {
-                        trackInteraction(selectedShop.id, 'google');
-                        fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'review_full', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
-                      }}
-                    >
-                      <span className="flex items-center justify-center w-4 h-4 rounded overflow-hidden flex-shrink-0" aria-hidden>
-                        <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
-                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                      </span>
-                      전문보기
-                    </a>
-                  </div>
-                ))}
+            ) : (
+              <div className="px-4 pt-3 pb-4 border-b bg-slate-50/50">
+                <div className="flex gap-2">
+                  <a
+                    href={selectedShop.googlePlaceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-gray-200 bg-white text-[12px] font-bold text-slate-700 hover:bg-gray-50"
+                    onClick={() => {
+                      trackInteraction(selectedShop.id, 'google');
+                      fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'google_review', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
+                    }}
+                  >
+                    <span className="flex items-center justify-center w-4 h-4 rounded overflow-hidden flex-shrink-0" aria-hidden>
+                      <svg viewBox="0 0 24 24" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                      </svg>
+                    </span>
+                    별점/후기 실제 방문자 리뷰 살펴보기
+                  </a>
+                  <a
+                    href={selectedShop.naverPlaceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-[#03cf5d] text-white text-[12px] font-bold hover:bg-[#02b851]"
+                    onClick={() => {
+                      trackInteraction(selectedShop.id, 'naver');
+                      fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'naver_map', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
+                    }}
+                  >
+                    <span className="flex items-center justify-center w-4 h-4 rounded border-2 border-white/80 text-white text-[10px] font-black">N</span>
+                    네이버 지도보기
+                    {isAdminMode && showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.naver ?? 0}</span>}
+                  </a>
+                </div>
               </div>
-            ) : null}
+            )}
 
             {/* 상세 정보 */}
             <div className="p-5 space-y-4 text-[14px] max-h-[42vh] overflow-y-auto">
@@ -535,23 +539,6 @@ export default function JejuGourmetBest10() {
               <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                 <LucideBus className="text-blue-500" size={16} />
                 <p><strong>공항 버스 노선:</strong> {selectedShop.busRoutesFromAirport}</p>
-              </div>
-
-              <div className="pt-4 border-t border-gray-100">
-                <a
-                  href={selectedShop.naverPlaceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => {
-                    trackInteraction(selectedShop.id, 'naver');
-                    fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'naver_map', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
-                  }}
-                  className="flex w-full items-center justify-center gap-1.5 bg-[#03cf5d] text-white py-3.5 rounded-xl font-bold text-center text-[13px]"
-                >
-                  <span className="flex items-center justify-center w-5 h-5 rounded border-2 border-white/80 text-white text-[11px] font-black">N</span>
-                  네이버 지도보기
-                  {isAdminMode && showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.naver ?? 0}</span>}
-                </a>
               </div>
             </div>
           </div>
