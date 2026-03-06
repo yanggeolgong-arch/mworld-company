@@ -383,7 +383,7 @@ export default function JejuGourmetBest10() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-12">
               <div className="space-y-1">
-                <p>상호명: 공양걸AI미식데이터연구소 (Gong Yang Geol AI Gourmet Data Lab)</p>
+                <p>상호명: 공양걸AI미식데이터연구소 (GYG AI Gourmet Data Lab)</p>
                 <p>대표자: 공양걸</p>
                 <p>사업자등록번호: 603-20-65775</p>
                 <p>소재지: 제주특별자치도 제주시 삼동2길 10 돌담빌 2동 201호</p>
@@ -492,6 +492,10 @@ export default function JejuGourmetBest10() {
               <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                 <LucideCar className="text-blue-500" size={16} />
                 <p><strong>주차:</strong> {selectedShop.parking}</p>
+              </div>
+              <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
+                <span className="text-[16px] leading-none" aria-hidden>🍽️</span>
+                <p><strong>대표 메뉴·가격:</strong> {selectedShop.menuPrice}</p>
               </div>
               <div className="grid grid-cols-[20px_1fr] gap-3 items-center">
                 <LucideBus className="text-blue-500" size={16} />

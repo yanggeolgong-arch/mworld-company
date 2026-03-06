@@ -97,7 +97,7 @@ export default function Home() {
               <a href="#about" className="underline underline-offset-2 hover:text-white">연구소 소개</a>
             </div>
             <p className="mt-1.5 text-center text-[9px] text-white/70">
-              공양걸AI미식데이터연구소 | 대표 공양걸 | 사업자등록번호 603-20-65775
+              공양걸AI미식데이터연구소 (GYG AI Gourmet Data Lab) | 대표 공양걸 | 사업자등록번호 603-20-65775
             </p>
           </div>
         </section>

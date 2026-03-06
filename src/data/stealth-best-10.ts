@@ -134,7 +134,7 @@ export function buildRestaurantSchema(shop: Shop) {
       name: `${shop.name} 맛집 후기`,
       description: shop.story,
       thumbnailUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-      uploadDate: '2024-01-01',
+      uploadDate: '2024-01-01T00:00:00+09:00',
       embedUrl: `https://www.youtube.com/embed/${videoId}`,
       contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
     };

@@ -1,4 +1,4 @@
-import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from '@/data/stealth-best-10';
+import { initialShops, buildRestaurantSchema, BASE_URL } from '@/data/stealth-best-10';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 
@@ -101,24 +101,6 @@ export default function JejuBestLayout({ children }: { children: React.ReactNode
     ],
   };
 
-  const videoObjects = initialShops
-    .filter((s) => getYoutubeVideoId(s.youtubeUrl))
-    .map((shop) => {
-      const videoId = getYoutubeVideoId(shop.youtubeUrl)!;
-      return {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        name: `${shop.name} 제주 맛집 후기`,
-        description: shop.story,
-        thumbnailUrl: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-        uploadDate: '2024-06-01',
-        embedUrl: `https://www.youtube.com/embed/${videoId}`,
-        contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
-        isFamilyFriendly: true,
-        publisher: { '@type': 'Organization', name: 'AI KOREA DATA LAB' },
-      };
-    });
-
   return (
     <div
       className={`stealth-best-10-font ${notoSansKR.className}`}
@@ -140,9 +122,6 @@ export default function JejuBestLayout({ children }: { children: React.ReactNode
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
-      {videoObjects.map((vo, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(vo) }} />
-      ))}
       {children}
     </div>
   );

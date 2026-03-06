@@ -59,7 +59,7 @@ export function GlobalFooter() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-12">
             <div className="space-y-1">
-              <p>상호명: 공양걸AI미식데이터연구소 (Gong Yang Geol AI Gourmet Data Lab)</p>
+              <p>상호명: 공양걸AI미식데이터연구소 (GYG AI Gourmet Data Lab)</p>
               <p>대표자: 공양걸</p>
               <p>사업자등록번호: 603-20-65775</p>
               <p>소재지: 제주특별자치도 제주시 삼동2길 10 돌담빌 2동 201호</p>
@@ -125,7 +125,7 @@ export function GlobalFooter() {
                   <p>관리적 보호: 수집된 데이터에 대한 접근 권한을 관리자(공양걸) 1인으로 엄격히 제한합니다.</p>
                   <p><strong>제7조 (개인정보 보호책임자 및 연락처)</strong></p>
                   <p>이용자의 개인정보 관련 문의 및 불만 처리를 위해 아래와 같이 보호책임자를 지정하고 있습니다.</p>
-                  <p>상호명: 공양걸AI미식데이터연구소</p>
+                  <p>상호명: 공양걸AI미식데이터연구소 (GYG AI Gourmet Data Lab)</p>
                   <p>성명: 공양걸 (대표자)</p>
                   <p>연락처: 010-4074-9343</p>
                   <p>이메일: yanggeolgong@gmail.com</p>
@@ -159,7 +159,7 @@ export function GlobalFooter() {
                   <p>연구소는 관련 법령을 위배하지 않는 범위 내에서 본 약관을 수시로 개정할 수 있습니다.</p>
                   <p>약관이 개정될 경우 사이트 하단을 통해 공지하며, 공지된 시점부터 효력이 발생합니다.</p>
                   <p><strong>[연구소 정보]</strong></p>
-                  <p>상호명: 공양걸AI미식데이터연구소</p>
+                  <p>상호명: 공양걸AI미식데이터연구소 (GYG AI Gourmet Data Lab)</p>
                   <p>대표자: 공양걸</p>
                   <p>사업자등록번호: 603-20-65775</p>
                   <p>이메일: yanggeolgong@gmail.com</p>
