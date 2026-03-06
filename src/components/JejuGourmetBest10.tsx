@@ -489,6 +489,7 @@ export default function JejuGourmetBest10() {
                       </svg>
                     </span>
                     별점/후기 실제 방문자 리뷰 살펴보기
+                    {isAdminMode && showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.google ?? 0}</span>}
                   </a>
                   <a
                     href={selectedShop.naverPlaceUrl}
