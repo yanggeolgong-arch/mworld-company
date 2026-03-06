@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { GlobalFooter } from '@/components/GlobalFooter';
 
 const BASE_URL = 'https://aikoreadatalab.com';
 const OG_IMAGE = `${BASE_URL}/images/jeju-ai-culinary-intelligence-center.jpg`;
@@ -59,7 +60,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://img.youtube.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-screen bg-white antialiased text-[#1a202c]">{children}</body>
+      <body className="min-h-screen bg-white antialiased text-[#1a202c]">
+        <div className="flex min-h-screen flex-col">
+          <div className="flex-1 flex-shrink-0">{children}</div>
+          <GlobalFooter />
+        </div>
+      </body>
     </html>
   );
 }
