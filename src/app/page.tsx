@@ -10,9 +10,10 @@ const HERO_ALT =
   'Jeju AI Culinary Intelligence Center - Global Data Dashboard';
 
 const SLOTS = [
-  { slug: 'gourmet', title: 'AI-Curated Jeju Gourmet Top 10', subtext: 'Real-time Sentiment & Density Analysis', href: '/en/reports/gourmet' },
-  { slug: 'cafe', title: 'AI-Curated Jeju Cafe Top 10', subtext: 'Viewpoint & Photo-Genic Index Data', href: '/en/reports/cafe' },
-  { slug: 'stay', title: 'AI-Curated Jeju Premium Stay Top 10', subtext: 'Thermal Stability & Privacy Tiering', href: '/en/reports/stay' },
+  { slug: 'jeju', title: 'Jeju Gourmet Best', subtext: 'AI-Curated Regional Gourmet Index', href: '/jeju/best' },
+  { slug: 'seoul', title: 'Seoul Gourmet Best', subtext: 'AI-Curated Regional Gourmet Index', href: '/seoul/best' },
+  { slug: 'busan', title: 'Busan Gourmet Best', subtext: 'AI-Curated Regional Gourmet Index', href: '/busan/best' },
+  { slug: 'japan', title: 'Japan Gourmet Best', subtext: 'AI-Curated Regional Gourmet Index', href: '/japan/best' },
 ] as const;
 
 export default function Home() {
@@ -47,7 +48,7 @@ export default function Home() {
         <section className="relative z-50 flex min-h-[65vh] flex-shrink-0 flex-col items-center justify-center px-4 py-4">
           <div className="flex flex-col items-center gap-3 text-center">
             <h1 className="text-2xl font-bold tracking-tight text-[#000000] sm:text-3xl md:text-4xl">
-              Jeju Gourmet AI Research Lab
+              AICOREADATALAB
             </h1>
             <p className="text-base font-medium text-[#000000] sm:text-lg">
               Data-Driven Culinary Intelligence
@@ -69,9 +70,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bottom 35% - 3 modules, locked to viewport bottom */}
+        {/* Bottom 35% - 4 modules, locked to viewport bottom */}
         <section className="relative z-50 flex min-h-[35vh] flex-shrink-0 flex-col items-center justify-center overflow-hidden px-4 py-2">
-          <div className="grid w-full max-w-4xl grid-cols-1 gap-3 md:grid-cols-3">
+          <div className="grid w-full max-w-4xl grid-cols-2 gap-3 md:grid-cols-4">
             {SLOTS.map((slot) => (
               <Link
                 key={slot.slug}
@@ -86,14 +87,8 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-2 text-center text-[0.65rem] text-gray-500">
-            Jeju Gourmet AI Research Lab · Data-Driven Culinary Intelligence
+            AICOREADATALAB · Data-Driven Culinary Intelligence
           </p>
-          <Link
-            href="/jeju/best"
-            className="mt-1 text-center text-[0.6rem] text-orange-600 hover:text-orange-700 block"
-          >
-            Stealth Best 10
-          </Link>
         </section>
       </div>
     </main>
