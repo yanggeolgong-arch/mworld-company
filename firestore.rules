@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // artifacts/{appId}/public/data/stats/shop_* - STATS LIVE 카운팅
+    // 인증된 사용자(익명 포함)가 read/write 가능
+    match /artifacts/{appId}/public/data/stats/{shopDoc} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

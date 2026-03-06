@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight,
   LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck, LucideShare2,
@@ -65,6 +65,27 @@ export default function JejuGourmetBest10() {
     return cleanup;
   }, []);
 
+  /** 카드가 뷰포트에 들어올 때마다 view 카운트 (어떤 경로든, 중복 포함) */
+  const cardRefs = useRef<Map<number, HTMLElement>>(new Map());
+  useEffect(() => {
+    const observers = new Map<number, IntersectionObserver>();
+    shops.forEach((shop) => {
+      const el = cardRefs.current.get(shop.id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) trackInteraction(shop.id, 'view');
+          }
+        },
+        { threshold: 0.2 }
+      );
+      obs.observe(el);
+      observers.set(shop.id, obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [shops]);
+
   const handleOpenDetail = (shop: Shop) => {
     setOpenWithShareExpanded(false);
     setSelectedShop(shop);
@@ -94,13 +115,14 @@ export default function JejuGourmetBest10() {
           padding: 0 12px 12px;
         }
 
-        /* 1번 틀: 1열 단일 큰화면 */
+        /* 1번 틀: 1열 단일 큰화면 - 전체 너비, 4/3 비율로 2열의 2배 크기 */
         .layout-row-single {
           padding: 0 12px 12px;
         }
 
         .image-aspect-single {
-          aspect-ratio: 16 / 9;
+          aspect-ratio: 4 / 3;
+          min-height: 220px;
         }
 
         /* Zero CLS: 4/3 비율 (원본 이미지 비율, 잘림 최소화) */
@@ -183,6 +205,7 @@ export default function JejuGourmetBest10() {
               return (
                 <article
                   key={shop.id}
+                  ref={(el) => { if (el) cardRefs.current.set(shop.id, el); }}
                   className="item-card cursor-pointer active:scale-95 transition-transform"
                   onClick={() => handleOpenDetail(shop)}
                 >
@@ -205,6 +228,7 @@ export default function JejuGourmetBest10() {
                     />
                     {showAdminStats && (
                       <div className="stat-overlay">
+                        <div className="stat-badge">👁 {stats[shop.id]?.view ?? 0}</div>
                         <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
                       </div>
                     )}
@@ -290,8 +314,9 @@ export default function JejuGourmetBest10() {
             {getYoutubeVideoId(selectedShop.youtubeUrl) && (
               <div className="w-full min-h-[50vh] aspect-video bg-black relative">
                 {showAdminStats && (
-                  <div className="absolute top-4 right-4 bg-blue-600/90 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20 z-10">
-                    <LucideYoutube size={12} fill="white" /> LIVE PLAYS: {stats[selectedShop.id]?.youtube ?? 0}
+                  <div className="absolute top-4 right-4 flex flex-col gap-1 z-10">
+                    <div className="bg-black/80 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20">👁 VIEW: {stats[selectedShop.id]?.view ?? 0}</div>
+                    <div className="bg-blue-600/90 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20"><LucideYoutube size={12} fill="white" /> PLAY: {stats[selectedShop.id]?.youtube ?? 0}</div>
                   </div>
                 )}
                 <iframe

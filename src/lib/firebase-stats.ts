@@ -26,11 +26,11 @@ export function isFirebaseEnabled(): boolean {
   return getConfig() !== null;
 }
 
-export type StatsState = Record<number, { youtube: number; naver: number; google: number }>;
+export type StatsState = Record<number, { view: number; youtube: number; naver: number; google: number }>;
 
 export function initFirebase(
   onReady: (uid: string) => void,
-  onStats: (shopId: number, data: { youtube: number; naver: number; google: number }) => void
+  onStats: (shopId: number, data: { view: number; youtube: number; naver: number; google: number }) => void
 ): () => void {
   const config = getConfig();
   if (!config) return () => {};
@@ -69,6 +69,7 @@ export function initFirebase(
         if (docSnap.exists()) {
           const d = docSnap.data();
           onStats(shopId, {
+            view: d?.view ?? 0,
             youtube: d?.youtube ?? 0,
             naver: d?.naver ?? 0,
             google: d?.google ?? 0,
@@ -87,7 +88,7 @@ export function initFirebase(
   }
 }
 
-export async function trackInteraction(shopId: number, type: 'youtube' | 'naver' | 'google'): Promise<void> {
+export async function trackInteraction(shopId: number, type: 'view' | 'youtube' | 'naver' | 'google'): Promise<void> {
   const config = getConfig();
   if (!config || !app) return;
 
@@ -99,7 +100,7 @@ export async function trackInteraction(shopId: number, type: 'youtube' | 'naver'
     try {
       const db = getFirestore(app!);
       const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'stats', `shop_${shopId}`);
-      await setDoc(docRef, { youtube: 0, naver: 0, google: 0, [type]: 1 }, { merge: true });
+      await setDoc(docRef, { view: 0, youtube: 0, naver: 0, google: 0, [type]: 1 }, { merge: true });
     } catch {
       // ignore
     }
