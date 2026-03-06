@@ -54,7 +54,11 @@ function buildLayoutRows(shops: Shop[]): LayoutRow[] {
 }
 
 export default function JejuGourmetBest10() {
-  const [shops] = useState<Shop[]>(() => fisherYatesShuffle([...initialShops]));
+  /** 서버/클라이언트 일치로 하이드레이션 에러 방지. 마운트 후 셔플 */
+  const [shops, setShops] = useState<Shop[]>(() => [...initialShops]);
+  useEffect(() => {
+    setShops(fisherYatesShuffle([...initialShops]));
+  }, []);
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
   const [openWithShareExpanded, setOpenWithShareExpanded] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
@@ -247,7 +251,7 @@ export default function JejuGourmetBest10() {
         @keyframes modalIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .text-title { font-size: 15px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px; }
-        .text-meta { font-size: 11px; color: #94a3b8; }
+        .text-meta { font-size: 11px; color: #64748b; }
         .stat-overlay { position: absolute; bottom: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px; pointer-events: none; }
         .stat-badge { background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: white; padding: 3px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.1); }
       `}</style>
@@ -272,12 +276,13 @@ export default function JejuGourmetBest10() {
       {/* Header */}
       <header className="flex-shrink-0 bg-white pt-[max(2.5rem,env(safe-area-inset-top))] pb-6 text-center">
         <h1 className="text-2xl font-black text-[#1a1c1e] tracking-tighter">제주도 맛집 베스트</h1>
-        <p className="text-[12px] text-gray-400 mt-1">공항에서 바로 떠나는 실시간 큐레이션</p>
+        <p className="text-[12px] text-gray-600 mt-1">공항에서 바로 떠나는 실시간 큐레이션</p>
       </header>
 
       {/* 스크롤 영역 - body overflow:hidden 대응, 하단까지 스크롤 보장 */}
       <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain flex justify-center items-start" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
         <div className="w-full max-w-4xl min-w-0 shrink-0 px-4 sm:px-6 lg:px-8">
+        <h2 className="sr-only">추천 맛집 목록</h2>
         {/* 1번 틀: 3+2+2+2+1 반복 레이아웃 */}
         {buildLayoutRows(shops).map((row) => (
           <div
@@ -332,12 +337,12 @@ export default function JejuGourmetBest10() {
                       {isTopThree ? (
                         <>
                           <span className="mx-1">·</span>
-                          <span>상세보기</span>
+                          <span className="text-gray-600">상세보기</span>
                         </>
                       ) : (
                         <>
                           <span className="text-gray-300 mx-1.5">|</span>
-                          <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
+                          <span className="text-gray-600">{shop.reviewCount.toLocaleString()} 리뷰</span>
                         </>
                       )}
                     </div>
@@ -433,8 +438,9 @@ export default function JejuGourmetBest10() {
               <button
                 onClick={closeModalWithHistory}
                 className="p-2 bg-gray-100 rounded-full ml-2 flex-shrink-0"
+                aria-label="닫기"
               >
-                <LucideX size={20} />
+                <LucideX size={20} aria-hidden />
               </button>
             </div>
 
