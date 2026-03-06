@@ -45,7 +45,7 @@ export function GlobalFooter() {
   return (
     <>
       <footer className="py-12 bg-white border-t border-slate-100 px-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
-        <div className="max-w-5xl mx-auto text-[11px] text-slate-400 leading-relaxed font-medium">
+        <div className="max-w-5xl mx-auto text-[11px] text-slate-600 leading-relaxed font-medium">
           <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-black text-slate-800 uppercase tracking-tighter">
             <button type="button" onClick={() => openModal('privacy')} className="underline decoration-blue-500 decoration-2 underline-offset-4 text-left">
               개인정보처리방침
@@ -70,7 +70,7 @@ export function GlobalFooter() {
               <p>개인정보보호책임자: 공양걸</p>
             </div>
           </div>
-          <p className="mt-8 opacity-40 uppercase tracking-[0.2em] font-black">
+          <p className="mt-8 text-slate-500 uppercase tracking-[0.2em] font-black">
             © 2026 AI KOREA DATA LAB PERFORMANCE ENGINE. ALL RIGHTS RESERVED.
           </p>
         </div>
@@ -92,8 +92,8 @@ export function GlobalFooter() {
                 {legalModal === 'terms' && '서비스 이용약관'}
                 {legalModal === 'about' && '연구소 소개'}
               </h3>
-              <button type="button" onClick={closeModalWithHistory} className="p-2 rounded-full hover:bg-slate-100">
-                <LucideX size={20} />
+              <button type="button" onClick={closeModalWithHistory} className="p-2 rounded-full hover:bg-slate-100" aria-label="닫기">
+                <LucideX size={20} aria-hidden />
               </button>
             </div>
             <div className="p-5 overflow-y-auto text-[12px] text-slate-600 leading-relaxed space-y-4 max-h-[70vh]">

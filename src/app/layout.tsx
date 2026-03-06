@@ -59,6 +59,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://img.youtube.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="preload" href="/images/stealth-best-10/yeondong-daegyehoetown-king-crab.avif" as="image" />
       </head>
       <body className="min-h-screen bg-white antialiased text-[#1a202c]">
         <div className="flex min-h-screen flex-col">
