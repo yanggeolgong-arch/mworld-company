@@ -33,7 +33,12 @@ alwaysApply: true
 - **busan-insight** 폴더와 **ai-jeju-blog** 폴더를 절대 혼용하지 말 것.
 - **해동용궁사(haedong-yonggungsa)** 관련 콘텐츠는 aijeju/ai-jeju-blog에서 절대 생성·추가하지 말 것.
 
-## 5. Deployment
+## 5. 뒤로가기 동작 (영구 준수)
+- **뒤로가기 버튼**: 모달·팝업이 열려 있을 때 뒤로가기를 누르면 모달만 닫고, 페이지 이탈 금지.
+- 모달 열릴 때 `history.pushState`, `popstate` 이벤트에서 모달 닫기 처리.
+- X 버튼·배경 클릭 시 `history.back()`으로 history 정리.
+
+## 6. Deployment
 - Commit and push to `origin main` after completing changes.
 - **Vercel 배포용**: `git push vercel main` — yonggeongyun/vercel-ai-jeju-blog에 푸시 시 www.aijeju.co.kr 자동 배포.
 - **Vercel 환경변수**: `ADMIN_SECRET` (어드민 접근용, 소스에 노출 금지)

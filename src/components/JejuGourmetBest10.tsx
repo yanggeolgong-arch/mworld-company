@@ -57,6 +57,30 @@ export default function JejuGourmetBest10() {
   const [stats, setStats] = useState<StatsState>({});
   const [showAdminStats, setShowAdminStats] = useState(false);
   const [isAdminMode, setIsAdminMode] = useState(false);
+  const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | 'about' | null>(null);
+
+  /** 뒤로가기 시 모달만 닫고 페이지 이탈 방지 */
+  useEffect(() => {
+    const handlePopState = () => {
+      setSelectedShop(null);
+      setLegalModal(null);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  /** 모달 열릴 때 history.pushState → 뒤로가기 시 popstate로 모달만 닫힘 (페이지 이탈 방지) */
+  useEffect(() => {
+    if (selectedShop || legalModal) {
+      window.history.pushState({ modal: true }, '', window.location.href);
+    }
+  }, [selectedShop, legalModal]);
+
+  const closeModalWithHistory = () => {
+    setSelectedShop(null);
+    setLegalModal(null);
+    if (typeof window !== 'undefined' && window.history.state?.modal) window.history.back();
+  };
 
   useEffect(() => {
     let done = false;
@@ -352,14 +376,14 @@ export default function JejuGourmetBest10() {
         <footer className="py-12 bg-white border-t border-slate-100 px-6 mt-20 pb-[max(2rem,env(safe-area-inset-bottom))]">
           <div className="max-w-5xl mx-auto text-[11px] text-slate-400 leading-relaxed font-medium">
             <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8 font-black text-slate-800 uppercase tracking-tighter">
-              <a href="#privacy" className="underline decoration-blue-500 decoration-2 underline-offset-4">개인정보처리방침</a>
-              <a href="#terms">이용약관</a>
-              <a href="#about">연구소 소개</a>
+              <button type="button" onClick={() => setLegalModal('privacy')} className="underline decoration-blue-500 decoration-2 underline-offset-4 text-left">개인정보처리방침</button>
+              <button type="button" onClick={() => setLegalModal('terms')} className="text-left">이용약관</button>
+              <button type="button" onClick={() => setLegalModal('about')} className="text-left">연구소 소개</button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-12">
               <div className="space-y-1">
-                <p>상호명: 공양걸AI미식데이터연구소</p>
+                <p>상호명: 공양걸AI미식데이터연구소 (Gong Yang Geol AI Gourmet Data Lab)</p>
                 <p>대표자: 공양걸</p>
                 <p>사업자등록번호: 603-20-65775</p>
                 <p>소재지: 제주특별자치도 제주시 삼동2길 10 돌담빌 2동 201호</p>
@@ -376,6 +400,56 @@ export default function JejuGourmetBest10() {
             </p>
           </div>
         </footer>
+
+        {/* 법적 필수 팝업: 개인정보처리방침·이용약관·연구소 소개 */}
+        {legalModal && (
+          <div
+            className="fixed inset-0 z-[1100] bg-black/60 flex items-center justify-center p-4"
+            onClick={closeModalWithHistory}
+          >
+            <div
+              className="bg-white w-full max-w-xl max-h-[80vh] overflow-hidden rounded-2xl shadow-2xl flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between p-4 border-b shrink-0">
+                <h3 className="text-base font-black text-slate-800">
+                  {legalModal === 'privacy' && '개인정보 처리방침'}
+                  {legalModal === 'terms' && '서비스 이용약관'}
+                  {legalModal === 'about' && '연구소 소개'}
+                </h3>
+                <button type="button" onClick={closeModalWithHistory} className="p-2 rounded-full hover:bg-slate-100">
+                  <LucideX size={20} />
+                </button>
+              </div>
+              <div className="p-5 overflow-y-auto text-[12px] text-slate-600 leading-relaxed space-y-4">
+                {legalModal === 'privacy' && (
+                  <>
+                    <p>공양걸AI미식데이터연구소(이하 &apos;연구소&apos;)는 이용자의 개인정보를 소중히 다루며, 관련 법령을 준수합니다.</p>
+                    <p><strong>수집 항목:</strong> 접속 IP, 쿠키, 서비스 이용 기록(클릭 로그), 유입 경로(Referrer), 광고 식별 파라미터(UTM Source, Medium, Term, Campaign), 기기 정보.</p>
+                    <p><strong>수집 목적:</strong></p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li>사용자의 검색 의도 분석을 통한 맛집 추천 알고리즘 고도화.</li>
+                      <li>구글/메타 광고 최적화 및 광고 성과 측정(ROAS 분석).</li>
+                      <li>서비스 방문 통계 산출 및 보안 강화.</li>
+                    </ul>
+                    <p><strong>보유 및 이용기간:</strong> 수집된 데이터는 통계 분석을 위해 최대 1년간 보관 후 식별 불가능한 형태로 파기합니다.</p>
+                    <p><strong>거부 권리:</strong> 이용자는 브라우저 설정을 통해 쿠키 수집을 거부할 수 있으나, 이 경우 맞춤형 서비스 이용에 제한이 있을 수 있습니다.</p>
+                  </>
+                )}
+                {legalModal === 'terms' && (
+                  <>
+                    <p><strong>정보의 성격:</strong> 본 사이트에서 제공하는 &apos;제주 베스트&apos; 및 관련 정보는 연구소의 독자적인 AI 데이터 분석 결과이며, AI와 함께 제작된 정보성 콘텐츠입니다.</p>
+                    <p><strong>책임 제한:</strong> 연구소는 정보의 정확성을 위해 최선을 다하나, 매장의 실제 영업 상태나 변동 사항에 대해 법적 책임을 지지 않습니다. 방문 전 반드시 해당 매장에 최종 확인을 권장합니다.</p>
+                    <p><strong>지식재산권:</strong> 본 사이트의 디자인, 로직, 데이터 구성 방식은 연구소의 자산이며 무단 복제 및 상업적 재배포를 금합니다.</p>
+                  </>
+                )}
+                {legalModal === 'about' && (
+                  <p>공양걸AI미식데이터연구소는 제주 로컬 미식 데이터를 AI로 분석하여 가장 정밀한 GEO(지역) 타겟팅 마케팅 솔루션을 제공하는 퍼포먼스 데이터 센터입니다. 우리는 단순한 맛집 나열을 넘어, 사용자 행동 데이터를 기반으로 한 최적의 미식 경험을 설계합니다.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
         </div>
       </main>
 
@@ -383,7 +457,7 @@ export default function JejuGourmetBest10() {
       {selectedShop && (
         <div
           className="fixed inset-0 z-[1000] bg-black/80 flex items-end sm:items-center justify-center p-0 sm:p-4"
-          onClick={() => setSelectedShop(null)}
+          onClick={closeModalWithHistory}
         >
           <div
             className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl modal-enter"
@@ -409,7 +483,7 @@ export default function JejuGourmetBest10() {
                 </button>
               </div>
               <button
-                onClick={() => setSelectedShop(null)}
+                onClick={closeModalWithHistory}
                 className="p-2 bg-gray-100 rounded-full ml-2 flex-shrink-0"
               >
                 <LucideX size={20} />
