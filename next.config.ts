@@ -34,7 +34,7 @@ const nextConfig: NextConfig = {
     ];
   },
   experimental: {
-    optimizePackageImports: ["next-themes"],
+    optimizePackageImports: ['next-themes', 'lucide-react'],
   },
   images: {
     localPatterns: [

@@ -1,13 +1,16 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import {
   LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight,
   LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck, LucideShare2,
 } from 'lucide-react';
-import { SnsShareButtons } from './SnsShareButtons';
 import { initialShops, getYoutubeVideoId, type Shop } from '@/data/stealth-best-10';
+
+/** 모달 공유 패널 확장 시에만 로드 (JS 번들 절감) */
+const SnsShareButtons = dynamic(() => import('./SnsShareButtons').then((m) => m.SnsShareButtons), { ssr: false });
 import { initFirebase, initStatsFromApi, isFirebaseEnabled, trackInteraction, type StatsState } from '@/lib/firebase-stats';
 
 /**
