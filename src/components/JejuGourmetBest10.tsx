@@ -3,8 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import {
   LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight,
-  LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck,
+  LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck, LucideShare2,
 } from 'lucide-react';
+import { SnsShareButtons } from './SnsShareButtons';
 import { initialShops, getYoutubeVideoId, type Shop } from '@/data/stealth-best-10';
 import { initFirebase, trackInteraction, type StatsState } from '@/lib/firebase-stats';
 
@@ -24,6 +25,7 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
 export default function JejuGourmetBest10() {
   const [shops] = useState<Shop[]>(() => fisherYatesShuffle([...initialShops]));
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+  const [openWithShareExpanded, setOpenWithShareExpanded] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [stats, setStats] = useState<StatsState>({});
   const [showAdminStats, setShowAdminStats] = useState(false);
@@ -37,8 +39,15 @@ export default function JejuGourmetBest10() {
   }, []);
 
   const handleOpenDetail = (shop: Shop) => {
+    setOpenWithShareExpanded(false);
     setSelectedShop(shop);
     trackInteraction(shop.id, 'youtube');
+  };
+
+  const handleOpenShare = (e: React.MouseEvent, shop: Shop) => {
+    e.stopPropagation();
+    setOpenWithShareExpanded(true);
+    setSelectedShop(shop);
   };
 
   return (
@@ -154,11 +163,20 @@ export default function JejuGourmetBest10() {
               </div>
               <div className="p-2.5">
                 <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center text-meta mt-1">
-                  <LucideStar size={10} className="text-orange-400 fill-orange-400 mr-1" />
-                  <span className="font-bold text-gray-700">{shop.rating}</span>
-                  <span className="mx-1">·</span>
-                  <span>상세보기</span>
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center text-meta">
+                    <LucideStar size={10} className="text-orange-400 fill-orange-400 mr-1" />
+                    <span className="font-bold text-gray-700">{shop.rating}</span>
+                    <span className="mx-1">·</span>
+                    <span>상세보기</span>
+                  </div>
+                  <button
+                    onClick={(e) => handleOpenShare(e, shop)}
+                    className="flex items-center gap-1 px-2 py-1 rounded-lg bg-[#ff6b00]/10 text-[#ff6b00] hover:bg-[#ff6b00]/20 font-bold text-[11px] transition-colors"
+                  >
+                    <LucideShare2 size={12} />
+                    공유하기
+                  </button>
                 </div>
               </div>
             </article>
@@ -203,8 +221,17 @@ export default function JejuGourmetBest10() {
                     <LucideYoutube size={10} /> {stats[shop.id]?.youtube ?? 0} PLAYS TRACKED
                   </div>
                 )}
-                <div className="text-[#ff6b00] text-[11px] font-black mt-3 flex items-center">
-                  자세히 보기 <LucideChevronRight size={10} className="ml-1" />
+                <div className="flex items-center gap-3 mt-3">
+                  <div className="text-[#ff6b00] text-[11px] font-black flex items-center">
+                    자세히 보기 <LucideChevronRight size={10} className="ml-1" />
+                  </div>
+                  <button
+                    onClick={(e) => handleOpenShare(e, shop)}
+                    className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#ff6b00] text-white hover:bg-[#e55d00] font-black text-[11px] transition-colors shadow-sm"
+                  >
+                    <LucideShare2 size={12} />
+                    공유하기
+                  </button>
                 </div>
               </div>
             </article>
@@ -229,19 +256,37 @@ export default function JejuGourmetBest10() {
           >
             {/* 모달 헤더 */}
             <div className="flex items-center justify-between p-4 border-b">
-              <div className="flex items-center gap-3">
-                <span className="bg-[#ff6b00] text-white w-8 h-8 flex items-center justify-center rounded-lg font-black">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
+                <span className="bg-[#ff6b00] text-white w-8 h-8 flex items-center justify-center rounded-lg font-black flex-shrink-0">
                   {shops.indexOf(selectedShop) + 1}
                 </span>
-                <h2 className="text-xl font-black">{selectedShop.name}</h2>
+                <h2 className="text-xl font-black truncate">{selectedShop.name}</h2>
+                <button
+                  onClick={() => setOpenWithShareExpanded((v) => !v)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-bold text-[12px] flex-shrink-0 transition-all ${
+                    openWithShareExpanded
+                      ? 'bg-[#ff6b00] text-white shadow-md'
+                      : 'bg-[#ff6b00]/10 text-[#ff6b00] hover:bg-[#ff6b00]/20'
+                  }`}
+                >
+                  <LucideShare2 size={16} />
+                  SNS 공유하기
+                </button>
               </div>
               <button
                 onClick={() => setSelectedShop(null)}
-                className="p-2 bg-gray-100 rounded-full"
+                className="p-2 bg-gray-100 rounded-full ml-2 flex-shrink-0"
               >
                 <LucideX size={20} />
               </button>
             </div>
+
+            {/* SNS 공유 패널 (11개 아이콘) - 공유하기로 열었을 때 또는 토글 시 표시 */}
+            {openWithShareExpanded && (
+              <div className="px-4 pt-3 pb-4 border-b bg-gray-50/50">
+                <SnsShareButtons shopName={selectedShop.name} expanded={true} />
+              </div>
+            )}
 
             {/* 유튜브 영역 (클릭 즉시 로드 및 자동 재생) */}
             {getYoutubeVideoId(selectedShop.youtubeUrl) && (
