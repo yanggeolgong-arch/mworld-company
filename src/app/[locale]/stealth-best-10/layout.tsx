@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     url: `${BASE_URL}/ko/stealth-best-10`,
     type: 'website',
     siteName: 'Jeju Gourmet AI Research Lab',
-    images: [{ url: `${BASE_URL}/images/stealth-best-10/1.avif`, width: 966, height: 645, alt: '제주도 맛집 베스트 - 연동대게회타운 대게회' }],
+    images: [{ url: `${BASE_URL}/images/stealth-best-10/yeondong-daegyehoetown-king-crab.avif`, width: 966, height: 645, alt: '제주도 맛집 베스트 - 연동대게회타운 대게회' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '제주도 맛집 베스트 | Jeju Gourmet AI Research Lab',
     description: '제주도 맛집 베스트. 공항에서 바로 떠나는 실시간 큐레이션.',
-    images: [`${BASE_URL}/images/stealth-best-10/1.avif`],
+    images: [`${BASE_URL}/images/stealth-best-10/yeondong-daegyehoetown-king-crab.avif`],
   },
 };
 
