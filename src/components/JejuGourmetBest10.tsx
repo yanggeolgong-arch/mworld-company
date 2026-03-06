@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { SnsShareButtons } from './SnsShareButtons';
 import { initialShops, getYoutubeVideoId, type Shop } from '@/data/stealth-best-10';
-import { initFirebase, trackInteraction, type StatsState } from '@/lib/firebase-stats';
+import { initFirebase, initStatsFromApi, isFirebaseEnabled, trackInteraction, type StatsState } from '@/lib/firebase-stats';
 
 /**
  * Fisher-Yates Shuffle (성능 최적화 랜덤 알고리즘)
@@ -91,11 +91,13 @@ export default function JejuGourmetBest10() {
   }, []);
 
   useEffect(() => {
-    const cleanup = initFirebase(
-      (uid) => setUserId(uid),
-      (shopId, data) => setStats((prev) => ({ ...prev, [shopId]: data }))
-    );
-    return cleanup;
+    const onStats = (shopId: number, data: { view: number; youtube: number; naver: number; google: number }) =>
+      setStats((prev) => ({ ...prev, [shopId]: data }));
+    if (isFirebaseEnabled()) {
+      return initFirebase((uid) => setUserId(uid), onStats);
+    }
+    setUserId('api');
+    return initStatsFromApi(onStats);
   }, []);
 
   /** 카드가 뷰포트에 들어올 때마다 view 카운트 (어떤 경로든, 중복 포함) */
