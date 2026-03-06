@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import {
   LucideMapPin, LucideStar, LucideX, LucidePhone, LucideClock, LucideCar, LucideBus, LucideChevronRight,
   LucideYoutube, LucideEye, LucideEyeOff, LucideShieldCheck, LucideShare2,
@@ -181,8 +182,7 @@ export default function JejuGourmetBest10() {
     <div className="h-[100dvh] flex flex-col bg-[#f8f9fa] text-[#1a1c1e] font-sans overflow-hidden">
       {/* Critical CSS 인라인화 (성능 극대화) */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; -webkit-font-smoothing: antialiased; }
+        body { -webkit-font-smoothing: antialiased; }
         
         /* 1번 틀: 2열 그리드 */
         .layout-row-double {
@@ -303,15 +303,16 @@ export default function JejuGourmetBest10() {
                     >
                       {rank}
                     </div>
-                    <img
+                    <Image
                       src={shop.img}
                       alt={shop.imgAlt}
-                      width={isSingle ? 800 : 400}
-                      height={isSingle ? 450 : 540}
+                      fill
+                      sizes={isSingle
+                        ? '(max-width: 768px) 100vw, 800px'
+                        : '(max-width: 640px) 33vw, (max-width: 1024px) 50vw, 400px'}
+                      priority={rank <= 3}
                       loading={rank <= 3 ? 'eager' : 'lazy'}
-                      fetchPriority={rank <= 3 ? 'high' : undefined}
-                      decoding="async"
-                      className="w-full h-full object-cover"
+                      className="object-cover"
                     />
                     {isAdminMode && showAdminStats && (
                       <div className="stat-overlay">

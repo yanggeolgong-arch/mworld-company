@@ -1,5 +1,13 @@
 import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from '@/data/stealth-best-10';
 import type { Metadata } from 'next';
+import { Noto_Sans_KR } from 'next/font/google';
+
+const notoSansKR = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  display: 'swap',
+  preload: true,
+});
 
 const PAGE_URL = 'https://aikoreadatalab.com/jeju/best';
 
@@ -113,14 +121,12 @@ export default function JejuBestLayout({ children }: { children: React.ReactNode
 
   return (
     <div
-      className="stealth-best-10-font"
+      className={`stealth-best-10-font ${notoSansKR.className}`}
       style={{
-        fontFamily: "'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
         letterSpacing: '-0.01em',
         lineHeight: 1.6,
       }}
     >
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
       <style
         dangerouslySetInnerHTML={{
           __html: `
