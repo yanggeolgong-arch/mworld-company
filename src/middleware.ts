@@ -9,7 +9,7 @@ export function middleware(request: NextRequest) {
   const secret = process.env.ADMIN_SECRET ?? '';
 
   if (adm && secret && adm === secret) {
-    const res = NextResponse.redirect(new URL(url.pathname, request.url));
+    const res = NextResponse.next();
     res.cookies.set(COOKIE_NAME, '1', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

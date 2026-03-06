@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const secret = process.env.ADMIN_SECRET ?? '';
 
     if (!secret) {
-      return NextResponse.json({ ok: false }, { status: 500 });
+      return NextResponse.json({ ok: false, error: 'ADMIN_SECRET not configured in Vercel' }, { status: 503 });
     }
     if (password === secret) {
       const res = NextResponse.json({ ok: true });
