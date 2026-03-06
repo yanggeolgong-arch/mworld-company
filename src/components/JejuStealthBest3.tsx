@@ -35,7 +35,7 @@ export function JejuStealthBest3() {
       <div className="mx-auto max-w-xl px-3 py-3">
         <header className="mb-3 text-center">
           <h1 className="text-xl font-black uppercase tracking-[0.12em] text-slate-100">
-            Stealth Best 10
+            제주 맛집 베스트
           </h1>
           <p className="mt-1 text-xs font-bold text-slate-500 uppercase tracking-widest">
             Data Command · Classified
