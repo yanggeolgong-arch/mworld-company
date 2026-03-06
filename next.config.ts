@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'aijeju.co.kr',
+        hostname: 'aikoreadatalab.com',
       },
       {
         protocol: 'https',

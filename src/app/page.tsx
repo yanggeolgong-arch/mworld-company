@@ -89,6 +89,17 @@ export default function Home() {
           <p className="mt-2 text-center text-[0.65rem] text-gray-500">
             AICOREADATALAB · Data-Driven Culinary Intelligence
           </p>
+          {/* 메인 화면 내 사업자 정보 및 법적 링크 */}
+          <div className="mt-4 w-full max-w-2xl mx-auto px-2">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[10px] text-white/90 backdrop-blur-sm bg-black/20 rounded-lg py-2 px-3">
+              <a href="#privacy" className="underline underline-offset-2 hover:text-white">개인정보처리방침</a>
+              <a href="#terms" className="underline underline-offset-2 hover:text-white">이용약관</a>
+              <a href="#about" className="underline underline-offset-2 hover:text-white">연구소 소개</a>
+            </div>
+            <p className="mt-1.5 text-center text-[9px] text-white/70">
+              공양걸AI미식데이터연구소 | 대표 공양걸 | 사업자등록번호 603-20-65775
+            </p>
+          </div>
         </section>
       </div>
     </main>

@@ -3,7 +3,7 @@
  * stealth-best-3 페이지 접근 검증 스크립트
  * 실행: node scripts/verify-stealth-best-3.mjs
  */
-const URL = 'https://www.aijeju.co.kr/stealth-best-3';
+const URL = 'https://aikoreadatalab.com/stealth-best-3';
 
 async function verify() {
   console.log(`\n🔍 검증 중: ${URL}\n`);

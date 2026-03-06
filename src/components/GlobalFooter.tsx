@@ -12,15 +12,32 @@ export function GlobalFooter() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  /** URL hash(#privacy, #terms, #about)로 모달 오픈 — 메인 등 외부 링크 대응 */
+  useEffect(() => {
+    const syncFromHash = () => {
+      const h = typeof window !== 'undefined' ? window.location.hash.slice(1) : '';
+      if (h === 'privacy') setLegalModal('privacy');
+      else if (h === 'terms') setLegalModal('terms');
+      else if (h === 'about') setLegalModal('about');
+    };
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
+
   useEffect(() => {
     if (legalModal) {
-      window.history.pushState({ legalModal: true }, '', window.location.href);
+      const hash = legalModal === 'privacy' ? '#privacy' : legalModal === 'terms' ? '#terms' : '#about';
+      window.history.pushState({ legalModal: true }, '', window.location.pathname + window.location.search + hash);
     }
   }, [legalModal]);
 
   const closeModalWithHistory = () => {
     setLegalModal(null);
-    if (typeof window !== 'undefined' && window.history.state?.legalModal) window.history.back();
+    if (typeof window !== 'undefined') {
+      if (window.history.state?.legalModal) window.history.back();
+      else window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
   };
 
   const openModal = (type: 'privacy' | 'terms' | 'about') => setLegalModal(type);
