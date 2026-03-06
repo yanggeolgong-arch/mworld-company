@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/stealth-best-10', destination: '/jeju/best', permanent: true },
+      { source: '/stealth-best-10/', destination: '/jeju/best', permanent: true },
       { source: '/ko/stealth-best-10', destination: '/jeju/best', permanent: true },
+      { source: '/ko/stealth-best-10/', destination: '/jeju/best', permanent: true },
+      { source: '/jeju/best/', destination: '/jeju/best', permanent: true },
     ];
   },
   async headers() {
