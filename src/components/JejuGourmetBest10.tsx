@@ -359,13 +359,14 @@ export default function JejuGourmetBest10() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-12">
               <div className="space-y-1">
-                <p>상호명: 공양걸AI미식데이터연구소 | 대표자: 공양걸</p>
+                <p>상호명: 공양걸AI미식데이터연구소</p>
+                <p>대표자: 공양걸</p>
                 <p>사업자등록번호: 603-20-65775</p>
                 <p>소재지: 제주특별자치도 제주시 삼동2길 10 돌담빌 2동 201호</p>
               </div>
               <div className="space-y-1">
-                <p>이메일: yanggeolgong@gmail.com</p>
                 <p>연락처: 010-4074-9343</p>
+                <p>이메일: yanggeolgong@gmail.com</p>
                 <p>개인정보보호책임자: 공양걸</p>
               </div>
             </div>
