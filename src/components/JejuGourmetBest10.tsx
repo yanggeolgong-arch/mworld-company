@@ -88,35 +88,32 @@ export default function JejuGourmetBest10() {
     let done = false;
     const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const adm = params.get('_adm');
+    const setAdmin = (ok: boolean) => {
+      if (!done && ok) {
+        setIsAdminMode(true);
+        setShowAdminStats(true);
+      }
+    };
     if (adm) {
-      // 비밀번호 URL 접속 시 즉시 어드민·뷰카운트 표시 (API 결과와 무관하게 유지)
-      setIsAdminMode(true);
-      setShowAdminStats(true);
+      setAdmin(true);
       fetch('/api/admin-verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: adm }),
         credentials: 'same-origin',
-      })
-        .then((r) => {
-          if (r.status === 503 && typeof console !== 'undefined') console.warn('[Admin] Vercel에 ADMIN_SECRET 환경변수 추가 후 Redeploy 필요');
-        })
-        .catch(() => {});
+      }).catch(() => {});
     } else {
       fetch('/api/admin-status', { credentials: 'same-origin' })
         .then((r) => r.json())
-        .then((data) => {
-          if (!done && data?.ok === true) {
-            setIsAdminMode(true);
-            setShowAdminStats(true);
-          }
-        })
+        .then((data) => setAdmin(data?.ok === true))
         .catch(() => {});
     }
     return () => { done = true; };
   }, []);
 
+  /** 어드민일 때만 Firebase/API 로드 (일반 유저 초기 JS 절감) */
   useEffect(() => {
+    if (!isAdminMode) return;
     const onStats = (shopId: number, data: { view: number; youtube: number; naver: number; google: number }) =>
       setStats((prev) => ({ ...prev, [shopId]: data }));
     if (isFirebaseEnabled()) {
@@ -124,7 +121,7 @@ export default function JejuGourmetBest10() {
     }
     setUserId('api');
     return initStatsFromApi(onStats);
-  }, []);
+  }, [isAdminMode]);
 
   /** Blackbox: ENTRY 로그 (utm_term, utm_source) */
   useEffect(() => {
@@ -352,8 +349,8 @@ export default function JejuGourmetBest10() {
                       </div>
                     )}
                     {!isTopThree && (
-                      <div className="text-[#ff6b00] text-[11px] font-black mt-3 flex items-center">
-                        자세히 보기 <LucideChevronRight size={10} className="ml-1" />
+                      <div className="text-[#c2410c] text-[11px] font-black mt-3 flex items-center">
+                        자세히 보기 <LucideChevronRight size={10} className="ml-1" aria-hidden />
                       </div>
                     )}
                   </div>
