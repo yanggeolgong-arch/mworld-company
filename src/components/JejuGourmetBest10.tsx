@@ -471,10 +471,10 @@ export default function JejuGourmetBest10() {
               <div className="px-4 pt-3 pb-4 border-b bg-slate-50/50">
                 <div className="flex gap-2">
                   <a
-                    href={selectedShop.googlePlaceUrl}
+                    href={selectedShop.googlePlaceId ? `https://search.google.com/local/reviews?placeid=${selectedShop.googlePlaceId}` : selectedShop.googlePlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg border border-gray-200 bg-white text-[12px] font-bold text-slate-700 hover:bg-gray-50"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg bg-[#4285F4] text-white text-[12px] font-bold hover:bg-[#3367d6]"
                     onClick={() => {
                       trackInteraction(selectedShop.id, 'google');
                       fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'google_review', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});

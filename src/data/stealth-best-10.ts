@@ -31,6 +31,8 @@ export type Shop = {
   youtubeUrl: string;
   naverPlaceUrl: string;
   googlePlaceUrl: string;
+  /** 구글 Place ID - 있으면 리뷰 탭으로 바로 열림. 구글맵에서 업체 클릭→URL의 data=!1s 뒤 또는 Place ID 찾기 도구 사용 */
+  googlePlaceId?: string;
   imgAlt: string;
   cuisine: string;
   /** 주소 스키마용 */
