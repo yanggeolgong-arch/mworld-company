@@ -63,7 +63,7 @@ export default function JejuGourmetBest10() {
     const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
     const adm = params.get('_adm');
     if (adm) {
-      // 비밀번호 URL 접속 시 즉시 어드민·뷰카운트 표시 (추가 액션 불필요)
+      // 비밀번호 URL 접속 시 즉시 어드민·뷰카운트 표시 (API 결과와 무관하게 유지)
       setIsAdminMode(true);
       setShowAdminStats(true);
       fetch('/api/admin-verify', {
@@ -74,20 +74,8 @@ export default function JejuGourmetBest10() {
       })
         .then((r) => {
           if (r.status === 503 && typeof console !== 'undefined') console.warn('[Admin] Vercel에 ADMIN_SECRET 환경변수 추가 후 Redeploy 필요');
-          return r.json();
         })
-        .then((data) => {
-          if (!done && data?.ok !== true) {
-            setIsAdminMode(false);
-            setShowAdminStats(false);
-          }
-        })
-        .catch(() => {
-          if (!done) {
-            setIsAdminMode(false);
-            setShowAdminStats(false);
-          }
-        });
+        .catch(() => {});
     } else {
       fetch('/api/admin-status', { credentials: 'same-origin' })
         .then((r) => r.json())
