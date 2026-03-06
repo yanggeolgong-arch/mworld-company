@@ -59,3 +59,44 @@ export async function getStats(): Promise<Record<number, { view: number; youtube
   }
   return out;
 }
+
+/** Blackbox: user_logs ENTRY (페이지 진입) */
+export async function logUserEntry(utm_term?: string, utm_source?: string): Promise<boolean> {
+  const app = getAdminApp();
+  if (!app) return false;
+  try {
+    const db = admin.firestore(app);
+    const ref = db.collection('artifacts').doc(appId).collection('public').doc('data').collection('user_logs');
+    await ref.add({
+      type: 'ENTRY',
+      utm_term: utm_term ?? null,
+      utm_source: utm_source ?? null,
+      ts: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Blackbox: user_logs ACTION (카드 클릭, 유튜브, 네이버 등) */
+export async function logUserAction(
+  action: 'card_click' | 'youtube_play' | 'naver_map' | 'google_map',
+  shopId: number
+): Promise<boolean> {
+  const app = getAdminApp();
+  if (!app) return false;
+  try {
+    const db = admin.firestore(app);
+    const ref = db.collection('artifacts').doc(appId).collection('public').doc('data').collection('user_logs');
+    await ref.add({
+      type: 'ACTION',
+      action,
+      shopId,
+      ts: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}

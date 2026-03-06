@@ -7,4 +7,4 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://www.aijeju.co.kr/sitemap.xml
+Sitemap: https://aikoreadatalab.com/sitemap.xml

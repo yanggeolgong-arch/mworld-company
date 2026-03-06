@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://www.aijeju.co.kr';
+const BASE_URL = 'https://aikoreadatalab.com';
 
-/** Jeju Gourmet AI Research Lab */
+/** AI KOREA DATA LAB */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

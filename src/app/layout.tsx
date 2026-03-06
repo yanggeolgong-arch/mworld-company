@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const BASE_URL = 'https://www.aijeju.co.kr';
+const BASE_URL = 'https://aikoreadatalab.com';
 const OG_IMAGE = `${BASE_URL}/images/jeju-ai-culinary-intelligence-center.jpg`;
 
 export const viewport = {
@@ -11,7 +11,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Jeju Gourmet AI Research Lab',
+  title: 'AI KOREA DATA LAB',
   description: 'Data-Driven Culinary Intelligence.',
   metadataBase: new URL(BASE_URL),
   alternates: {
@@ -25,23 +25,23 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Jeju Gourmet AI Research Lab',
+    title: 'AI KOREA DATA LAB',
     description: 'Data-Driven Culinary Intelligence.',
     type: 'website',
     url: BASE_URL + '/',
-    siteName: 'Jeju Gourmet AI Research Lab',
+    siteName: 'AI KOREA DATA LAB',
     images: [
       {
         url: OG_IMAGE,
         width: 1920,
         height: 1080,
-        alt: 'Global Data Dashboard of Jeju Gourmet AI Research Lab',
+        alt: 'Global Data Dashboard of AI KOREA DATA LAB',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jeju Gourmet AI Research Lab',
+    title: 'AI KOREA DATA LAB',
     description: 'Data-Driven Culinary Intelligence.',
     images: [OG_IMAGE],
   },

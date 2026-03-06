@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { REPORTS } from '@/lib/reports';
 
-const BASE_URL = 'https://www.aijeju.co.kr';
+const BASE_URL = 'https://aikoreadatalab.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const reportEntries: MetadataRoute.Sitemap = REPORTS.map((r) => ({
@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: BASE_URL + '/ko/stealth-best-10',
+      url: BASE_URL + '/jeju/best',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,

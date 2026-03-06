@@ -29,7 +29,7 @@ function getShareData(shopName: string): { url: string; text: string } {
   if (typeof window !== 'undefined') {
     return { url: window.location.href, text: `${shopName} - 제주도 맛집 베스트` };
   }
-  return { url: 'https://www.aijeju.co.kr/ko/stealth-best-10', text: `${shopName} - 제주도 맛집 베스트` };
+  return { url: 'https://aikoreadatalab.com/jeju/best', text: `${shopName} - 제주도 맛집 베스트` };
 }
 
 type Props = { shopName: string; expanded?: boolean; onCopy?: () => void };

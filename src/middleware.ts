@@ -23,5 +23,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/ko/stealth-best-10', '/(.*)/stealth-best-10'],
+  matcher: ['/jeju/best', '/ko/stealth-best-10', '/(.*)/stealth-best-10'],
 };

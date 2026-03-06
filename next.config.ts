@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      { source: '/stealth-best-10', destination: '/ko/stealth-best-10', permanent: true },
+      { source: '/stealth-best-10', destination: '/jeju/best', permanent: true },
+      { source: '/ko/stealth-best-10', destination: '/jeju/best', permanent: true },
     ];
   },
   async headers() {

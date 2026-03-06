@@ -1,17 +1,19 @@
 import { initialShops, buildRestaurantSchema, getYoutubeVideoId, BASE_URL } from '@/data/stealth-best-10';
 import type { Metadata } from 'next';
 
+const PAGE_URL = 'https://aikoreadatalab.com/jeju/best';
+
 export const metadata: Metadata = {
   title: '제주도 맛집 베스트 | AI KOREA DATA LAB',
   description: '제주도 맛집 베스트. 공항에서 바로 떠나는 실시간 큐레이션. AI KOREA DATA LAB.',
   metadataBase: new URL(BASE_URL),
   alternates: {
-    canonical: `https://aikoreadatalab.com/ko/stealth-best-10`,
+    canonical: PAGE_URL,
   },
   openGraph: {
     title: '제주도 맛집 베스트 | AI KOREA DATA LAB',
     description: '제주도 맛집 베스트. 공항에서 바로 떠나는 실시간 큐레이션.',
-    url: `https://aikoreadatalab.com/ko/stealth-best-10`,
+    url: PAGE_URL,
     type: 'website',
     siteName: 'AI KOREA DATA LAB',
     images: [{ url: `${BASE_URL}/images/stealth-best-10/yeondong-daegyehoetown-king-crab.avif`, width: 966, height: 645, alt: '제주도 맛집 베스트 - 연동대게회타운 대게회' }],
@@ -24,18 +26,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function StealthBest10Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function JejuBestLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `${BASE_URL}/ko/stealth-best-10#webpage`,
+    '@id': `${PAGE_URL}#webpage`,
     name: '제주도 맛집 베스트',
     description: '제주도 맛집 베스트. 공항에서 바로 떠나는 실시간 큐레이션. 네이버 플레이스, 구글 플레이스 연동.',
-    url: `https://aikoreadatalab.com/ko/stealth-best-10`,
+    url: PAGE_URL,
     inLanguage: 'ko',
     publisher: {
       '@type': 'Organization',
@@ -60,7 +58,7 @@ export default function StealthBest10Layout({
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
-      { '@type': 'ListItem', position: 2, name: '제주도 맛집 베스트', item: `${BASE_URL}/ko/stealth-best-10` },
+      { '@type': 'ListItem', position: 2, name: '제주도 맛집 베스트', item: PAGE_URL },
     ],
   };
 
@@ -109,10 +107,7 @@ export default function StealthBest10Layout({
         embedUrl: `https://www.youtube.com/embed/${videoId}`,
         contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
         isFamilyFriendly: true,
-        publisher: {
-          '@type': 'Organization',
-          name: 'AI KOREA DATA LAB',
-        },
+        publisher: { '@type': 'Organization', name: 'AI KOREA DATA LAB' },
       };
     });
 
@@ -125,10 +120,7 @@ export default function StealthBest10Layout({
         lineHeight: 1.6,
       }}
     >
-      <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
-        rel="stylesheet"
-      />
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
       <style
         dangerouslySetInnerHTML={{
           __html: `

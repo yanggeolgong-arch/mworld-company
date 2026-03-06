@@ -100,6 +100,20 @@ export default function JejuGourmetBest10() {
     return initStatsFromApi(onStats);
   }, []);
 
+  /** Blackbox: ENTRY 로그 (utm_term, utm_source) */
+  useEffect(() => {
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+    fetch('/api/log/entry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        utm_term: params.get('utm_term') ?? undefined,
+        utm_source: params.get('utm_source') ?? undefined,
+      }),
+      credentials: 'same-origin',
+    }).catch(() => {});
+  }, []);
+
   /** 카드가 뷰포트에 들어올 때마다 view 카운트 (어떤 경로든, 중복 포함) */
   const cardRefs = useRef<Map<number, HTMLElement>>(new Map());
   useEffect(() => {
@@ -131,6 +145,18 @@ export default function JejuGourmetBest10() {
     setOpenWithShareExpanded(false);
     setSelectedShop(shop);
     trackInteraction(shop.id, 'youtube');
+    fetch('/api/log/action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'card_click', shopId: shop.id }),
+      credentials: 'same-origin',
+    }).catch(() => {});
+    fetch('/api/log/action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'youtube_play', shopId: shop.id }),
+      credentials: 'same-origin',
+    }).catch(() => {});
   };
 
   return (
@@ -310,8 +336,21 @@ export default function JejuGourmetBest10() {
           </div>
         ))}
 
+        {/* FAQ 섹션 - 셔플된 순서 동기화 (1위 업체가 모든 섹션에서 1위) */}
+        <section className="px-6 py-8 border-t border-gray-100" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" className="text-base font-black text-[#1a1c1e] mb-4">제주도 맛집 베스트 순위</h2>
+          <ul className="space-y-2 text-sm text-gray-600">
+            {shops.map((shop, i) => (
+              <li key={shop.id} className="flex items-center gap-2">
+                <span className="bg-[#ff6b00]/10 text-[#ff6b00] w-6 h-6 flex items-center justify-center rounded font-black text-[11px] flex-shrink-0">{i + 1}</span>
+                {shop.name}
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <footer className="py-12 px-6 pb-[max(2rem,env(safe-area-inset-bottom))] text-center text-[11px] text-gray-300">
-          <p>© 2026 JEJU GOURMET AI RESEARCH INSTITUTE</p>
+          <p>© 2026 AI KOREA DATA LAB</p>
         </footer>
         </div>
       </main>
@@ -416,7 +455,10 @@ export default function JejuGourmetBest10() {
                     href={selectedShop.googlePlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackInteraction(selectedShop.id, 'google')}
+                    onClick={() => {
+                      trackInteraction(selectedShop.id, 'google');
+                      fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'google_map', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
+                    }}
                     className="flex-1 flex items-center justify-center gap-1.5 bg-white border border-gray-200 py-3.5 rounded-xl font-bold text-center text-[13px]"
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded overflow-hidden flex-shrink-0" aria-hidden>
@@ -434,7 +476,10 @@ export default function JejuGourmetBest10() {
                     href={selectedShop.naverPlaceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => trackInteraction(selectedShop.id, 'naver')}
+                    onClick={() => {
+                      trackInteraction(selectedShop.id, 'naver');
+                      fetch('/api/log/action', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'naver_map', shopId: selectedShop.id }), credentials: 'same-origin' }).catch(() => {});
+                    }}
                     className="flex-1 flex items-center justify-center gap-1.5 bg-[#03cf5d] text-white py-3.5 rounded-xl font-bold text-center text-[13px]"
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded border-2 border-white/80 text-white text-[11px] font-black">N</span>
