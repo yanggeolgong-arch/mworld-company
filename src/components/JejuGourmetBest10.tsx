@@ -154,13 +154,10 @@ export default function JejuGourmetBest10() {
               </div>
               <div className="p-2.5">
                 <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center text-meta mt-1 flex-wrap gap-x-1 gap-y-0.5">
+                <div className="flex items-center text-meta mt-1">
                   <LucideStar size={10} className="text-orange-400 fill-orange-400 mr-1" />
                   <span className="font-bold text-gray-700">{shop.rating}</span>
                   <span className="mx-1">·</span>
-                  {shop.ratingSource.includes('착한가격업소') && (
-                    <span className="bg-[#22c55e] text-white text-[9px] font-bold px-1.5 py-0.5 rounded">착한가격</span>
-                  )}
                   <span>상세보기</span>
                 </div>
               </div>
@@ -195,13 +192,10 @@ export default function JejuGourmetBest10() {
               </div>
               <div className="p-3">
                 <h3 className="text-title truncate">{shop.name}</h3>
-                <div className="flex items-center text-[12px] mt-0.5 flex-wrap gap-x-1.5 gap-y-1">
+                <div className="flex items-center text-[12px] mt-0.5">
                   <LucideStar size={12} className="text-orange-400 fill-orange-400 mr-1" />
                   <span className="font-bold text-gray-700">{shop.rating}</span>
-                  <span className="text-gray-300 mx-0.5">|</span>
-                  {shop.ratingSource.includes('착한가격업소') && (
-                    <span className="bg-[#22c55e] text-white text-[9px] font-bold px-1.5 py-0.5 rounded">착한가격업소</span>
-                  )}
+                  <span className="text-gray-300 mx-1.5">|</span>
                   <span className="text-gray-400">{shop.reviewCount.toLocaleString()} 리뷰</span>
                 </div>
                 {showAdminStats && (
@@ -274,7 +268,7 @@ export default function JejuGourmetBest10() {
               {selectedShop.ratingSource.includes('착한가격업소') && (
                 <div className="bg-[#22c55e] text-white px-4 py-2.5 rounded-xl font-bold text-[13px] flex items-center gap-2">
                   <LucideShieldCheck size={18} />
-                  농림축산식품부 착한가격업소 선정
+                  행정안전부 선정 착한가격업소
                 </div>
               )}
               <div className="grid grid-cols-[20px_1fr] gap-3 items-start">
