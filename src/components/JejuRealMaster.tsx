@@ -143,7 +143,7 @@ export default function JejuRealMaster() {
           href="/jeju/best"
           className="text-orange-500 text-sm font-bold hover:text-orange-400 transition-colors block"
         >
-          Stealth Best 10 갤러리 보기
+          제주 맛집 베스트 갤러리 보기
         </a>
         <a
           href="https://mworld-company.vercel.app/stealth-best-3"

@@ -45,8 +45,8 @@ export default function StealthBest10Layout({
     mainEntity: {
       '@type': 'ItemList',
       name: '제주도 맛집 베스트',
-      description: '제주도 추천 맛집 10선. 대게, 흑돼지, 양갈비, 국수, 해산물 등.',
-      numberOfItems: 10,
+      description: '제주도 추천 맛집. 대게, 흑돼지, 양갈비, 국수, 해산물 등.',
+      numberOfItems: initialShops.length,
       itemListElement: initialShops.map((shop, i) => ({
         '@type': 'ListItem',
         position: i + 1,
@@ -73,7 +73,7 @@ export default function StealthBest10Layout({
         name: '제주도 맛집 베스트는 어떻게 선정되나요?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: '데이터 기반으로 제주도 인기 맛집 10곳을 선정했습니다. 네이버 플레이스, 구글 플레이스 리뷰와 평점을 참고합니다.',
+          text: '데이터 기반으로 제주도 인기 맛집을 선정했습니다. 네이버 플레이스, 구글 플레이스 리뷰와 평점을 참고합니다.',
         },
       },
       {
