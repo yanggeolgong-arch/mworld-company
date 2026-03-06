@@ -69,12 +69,22 @@ export default function JejuGourmetBest10() {
         body: JSON.stringify({ password: adm }),
       })
         .then((r) => r.json())
-        .then((data) => { if (!done) setIsAdminMode(data.ok === true); })
+        .then((data) => {
+          if (!done && data.ok === true) {
+            setIsAdminMode(true);
+            setShowAdminStats(true);
+          }
+        })
         .catch(() => {});
     } else {
       fetch('/api/admin-status')
         .then((r) => r.json())
-        .then((data) => { if (!done) setIsAdminMode(data.ok === true); })
+        .then((data) => {
+          if (!done && data.ok === true) {
+            setIsAdminMode(true);
+            setShowAdminStats(true);
+          }
+        })
         .catch(() => {});
     }
     return () => { done = true; };
