@@ -32,37 +32,20 @@ function getShareData(shopName: string): { url: string; text: string } {
   return { url: 'https://www.aijeju.co.kr/ko/stealth-best-10', text: `${shopName} - 제주도 맛집 베스트` };
 }
 
-async function copyToClipboard(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 type Props = { shopName: string; expanded?: boolean; onCopy?: () => void };
 
 export function SnsShareButtons({ shopName, expanded = true, onCopy }: Props) {
   const { url, text } = getShareData(shopName);
 
-  const handleClick = async (item: (typeof SNS_LIST)[number]) => {
+  const handleClick = (item: (typeof SNS_LIST)[number]) => {
     if (item.id === 'instagram' || item.id === 'kakao') {
-      const shareText = `${text}\n${url}`;
-      if (typeof navigator !== 'undefined' && navigator.share) {
-        try {
-          await navigator.share({ title: text, text: shareText, url });
-          onCopy?.();
-          return;
-        } catch {}
-      }
-      const ok = await copyToClipboard(shareText);
-      if (ok) onCopy?.();
+      const sharePopupUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/share-popup?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&sns=${item.id}`;
+      window.open(sharePopupUrl, '_blank', 'noopener,noreferrer,width=420,height=380');
       return;
     }
     const href = item.getHref(url, text);
     if (href) {
-      window.open(href, '_blank', 'noopener,noreferrer,width=600,height=400');
+      window.open(href, '_blank', 'noopener,noreferrer,width=600,height=500');
     }
   };
 
