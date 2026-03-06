@@ -56,6 +56,29 @@ export default function JejuGourmetBest10() {
   const [userId, setUserId] = useState<string | null>(null);
   const [stats, setStats] = useState<StatsState>({});
   const [showAdminStats, setShowAdminStats] = useState(false);
+  const [isAdminMode, setIsAdminMode] = useState(false);
+
+  useEffect(() => {
+    let done = false;
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+    const adm = params.get('_adm');
+    if (adm) {
+      fetch('/api/admin-verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: adm }),
+      })
+        .then((r) => r.json())
+        .then((data) => { if (!done) setIsAdminMode(data.ok === true); })
+        .catch(() => {});
+    } else {
+      fetch('/api/admin-status')
+        .then((r) => r.json())
+        .then((data) => { if (!done) setIsAdminMode(data.ok === true); })
+        .catch(() => {});
+    }
+    return () => { done = true; };
+  }, []);
 
   useEffect(() => {
     const cleanup = initFirebase(
@@ -69,21 +92,27 @@ export default function JejuGourmetBest10() {
   const cardRefs = useRef<Map<number, HTMLElement>>(new Map());
   useEffect(() => {
     const observers = new Map<number, IntersectionObserver>();
-    shops.forEach((shop) => {
-      const el = cardRefs.current.get(shop.id);
-      if (!el) return;
-      const obs = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) trackInteraction(shop.id, 'view');
-          }
-        },
-        { threshold: 0.2 }
-      );
-      obs.observe(el);
-      observers.set(shop.id, obs);
-    });
-    return () => observers.forEach((o) => o.disconnect());
+    const timer = setTimeout(() => {
+      shops.forEach((shop) => {
+        const el = cardRefs.current.get(shop.id);
+        if (!el) return;
+        const shopId = shop.id;
+        const obs = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) trackInteraction(shopId, 'view');
+            }
+          },
+          { threshold: 0.2 }
+        );
+        obs.observe(el);
+        observers.set(shopId, obs);
+      });
+    }, 100);
+    return () => {
+      clearTimeout(timer);
+      observers.forEach((o) => o.disconnect());
+    };
   }, [shops]);
 
   const handleOpenDetail = (shop: Shop) => {
@@ -164,7 +193,8 @@ export default function JejuGourmetBest10() {
         .stat-badge { background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: white; padding: 3px 8px; border-radius: 8px; font-size: 10px; font-weight: 900; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.1); }
       `}</style>
 
-      {/* Admin Control Bar */}
+      {/* Admin Control Bar - ?_adm=4470 으로만 표시 */}
+      {isAdminMode && (
       <div className="bg-[#1e293b] text-white py-1.5 px-4 flex justify-between items-center text-[10px] font-bold sticky top-0 z-[1100] shadow-md">
         <div className="flex items-center gap-2">
           <LucideShieldCheck size={12} className="text-blue-400" />
@@ -178,6 +208,7 @@ export default function JejuGourmetBest10() {
           <span>{showAdminStats ? 'STATS LIVE' : 'STATS HIDDEN'}</span>
         </button>
       </div>
+      )}
 
       {/* Header */}
       <header className="flex-shrink-0 bg-white pt-[max(2.5rem,env(safe-area-inset-top))] pb-6 text-center">
@@ -226,7 +257,7 @@ export default function JejuGourmetBest10() {
                       decoding="async"
                       className="w-full h-full object-cover"
                     />
-                    {showAdminStats && (
+                    {isAdminMode && showAdminStats && (
                       <div className="stat-overlay">
                         <div className="stat-badge">👁 {stats[shop.id]?.view ?? 0}</div>
                         <div className="stat-badge"><LucideYoutube size={10} className="text-red-500" /> {stats[shop.id]?.youtube ?? 0}</div>
@@ -250,7 +281,7 @@ export default function JejuGourmetBest10() {
                         </>
                       )}
                     </div>
-                    {showAdminStats && !isTopThree && (
+                    {isAdminMode && showAdminStats && !isTopThree && (
                       <div className="mt-2 text-[10px] font-bold text-blue-600 flex items-center gap-1">
                         <LucideYoutube size={10} /> {stats[shop.id]?.youtube ?? 0} PLAYS TRACKED
                       </div>
@@ -313,7 +344,7 @@ export default function JejuGourmetBest10() {
             {/* 유튜브 영역 (헤더 바로 아래, 상단까지 확장) */}
             {getYoutubeVideoId(selectedShop.youtubeUrl) && (
               <div className="w-full min-h-[50vh] aspect-video bg-black relative">
-                {showAdminStats && (
+                {isAdminMode && showAdminStats && (
                   <div className="absolute top-4 right-4 flex flex-col gap-1 z-10">
                     <div className="bg-black/80 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20">👁 VIEW: {stats[selectedShop.id]?.view ?? 0}</div>
                     <div className="bg-blue-600/90 text-white px-3 py-1 rounded-full text-[10px] font-black flex items-center gap-2 backdrop-blur-md border border-white/20"><LucideYoutube size={12} fill="white" /> PLAY: {stats[selectedShop.id]?.youtube ?? 0}</div>
@@ -385,7 +416,7 @@ export default function JejuGourmetBest10() {
                       </svg>
                     </span>
                     구글 플레이스
-                    {showAdminStats && <span className="bg-gray-100 text-gray-500 px-1.5 rounded text-[9px] border font-black">{stats[selectedShop.id]?.google ?? 0}</span>}
+                    {isAdminMode && showAdminStats && <span className="bg-gray-100 text-gray-500 px-1.5 rounded text-[9px] border font-black">{stats[selectedShop.id]?.google ?? 0}</span>}
                   </a>
                   <a
                     href={selectedShop.naverPlaceUrl}
@@ -396,7 +427,7 @@ export default function JejuGourmetBest10() {
                   >
                     <span className="flex items-center justify-center w-5 h-5 rounded border-2 border-white/80 text-white text-[11px] font-black">N</span>
                     네이버 플레이스
-                    {showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.naver ?? 0}</span>}
+                    {isAdminMode && showAdminStats && <span className="bg-black/20 px-1.5 rounded text-[9px] font-black">{stats[selectedShop.id]?.naver ?? 0}</span>}
                   </a>
                 </div>
               </div>
